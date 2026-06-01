@@ -112,10 +112,18 @@ export const SortableProduct = ({product, currencyCode, category, categories}: S
             if (productPrices[0].price <= 0) {
                 return {display: t`Free`, isFree: true};
             }
-            return {display: formatCurrency(productPrices[0].price, currencyCode), isFree: false};
+            return {
+                display: formatCurrency(
+                    productPrices[0].price_including_taxes_and_fees ?? productPrices[0].price,
+                    currencyCode
+                ),
+                isFree: false
+            };
         }
 
-        const prices = productPrices.map(productPrice => productPrice.price);
+        const prices = productPrices.map(
+            productPrice => productPrice.price_including_taxes_and_fees ?? productPrice.price
+        );
         const minPrice = Math.min(...prices);
         const maxPrice = Math.max(...prices);
 
