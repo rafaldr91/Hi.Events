@@ -262,19 +262,23 @@
         }
 
         .col-description {
-            width: 55%;
+            width: 42%;
         }
 
         .col-rate {
-            width: 15%;
+            width: 14%;
         }
 
         .col-qty {
-            width: 15%;
+            width: 10%;
+        }
+
+        .col-tax {
+            width: 17%;
         }
 
         .col-amount {
-            width: 15%;
+            width: 17%;
         }
 
         @media print {
@@ -356,12 +360,18 @@
     @endif
 </div>
 
+@php
+    $hasItemTaxes = collect($invoice->getItems())->contains(fn($item) => ($item['total_tax'] ?? 0) > 0);
+@endphp
 <table class="items">
     <thead>
     <tr>
         <th class="col-description">{{ __('Description') }}</th>
         <th class="col-rate align-right">{{ __('Rate') }}</th>
         <th class="col-qty align-right">{{ __('Qty') }}</th>
+        @if($hasItemTaxes)
+            <th class="col-tax align-right">{{ __('Tax') }}</th>
+        @endif
         <th class="col-amount align-right">{{ __('Amount') }}</th>
     </tr>
     </thead>
@@ -393,6 +403,20 @@
                 @endif
             </td>
             <td class="align-right">{{ $orderItem['quantity'] }}</td>
+            @if($hasItemTaxes)
+                <td class="align-right">
+                    @if(($orderItem['total_tax'] ?? 0) > 0)
+                        {{ Currency::format($orderItem['total_tax'], $order->getCurrency()) }}
+                        @foreach($orderItem['taxes_and_fees_rollup']['taxes'] ?? [] as $itemTax)
+                            <div class="item-description">
+                                {{ $itemTax['name'] }}@if($itemTax['type'] === 'PERCENTAGE') ({{ $itemTax['rate'] }}%)@endif
+                            </div>
+                        @endforeach
+                    @else
+                        —
+                    @endif
+                </td>
+            @endif
             <td class="align-right">
                 @if($orderItem['price_before_discount'])
                     <div
@@ -424,11 +448,7 @@
     @if($order->getHasTaxes())
         @foreach($order->getTaxesAndFeesRollup()['taxes'] as $tax)
             <tr class="breakdown">
-                <td>{{ $tax['name'] }} ({{ $tax['rate'] }}@if($tax['type'] === 'PERCENTAGE')
-                        %
-                    @else
-                        {{ $order->getCurrency() }}
-                    @endif)</td>
+                <td>{{ $tax['name'] }}@if($tax['type'] === 'PERCENTAGE') ({{ $tax['rate'] }}%)@endif</td>
                 <td>{{ Currency::format($tax['value'], $order->getCurrency()) }}</td>
             </tr>
         @endforeach
@@ -441,11 +461,7 @@
     @if($order->getHasFees())
         @foreach($order->getTaxesAndFeesRollup()['fees'] as $fee)
             <tr class="breakdown">
-                <td>{{ $fee['name'] }} ({{ $fee['rate'] }}@if($fee['type'] === 'PERCENTAGE')
-                        %
-                    @else
-                        {{ $order->getCurrency() }}
-                    @endif)</td>
+                <td>{{ $fee['name'] }}@if($fee['type'] === 'PERCENTAGE') ({{ $fee['rate'] }}%)@endif</td>
                 <td>{{ Currency::format($fee['value'], $order->getCurrency()) }}</td>
             </tr>
         @endforeach

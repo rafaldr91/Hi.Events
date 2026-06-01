@@ -56,7 +56,7 @@ export const EventCard: React.FC<EventCardProps> = ({event, primaryColor = '#8b5
     products.forEach(product => {
         if (product.prices && product.prices.length > 0) {
             product.prices.forEach(price => {
-                const priceValue = price.price || 0;
+                const priceValue = price.price_including_taxes_and_fees ?? price.price ?? 0;
                 if (lowestPrice === null || priceValue < lowestPrice) {
                     lowestPrice = priceValue;
                 }
