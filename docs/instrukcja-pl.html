@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hi.Events – Instrukcja obsługi</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f7; color: #1a1a2e; line-height: 1.6; }
+
+    header {
+      background: linear-gradient(135deg, #3d1a6e 0%, #6b2fa0 100%);
+      color: #fff; padding: 24px 40px;
+      display: flex; align-items: center; gap: 16px;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,.3);
+    }
+    header h1 { font-size: 1.35rem; font-weight: 700; }
+    header p  { font-size: .82rem; opacity: .72; margin-top: 3px; }
+
+    .container { display: grid; grid-template-columns: 255px 1fr; min-height: calc(100vh - 72px); }
+
+    nav {
+      background: #fff; border-right: 1px solid #e5e5ea;
+      padding: 20px 0; position: sticky; top: 72px;
+      height: calc(100vh - 72px); overflow-y: auto;
+    }
+    nav .nav-section { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #aaa; padding: 12px 20px 4px; margin-top: 4px; }
+    nav a { display: block; padding: 7px 20px; color: #444; text-decoration: none; font-size: .86rem; border-left: 3px solid transparent; transition: all .15s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    nav a:hover { background: #f5f0ff; color: #6b2fa0; border-left-color: #6b2fa0; }
+
+    main { padding: 36px 48px; max-width: 960px; }
+
+    section { margin-bottom: 60px; }
+    section h2 { font-size: 1.45rem; font-weight: 700; color: #1a1a2e; padding-bottom: 10px; border-bottom: 2px solid #ede7f6; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    section h2 .num { min-width: 30px; height: 30px; background: linear-gradient(135deg,#6b2fa0,#9c5cc7); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: .8rem; font-weight: 700; flex-shrink: 0; }
+    section h3 { font-size: .98rem; font-weight: 600; color: #3d1a6e; margin: 22px 0 10px; }
+    p { margin-bottom: 12px; color: #333; font-size: .92rem; }
+
+    figure.ss { margin: 18px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.12), 0 0 0 1px rgba(0,0,0,.06); }
+    figure.ss img { width: 100%; display: block; }
+    figure.ss figcaption { background: #1a1a2e; color: #888; font-size: .72rem; padding: 5px 14px; }
+
+    table { width: 100%; border-collapse: collapse; font-size: .87rem; margin: 14px 0; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.07); }
+    thead { background: #3d1a6e; color: #fff; }
+    th { padding: 9px 14px; text-align: left; font-weight: 600; font-size: .78rem; text-transform: uppercase; letter-spacing: .5px; }
+    td { padding: 9px 14px; border-bottom: 1px solid #f0eaf8; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #faf7ff; }
+    td code, p code { background: #ede7f6; color: #5e2196; padding: 1px 6px; border-radius: 4px; font-size: .82rem; font-family: monospace; }
+
+    .callout { background: #fff8e1; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 11px 15px; margin: 14px 0; font-size: .87rem; color: #555; }
+    .callout.info { background: #e8f4fd; border-color: #3b82f6; }
+    .callout.ok   { background: #e8faf0; border-color: #10b981; }
+
+    ol.steps { list-style: none; counter-reset: s; margin: 14px 0; }
+    ol.steps li { counter-increment: s; display: flex; gap: 12px; margin-bottom: 10px; align-items: flex-start; font-size: .9rem; color: #333; }
+    ol.steps li::before { content: counter(s); min-width: 24px; height: 24px; background: #6b2fa0; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .74rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+    .flow { display: flex; align-items: center; gap: 8px; margin: 12px 0; flex-wrap: wrap; }
+    .pill { display: inline-block; padding: 3px 12px; border-radius: 20px; font-size: .78rem; font-weight: 600; }
+    .pill.draft    { background: #fef3c7; color: #92400e; }
+    .pill.live     { background: #d1fae5; color: #065f46; }
+    .pill.archived { background: #e5e7eb; color: #374151; }
+    .flow-arr { color: #bbb; font-size: 1.1rem; }
+
+    .links-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px,1fr)); gap: 10px; margin: 14px 0; }
+    .link-card { background: #fff; border: 1px solid #e5e5ea; border-radius: 10px; padding: 12px 15px; text-decoration: none; color: #1a1a2e; transition: all .15s; }
+    .link-card:hover { border-color: #6b2fa0; box-shadow: 0 2px 8px rgba(107,47,160,.15); }
+    .link-card .lbl { font-weight: 600; font-size: .87rem; }
+    .link-card .url { font-size: .74rem; color: #6b2fa0; font-family: monospace; word-break: break-all; display: block; margin-top: 3px; }
+
+    footer { text-align: center; padding: 28px; color: #bbb; font-size: .78rem; border-top: 1px solid #e5e5ea; background: #fff; margin-top: 40px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
+    <rect width="36" height="36" rx="8" fill="rgba(255,255,255,.15)"/>
+    <rect x="8" y="12" width="20" height="3" rx="1.5" fill="white"/>
+    <rect x="8" y="19" width="14" height="3" rx="1.5" fill="white"/>
+    <rect x="24" y="7" width="4" height="22" rx="2" fill="rgba(255,255,255,.45)"/>
+  </svg>
+  <div>
+    <h1>Hi.Events – Instrukcja obsługi (wersja polska)</h1>
+    <p>Wersja 1.8.0-beta &nbsp;·&nbsp; https://localhost:8443 &nbsp;·&nbsp; Interfejs: Polski</p>
+  </div>
+</header>
+
+<div class="container">
+<nav>
+  <div class="nav-section">Rozdziały</div>
+  <a href="#logowanie">1. Logowanie</a>
+  <a href="#dashboard">2. Panel organizatora</a>
+  <a href="#tworzenie">3. Tworzenie wydarzenia</a>
+  <a href="#pierwsze-kroki">4. Pierwsze kroki</a>
+  <a href="#bilety">5. Bilety i produkty</a>
+  <a href="#kody">6. Kody promocyjne</a>
+  <a href="#uczestnicy">7. Uczestnicy</a>
+  <a href="#zamowienia">8. Zamówienia</a>
+  <a href="#wiadomosci">9. Wiadomości</a>
+  <a href="#ustawienia">10. Ustawienia wydarzenia</a>
+  <a href="#konto">11. Ustawienia konta</a>
+  <a href="#checkin">12. Listy odpraw (check-in)</a>
+  <a href="#partnerzy">13. Partnerzy (afiliacje)</a>
+  <a href="#platnosci">14. Płatności offline i fakturowanie</a>
+  <a href="#linki">🔗 Szybkie odnośniki</a>
+</nav>
+
+<main>
+
+<!-- 1. LOGOWANIE -->
+<section id="logowanie">
+  <h2><span class="num">1</span> Logowanie</h2>
+  <p>Otwórz <strong><a href="https://localhost:8443/auth/login" target="_blank">https://localhost:8443/auth/login</a></strong> w przeglądarce.</p>
+  <div class="callout">
+    <strong>Certyfikat SSL:</strong> Przy pierwszym otwarciu pojawi się ostrzeżenie o niezaufanym certyfikacie.
+    Kliknij <strong>Zaawansowane → Przejdź mimo to</strong>, aby kontynuować.
+  </div>
+  <figure class="ss">
+    <img src="screenshots-pl/01_login.png" alt="Logowanie">
+    <figcaption>Strona logowania Hi.Events</figcaption>
+  </figure>
+  <table>
+    <thead><tr><th>Pole</th><th>Wartość</th></tr></thead>
+    <tbody>
+      <tr><td>Adres e-mail</td><td><code>admin@example.com</code></td></tr>
+      <tr><td>Hasło</td><td><code>Password123!</code></td></tr>
+    </tbody>
+  </table>
+  <p>Po zalogowaniu trafisz na <strong>Panel organizatora</strong>.</p>
+  <div class="callout info">
+    Język interfejsu zmienisz w swoim profilu (prawy górny róg → ikona użytkownika → Profil) lub bezpośrednio na stronie logowania za pomocą przełącznika języka na dole formularza.
+  </div>
+</section>
+
+<!-- 2. PANEL -->
+<section id="dashboard">
+  <h2><span class="num">2</span> Panel organizatora</h2>
+  <p>Główny pulpit pokazuje statystyki sprzedaży i listę nadchodzących wydarzeń.</p>
+  <figure class="ss">
+    <img src="screenshots-pl/02_dashboard.png" alt="Panel organizatora">
+    <figcaption>Panel organizatora – statystyki i lista wydarzeń</figcaption>
+  </figure>
+  <table>
+    <thead><tr><th>Sekcja menu</th><th>Elementy</th></tr></thead>
+    <tbody>
+      <tr><td>PRZEGLĄD</td><td>Panel organizatora, Raporty</td></tr>
+      <tr><td>ZARZĄDZAJ</td><td>Wydarzenia, Ustawienia</td></tr>
+      <tr><td>NARZĘDZIA</td><td>Projektant strony głównej</td></tr>
+      <tr><td>INTEGRACJE</td><td>Webhooki</td></tr>
+    </tbody>
+  </table>
+  <p>Kliknij w nazwę wydarzenia, aby otworzyć panel jego zarządzania.</p>
+</section>
+
+<!-- 3. TWORZENIE WYDARZENIA -->
+<section id="tworzenie">
+  <h2><span class="num">3</span> Tworzenie wydarzenia</h2>
+  <p>Na panelu organizatora kliknij przycisk <strong>+ Utwórz wydarzenie</strong>.</p>
+  <figure class="ss">
+    <img src="screenshots-pl/15_create_event.png" alt="Tworzenie wydarzenia">
+    <figcaption>Formularz tworzenia nowego wydarzenia</figcaption>
+  </figure>
+  <table>
+    <thead><tr><th>Pole</th><th>Opis</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Nazwa wydarzenia</strong></td><td>Wymagane, maks. 150 znaków</td></tr>
+      <tr><td><strong>Kategoria wydarzenia</strong></td><td>Np. Technologia, Muzyka, Biznes…</td></tr>
+      <tr><td><strong>Opis wydarzenia</strong></td><td>Edytor rich-text, maks. 2 000 znaków</td></tr>
+      <tr><td><strong>Data i godzina rozpoczęcia</strong></td><td>Wymagane</td></tr>
+      <tr><td><strong>Data i godzina zakończenia</strong></td><td>Opcjonalne</td></tr>
+    </tbody>
+  </table>
+  <h3>Cykl życia wydarzenia</h3>
+  <div class="flow">
+    <span class="pill draft">WERSJA ROBOCZA</span>
+    <span class="flow-arr">→</span>
+    <span class="pill live">NA ŻYWO</span>
+    <span class="flow-arr">→</span>
+    <span class="pill archived">ZARCHIWIZOWANE</span>
+  </div>
+  <p>Nowe wydarzenie startuje jako <strong>wersja robocza</strong> (niewidoczne publicznie). Aby opublikować, kliknij pasek statusu <strong>„Wersja robocza – Kliknij, aby opublikować"</strong> na górze strony.</p>
+</section>
+
+<!-- 4. PIERWSZE KROKI -->
+<section id="pierwsze-kroki">
+  <h2><span class="num">4</span> Pierwsze kroki</h2>
+  <p>Po wejściu w nowe wydarzenie zobaczysz stronę z listą kroków niezbędnych przed publikacją.</p>
+  <figure class="ss">
+    <img src="screenshots-pl/03_getting_started.png" alt="Pierwsze kroki">
+    <figcaption>Gratulacje z okazji utworzenia wydarzenia! – lista kroków do ukończenia</figcaption>
+  </figure>
+  <ol class="steps">
+    <li><strong>Dodaj bilety</strong> – utwórz bilety w sekcji Bilety i produkty</li>
+    <li><strong>Skonfiguruj swoje wydarzenie</strong> – uzupełnij szczegóły w Ustawieniach wydarzenia</li>
+    <li><strong>Połącz z Stripe</strong> – podłącz konto do przyjmowania płatności kartą</li>
+    <li><strong>Dostosuj stronę swojego wydarzenia</strong> – skonfiguruj wygląd w Projektancie strony głównej</li>
+  </ol>
+  <div class="callout ok">
+    Zielony znacznik ✅ przy kroku oznacza, że jest ukończony. Pasek postępu u góry pokazuje procent gotowości.
+  </div>
+</section>
+
+<!-- 5. BILETY -->
+<section id="bilety">
+  <h2><span class="num">5</span> Bilety i produkty</h2>
+  <p>Ścieżka: <strong>menu boczne → Bilety i produkty</strong></p>
+  <figure class="ss">
+    <img src="screenshots-pl/04_tickets.png" alt="Bilety i produkty">
+    <figcaption>Bilety i produkty – lista z cenami, liczbą uczestników i statusem sprzedaży</figcaption>
+  </figure>
+
+  <h3>Tworzenie nowego biletu</h3>
+  <ol class="steps">
+    <li>Kliknij zielony przycisk <strong>+ Utwórz</strong> (prawy górny róg)</li>
+    <li>Wybierz z menu <strong>Bilet lub produkt</strong></li>
+    <li>Wypełnij formularz i kliknij <strong>Zapisz</strong></li>
+  </ol>
+  <figure class="ss">
+    <img src="screenshots-pl/05_create_menu.png" alt="Menu Utwórz">
+    <figcaption>Menu rozwijane po kliknięciu przycisku „Utwórz"</figcaption>
+  </figure>
+  <figure class="ss">
+    <img src="screenshots-pl/06_create_ticket.png" alt="Formularz biletu">
+    <figcaption>Formularz tworzenia biletu – pola podstawowe</figcaption>
+  </figure>
+  <table>
+    <thead><tr><th>Pole</th><th>Opis</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Typ produktu</strong></td><td><code>Bilet</code> – z kodem QR przy zakupie &nbsp;|&nbsp; <code>Ogólny</code> – produkt bez biletu (np. koszulka)</td></tr>
+      <tr><td><strong>Typ ceny</strong></td><td><code>Płatny</code> / <code>Bezpłatny</code> / <code>Donacja</code> (klient wpisuje kwotę)</td></tr>
+      <tr><td><strong>Nazwa</strong></td><td>Nazwa biletu, np. „Bilet VIP", „Early Bird"</td></tr>
+      <tr><td><strong>Opis</strong></td><td>Opis widoczny na stronie publicznej (rich-text)</td></tr>
+      <tr><td><strong>Kategoria produktu</strong></td><td>Grupowanie biletów na stronie publicznej</td></tr>
+      <tr><td><strong>Cena</strong></td><td>Cena w walucie wydarzenia</td></tr>
+      <tr><td><strong>Dostępna ilość</strong></td><td>Limit sztuk (puste = bez limitu)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Opcje zaawansowane</h3>
+  <p>Kliknij belkę <strong>„Podatki, Opłaty, Widoczność, Okres sprzedaży…"</strong>, aby rozwinąć dodatkowe ustawienia:</p>
+  <figure class="ss">
+    <img src="screenshots-pl/07_create_ticket_expanded.png" alt="Opcje zaawansowane">
+    <figcaption>Formularz biletu – opcje widoczności, dat sprzedaży i limitów zamówień</figcaption>
+  </figure>
+  <table>
+    <thead><tr><th>Opcja</th><th>Opis</th></tr></thead>
+    <tbody>
+      <tr><td>Podatki i opłaty</td><td>Przypisz zdefiniowane podatki VAT i opłaty serwisowe</td></tr>
+      <tr><td>Okres sprzedaży</td><td>Data startu i końca sprzedaży biletu</td></tr>
+      <tr><td>Min / Maks na zamówienie</td><td>Limity sztuk w jednym zamówieniu</td></tr>
+      <tr><td>Ukryj przed datą startu</td><td>Bilet niewidoczny przed otwarciem sprzedaży</td></tr>
+      <tr><td>Ukryj po wyprzedaniu</td><td>Bilet znika gdy wyczerpany</td></tr>
+      <tr><td>Ukryj bez kodu promocyjnego</td><td>Bilet widoczny tylko po wpisaniu kodu</td></tr>
+      <tr><td>Pokaż pozostałą ilość</td><td>Wyświetla licznik na stronie publicznej</td></tr>
+      <tr><td>Lista oczekujących</td><td>Włącz zapis na listę gdy wyprzedany</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 6. KODY PROMOCYJNE -->
+<section id="kody">
+  <h2><span class="num">6</span> Kody promocyjne</h2>
+  <p>Ścieżka: <strong>menu boczne → Kody promocyjne</strong></p>
+  <figure class="ss">
+    <img src="screenshots-pl/09_promo_codes.png" alt="Kody promocyjne">
+    <figcaption>Kody promocyjne – lista z przyciskiem „Utwórz"</figcaption>
+  </figure>
+  <p>Kliknij <strong>+ Utwórz kod promocyjny</strong>, aby dodać nowy kod.</p>
+  <table>
+    <thead><tr><th>Pole</th><th>Opis</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Kod</strong></td><td>Wpisz własny (np. <code>PROMO20</code>) lub kliknij „Generuj"</td></tr>
+      <tr><td><strong>Typ zniżki</strong></td><td>Brak / Procentowy / Kwotowy</td></tr>
+      <tr><td><strong>Wartość</strong></td><td>Procent lub kwota w walucie wydarzenia</td></tr>
+      <tr><td><strong>Produkty</strong></td><td>Które bilety obejmuje kod (domyślnie: wszystkie)</td></tr>
+      <tr><td><strong>Data ważności</strong></td><td>Opcjonalna data wygaśnięcia kodu</td></tr>
+      <tr><td><strong>Limit użyć</strong></td><td>Maks. liczba użyć (puste = bez limitu)</td></tr>
+    </tbody>
+  </table>
+  <div class="callout">
+    <strong>Wskazówka:</strong> Kod bez zniżki (typ „Brak") służy wyłącznie do odblokowania biletów z opcją <em>„Ukryj bez kodu promocyjnego"</em>.
+  </div>
+</section>
+
+<!-- 7. UCZESTNICY -->
+<section id="uczestnicy">
+  <h2><span class="num">7</span> Uczestnicy</h2>
+  <p>Ścieżka: <strong>menu boczne → Uczestnicy</strong></p>
+  <figure class="ss">
+    <img src="screenshots-pl/10_attendees.png" alt="Uczestnicy">
+    <figcaption>Uczestnicy – lista z wyszukiwarką, filtrami i eksportem</figcaption>
+  </figure>
+  <table>
+    <thead><tr><th>Funkcja</th><th>Opis</th></tr></thead>
+    <tbody>
+      <tr><td>Wyszukiwanie</td><td>Po imieniu, nazwisku, e-mailu lub numerze zamówienia</td></tr>
+      <tr><td>Filtry</td><td>Typ biletu, status: Aktywny / Anulowany / Oczekuje na płatność</td></tr>
+      <tr><td>Eksport</td><td>Przycisk <strong>Eksportuj</strong> – pobiera plik XLSX</td></tr>
+      <tr><td>Ręczne dodanie</td><td>Przycisk <strong>+ Utwórz</strong> – dodaj uczestnika z własną kwotą</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 8. ZAMÓWIENIA -->
+<section id="zamowienia">
+  <h2><span class="num">8</span> Zamówienia</h2>
+  <p>Ścieżka: <strong>menu boczne → Zamówienia</strong></p>
+  <figure class="ss">
+    <img src="screenshots-pl/11_orders.png" alt="Zamówienia">
+    <figcaption>Zamówienia – lista z wyszukiwarką, filtrami i eksportem</figcaption>
+  </figure>
+  <p>Kliknij w zamówienie, aby otworzyć panel boczny z zakładkami:</p>
+  <table>
+    <thead><tr><th>Zakładka</th><th>Zawartość</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Podgląd</strong></td><td>Numer ref., kwoty, odpowiedzi na pytania, lista uczestników</td></tr>
+      <tr><td><strong>Edytuj</strong></td><td>Dane zamawiającego, notatki wewnętrzne</td></tr>
+      <tr><td><strong>Zwrot</strong></td><td>Zwrot pełny lub częściowy + opcja anulowania zamówienia</td></tr>
+    </tbody>
+  </table>
+  <div class="callout">
+    Nie można zwrócić zamówień dodanych ręcznie ani tych już w pełni zwróconych.
+  </div>
+</section>
+
+<!-- 9. WIADOMOŚCI -->
+<section id="wiadomosci">
+  <h2><span class="num">9</span> Wiadomości</h2>
+  <p>Ścieżka: <strong>menu boczne → Wiadomości</strong></p>
+  <figure class="ss">
+    <img src="screenshots-pl/12_messages.png" alt="Wiadomości">
+    <figcaption>Wiadomości – historia i kompozytor wiadomości e-mail</figcaption>
+  </figure>
+  <p>Kliknij <strong>Utwórz</strong>, aby napisać wiadomość do uczestników.</p>
+  <table>
+    <thead><tr><th>Pole</th><th>Opis</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Odbiorcy</strong></td><td>Wszyscy uczestnicy / z konkretnym biletem / właściciele zamówień</td></tr>
+      <tr><td><strong>Temat</strong></td><td>Temat wiadomości e-mail</td></tr>
+      <tr><td><strong>Treść</strong></td><td>Edytor rich-text</td></tr>
+      <tr><td><strong>Kiedy wysłać</strong></td><td>Natychmiast lub zaplanowany termin (1 tydzień / 1 dzień / 1 godz. przed/po)</td></tr>
+    </tbody>
+  </table>
+  <div class="callout">
+    <strong>Wymagane:</strong> Przed wysłaniem zaznacz checkbox potwierdzający transakcyjny charakter wiadomości.
+    Wiadomości promocyjne mogą skutkować zawieszeniem konta.
+  </div>
+</section>
+
+<!-- 10. USTAWIENIA WYDARZENIA -->
+<section id="ustawienia">
+  <h2><span class="num">10</span> Ustawienia wydarzenia</h2>
+  <p>Ścieżka: <strong>menu boczne → Ustawienia wydarzenia</strong></p>
+  <figure class="ss">
+    <img src="screenshots-pl/13_settings.png" alt="Ustawienia wydarzenia">
+    <figcaption>Ustawienia wydarzenia – zakładki konfiguracji</figcaption>
+  </figure>
+  <table>
+    <thead><tr><th>Zakładka</th><th>Zawartość</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Szczegóły wydarzenia</strong></td><td>Nazwa, kategoria, opis, daty, waluta, strefa czasowa</td></tr>
+      <tr><td><strong>Lokalizacja</strong></td><td>Adres fizyczny lub oznaczenie jako online</td></tr>
+      <tr><td><strong>Płatność</strong></td><td>Metody płatności (Stripe, offline), ustawienia rozliczeniowe</td></tr>
+      <tr><td><strong>SEO</strong></td><td>Meta title, meta description, Open Graph (Facebook/Twitter)</td></tr>
+      <tr><td><strong>E-mail i szablony</strong></td><td>Nadawca e-maili, szablony potwierdzeń i biletów</td></tr>
+      <tr><td><strong>Różne</strong></td><td>Komunikat przed/po zakupie, czas sesji checkout</td></tr>
+      <tr><td><strong>Lista oczekujących</strong></td><td>Auto-przetwarzanie listy, czas na zakup oferty</td></tr>
+      <tr><td><strong>Płatności i fakturowanie</strong></td><td>Konfiguracja faktur PDF (prefix, numer startowy, dane firmy)</td></tr>
+      <tr><td><strong>Strefa zagrożeń</strong></td><td>Usunięcie lub archiwizacja wydarzenia (tylko Admin)</td></tr>
+    </tbody>
+  </table>
+  <div class="callout">
+    <strong>Uwaga:</strong> Waluta nie może być zmieniona po zapisaniu pierwszego zamówienia.
+  </div>
+</section>
+
+<!-- 11. USTAWIENIA KONTA -->
+<section id="konto">
+  <h2><span class="num">11</span> Ustawienia konta</h2>
+  <p>Ścieżka: <a href="https://localhost:8443/manage/account/" target="_blank"><strong>https://localhost:8443/manage/account/</strong></a></p>
+  <figure class="ss">
+    <img src="screenshots-pl/14_account.png" alt="Ustawienia konta">
+    <figcaption>Ustawienia konta – zarządzanie organizacją i użytkownikami</figcaption>
+  </figure>
+  <table>
+    <thead><tr><th>Sekcja</th><th>Opis</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Ustawienia konta</strong></td><td>Nazwa konta, logo, branding organizacji</td></tr>
+      <tr><td><strong>Podatki i opłaty</strong></td><td>Globalne stawki podatkowe przypisywane do biletów</td></tr>
+      <tr><td><strong>Domyślne ustawienia wydarzeń</strong></td><td>Domyślna waluta i strefa czasowa dla nowych wydarzeń</td></tr>
+      <tr><td><strong>Użytkownicy</strong></td><td>Zapraszanie i zarządzanie użytkownikami (role: Administrator / Organizator)</td></tr>
+      <tr><td><strong>Płatności</strong></td><td>Podpięcie konta Stripe Connect</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 12. CHECK-IN -->
+<section id="checkin">
+  <h2><span class="num">12</span> Listy odpraw (check-in)</h2>
+  <p>Ścieżka: <strong>menu boczne → Listy odpraw</strong></p>
+  <figure class="ss">
+    <img src="screenshots-pl/16_checkin.png" alt="Listy odpraw">
+    <figcaption>Listy odpraw – zarządzanie punktami wejścia i skanowania biletów</figcaption>
+  </figure>
+  <p>Kliknij <strong>+ Utwórz listę odpraw</strong>, aby dodać nowy punkt kontrolny.</p>
+  <table>
+    <thead><tr><th>Pole</th><th>Opis</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Nazwa</strong></td><td>Np. „Wejście główne", „Strefa VIP"</td></tr>
+      <tr><td><strong>Bilety</strong></td><td>Które typy biletów obsługuje ten punkt</td></tr>
+      <tr><td><strong>Data aktywacji / wygaśnięcia</strong></td><td>Okno czasowe w którym można skanować</td></tr>
+    </tbody>
+  </table>
+  <p>Po zapisaniu system generuje <strong>link i kod QR</strong> — udostępnij go obsłudze wejścia. Link <code>/check-in/{id}</code> nie wymaga logowania do systemu.</p>
+  <table>
+    <thead><tr><th>Wynik skanowania</th><th>Znaczenie</th></tr></thead>
+    <tbody>
+      <tr><td>✅ Ważny</td><td>Wejście dozwolone</td></tr>
+      <tr><td>❌ Już zeskanowany</td><td>Bilet był już użyty – próba ponownego wejścia</td></tr>
+      <tr><td>❌ Nieważny</td><td>Zły bilet lub nieodpowiedni typ dla tej listy</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 13. PARTNERZY -->
+<section id="partnerzy">
+  <h2><span class="num">13</span> Partnerzy (afiliacje)</h2>
+  <p>Ścieżka: <strong>menu boczne → Partnerzy</strong></p>
+  <figure class="ss">
+    <img src="screenshots-pl/17_affiliates.png" alt="Partnerzy">
+    <figcaption>Partnerzy – lista linków afiliacyjnych ze śledzeniem sprzedaży</figcaption>
+  </figure>
+  <p>Kliknij <strong>+ Utwórz</strong>, aby dodać partnera afiliacyjnego.</p>
+  <table>
+    <thead><tr><th>Pole</th><th>Opis</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Nazwa</strong></td><td>Nazwa partnera lub influencera</td></tr>
+      <tr><td><strong>Kod</strong></td><td>Unikalny kod 3–20 znaków lub kliknij „Generuj"</td></tr>
+      <tr><td><strong>E-mail</strong></td><td>Opcjonalnie – do kontaktu z partnerem</td></tr>
+    </tbody>
+  </table>
+  <p>System generuje unikalny link do strony Twojego wydarzenia z kodem afiliata. Wszystkie zakupy przez ten link są śledzone i widoczne w raportach.</p>
+</section>
+
+<!-- 14. PŁATNOŚCI OFFLINE I FAKTUROWANIE -->
+<section id="platnosci">
+  <h2><span class="num">14</span> Płatności offline i fakturowanie</h2>
+  <p>Ścieżka: <strong>menu boczne → Ustawienia wydarzenia → Płatności i fakturowanie</strong></p>
+
+  <h3>14.1 Włączanie płatności offline</h3>
+  <p>Płatności offline umożliwiają akceptowanie przelewów bankowych, czeków lub innych metod płatności poza systemem. Uczestnik może złożyć zamówienie i otrzymać bilety – zamówienie będzie oznaczone jako <strong>Awaiting Payment</strong> (oczekuje na zapłatę) aż do ręcznego potwierdzenia.</p>
+  <figure class="ss">
+    <img src="screenshots-pl/18_payment_settings.png" alt="Ustawienia płatności i fakturowania">
+    <figcaption>Ustawienia płatności – metody płatności i konfiguracja płatności offline</figcaption>
+  </figure>
+  <ol>
+    <li>Przejdź do <strong>Ustawienia wydarzenia → Płatności i fakturowanie</strong></li>
+    <li>W sekcji <strong>Metody płatności</strong> zaznacz checkbox <strong>Płatności offline</strong></li>
+    <li>Możesz odznaczyć Stripe, jeśli chcesz przyjmować <em>wyłącznie</em> płatności offline, lub pozostawić oba aktywne, aby dać kupującemu wybór</li>
+  </ol>
+  <div class="callout">
+    <strong>Ważne:</strong> Zamówienia offline nie są wliczane do statystyk sprzedaży dopóki nie zostaną ręcznie oznaczone jako opłacone.
+  </div>
+
+  <h3>14.2 Instrukcja płatności offline</h3>
+  <p>Po włączeniu płatności offline wpisz instrukcje dla kupującego – będą wyświetlane na stronie potwierdzenia zamówienia oraz w e-mailu.</p>
+  <figure class="ss">
+    <img src="screenshots-pl/19_offline_instructions.png" alt="Instrukcja płatności offline">
+    <figcaption>Pole instrukcji płatności offline z danymi do przelewu bankowego</figcaption>
+  </figure>
+  <p>Przykładowa treść instrukcji:</p>
+  <pre style="background:#f4f0ff;padding:14px 18px;border-radius:8px;font-size:.85rem;line-height:1.6;border-left:4px solid #8b5cf6;overflow-x:auto">Bank: PKO BP
+Numer konta: 12 3456 7890 0000 0000 0000 0001
+Odbiorca: Przykładowy Organizator Sp. z o.o.
+Tytuł przelewu: Imię Nazwisko + nazwa biletu
+
+Po zaksięgowaniu wpłaty (do 2 dni roboczych) wyślemy
+potwierdzenie zamówienia e-mailem.</pre>
+  <p>Opcjonalnie zaznacz <strong>Zezwól uczestnikom oczekującym na płatność offline na odprawę</strong> – obsługa przy wejściu zobaczy ostrzeżenie, ale będzie mogła wpuścić uczestnika mimo braku potwierdzenia płatności.</p>
+  <p>Kliknij <strong>Zapisz</strong>, aby zastosować zmiany.</p>
+
+  <h3>14.3 Ręczne potwierdzenie płatności</h3>
+  <p>Po otrzymaniu przelewu oznacz zamówienie jako opłacone:</p>
+  <ol>
+    <li>Przejdź do <strong>menu boczne → Zamówienia</strong></li>
+    <li>Kliknij w zamówienie ze statusem <strong>Awaiting Payment</strong></li>
+    <li>W bocznym panelu wybierz zakładkę <strong>Edit</strong></li>
+    <li>Zmień status na <strong>Paid</strong> i zapisz</li>
+  </ol>
+
+  <h3>14.4 Włączanie fakturowania</h3>
+  <figure class="ss">
+    <img src="screenshots-pl/20_invoicing_settings.png" alt="Ustawienia faktury">
+    <figcaption>Konfiguracja fakturowania – numeracja, dane organizacji, warunki płatności</figcaption>
+  </figure>
+  <p>W tej samej sekcji przewiń do <strong>Ustawienia faktury</strong>:</p>
+  <table>
+    <thead><tr><th>Pole</th><th>Opis</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Włącz fakturowanie</strong></td><td>Przełącznik – faktury będą generowane dla zamówionych biletów i dołączane do e-maili z potwierdzeniem</td></tr>
+      <tr><td><strong>Etykieta dokumentu</strong></td><td>Domyślnie „Faktura VAT" – nagłówek faktury</td></tr>
+      <tr><td><strong>Prefiks numeru</strong></td><td>Np. <code>FV-2026</code> – prefix przed numerem (tylko litery, cyfry i myślniki)</td></tr>
+      <tr><td><strong>Pierwszy numer faktury</strong></td><td>Numer startowy – nie można zmienić po wystawieniu pierwszej faktury</td></tr>
+      <tr><td><strong>Okres płatności</strong></td><td>Liczba dni na zapłatę widoczna w warunkach na fakturze</td></tr>
+      <tr><td><strong>Nazwa organizacji</strong></td><td><em>Wymagane</em> – pełna nazwa firmy na fakturze</td></tr>
+      <tr><td><strong>Adres organizacji</strong></td><td><em>Wymagane</em> – adres firmy</td></tr>
+      <tr><td><strong>Dane podatkowe</strong></td><td>NIP, REGON – wyświetlane w stopce faktury</td></tr>
+      <tr><td><strong>Uwagi na fakturze</strong></td><td>Opcjonalne informacje dodatkowe (np. numer konta bankowego)</td></tr>
+    </tbody>
+  </table>
+  <div class="callout info">
+    <strong>Wskazówka:</strong> Przy włączonym fakturowaniu zaleca się też włączenie opcji <strong>Wymagaj adresu rozliczeniowego</strong>, aby kupujący podawał dane do faktury podczas zakupu.
+  </div>
+  <p>Kliknij <strong>Zapisz</strong>, aby zapisać konfigurację fakturowania.</p>
+</section>
+
+<!-- SZYBKIE ODNOŚNIKI -->
+<section id="linki">
+  <h2><span class="num">🔗</span> Szybkie odnośniki</h2>
+  <div class="links-grid">
+    <a class="link-card" href="https://localhost:8443/auth/login" target="_blank">
+      <span class="lbl">Logowanie</span>
+      <span class="url">https://localhost:8443/auth/login</span>
+    </a>
+    <a class="link-card" href="https://localhost:8443/manage/events" target="_blank">
+      <span class="lbl">Panel organizatora</span>
+      <span class="url">https://localhost:8443/manage/events</span>
+    </a>
+    <a class="link-card" href="https://localhost:8443/manage/event/1/getting-started" target="_blank">
+      <span class="lbl">Panel wydarzenia – Pierwsze kroki</span>
+      <span class="url">https://localhost:8443/manage/event/1/getting-started</span>
+    </a>
+    <a class="link-card" href="https://localhost:8443/manage/event/1/products" target="_blank">
+      <span class="lbl">Bilety i produkty</span>
+      <span class="url">https://localhost:8443/manage/event/1/products</span>
+    </a>
+    <a class="link-card" href="https://localhost:8443/manage/event/1/orders" target="_blank">
+      <span class="lbl">Zamówienia</span>
+      <span class="url">https://localhost:8443/manage/event/1/orders</span>
+    </a>
+    <a class="link-card" href="https://localhost:8443/manage/event/1/attendees" target="_blank">
+      <span class="lbl">Uczestnicy</span>
+      <span class="url">https://localhost:8443/manage/event/1/attendees</span>
+    </a>
+    <a class="link-card" href="https://localhost:8443/manage/account/" target="_blank">
+      <span class="lbl">Ustawienia konta</span>
+      <span class="url">https://localhost:8443/manage/account/</span>
+    </a>
+    <a class="link-card" href="https://localhost:8443/e/1/konferencja-hievents-2026" target="_blank">
+      <span class="lbl">Strona publiczna wydarzenia</span>
+      <span class="url">https://localhost:8443/e/1/konferencja-hievents-2026</span>
+    </a>
+    <a class="link-card" href="http://localhost:8025" target="_blank">
+      <span class="lbl">Mailpit (podgląd e-maili)</span>
+      <span class="url">http://localhost:8025</span>
+    </a>
+  </div>
+</section>
+
+</main>
+</div>
+
+<footer>
+  Hi.Events v1.8.0-beta &nbsp;·&nbsp; Instrukcja obsługi – wersja polska &nbsp;·&nbsp; maj 2026
+</footer>
+
+</body>
+</html>

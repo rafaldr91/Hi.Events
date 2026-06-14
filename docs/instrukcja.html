@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hi.Events – Instrukcja obsługi</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f7;
+      color: #1a1a2e;
+      line-height: 1.6;
+    }
+
+    /* TOP BAR */
+    header {
+      background: linear-gradient(135deg, #3d1a6e 0%, #6b2fa0 100%);
+      color: #fff;
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,.3);
+    }
+    header svg { flex-shrink: 0; }
+    header h1 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.3px; }
+    header p  { font-size: .85rem; opacity: .75; margin-top: 2px; }
+
+    /* LAYOUT */
+    .container {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: calc(100vh - 80px);
+    }
+
+    /* SIDEBAR */
+    nav {
+      background: #fff;
+      border-right: 1px solid #e5e5ea;
+      padding: 24px 0;
+      position: sticky;
+      top: 80px;
+      height: calc(100vh - 80px);
+      overflow-y: auto;
+    }
+    nav .nav-title {
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      padding: 8px 20px 4px;
+    }
+    nav a {
+      display: block;
+      padding: 8px 20px;
+      color: #444;
+      text-decoration: none;
+      font-size: .88rem;
+      border-left: 3px solid transparent;
+      transition: all .15s;
+    }
+    nav a:hover { background: #f5f0ff; color: #6b2fa0; border-left-color: #6b2fa0; }
+
+    /* MAIN */
+    main {
+      padding: 40px 48px;
+      max-width: 960px;
+    }
+
+    .intro-badge {
+      display: inline-block;
+      background: #ede7f6;
+      color: #5e2196;
+      font-size: .78rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+
+    /* SECTIONS */
+    section {
+      margin-bottom: 56px;
+    }
+
+    section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #ede7f6;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    section h2 .icon {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, #6b2fa0, #9c5cc7);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    section h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #3d1a6e;
+      margin: 24px 0 10px;
+    }
+
+    p { margin-bottom: 12px; color: #333; }
+
+    /* SCREENSHOT */
+    .screenshot {
+      margin: 20px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,.12), 0 0 0 1px rgba(0,0,0,.06);
+    }
+    .screenshot img {
+      width: 100%;
+      display: block;
+    }
+    .screenshot figcaption {
+      background: #1a1a2e;
+      color: #aaa;
+      font-size: .75rem;
+      padding: 6px 14px;
+    }
+
+    /* TABLES */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .88rem;
+      margin: 16px 0;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,.07);
+    }
+    thead { background: #3d1a6e; color: #fff; }
+    th { padding: 10px 14px; text-align: left; font-weight: 600; font-size: .8rem; text-transform: uppercase; letter-spacing: .5px; }
+    td { padding: 10px 14px; border-bottom: 1px solid #f0eaf8; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #faf7ff; }
+    td code { background: #ede7f6; color: #5e2196; padding: 1px 6px; border-radius: 4px; font-size: .82rem; }
+
+    /* CALLOUT */
+    .callout {
+      background: #fff8e1;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin: 16px 0;
+      font-size: .88rem;
+      color: #555;
+    }
+    .callout.info {
+      background: #e8f4fd;
+      border-color: #3b82f6;
+    }
+    .callout.success {
+      background: #e8faf0;
+      border-color: #10b981;
+    }
+    .callout strong { color: #1a1a2e; }
+
+    /* STEPS */
+    .steps { list-style: none; counter-reset: steps; margin: 16px 0; }
+    .steps li {
+      counter-increment: steps;
+      display: flex;
+      gap: 14px;
+      margin-bottom: 12px;
+      align-items: flex-start;
+    }
+    .steps li::before {
+      content: counter(steps);
+      min-width: 26px; height: 26px;
+      background: #6b2fa0;
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .78rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* STATUS PILLS */
+    .pill {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: .75rem;
+      font-weight: 600;
+    }
+    .pill.draft   { background: #fef3c7; color: #92400e; }
+    .pill.live    { background: #d1fae5; color: #065f46; }
+    .pill.archived{ background: #e5e7eb; color: #374151; }
+
+    /* FLOW */
+    .flow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 12px 0;
+      flex-wrap: wrap;
+    }
+    .flow-step {
+      padding: 6px 16px;
+      border-radius: 6px;
+      font-size: .85rem;
+      font-weight: 600;
+    }
+    .flow-arrow { color: #999; font-size: 1.1rem; }
+
+    /* QUICK LINKS */
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .link-card {
+      background: #fff;
+      border: 1px solid #e5e5ea;
+      border-radius: 10px;
+      padding: 14px 16px;
+      text-decoration: none;
+      color: #1a1a2e;
+      transition: all .15s;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .link-card:hover { border-color: #6b2fa0; box-shadow: 0 2px 8px rgba(107,47,160,.15); }
+    .link-card .label { font-weight: 600; font-size: .88rem; }
+    .link-card .url   { font-size: .76rem; color: #6b2fa0; font-family: monospace; word-break: break-all; }
+
+    code {
+      background: #ede7f6;
+      color: #5e2196;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: .85em;
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px;
+      color: #aaa;
+      font-size: .8rem;
+      border-top: 1px solid #e5e5ea;
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+    <rect width="36" height="36" rx="8" fill="rgba(255,255,255,0.15)"/>
+    <rect x="8" y="14" width="20" height="3" rx="1.5" fill="white"/>
+    <rect x="8" y="20" width="14" height="3" rx="1.5" fill="white"/>
+    <rect x="24" y="9" width="4" height="18" rx="2" fill="rgba(255,255,255,0.5)"/>
+  </svg>
+  <div>
+    <h1>Hi.Events – Instrukcja obsługi</h1>
+    <p>Wersja 1.8.0-beta &nbsp;·&nbsp; Środowisko lokalne: https://localhost:8443</p>
+  </div>
+</header>
+
+<div class="container">
+
+  <nav>
+    <div class="nav-title">Spis treści</div>
+    <a href="#logowanie">1. Logowanie</a>
+    <a href="#dashboard">2. Dashboard organizatora</a>
+    <a href="#tworzenie-wydarzenia">3. Tworzenie wydarzenia</a>
+    <a href="#getting-started">4. Getting Started</a>
+    <a href="#bilety">5. Bilety i produkty</a>
+    <a href="#promo-codes">6. Kody promocyjne</a>
+    <a href="#uczestnicy">7. Uczestnicy</a>
+    <a href="#zamowienia">8. Zamówienia</a>
+    <a href="#wiadomosci">9. Wiadomości</a>
+    <a href="#ustawienia-wydarzenia">10. Ustawienia wydarzenia</a>
+    <a href="#ustawienia-konta">11. Ustawienia konta</a>
+    <a href="#checkin">12. Check-in</a>
+    <a href="#afiliacje">13. Afiliacje</a>
+    <a href="#quick-links">🔗 Szybkie odnośniki</a>
+  </nav>
+
+  <main>
+    <div class="intro-badge">Platforma do zarządzania wydarzeniami i sprzedaży biletów</div>
+
+    <!-- 1. LOGOWANIE -->
+    <section id="logowanie">
+      <h2><span class="icon">🔐</span> 1. Logowanie</h2>
+      <p>Otwórz <a href="https://localhost:8443/auth/login" target="_blank"><strong>https://localhost:8443/auth/login</strong></a> w przeglądarce.</p>
+
+      <div class="callout">
+        <strong>Certyfikat SSL:</strong> Przy pierwszym otwarciu przeglądarka może wyświetlić ostrzeżenie o niezaufanym certyfikacie.
+        Kliknij <strong>Zaawansowane → Przejdź mimo to</strong>, aby kontynuować.
+      </div>
+
+      <figure class="screenshot">
+        <img src="screenshots/01_login.png" alt="Strona logowania">
+        <figcaption>Strona logowania Hi.Events</figcaption>
+      </figure>
+
+      <table>
+        <thead><tr><th>Pole</th><th>Wartość (konto demo)</th></tr></thead>
+        <tbody>
+          <tr><td>Email</td><td><code>admin@example.com</code></td></tr>
+          <tr><td>Hasło</td><td><code>Password123!</code></td></tr>
+        </tbody>
+      </table>
+      <p>Po zalogowaniu trafisz na <strong>Dashboard organizatora</strong>.</p>
+    </section>
+
+    <!-- 2. DASHBOARD -->
+    <section id="dashboard">
+      <h2><span class="icon">📊</span> 2. Dashboard organizatora</h2>
+      <p>Główny pulpit pokazuje podsumowanie statystyk i listę nadchodzących wydarzeń.</p>
+
+      <figure class="screenshot">
+        <img src="screenshots/02_events_list.png" alt="Dashboard organizatora">
+        <figcaption>Dashboard organizatora – statystyki i lista wydarzeń</figcaption>
+      </figure>
+
+      <table>
+        <thead><tr><th>Sekcja menu</th><th>Elementy</th></tr></thead>
+        <tbody>
+          <tr><td>OVERVIEW</td><td>Organizer Dashboard, Reports</td></tr>
+          <tr><td>MANAGE</td><td>Events, Settings</td></tr>
+          <tr><td>TOOLS</td><td>Homepage Designer</td></tr>
+          <tr><td>INTEGRATIONS</td><td>Webhooks</td></tr>
+        </tbody>
+      </table>
+      <p>Kliknij w nazwę wydarzenia na liście lub w kafelek, aby przejść do panelu zarządzania wydarzeniem.</p>
+    </section>
+
+    <!-- 3. TWORZENIE WYDARZENIA -->
+    <section id="tworzenie-wydarzenia">
+      <h2><span class="icon">🎉</span> 3. Tworzenie wydarzenia</h2>
+      <p>Na dashboardzie kliknij <strong>+ Create Event</strong> (górny prawy róg lub link w breadcrumb).</p>
+
+      <figure class="screenshot">
+        <img src="screenshots/15_create_event.png" alt="Formularz tworzenia wydarzenia">
+        <figcaption>Formularz tworzenia nowego wydarzenia</figcaption>
+      </figure>
+
+      <table>
+        <thead><tr><th>Pole</th><th>Opis</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Event Name</strong></td><td>Nazwa wydarzenia <em>(wymagane)</em></td></tr>
+          <tr><td><strong>Event Category</strong></td><td>Kategoria: Tech, Music, Business, Conference…</td></tr>
+          <tr><td><strong>Event Description</strong></td><td>Opis w edytorze rich-text</td></tr>
+          <tr><td><strong>Start Date &amp; Time</strong></td><td>Data i godzina rozpoczęcia <em>(wymagane)</em></td></tr>
+          <tr><td><strong>End Date &amp; Time</strong></td><td>Data zakończenia <em>(opcjonalne)</em></td></tr>
+        </tbody>
+      </table>
+
+      <h3>Cykl życia wydarzenia</h3>
+      <div class="flow">
+        <span class="flow-step pill draft">DRAFT</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step pill live">LIVE</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step pill archived">ARCHIVED</span>
+      </div>
+      <p>Nowe wydarzenie startuje jako <strong>DRAFT</strong> (niewidoczne publicznie). Aby opublikować, kliknij pasek statusu <strong>„Draft – Click to Publish"</strong> na górze strony.</p>
+    </section>
+
+    <!-- 4. GETTING STARTED -->
+    <section id="getting-started">
+      <h2><span class="icon">🚀</span> 4. Getting Started – pierwsze kroki</h2>
+      <p>Po wejściu w nowe wydarzenie zobaczysz stronę z listą kroków do wykonania przed publikacją.</p>
+
+      <figure class="screenshot">
+        <img src="screenshots/03_getting_started.png" alt="Getting Started">
+        <figcaption>Strona Getting Started z krokami do ukończenia</figcaption>
+      </figure>
+
+      <ol class="steps">
+        <li><strong>Add tickets</strong> – utwórz bilety w sekcji Tickets &amp; Products</li>
+        <li><strong>Set up your event</strong> – uzupełnij szczegóły w Event Settings</li>
+        <li><strong>Connect with Stripe</strong> – podłącz konto do przyjmowania płatności</li>
+        <li><strong>Customize your event page</strong> – dostosuj stronę publiczną w Homepage Designer</li>
+      </ol>
+
+      <div class="callout success">
+        Zielony znacznik ✅ przy kroku oznacza, że jest ukończony. Pasek postępu u góry pokazuje procent gotowości.
+      </div>
+    </section>
+
+    <!-- 5. BILETY -->
+    <section id="bilety">
+      <h2><span class="icon">🎟️</span> 5. Bilety i produkty</h2>
+      <p>Ścieżka: <strong>menu boczne → Tickets &amp; Products</strong></p>
+
+      <figure class="screenshot">
+        <img src="screenshots/04_tickets.png" alt="Lista biletów">
+        <figcaption>Tickets &amp; Products – lista biletów z cenami i statusami</figcaption>
+      </figure>
+
+      <h3>Tworzenie nowego biletu</h3>
+      <ol class="steps">
+        <li>Kliknij zielony przycisk <strong>+ Create</strong> (prawy górny róg)</li>
+        <li>Wybierz <strong>Ticket or Product</strong> z menu</li>
+        <li>Wypełnij formularz i kliknij <strong>Save</strong></li>
+      </ol>
+
+      <figure class="screenshot">
+        <img src="screenshots/05_create_menu.png" alt="Menu Create">
+        <figcaption>Menu rozwijane po kliknięciu przycisku Create</figcaption>
+      </figure>
+
+      <figure class="screenshot">
+        <img src="screenshots/06_create_ticket_step1.png" alt="Formularz tworzenia biletu">
+        <figcaption>Formularz tworzenia biletu – pola podstawowe</figcaption>
+      </figure>
+
+      <table>
+        <thead><tr><th>Pole</th><th>Opis</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Product Type</strong></td><td><code>Ticket</code> – z kodem QR &nbsp;|&nbsp; <code>General</code> – produkt bez biletu</td></tr>
+          <tr><td><strong>Price Type</strong></td><td><code>Paid</code> / <code>Free</code> / <code>Donation</code> (klient wpisuje kwotę)</td></tr>
+          <tr><td><strong>Name</strong></td><td>Nazwa biletu, np. „Bilet VIP"</td></tr>
+          <tr><td><strong>Description</strong></td><td>Opis biletu (edytor rich-text)</td></tr>
+          <tr><td><strong>Product Category</strong></td><td>Grupowanie na stronie publicznej</td></tr>
+          <tr><td><strong>Price</strong></td><td>Cena w walucie wydarzenia</td></tr>
+          <tr><td><strong>Quantity Available</strong></td><td>Limit sztuk (puste = bez limitu)</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Opcje zaawansowane</h3>
+      <p>Kliknij sekcję <strong>„Taxes, Fees, Visibility, Sale Period…"</strong> aby ją rozwinąć:</p>
+
+      <figure class="screenshot">
+        <img src="screenshots/07_create_ticket_expanded.png" alt="Opcje zaawansowane biletu">
+        <figcaption>Formularz biletu – opcje widoczności, dat sprzedaży i limitów zamówień</figcaption>
+      </figure>
+
+      <table>
+        <thead><tr><th>Opcja</th><th>Opis</th></tr></thead>
+        <tbody>
+          <tr><td>Taxes &amp; Fees</td><td>Przypisz zdefiniowane podatki / opłaty serwisowe</td></tr>
+          <tr><td>Sale Period</td><td>Data startu i końca sprzedaży biletu</td></tr>
+          <tr><td>Min / Max per order</td><td>Limity sztuk na jedno zamówienie</td></tr>
+          <tr><td>Hide before sale start</td><td>Ukryj bilet przed datą otwarcia sprzedaży</td></tr>
+          <tr><td>Hide when sold out</td><td>Ukryj bilet gdy wyprzedany</td></tr>
+          <tr><td>Hidden without promo code</td><td>Bilet widoczny tylko po wpisaniu kodu promocyjnego</td></tr>
+          <tr><td>Show quantity remaining</td><td>Pokazuj pozostałą ilość na stronie publicznej</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 6. PROMO CODES -->
+    <section id="promo-codes">
+      <h2><span class="icon">🏷️</span> 6. Kody promocyjne</h2>
+      <p>Ścieżka: <strong>menu boczne → Promo Codes</strong></p>
+
+      <figure class="screenshot">
+        <img src="screenshots/09_promo_codes.png" alt="Kody promocyjne">
+        <figcaption>Promo Codes – lista kodów z przyciskiem Create</figcaption>
+      </figure>
+
+      <p>Kliknij <strong>+ Create a Promo Code</strong>, aby dodać nowy kod.</p>
+
+      <table>
+        <thead><tr><th>Pole</th><th>Opis</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Code</strong></td><td>Wpisz własny kod (np. <code>PROMO20</code>) lub kliknij „Generate"</td></tr>
+          <tr><td><strong>Discount Type</strong></td><td>Brak / Procentowy / Kwotowy</td></tr>
+          <tr><td><strong>Value</strong></td><td>Wysokość zniżki (% lub kwota)</td></tr>
+          <tr><td><strong>Products</strong></td><td>Które bilety obejmuje kod (domyślnie: wszystkie)</td></tr>
+          <tr><td><strong>Expiry Date</strong></td><td>Opcjonalna data ważności</td></tr>
+          <tr><td><strong>Usage Limit</strong></td><td>Maks. liczba użyć (puste = bez limitu)</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <strong>Wskazówka:</strong> Kod bez zniżki (typ „No Discount") służy wyłącznie do odblokowania biletów
+        z opcją <em>„Hidden without promo code"</em>.
+      </div>
+    </section>
+
+    <!-- 7. UCZESTNICY -->
+    <section id="uczestnicy">
+      <h2><span class="icon">👥</span> 7. Uczestnicy</h2>
+      <p>Ścieżka: <strong>menu boczne → Attendees</strong></p>
+
+      <figure class="screenshot">
+        <img src="screenshots/10_attendees.png" alt="Lista uczestników">
+        <figcaption>Attendees – lista uczestników z opcjami wyszukiwania i filtrowania</figcaption>
+      </figure>
+
+      <table>
+        <thead><tr><th>Funkcja</th><th>Opis</th></tr></thead>
+        <tbody>
+          <tr><td>Wyszukiwanie</td><td>Po imieniu, nazwisku, e-mailu lub numerze zamówienia</td></tr>
+          <tr><td>Filtrowanie</td><td>Typ biletu, status (Active / Cancelled / Awaiting Payment)</td></tr>
+          <tr><td>Export</td><td>Przycisk <strong>Export</strong> pobiera plik XLSX</td></tr>
+          <tr><td>Ręczne dodanie</td><td>Przycisk <strong>+ Create</strong> – dodaj uczestnika z własną kwotą</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 8. ZAMÓWIENIA -->
+    <section id="zamowienia">
+      <h2><span class="icon">📦</span> 8. Zamówienia</h2>
+      <p>Ścieżka: <strong>menu boczne → Orders</strong></p>
+
+      <figure class="screenshot">
+        <img src="screenshots/11_orders.png" alt="Zamówienia">
+        <figcaption>Orders – lista zamówień z filtrowaniem i exportem</figcaption>
+      </figure>
+
+      <table>
+        <thead><tr><th>Funkcja</th><th>Opis</th></tr></thead>
+        <tbody>
+          <tr><td>Wyszukiwanie</td><td>Po nazwie, e-mailu lub numerze zamówienia</td></tr>
+          <tr><td>Filtrowanie</td><td>Status zamówienia i status zwrotu</td></tr>
+          <tr><td>Export</td><td>Plik XLSX ze wszystkimi zamówieniami</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Szczegóły zamówienia</h3>
+      <p>Kliknij w zamówienie, aby otworzyć panel boczny z zakładkami:</p>
+      <ul style="margin: 8px 0 8px 20px; color: #333;">
+        <li><strong>View</strong> – szczegóły, podsumowanie, odpowiedzi na pytania, uczestnicy</li>
+        <li><strong>Edit</strong> – edycja danych zamawiającego i notatek wewnętrznych</li>
+        <li><strong>Refund</strong> – zwrot pełny lub częściowy + opcja anulowania</li>
+      </ul>
+    </section>
+
+    <!-- 9. WIADOMOŚCI -->
+    <section id="wiadomosci">
+      <h2><span class="icon">💬</span> 9. Wiadomości</h2>
+      <p>Ścieżka: <strong>menu boczne → Messages</strong></p>
+
+      <figure class="screenshot">
+        <img src="screenshots/12_messages.png" alt="Wiadomości">
+        <figcaption>Messages – historia wiadomości i kompozytor</figcaption>
+      </figure>
+
+      <p>Kliknij <strong>Compose</strong>, aby napisać wiadomość.</p>
+
+      <table>
+        <thead><tr><th>Pole</th><th>Opis</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Recipients</strong></td><td>Wszyscy uczestnicy / z konkretnym biletem / właściciele zamówień</td></tr>
+          <tr><td><strong>Subject</strong></td><td>Temat e-maila</td></tr>
+          <tr><td><strong>Body</strong></td><td>Treść w edytorze rich-text</td></tr>
+          <tr><td><strong>Send time</strong></td><td>Natychmiast lub zaplanowany termin (presety: tydzień / dzień / godzinę przed)</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        Przed wysłaniem zaznacz checkbox potwierdzający <strong>transakcyjny charakter</strong> wiadomości.
+        Wiadomości promocyjne mogą skutkować zawieszeniem konta.
+      </div>
+    </section>
+
+    <!-- 10. USTAWIENIA WYDARZENIA -->
+    <section id="ustawienia-wydarzenia">
+      <h2><span class="icon">⚙️</span> 10. Ustawienia wydarzenia</h2>
+      <p>Ścieżka: <strong>menu boczne → Event Settings</strong></p>
+
+      <figure class="screenshot">
+        <img src="screenshots/13_event_settings.png" alt="Ustawienia wydarzenia">
+        <figcaption>Event Settings – zakładki konfiguracji wydarzenia</figcaption>
+      </figure>
+
+      <table>
+        <thead><tr><th>Zakładka</th><th>Zawartość</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Event Details</strong></td><td>Nazwa, kategoria, opis, daty, waluta, strefa czasowa</td></tr>
+          <tr><td><strong>Location</strong></td><td>Adres fizyczny lub oznaczenie jako online</td></tr>
+          <tr><td><strong>Checkout</strong></td><td>Komunikaty przed/po zakupie, czas sesji, zbieranie danych</td></tr>
+          <tr><td><strong>SEO</strong></td><td>Meta title, meta description, Open Graph</td></tr>
+          <tr><td><strong>Email &amp; Templates</strong></td><td>Nadawca e-maili, szablony wiadomości</td></tr>
+          <tr><td><strong>Waitlist</strong></td><td>Automatyczne zarządzanie listą oczekujących</td></tr>
+          <tr><td><strong>Payment &amp; Invoicing</strong></td><td>Stripe, płatności offline, konfiguracja faktur</td></tr>
+          <tr><td><strong>Danger Zone</strong></td><td>Usunięcie lub archiwizacja wydarzenia (tylko Admin)</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <strong>Uwaga:</strong> Waluta wydarzenia nie może być zmieniona po zapisaniu pierwszego zamówienia.
+      </div>
+    </section>
+
+    <!-- 11. USTAWIENIA KONTA -->
+    <section id="ustawienia-konta">
+      <h2><span class="icon">🏢</span> 11. Ustawienia konta</h2>
+      <p>Ścieżka: <a href="https://localhost:8443/manage/account/" target="_blank"><strong>https://localhost:8443/manage/account/</strong></a></p>
+
+      <figure class="screenshot">
+        <img src="screenshots/14_account_settings.png" alt="Ustawienia konta">
+        <figcaption>Account Settings – zarządzanie kontem organizacji</figcaption>
+      </figure>
+
+      <table>
+        <thead><tr><th>Sekcja</th><th>Opis</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Account Settings</strong></td><td>Nazwa konta, logo, branding organizacji</td></tr>
+          <tr><td><strong>Taxes &amp; Fees</strong></td><td>Globalne podatki i opłaty (przypisywane do biletów)</td></tr>
+          <tr><td><strong>Event Defaults</strong></td><td>Domyślne ustawienia waluta/strefa dla nowych wydarzeń</td></tr>
+          <tr><td><strong>Users</strong></td><td>Zapraszanie i zarządzanie użytkownikami (role: Admin / Organizer)</td></tr>
+          <tr><td><strong>Payment</strong></td><td>Podpięcie konta Stripe Connect</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 12. CHECK-IN -->
+    <section id="checkin">
+      <h2><span class="icon">✅</span> 12. Check-in (odprawa)</h2>
+      <p>Ścieżka: <strong>menu boczne → Check-In Lists</strong></p>
+
+      <figure class="screenshot">
+        <img src="screenshots/16_checkin.png" alt="Listy odprawy">
+        <figcaption>Check-In Lists – zarządzanie listami wejścia</figcaption>
+      </figure>
+
+      <p>Kliknij <strong>+ Create Check-In List</strong>.</p>
+
+      <table>
+        <thead><tr><th>Pole</th><th>Opis</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Name</strong></td><td>Np. „Wejście główne" / „Strefa VIP"</td></tr>
+          <tr><td><strong>Tickets</strong></td><td>Które typy biletów obsługuje ta lista</td></tr>
+          <tr><td><strong>Activation / Expiry Date</strong></td><td>Okno czasowe skanowania</td></tr>
+        </tbody>
+      </table>
+
+      <p>Po zapisaniu system generuje <strong>link i kod QR</strong> — udostępnij go obsłudze. Link nie wymaga logowania.</p>
+
+      <table>
+        <thead><tr><th>Wynik skanowania</th><th>Znaczenie</th></tr></thead>
+        <tbody>
+          <tr><td>✅ Valid</td><td>Wejście dozwolone</td></tr>
+          <tr><td>❌ Already checked in</td><td>Bilet już zeskanowany – próba ponownego wejścia</td></tr>
+          <tr><td>❌ Invalid</td><td>Zły bilet lub nieodpowiedni typ dla tej listy</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 13. AFILIACJE -->
+    <section id="afiliacje">
+      <h2><span class="icon">🔗</span> 13. Afiliacje</h2>
+      <p>Ścieżka: <strong>menu boczne → Affiliates</strong></p>
+
+      <figure class="screenshot">
+        <img src="screenshots/17_affiliates.png" alt="Afiliacje">
+        <figcaption>Affiliates – lista linków afiliacyjnych</figcaption>
+      </figure>
+
+      <p>Kliknij <strong>+ Create</strong>, aby dodać partnera afiliacyjnego.</p>
+
+      <table>
+        <thead><tr><th>Pole</th><th>Opis</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Name</strong></td><td>Nazwa partnera / influencera</td></tr>
+          <tr><td><strong>Code</strong></td><td>Unikalny kod 3–20 znaków lub kliknij „Generate"</td></tr>
+          <tr><td><strong>Email</strong></td><td>Opcjonalnie – kontakt z partnerem</td></tr>
+        </tbody>
+      </table>
+
+      <p>System generuje unikalny link do strony wydarzenia z kodem afiliata. Zakupy przez ten link są śledzone w raportach.</p>
+    </section>
+
+    <!-- QUICK LINKS -->
+    <section id="quick-links">
+      <h2><span class="icon">🔗</span> Szybkie odnośniki</h2>
+      <div class="links-grid">
+        <a class="link-card" href="https://localhost:8443/auth/login" target="_blank">
+          <span class="label">Logowanie</span>
+          <span class="url">https://localhost:8443/auth/login</span>
+        </a>
+        <a class="link-card" href="https://localhost:8443/manage/events" target="_blank">
+          <span class="label">Dashboard organizatora</span>
+          <span class="url">https://localhost:8443/manage/events</span>
+        </a>
+        <a class="link-card" href="https://localhost:8443/manage/event/1/getting-started" target="_blank">
+          <span class="label">Panel wydarzenia</span>
+          <span class="url">https://localhost:8443/manage/event/1/getting-started</span>
+        </a>
+        <a class="link-card" href="https://localhost:8443/manage/event/1/products" target="_blank">
+          <span class="label">Tickets &amp; Products</span>
+          <span class="url">https://localhost:8443/manage/event/1/products</span>
+        </a>
+        <a class="link-card" href="https://localhost:8443/manage/event/1/orders" target="_blank">
+          <span class="label">Zamówienia</span>
+          <span class="url">https://localhost:8443/manage/event/1/orders</span>
+        </a>
+        <a class="link-card" href="https://localhost:8443/manage/account/" target="_blank">
+          <span class="label">Ustawienia konta</span>
+          <span class="url">https://localhost:8443/manage/account/</span>
+        </a>
+        <a class="link-card" href="https://localhost:8443/e/1/konferencja-hievents-2026" target="_blank">
+          <span class="label">Strona publiczna wydarzenia</span>
+          <span class="url">https://localhost:8443/e/1/konferencja-hievents-2026</span>
+        </a>
+        <a class="link-card" href="http://localhost:8025" target="_blank">
+          <span class="label">Mailpit (podgląd e-maili)</span>
+          <span class="url">http://localhost:8025</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  Hi.Events v1.8.0-beta &nbsp;·&nbsp; Instrukcja wygenerowana automatycznie &nbsp;·&nbsp; maj 2026
+</footer>
+
+</body>
+</html>
