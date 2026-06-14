@@ -24,6 +24,8 @@ abstract class InvoiceDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
     final public const CREATED_AT = 'created_at';
     final public const UPDATED_AT = 'updated_at';
     final public const DELETED_AT = 'deleted_at';
+    final public const DOCUMENT_TYPE = 'document_type';
+    final public const SEQUENCE_NUMBER = 'sequence_number';
 
     protected int $id;
     protected int $order_id;
@@ -39,6 +41,8 @@ abstract class InvoiceDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
     protected ?string $created_at = null;
     protected ?string $updated_at = null;
     protected ?string $deleted_at = null;
+    protected string $document_type = 'invoice';
+    protected ?int $sequence_number = null;
 
     public function toArray(): array
     {
@@ -57,6 +61,8 @@ abstract class InvoiceDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
                     'created_at' => $this->created_at ?? null,
                     'updated_at' => $this->updated_at ?? null,
                     'deleted_at' => $this->deleted_at ?? null,
+                    'document_type' => $this->document_type ?? null,
+                    'sequence_number' => $this->sequence_number ?? null,
                 ];
     }
 
@@ -212,5 +218,27 @@ abstract class InvoiceDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
     public function getDeletedAt(): ?string
     {
         return $this->deleted_at;
+    }
+
+    public function setDocumentType(string $document_type): self
+    {
+        $this->document_type = $document_type;
+        return $this;
+    }
+
+    public function getDocumentType(): string
+    {
+        return $this->document_type;
+    }
+
+    public function setSequenceNumber(?int $sequence_number): self
+    {
+        $this->sequence_number = $sequence_number;
+        return $this;
+    }
+
+    public function getSequenceNumber(): ?int
+    {
+        return $this->sequence_number;
     }
 }

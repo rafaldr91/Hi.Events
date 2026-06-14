@@ -94,6 +94,9 @@ export const CollectInformation = () => {
                 address: {},
                 questions: {},
                 opted_into_marketing: false,
+                buyer_type: "individual" as "individual" | "company",
+                company_nip: "",
+                company_name: "",
             },
             products: [{
                 first_name: "",
@@ -109,6 +112,18 @@ export const CollectInformation = () => {
             order: {
                 email_confirmation: (value, values) =>
                     value !== values.order.email ? t`Email addresses do not match` : null,
+                company_nip: (value, values) => {
+                    if (values.order.buyer_type === 'company' && !value?.trim()) {
+                        return t`NIP is required for company orders`;
+                    }
+                    return null;
+                },
+                company_name: (value, values) => {
+                    if (values.order.buyer_type === 'company' && !value?.trim()) {
+                        return t`Company name is required`;
+                    }
+                    return null;
+                },
             },
             products: {
                 email_confirmation: (value, values, path) => {
@@ -428,6 +443,34 @@ export const CollectInformation = () => {
                 </p>
 
                 <Card>
+                    <div className={classes.buyerTypeSection}>
+                        <Text size="sm" fw={500} mb={8}>{t`Order type`}</Text>
+                        <SegmentedControl
+                            data={[
+                                {label: t`Individual`, value: 'individual'},
+                                {label: t`Company`, value: 'company'},
+                            ]}
+                            {...form.getInputProps("order.buyer_type")}
+                        />
+                    </div>
+
+                    {form.values.order.buyer_type === 'company' && (
+                        <InputGroup>
+                            <TextInput
+                                withAsterisk
+                                label={t`Company Name`}
+                                placeholder={t`Company name`}
+                                {...form.getInputProps("order.company_name")}
+                            />
+                            <TextInput
+                                withAsterisk
+                                label={t`NIP`}
+                                placeholder={t`NIP number`}
+                                {...form.getInputProps("order.company_nip")}
+                            />
+                        </InputGroup>
+                    )}
+
                     <InputGroup>
                         <TextInput
                             withAsterisk

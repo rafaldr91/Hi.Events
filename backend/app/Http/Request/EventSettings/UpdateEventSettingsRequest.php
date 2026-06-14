@@ -70,8 +70,11 @@ class UpdateEventSettingsRequest extends BaseRequest
             // Invoice settings
             'enable_invoicing' => ['boolean'],
             'invoice_label' => ['nullable', 'string', 'max:50'],
-            'invoice_prefix' => ['nullable', 'string', 'max:10', 'regex:/^[A-Za-z0-9\-]*$/'],
+            'invoice_prefix' => ['nullable', 'string', 'max:20', 'regex:/^[A-Za-z0-9\-\/]*$/'],
+            'invoice_suffix' => ['nullable', 'string', 'max:20', 'regex:/^[A-Za-z0-9\-\/]*$/'],
+            'invoice_number_format' => ['nullable', 'string', 'max:100'],
             'invoice_start_number' => ['nullable', 'integer', 'min:1'],
+            'confirmation_prefix' => ['nullable', 'string', 'max:20', 'regex:/^[A-Za-z0-9\-\/]*$/'],
             'require_billing_address' => ['boolean'],
             'organization_name' => ['required_if:enable_invoicing,true', 'string', 'max:255', 'nullable'],
             'organization_address' => ['required_if:enable_invoicing,true', 'string', 'max:255', 'nullable'],
@@ -134,7 +137,9 @@ class UpdateEventSettingsRequest extends BaseRequest
             'offline_payment_instructions.required' => __('Payment instructions are required when offline payments are enabled.'),
 
             // Invoice messages
-            'invoice_prefix.regex' => __('The invoice prefix may only contain letters, numbers, and hyphens.'),
+            'invoice_prefix.regex' => __('The invoice prefix may only contain letters, numbers, hyphens, and slashes.'),
+            'invoice_suffix.regex' => __('The invoice suffix may only contain letters, numbers, hyphens, and slashes.'),
+            'confirmation_prefix.regex' => __('The confirmation prefix may only contain letters, numbers, hyphens, and slashes.'),
             'organization_name.required_if' => __('The organization name is required when invoicing is enabled.'),
             'organization_address.required_if' => __('The organization address is required when invoicing is enabled.'),
             'invoice_start_number.min' => __('The invoice start number must be at least 1.'),

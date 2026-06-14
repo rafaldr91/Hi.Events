@@ -234,6 +234,10 @@ export interface EventSettings {
     invoice_tax_details?: string;
     invoice_notes?: string;
     invoice_payment_terms_days?: number;
+    confirmation_prefix?: string;
+    confirmation_start_number?: number;
+    invoice_suffix?: string;
+    invoice_number_format?: string;
     // Ticket design settings
     ticket_design_settings?: {
         accent_color?: string;
@@ -631,7 +635,9 @@ export interface Order {
     event_id: IdParam;
     first_name: string;
     last_name: string;
-    company_name: string;
+    buyer_type: 'individual' | 'company';
+    company_name?: string;
+    company_nip?: string;
     address: Address;
     payment_provider: PaymentProvider;
     notes?: string;

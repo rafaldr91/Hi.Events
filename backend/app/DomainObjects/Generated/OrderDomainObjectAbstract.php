@@ -44,6 +44,9 @@ abstract class OrderDomainObjectAbstract extends \HiEvents\DomainObjects\Abstrac
     final public const NOTES = 'notes';
     final public const STATISTICS_DECREMENTED_AT = 'statistics_decremented_at';
     final public const OPTED_INTO_MARKETING_AT = 'opted_into_marketing_at';
+    final public const BUYER_TYPE = 'buyer_type';
+    final public const COMPANY_NIP = 'company_nip';
+    final public const COMPANY_NAME = 'company_name';
 
     protected int $id;
     protected int $event_id;
@@ -79,6 +82,9 @@ abstract class OrderDomainObjectAbstract extends \HiEvents\DomainObjects\Abstrac
     protected ?string $notes = null;
     protected ?string $statistics_decremented_at = null;
     protected ?string $opted_into_marketing_at = null;
+    protected string $buyer_type = 'individual';
+    protected ?string $company_nip = null;
+    protected ?string $company_name = null;
 
     public function toArray(): array
     {
@@ -117,6 +123,9 @@ abstract class OrderDomainObjectAbstract extends \HiEvents\DomainObjects\Abstrac
                     'notes' => $this->notes ?? null,
                     'statistics_decremented_at' => $this->statistics_decremented_at ?? null,
                     'opted_into_marketing_at' => $this->opted_into_marketing_at ?? null,
+                    'buyer_type' => $this->buyer_type ?? null,
+                    'company_nip' => $this->company_nip ?? null,
+                    'company_name' => $this->company_name ?? null,
                 ];
     }
 
@@ -492,5 +501,38 @@ abstract class OrderDomainObjectAbstract extends \HiEvents\DomainObjects\Abstrac
     public function getOptedIntoMarketingAt(): ?string
     {
         return $this->opted_into_marketing_at;
+    }
+
+    public function setBuyerType(string $buyer_type): self
+    {
+        $this->buyer_type = $buyer_type;
+        return $this;
+    }
+
+    public function getBuyerType(): string
+    {
+        return $this->buyer_type;
+    }
+
+    public function setCompanyNip(?string $company_nip): self
+    {
+        $this->company_nip = $company_nip;
+        return $this;
+    }
+
+    public function getCompanyNip(): ?string
+    {
+        return $this->company_nip;
+    }
+
+    public function setCompanyName(?string $company_name): self
+    {
+        $this->company_name = $company_name;
+        return $this;
+    }
+
+    public function getCompanyName(): ?string
+    {
+        return $this->company_name;
     }
 }

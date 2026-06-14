@@ -406,6 +406,8 @@
     "Payment Instructions": "支付说明",
     "Please follow the instructions below to complete your payment.": "请按照以下说明完成您的支付。",
     "Invoice Number": "发票编号",
+    "Document Number": "文件编号",
+    "NIP": "统一社会信用代码",
     "Date Issued": "开票日期",
     "Due Date": "到期日期",
     "Amount Due": "应付金额",
@@ -662,5 +664,6 @@
     "Stripe payment account not connected": "",
     "No completed paid orders on this account": "",
     "Event was created less than 24 hours ago": "",
-    "Review Message": ""
+    "Review Message": "",
+    "Purchase Confirmation": "购买确认"
 }

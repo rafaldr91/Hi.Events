@@ -2,6 +2,7 @@
 
 namespace HiEvents\Services\Domain\Invoice;
 
+use Carbon\Carbon;
 use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\EventSettingDomainObject;
 use HiEvents\DomainObjects\InvoiceDomainObject;
@@ -46,34 +47,66 @@ class InvoiceCreateService
         /** @var EventDomainObject $event */
         $event = $order->getEvent();
 
+        $documentType = $order->getBuyerType() === 'individual' ? 'confirmation' : 'invoice';
+        $issueDate = Carbon::now();
+        $sequenceNumber = $this->getNextSequenceNumber($event->getId(), $eventSettings, $documentType, $issueDate);
+        $invoiceNumber = $this->formatDocumentNumber($sequenceNumber, $eventSettings, $documentType, $issueDate);
+
         return $this->invoiceRepository->create([
             'order_id' => $orderId,
             'account_id' => $event->getAccountId(),
-            'invoice_number' => $this->getLatestInvoiceNumber($event->getId(), $eventSettings),
+            'document_type' => $documentType,
+            'sequence_number' => $sequenceNumber,
+            'invoice_number' => $invoiceNumber,
             'items' => collect($order->getOrderItems())->map(fn(OrderItemDomainObject $item) => $item->toArray())->toArray(),
             'taxes_and_fees' => $order->getTaxesAndFeesRollup(),
-            'issue_date' => now()->toDateString(),
+            'issue_date' => $issueDate->toDateString(),
             'status' => $order->isOrderCompleted() ? InvoiceStatus::PAID->name : InvoiceStatus::UNPAID->name,
             'total_amount' => $order->getTotalGross(),
             'due_date' => $eventSettings->getInvoicePaymentTermsDays() !== null
-                ? now()->addDays($eventSettings->getInvoicePaymentTermsDays())
+                ? $issueDate->copy()->addDays($eventSettings->getInvoicePaymentTermsDays())
                 : null
         ]);
     }
 
-    private function getLatestInvoiceNumber(int $eventId, EventSettingDomainObject $eventSettings): string
+    private function getNextSequenceNumber(int $eventId, EventSettingDomainObject $eventSettings, string $documentType, Carbon $issueDate): int
     {
-        $latestInvoice = $this->invoiceRepository->findLatestInvoiceForEvent($eventId);
+        $format = $documentType === 'invoice'
+            ? ($eventSettings->getInvoiceNumberFormat() ?? '{number}')
+            : '{number}';
 
-        $startNumber = $eventSettings->getInvoiceStartNumber() ?? 1;
-        $prefix = $eventSettings->getInvoicePrefix() ?? '';
+        $startNumber = $documentType === 'invoice'
+            ? ($eventSettings->getInvoiceStartNumber() ?? 1)
+            : ($eventSettings->getConfirmationStartNumber() ?? 1);
 
-        if (!$latestInvoice) {
-            return $prefix . $startNumber;
+        $includesMonth = str_contains($format, '{month}');
+        [$month, $year] = $includesMonth
+            ? [(int)$issueDate->format('m'), (int)$issueDate->format('Y')]
+            : [null, null];
+
+        $maxSeq = $this->invoiceRepository->findMaxSequenceNumberForEvent($eventId, $documentType, $month, $year);
+
+        return max($maxSeq + 1, $startNumber);
+    }
+
+    private function formatDocumentNumber(int $sequence, EventSettingDomainObject $eventSettings, string $documentType, Carbon $issueDate): string
+    {
+        if ($documentType === 'invoice') {
+            $format = $eventSettings->getInvoiceNumberFormat() ?? '{number}';
+            $prefix = $eventSettings->getInvoicePrefix() ?? '';
+            $suffix = $eventSettings->getInvoiceSuffix() ?? '';
+        } else {
+            $format = '{number}';
+            $prefix = $eventSettings->getConfirmationPrefix() ?? '';
+            $suffix = '';
         }
 
-        $nextInvoiceNumber = (int)preg_replace('/\D+/', '', $latestInvoice->getInvoiceNumber()) + 1;
+        $core = str_replace(
+            ['{number}', '{month}', '{year}'],
+            [$sequence, $issueDate->format('m'), $issueDate->format('Y')],
+            $format,
+        );
 
-        return $prefix . $nextInvoiceNumber;
+        return $prefix . $core . $suffix;
     }
 }

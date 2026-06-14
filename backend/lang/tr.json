@@ -421,6 +421,8 @@
     "Payment Instructions": "Ödeme Talimatları",
     "Please follow the instructions below to complete your payment.": "Ödemenizi tamamlamak için aşağıdaki talimatları izleyin.",
     "Invoice Number": "Fatura Numarası",
+    "Document Number": "Belge numarası",
+    "NIP": "Vergi No",
     "Date Issued": "Düzenlenme Tarihi",
     "Due Date": "Vade Tarihi",
     "Amount Due": "Vadesi Gelen Tutar",
@@ -677,5 +679,6 @@
     "Stripe payment account not connected": "",
     "No completed paid orders on this account": "",
     "Event was created less than 24 hours ago": "",
-    "Review Message": ""
+    "Review Message": "",
+    "Purchase Confirmation": "Satın Alma Onayı"
 }

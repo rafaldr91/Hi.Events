@@ -56,6 +56,10 @@ class GenerateOrderInvoicePDFService
             throw new ResourceNotFoundException(__('Invoice not found'));
         }
 
+        $filename = $order->getBuyerType() === 'individual'
+            ? 'potwierdzenie-' . $invoice->getInvoiceNumber() . '.pdf'
+            : $invoice->getInvoiceNumber() . '.pdf';
+
         return new InvoicePdfResponseDTO(
             pdf: Pdf::loadView('invoice', [
                 'order' => $order,
@@ -64,7 +68,7 @@ class GenerateOrderInvoicePDFService
                 'eventSettings' => $order->getEvent()->getEventSettings(),
                 'invoice' => $invoice,
             ]),
-            filename: $invoice->getInvoiceNumber() . '.pdf'
+            filename: $filename,
         );
     }
 }

@@ -421,6 +421,8 @@
     "Payment Instructions": "",
     "Please follow the instructions below to complete your payment.": "",
     "Invoice Number": "",
+    "Document Number": "Номер документа",
+    "NIP": "ИНН",
     "Date Issued": "",
     "Due Date": "",
     "Amount Due": "",
@@ -677,5 +679,6 @@
     "Stripe payment account not connected": "",
     "No completed paid orders on this account": "",
     "Event was created less than 24 hours ago": "",
-    "Review Message": ""
+    "Review Message": "",
+    "Purchase Confirmation": "Подтверждение покупки"
 }

@@ -406,6 +406,8 @@
     "Payment Instructions": "Betalinstruktioner",
     "Please follow the instructions below to complete your payment.": "Följ instruktionerna nedan för att slutföra din betalning.",
     "Invoice Number": "Fakturanummer",
+    "Document Number": "Dokumentnummer",
+    "NIP": "Org.nr.",
     "Date Issued": "Fakturadatum",
     "Due Date": "Förfallodatum",
     "Amount Due": "Att Betala",
@@ -490,5 +492,6 @@
     "You have received a new message from": "Du har fått ett nytt meddelande från",
     "Reply to :name": "Svara till :name",
     "This message was sent via your organizer contact form.": "Detta meddelande skickades via ditt kontaktformulär för arrangörer.",
-    "Your email confirmation code is:": "Din e-postbekräftelsekod är:"
+    "Your email confirmation code is:": "Din e-postbekräftelsekod är:",
+    "Purchase Confirmation": "Köpbekräftelse"
 }

@@ -8,6 +8,10 @@
 @php
     $isPaid = $invoice->getStatus() === InvoiceStatus::PAID->name;
     $isVoid = $invoice->getStatus() === InvoiceStatus::VOID->name;
+    $isIndividual = $order->getBuyerType() === 'individual';
+    $documentTitle = $isIndividual
+        ? __('Purchase Confirmation')
+        : ($eventSettings->getInvoiceLabel() ?? __('Invoice'));
 @endphp
 
 <!DOCTYPE html>
@@ -15,7 +19,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $eventSettings->getInvoiceLabel() ?? __('Invoice') }} #{{ $invoice->getInvoiceNumber() }}</title>
+    <title>{{ $documentTitle }} #{{ $invoice->getInvoiceNumber() }}</title>
     <style>
         * {
             margin: 0;
@@ -299,7 +303,7 @@
 <table class="header-table">
     <tr>
         <td style="width: 55%;">
-            <h1 class="logo-title">{{ $eventSettings->getInvoiceLabel() ?? __('Invoice') }}</h1>
+            <h1 class="logo-title">{{ $documentTitle }}</h1>
             <p class="header-event-name">{{ $event->getTitle() }}</p>
         </td>
         <td class="company-details">
@@ -315,7 +319,7 @@
 <table class="invoice-info-grid">
     <tr>
         <td>
-            <span class="info-label">{{ __('Invoice Number') }}</span>
+            <span class="info-label">{{ $isIndividual ? __('Document Number') : __('Invoice Number') }}</span>
             <span class="info-value">#{{ $invoice->getInvoiceNumber() }}</span>
         </td>
         <td>
@@ -353,7 +357,15 @@
 
 <div class="billing-section">
     <div class="billing-title">{{ __('Billed To') }}</div>
-    <div class="billing-name">{{ $order->getFullName() }}</div>
+    @if(!$isIndividual && $order->getCompanyName())
+        <div class="billing-name">{{ $order->getCompanyName() }}</div>
+        @if($order->getCompanyNip())
+            <div>{{ __('NIP') }}: {{ $order->getCompanyNip() }}</div>
+        @endif
+        <div>{{ $order->getFullName() }}</div>
+    @else
+        <div class="billing-name">{{ $order->getFullName() }}</div>
+    @endif
     <div>{{ $order->getEmail() }}</div>
     @if($order->getAddress())
         <div>{{ $order->getBillingAddressString() }}</div>

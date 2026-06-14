@@ -101,7 +101,17 @@ class PartialUpdateEventSettingsHandler
                 'invoice_prefix' => array_key_exists('invoice_prefix', $eventSettingsDTO->settings)
                     ? $eventSettingsDTO->settings['invoice_prefix']
                     : $existingSettings->getInvoicePrefix(),
+                'invoice_suffix' => array_key_exists('invoice_suffix', $eventSettingsDTO->settings)
+                    ? $eventSettingsDTO->settings['invoice_suffix']
+                    : $existingSettings->getInvoiceSuffix(),
+                'invoice_number_format' => array_key_exists('invoice_number_format', $eventSettingsDTO->settings)
+                    ? $eventSettingsDTO->settings['invoice_number_format']
+                    : $existingSettings->getInvoiceNumberFormat(),
                 'invoice_start_number' => $eventSettingsDTO->settings['invoice_start_number'] ?? $existingSettings->getInvoiceStartNumber(),
+                'confirmation_prefix' => array_key_exists('confirmation_prefix', $eventSettingsDTO->settings)
+                    ? $eventSettingsDTO->settings['confirmation_prefix']
+                    : $existingSettings->getConfirmationPrefix(),
+                'confirmation_start_number' => $eventSettingsDTO->settings['confirmation_start_number'] ?? $existingSettings->getConfirmationStartNumber(),
                 'require_billing_address' => $eventSettingsDTO->settings['require_billing_address'] ?? $existingSettings->getRequireBillingAddress(),
                 'organization_name' => array_key_exists('organization_name', $eventSettingsDTO->settings)
                     ? $eventSettingsDTO->settings['organization_name']

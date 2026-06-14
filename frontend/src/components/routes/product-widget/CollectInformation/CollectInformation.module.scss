@@ -183,6 +183,10 @@ $transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
+.buyerTypeSection {
+  margin-bottom: 16px;
+}
+
 .tosNotice {
   text-align: center;
   margin-top: 12px;
@@ -198,3 +202,4 @@ $transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
 }
+

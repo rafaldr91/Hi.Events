@@ -67,6 +67,10 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
     final public const WAITLIST_ENABLED = 'waitlist_enabled';
     final public const WAITLIST_AUTO_PROCESS = 'waitlist_auto_process';
     final public const WAITLIST_OFFER_TIMEOUT_MINUTES = 'waitlist_offer_timeout_minutes';
+    final public const CONFIRMATION_PREFIX = 'confirmation_prefix';
+    final public const CONFIRMATION_START_NUMBER = 'confirmation_start_number';
+    final public const INVOICE_SUFFIX = 'invoice_suffix';
+    final public const INVOICE_NUMBER_FORMAT = 'invoice_number_format';
 
     protected int $id;
     protected int $event_id;
@@ -125,6 +129,10 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
     protected bool $waitlist_enabled = false;
     protected bool $waitlist_auto_process = false;
     protected ?int $waitlist_offer_timeout_minutes = null;
+    protected ?string $confirmation_prefix = null;
+    protected int $confirmation_start_number = 1;
+    protected ?string $invoice_suffix = null;
+    protected ?string $invoice_number_format = null;
 
     public function toArray(): array
     {
@@ -186,6 +194,10 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
                     'waitlist_enabled' => $this->waitlist_enabled ?? null,
                     'waitlist_auto_process' => $this->waitlist_auto_process ?? null,
                     'waitlist_offer_timeout_minutes' => $this->waitlist_offer_timeout_minutes ?? null,
+                    'confirmation_prefix' => $this->confirmation_prefix ?? null,
+                    'confirmation_start_number' => $this->confirmation_start_number ?? null,
+                    'invoice_suffix' => $this->invoice_suffix ?? null,
+                    'invoice_number_format' => $this->invoice_number_format ?? null,
                 ];
     }
 
@@ -815,5 +827,49 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
     public function getWaitlistOfferTimeoutMinutes(): ?int
     {
         return $this->waitlist_offer_timeout_minutes;
+    }
+
+    public function setConfirmationPrefix(?string $confirmation_prefix): self
+    {
+        $this->confirmation_prefix = $confirmation_prefix;
+        return $this;
+    }
+
+    public function getConfirmationPrefix(): ?string
+    {
+        return $this->confirmation_prefix;
+    }
+
+    public function setConfirmationStartNumber(int $confirmation_start_number): self
+    {
+        $this->confirmation_start_number = $confirmation_start_number;
+        return $this;
+    }
+
+    public function getConfirmationStartNumber(): int
+    {
+        return $this->confirmation_start_number;
+    }
+
+    public function setInvoiceSuffix(?string $invoice_suffix): self
+    {
+        $this->invoice_suffix = $invoice_suffix;
+        return $this;
+    }
+
+    public function getInvoiceSuffix(): ?string
+    {
+        return $this->invoice_suffix;
+    }
+
+    public function setInvoiceNumberFormat(?string $invoice_number_format): self
+    {
+        $this->invoice_number_format = $invoice_number_format;
+        return $this;
+    }
+
+    public function getInvoiceNumberFormat(): ?string
+    {
+        return $this->invoice_number_format;
     }
 }

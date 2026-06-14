@@ -406,6 +406,8 @@
     "Payment Instructions": "Betalingsinstructies",
     "Please follow the instructions below to complete your payment.": "Volg de onderstaande instructies om uw betaling te voltooien.",
     "Invoice Number": "Factuurnummer",
+    "Document Number": "Documentnummer",
+    "NIP": "BTW-nummer",
     "Date Issued": "Uitgiftedatum",
     "Due Date": "Vervaldatum",
     "Amount Due": "Te betalen bedrag",
@@ -662,5 +664,6 @@
     "Stripe payment account not connected": "",
     "No completed paid orders on this account": "",
     "Event was created less than 24 hours ago": "",
-    "Review Message": ""
+    "Review Message": "",
+    "Purchase Confirmation": "Aankoopbevestiging"
 }

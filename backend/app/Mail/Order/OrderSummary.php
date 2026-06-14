@@ -90,10 +90,14 @@ class OrderSummary extends BaseMail
             'invoice' => $this->invoice,
         ]);
 
+        $attachmentFilename = $this->order->getBuyerType() === 'individual'
+            ? 'potwierdzenie-zakupu.pdf'
+            : 'invoice.pdf';
+
         return [
             Attachment::fromData(
                 static fn() => $invoice->output(),
-                'invoice.pdf',
+                $attachmentFilename,
             )->withMime('application/pdf'),
         ];
     }

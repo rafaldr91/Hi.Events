@@ -90,6 +90,26 @@ export const OrderDetails = ({order, event, cardVariant = 'lightGray', style = {
                     </div>
                 </div>
             )}
+            {order.buyer_type === 'company' && order.company_name && (
+                <div className={classes.block}>
+                    <div className={classes.title}>
+                        {t`Company Name`}
+                    </div>
+                    <div className={classes.amount}>
+                        {order.company_name}
+                    </div>
+                </div>
+            )}
+            {order.buyer_type === 'company' && order.company_nip && (
+                <div className={classes.block}>
+                    <div className={classes.title}>
+                        {t`NIP`}
+                    </div>
+                    <div className={classes.amount}>
+                        {order.company_nip}
+                    </div>
+                </div>
+            )}
             {order.address && (
                 <div className={classes.block}>
                     <div className={classes.title}>

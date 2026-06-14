@@ -8,14 +8,6 @@ use Illuminate\Support\Collection;
 
 class CompleteOrderOrderDTO extends BaseDTO
 {
-    /**
-     * @param string $first_name
-     * @param string $last_name
-     * @param string $email
-     * @param Collection<OrderQuestionsDTO>|null $questions
-     * @param array|null $address
-     * @param bool $opted_into_marketing
-     */
     public function __construct(
         public readonly string      $first_name,
         public readonly string      $last_name,
@@ -24,6 +16,9 @@ class CompleteOrderOrderDTO extends BaseDTO
         public readonly ?Collection $questions,
         public readonly ?array      $address = [],
         public readonly bool        $opted_into_marketing = false,
+        public readonly string      $buyer_type = 'individual',
+        public readonly ?string     $company_nip = null,
+        public readonly ?string     $company_name = null,
     )
     {
     }

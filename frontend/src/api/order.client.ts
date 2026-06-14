@@ -14,6 +14,9 @@ export interface OrderDetails {
     first_name: string,
     last_name: string,
     email: string,
+    buyer_type: 'individual' | 'company',
+    company_nip?: string,
+    company_name?: string,
 }
 
 export interface AttendeeDetails extends OrderDetails {

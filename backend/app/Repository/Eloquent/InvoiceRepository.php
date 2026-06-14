@@ -42,4 +42,29 @@ class InvoiceRepository extends BaseRepository implements InvoiceRepositoryInter
 
         return $this->handleSingleResult($invoice);
     }
+
+    public function findLatestInvoiceForEventByDocumentType(int $eventId, string $documentType): ?InvoiceDomainObject
+    {
+        $invoice = $this->model
+            ->whereHas('order', fn($query) => $query->where('event_id', $eventId))
+            ->where('document_type', $documentType)
+            ->orderBy('id', 'desc')
+            ->first();
+
+        return $this->handleSingleResult($invoice);
+    }
+
+    public function findMaxSequenceNumberForEvent(int $eventId, string $documentType, ?int $month, ?int $year): int
+    {
+        $query = $this->model
+            ->whereHas('order', fn($q) => $q->where('event_id', $eventId))
+            ->where('document_type', $documentType)
+            ->whereNotNull('sequence_number');
+
+        if ($month !== null && $year !== null) {
+            $query->whereMonth('issue_date', $month)->whereYear('issue_date', $year);
+        }
+
+        return (int)($query->max('sequence_number') ?? 0);
+    }
 }

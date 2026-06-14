@@ -406,6 +406,8 @@
     "Payment Instructions": "Fizetési utasítások",
     "Please follow the instructions below to complete your payment.": "Kérjük, kövesse az alábbi utasításokat a fizetés teljesítéséhez.",
     "Invoice Number": "Számlaszám",
+    "Document Number": "Dokumentumszám",
+    "NIP": "Adószám",
     "Date Issued": "Kiállítás dátuma",
     "Due Date": "Esedékesség dátuma",
     "Amount Due": "Fizetendő összeg",
@@ -662,5 +664,6 @@
     "Stripe payment account not connected": "",
     "No completed paid orders on this account": "",
     "Event was created less than 24 hours ago": "",
-    "Review Message": ""
+    "Review Message": "",
+    "Purchase Confirmation": "Vásárlási visszaigazolás"
 }

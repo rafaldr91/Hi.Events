@@ -406,6 +406,8 @@
     "Payment Instructions": "Instruções de pagamento",
     "Please follow the instructions below to complete your payment.": "Por favor, siga as instruções abaixo para concluir seu pagamento.",
     "Invoice Number": "Número da fatura",
+    "Document Number": "Número de documento",
+    "NIP": "NIF",
     "Date Issued": "Data de emissão",
     "Due Date": "Data de vencimento",
     "Amount Due": "Valor devido",
@@ -662,5 +664,6 @@
     "Stripe payment account not connected": "",
     "No completed paid orders on this account": "",
     "Event was created less than 24 hours ago": "",
-    "Review Message": ""
+    "Review Message": "",
+    "Purchase Confirmation": "Confirmação de compra"
 }

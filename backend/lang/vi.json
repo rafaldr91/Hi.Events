@@ -367,6 +367,8 @@
     "To accept the invitation, please click the link below:": "Để chấp nhận lời mời, vui lòng nhấp vào liên kết bên dưới:",
     "Accept Invitation": "Chấp nhận lời mời",
     "Invoice Number": "Số hóa đơn",
+    "Document Number": "Số tài liệu",
+    "NIP": "Mã số thuế",
     "Date Issued": "Ngày phát hành",
     "Due Date": "Ngày đáo hạn",
     "Amount Due": "Số tiền đến hạn",
@@ -626,5 +628,6 @@
     "Stripe payment account not connected": "",
     "No completed paid orders on this account": "",
     "Event was created less than 24 hours ago": "",
-    "Review Message": ""
+    "Review Message": "",
+    "Purchase Confirmation": "Xác nhận mua hàng"
 }

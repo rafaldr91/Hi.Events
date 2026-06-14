@@ -77,6 +77,9 @@ class CompleteOrderValidator extends BaseValidator
             'order.questions' => new OrderQuestionRule($orderQuestions, $products),
             'order.email' => 'required|email',
             'order.email_confirmation' => 'required|email|same:order.email',
+            'order.buyer_type' => ['required', 'string', 'in:individual,company'],
+            'order.company_nip' => ['nullable', 'string', 'max:20', 'required_if:order.buyer_type,company'],
+            'order.company_name' => ['nullable', 'string', 'max:255', 'required_if:order.buyer_type,company'],
             'products' => new ProductQuestionRule(
                 $productQuestions,
                 $products,
@@ -100,6 +103,10 @@ class CompleteOrderValidator extends BaseValidator
             'order.address.city.required' => __('City is required'),
             'order.address.zip_or_postal_code.required' => __('Zip or postal code is required'),
             'order.address.country.required' => __('Country is required'),
+            'order.buyer_type.required' => __('Buyer type is required'),
+            'order.buyer_type.in' => __('Invalid buyer type'),
+            'order.company_nip.required_if' => __('NIP is required for company orders'),
+            'order.company_name.required_if' => __('Company name is required for company orders'),
         ];
     }
 }

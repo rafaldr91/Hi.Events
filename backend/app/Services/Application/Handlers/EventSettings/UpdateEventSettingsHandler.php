@@ -74,8 +74,12 @@ class UpdateEventSettingsHandler
                     // Invoice settings
                     'enable_invoicing' => $settings->enable_invoicing,
                     'invoice_label' => trim($settings->invoice_label),
-                    'invoice_prefix' => trim($settings->invoice_prefix),
+                    'invoice_prefix' => $settings->invoice_prefix !== null ? trim($settings->invoice_prefix) : null,
+                    'invoice_suffix' => $settings->invoice_suffix !== null ? trim($settings->invoice_suffix) : null,
+                    'invoice_number_format' => $settings->invoice_number_format !== null ? trim($settings->invoice_number_format) : null,
                     'invoice_start_number' => $settings->invoice_start_number,
+                    'confirmation_prefix' => $settings->confirmation_prefix !== null ? trim($settings->confirmation_prefix) : null,
+                    'confirmation_start_number' => $settings->confirmation_start_number,
                     'require_billing_address' => $settings->require_billing_address,
                     'organization_name' => trim($settings->organization_name),
                     'organization_address' => $this->purifier->purify($settings->organization_address),
