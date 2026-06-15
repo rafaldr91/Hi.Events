@@ -61,8 +61,12 @@ class InvoiceRepository extends BaseRepository implements InvoiceRepositoryInter
             ->where('document_type', $documentType)
             ->whereNotNull('sequence_number');
 
-        if ($month !== null && $year !== null) {
-            $query->whereMonth('issue_date', $month)->whereYear('issue_date', $year);
+        if ($year !== null) {
+            $query->whereYear('issue_date', $year);
+        }
+
+        if ($month !== null) {
+            $query->whereMonth('issue_date', $month);
         }
 
         return (int)($query->max('sequence_number') ?? 0);

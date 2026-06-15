@@ -1,5 +1,5 @@
 import {t} from "@lingui/macro";
-import {Anchor, Button, Group, Menu, Popover, Text, Tooltip} from '@mantine/core';
+import {Anchor, Badge, Button, Group, Menu, Popover, Text, Tooltip} from '@mantine/core';
 import {Event, IdParam, Invoice, MessageType, Order} from "../../../types.ts";
 import {
     IconAlertCircle,
@@ -11,9 +11,11 @@ import {
     IconCopy,
     IconCreditCard,
     IconDotsVertical,
+    IconFileCode,
     IconFileInvoice,
     IconFileOff,
     IconHelp,
+    IconLoader2,
     IconReceipt2,
     IconReceiptDollar,
     IconReceiptRefund,
@@ -33,6 +35,7 @@ import {NoResultsSplash} from "../NoResultsSplash";
 import {RefundOrderModal} from "../../modals/RefundOrderModal";
 import classes from "./OrdersTable.module.scss";
 import {useResendOrderConfirmation} from "../../../mutations/useResendOrderConfirmation.ts";
+import {useSendKsefInvoice} from "../../../mutations/useSendKsefInvoice.ts";
 import {formatNumber} from "../../../utilites/helpers.ts";
 import {useUrlHash} from "../../../hooks/useUrlHash.ts";
 import {useMarkOrderAsPaid} from "../../../mutations/useMarkOrderAsPaid.ts";
@@ -45,6 +48,31 @@ import {ColumnVisibilityToggle} from "../ColumnVisibilityToggle";
 import {CellContext} from "@tanstack/react-table";
 import {formatCurrency} from "../../../utilites/currency.ts";
 import {eventCheckoutUrl} from "../../../utilites/urlHelper.ts";
+
+const KsefStatusBadge = ({invoice}: { invoice: Invoice }) => {
+    switch (invoice.ksef_status) {
+        case 'SENT':
+            return (
+                <Tooltip label={invoice.ksef_number ? t`KSeF number: ${invoice.ksef_number}` : t`Sent to KSeF`}>
+                    <Badge size="xs" color="green" variant="light">{t`KSeF: Sent`}</Badge>
+                </Tooltip>
+            );
+        case 'PENDING':
+            return (
+                <Badge size="xs" color="blue" variant="light" leftSection={<IconLoader2 size={10}/>}>
+                    {t`KSeF: Pending`}
+                </Badge>
+            );
+        case 'FAILED':
+            return (
+                <Tooltip label={invoice.ksef_error_message ?? t`Unknown error`} multiline maw={300}>
+                    <Badge size="xs" color="red" variant="light">{t`KSeF: Failed`}</Badge>
+                </Tooltip>
+            );
+        default:
+            return null;
+    }
+};
 
 interface OrdersTableProps {
     event: Event,
@@ -60,6 +88,7 @@ export const OrdersTable = ({orders, event}: OrdersTableProps) => {
     const [emailPopoverId, setEmailPopoverId] = useState<IdParam | null>(null);
     const resendConfirmationMutation = useResendOrderConfirmation();
     const markAsPaidMutation = useMarkOrderAsPaid();
+    const sendKsefInvoiceMutation = useSendKsefInvoice();
     const clipboard = useClipboard({timeout: 2000});
 
     useUrlHash(/^#order-(\d+)$/, (matches => {
@@ -108,6 +137,36 @@ export const OrdersTable = ({orders, event}: OrdersTableProps) => {
                 }
             }
         );
+    };
+
+    const handleKsefXmlDownload = async (invoice: Invoice) => {
+        await withLoadingNotification(
+            async () => {
+                const blob = await orderClient.downloadKsefXml(event.id, invoice.order_id);
+                downloadBinary(blob, 'fa3-' + String(invoice.order_id) + '.xml');
+            },
+            {
+                loading: {
+                    title: t`Downloading KSeF XML`,
+                    message: t`Please wait while we prepare the FA(3) XML...`
+                },
+                success: {
+                    title: t`Success`,
+                    message: t`KSeF XML downloaded successfully`
+                },
+                error: {
+                    title: t`Error`,
+                    message: t`Failed to download KSeF XML. Please try again.`
+                }
+            }
+        );
+    };
+
+    const handleSendKsefInvoice = (eventId: IdParam, orderId: IdParam) => {
+        sendKsefInvoiceMutation.mutate({eventId, orderId}, {
+            onSuccess: () => showSuccess(t`Invoice queued for KSeF submission`),
+            onError: () => showError(t`Failed to send invoice to KSeF. Please try again.`)
+        });
     };
 
     const handleCopyEmail = (email: string) => {
@@ -160,9 +219,22 @@ export const OrdersTable = ({orders, event}: OrdersTableProps) => {
                                    }}
                                    leftSection={<IconCopy size={14}/>}>{t`Copy customer link`}</Menu.Item>
 
-                        {order.latest_invoice && (
+                        {order.latest_invoice && order.buyer_type !== 'company' && (
                             <Menu.Item onClick={() => handleInvoiceDownload(order.latest_invoice as Invoice)}
                                        leftSection={<IconReceipt2 size={14}/>}>{t`Download invoice`}</Menu.Item>
+                        )}
+
+                        {order.latest_invoice?.document_type === 'invoice' && (
+                            <Menu.Item onClick={() => handleKsefXmlDownload(order.latest_invoice as Invoice)}
+                                       leftSection={<IconFileCode size={14}/>}>{t`Download KSeF XML`}</Menu.Item>
+                        )}
+
+                        {order.latest_invoice?.document_type === 'invoice' &&
+                            order.latest_invoice?.ksef_status !== 'SENT' && (
+                            <Menu.Item
+                                onClick={() => handleSendKsefInvoice(event.id, order.id)}
+                                leftSection={<IconSend size={14}/>}
+                            >{t`Send to KSeF`}</Menu.Item>
                         )}
 
                         {order.status === 'AWAITING_OFFLINE_PAYMENT' && (
@@ -292,14 +364,26 @@ export const OrdersTable = ({orders, event}: OrdersTableProps) => {
                                     {relativeDate(order.created_at)}
                                 </Text>
                                 {order.latest_invoice ? (
-                                    <Anchor
-                                        onClick={() => handleInvoiceDownload(order.latest_invoice as Invoice)}
-                                        className={classes.invoiceLink}
-                                        style={{cursor: 'pointer'}}
-                                    >
-                                        <IconFileInvoice size={14}/>
-                                        {t`Invoice`} #{order.latest_invoice.invoice_number}
-                                    </Anchor>
+                                    <>
+                                        {order.buyer_type !== 'company' ? (
+                                            <Anchor
+                                                onClick={() => handleInvoiceDownload(order.latest_invoice as Invoice)}
+                                                className={classes.invoiceLink}
+                                                style={{cursor: 'pointer'}}
+                                            >
+                                                <IconFileInvoice size={14}/>
+                                                {t`Invoice`} #{order.latest_invoice.invoice_number}
+                                            </Anchor>
+                                        ) : (
+                                            <Text className={classes.invoiceLink}>
+                                                <IconFileInvoice size={14}/>
+                                                {t`Invoice`} #{order.latest_invoice.invoice_number}
+                                            </Text>
+                                        )}
+                                        {order.latest_invoice.document_type === 'invoice' && (
+                                            <KsefStatusBadge invoice={order.latest_invoice}/>
+                                        )}
+                                    </>
                                 ) : (
                                     <Text className={classes.noInvoice}>
                                         <IconFileOff size={14}/>

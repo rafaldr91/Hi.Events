@@ -18,8 +18,10 @@ use HiEvents\DomainObjects\Status\AttendeeStatus;
 use HiEvents\DomainObjects\Status\InvoiceStatus;
 use HiEvents\DomainObjects\Status\OrderApplicationFeeStatus;
 use HiEvents\DomainObjects\Status\OrderPaymentStatus;
+use HiEvents\DomainObjects\Status\KsefStatus;
 use HiEvents\DomainObjects\Status\OrderStatus;
 use HiEvents\Events\OrderStatusChangedEvent;
+use HiEvents\Jobs\KSeF\SendInvoiceToKsefJob;
 use HiEvents\Exceptions\ResourceConflictException;
 use HiEvents\Repository\Eloquent\Value\Relationship;
 use HiEvents\Repository\Interfaces\AffiliateRepositoryInterface;
@@ -83,6 +85,8 @@ class MarkOrderAsPaidService
 
             $this->updateOrderInvoice($orderId);
 
+            $this->dispatchKsefJobIfNeeded($order->getLatestInvoice());
+
             $updatedOrder = $this->orderRepository
                 ->loadRelation(OrderItemDomainObject::class)
                 ->findById($orderId);
@@ -121,6 +125,23 @@ class MarkOrderAsPaidService
 
             return $updatedOrder;
         });
+    }
+
+    private function dispatchKsefJobIfNeeded(?InvoiceDomainObject $invoice): void
+    {
+        if (!config('ksef.enabled')) {
+            return;
+        }
+
+        if ($invoice === null || $invoice->getDocumentType() !== 'invoice') {
+            return;
+        }
+
+        if ($invoice->getKsefStatus() === KsefStatus::SENT->value) {
+            return;
+        }
+
+        SendInvoiceToKsefJob::dispatch($invoice->getId());
     }
 
     private function updateOrderInvoice(int $orderId): void

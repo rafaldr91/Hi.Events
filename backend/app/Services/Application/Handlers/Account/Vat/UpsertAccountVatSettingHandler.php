@@ -33,10 +33,19 @@ class UpsertAccountVatSettingHandler
         $shouldValidate = false;
         $vatNumber = null;
 
+        $hasManualBusinessDetails = $command->businessName !== null || $command->businessAddress !== null;
+
         if ($command->vatRegistered && $command->vatNumber) {
             $vatNumber = strtoupper(trim($command->vatNumber));
 
-            if (preg_match('/^[A-Z]{2}[0-9A-Z]{8,15}$/', $vatNumber)) {
+            if ($hasManualBusinessDetails) {
+                $data['vat_number'] = $vatNumber;
+                $data['vat_validated'] = false;
+                $data['vat_validation_status'] = VatValidationStatus::PENDING->value;
+                $data['vat_validation_error'] = null;
+                $data['business_name'] = $command->businessName;
+                $data['business_address'] = $command->businessAddress;
+            } elseif (preg_match('/^[A-Z]{2}[0-9A-Z]{8,15}$/', $vatNumber)) {
                 $vatNumberChanged = !$existing || $existing->getVatNumber() !== $vatNumber;
 
                 $data['vat_number'] = $vatNumber;
@@ -62,8 +71,13 @@ class UpsertAccountVatSettingHandler
             $data['vat_validation_error'] = null;
             $data['vat_validation_attempts'] = 0;
             $data['vat_country_code'] = null;
-            $data['business_name'] = null;
-            $data['business_address'] = null;
+            if (!$hasManualBusinessDetails) {
+                $data['business_name'] = null;
+                $data['business_address'] = null;
+            } else {
+                $data['business_name'] = $command->businessName;
+                $data['business_address'] = $command->businessAddress;
+            }
             $data['vat_validation_date'] = null;
         }
 

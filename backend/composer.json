@@ -22,8 +22,10 @@
         "league/flysystem-aws-s3-v3": "^3.0",
         "liquid/liquid": "^1.4",
         "maatwebsite/excel": "^3.1",
+        "n1ebieski/ksef-php-client": "^1.5",
         "nette/php-generator": "^4.0",
         "php-open-source-saver/jwt-auth": "^2.1",
+        "phpseclib/phpseclib": "^3.0",
         "sentry/sentry-laravel": "^4.13",
         "spatie/icalendar-generator": "^3.0",
         "spatie/laravel-data": "^4.15",
@@ -93,6 +95,11 @@
         {
             "type": "vcs",
             "url": "https://github.com/laravel-shift/laravel-langscanner.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/rafaldr91/ksef-php-client.git",
+            "no-api": true
         }
     ]
 }

@@ -110,6 +110,19 @@ export const orderClient = {
         return new Blob([response.data]);
     },
 
+    downloadKsefXml: async (eventId: IdParam, orderId: IdParam): Promise<Blob> => {
+        const response = await api.get(`events/${eventId}/orders/${orderId}/invoice/xml`, {
+            responseType: 'blob',
+        });
+
+        return new Blob([response.data]);
+    },
+
+    sendKsefInvoice: async (eventId: IdParam, orderId: IdParam) => {
+        const response = await api.post(`events/${eventId}/orders/${orderId}/invoice/send-ksef`);
+        return response.data;
+    },
+
     editOrder: async (eventId: IdParam, orderId: IdParam, payload: EditOrderPayload) => {
         const response = await api.put<GenericDataResponse<Order>>(`events/${eventId}/orders/${orderId}`, payload);
         return response.data;
