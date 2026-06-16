@@ -14,6 +14,9 @@ services:
         environment:
               APP_ENV: '${APP_ENV:-local}'
               APP_KEY: '${APP_KEY}'
+              KSEF_ENABLED: '${KSEF_ENABLED:-false}'
+              KSEF_AUTH_TOKEN: '${KSEF_AUTH_TOKEN:-}'
+              KSEF_ENVIRONMENT: '${KSEF_ENVIRONMENT:-test}'
         depends_on:
             - redis
             - mailpit

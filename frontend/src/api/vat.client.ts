@@ -23,6 +23,8 @@ export interface AccountVatSetting {
 export interface UpsertVatSettingRequest {
     vat_registered: boolean;
     vat_number?: string | null;
+    business_name?: string | null;
+    business_address?: string | null;
 }
 
 export const vatClient = {

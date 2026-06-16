@@ -212,6 +212,10 @@ msgstr "1 ticket type"
 msgid "1 week before event"
 msgstr "1 week before event"
 
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:64
+msgid "10-digit Polish tax number, without spaces or dashes (e.g. 1234567890)"
+msgstr "10-digit Polish tax number, without spaces or dashes (e.g. 1234567890)"
+
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:123
 #: src/components/routes/organizer/Settings/Sections/AddressSettings/index.tsx:81
 msgid "123 Main Street"
@@ -300,7 +304,7 @@ msgstr "A single question per product. E.g, What is your t-shirt size?"
 msgid "A standard tax, like VAT or GST"
 msgstr "A standard tax, like VAT or GST"
 
-#: src/components/common/OrdersTable/index.tsx:436
+#: src/components/common/OrdersTable/index.tsx:513
 msgid "Abandoned"
 msgstr "Abandoned"
 
@@ -398,6 +402,10 @@ msgstr "Account updated successfully"
 msgid "Accounts"
 msgstr "Accounts"
 
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:72
+msgid "Acme Sp. z o.o."
+msgstr "Acme Sp. z o.o."
+
 #: src/components/routes/account/ManageAccount/sections/PaymentSettings/index.tsx:71
 msgid "Action Required: Reconnect Your Stripe Account"
 msgstr "Action Required: Reconnect Your Stripe Account"
@@ -409,7 +417,7 @@ msgstr "Action Required: VAT Information Needed"
 #: src/components/common/AdminEventsTable/index.tsx:112
 #: src/components/common/AffiliateTable/index.tsx:167
 #: src/components/common/AttendeeTable/index.tsx:346
-#: src/components/common/OrdersTable/index.tsx:445
+#: src/components/common/OrdersTable/index.tsx:522
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:475
 #: src/components/common/WaitlistTable/index.tsx:55
 #: src/components/common/WaitlistTable/index.tsx:210
@@ -501,7 +509,7 @@ msgstr "Add Product to Category"
 msgid "Add Question"
 msgstr "Add Question"
 
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/index.tsx:18
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/index.tsx:21
 msgid "Add Tax or Fee"
 msgstr "Add Tax or Fee"
 
@@ -546,7 +554,7 @@ msgstr "Additional Fees"
 msgid "Additional Information"
 msgstr "Additional Information"
 
-#: src/components/common/OrderDetails/index.tsx:96
+#: src/components/common/OrderDetails/index.tsx:116
 #: src/components/forms/QuestionForm/index.tsx:130
 #: src/components/routes/organizer/Settings/index.tsx:42
 #: src/components/routes/organizer/Settings/Sections/AddressSettings/index.tsx:67
@@ -744,7 +752,7 @@ msgstr "Always available"
 msgid "Amazing, Event, Keywords..."
 msgstr "Amazing, Event, Keywords..."
 
-#: src/components/common/OrdersTable/index.tsx:348
+#: src/components/common/OrdersTable/index.tsx:425
 #: src/components/forms/TaxAndFeeForm/index.tsx:71
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:36
 msgid "Amount"
@@ -1213,7 +1221,7 @@ msgid "Awaiting payment"
 msgstr "Awaiting payment"
 
 #: src/components/common/AttendeeTable/index.tsx:289
-#: src/components/common/OrdersTable/index.tsx:424
+#: src/components/common/OrdersTable/index.tsx:501
 #: src/components/routes/event/attendees.tsx:28
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:356
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:57
@@ -1310,6 +1318,7 @@ msgid "Business"
 msgstr "Business"
 
 #: src/components/modals/EditAccountVatSettingsModal/index.tsx:147
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:78
 msgid "Business Address"
 msgstr "Business Address"
 
@@ -1406,7 +1415,7 @@ msgstr "Cancel all products and release them back to the pool"
 msgid "Cancel email change"
 msgstr "Cancel email change"
 
-#: src/components/common/OrdersTable/index.tsx:193
+#: src/components/common/OrdersTable/index.tsx:265
 msgid "Cancel order"
 msgstr "Cancel order"
 
@@ -1424,7 +1433,7 @@ msgstr "Canceling will cancel all attendees associated with this order, and rele
 
 #: src/components/common/AttendeeTable/index.tsx:295
 #: src/components/common/AttendeeTicket/index.tsx:149
-#: src/components/common/OrdersTable/index.tsx:430
+#: src/components/common/OrdersTable/index.tsx:507
 #: src/components/common/OrderStatusBadge/index.tsx:12
 #: src/components/common/WaitlistTable/index.tsx:27
 #: src/components/routes/admin/Messages/index.tsx:126
@@ -1796,6 +1805,8 @@ msgstr ""
 msgid "Company name"
 msgstr ""
 
+#: src/components/common/OrderDetails/index.tsx:96
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:71
 #: src/components/routes/product-widget/CollectInformation/index.tsx:461
 msgid "Company Name"
 msgstr ""
@@ -1838,7 +1849,7 @@ msgstr "Complete your payment to secure your tickets."
 msgid "Complete your profile to join the team."
 msgstr "Complete your profile to join the team."
 
-#: src/components/common/OrdersTable/index.tsx:412
+#: src/components/common/OrdersTable/index.tsx:489
 #: src/components/modals/SendMessageModal/index.tsx:333
 #: src/components/routes/event/GettingStarted/index.tsx:75
 #: src/components/routes/event/orders.tsx:23
@@ -2138,7 +2149,7 @@ msgstr "Copy Check-In URL"
 msgid "Copy Code"
 msgstr "Copy Code"
 
-#: src/components/common/OrdersTable/index.tsx:161
+#: src/components/common/OrdersTable/index.tsx:220
 msgid "Copy customer link"
 msgstr "Copy customer link"
 
@@ -2147,7 +2158,7 @@ msgid "Copy details to first attendee"
 msgstr "Copy details to first attendee"
 
 #: src/components/common/AttendeeTable/index.tsx:197
-#: src/components/common/OrdersTable/index.tsx:263
+#: src/components/common/OrdersTable/index.tsx:335
 msgid "Copy Email"
 msgstr "Copy Email"
 
@@ -2465,11 +2476,11 @@ msgid "Custom template"
 msgstr "Custom template"
 
 #: src/components/common/AdminOrdersTable/index.tsx:71
-#: src/components/common/OrdersTable/index.tsx:207
+#: src/components/common/OrdersTable/index.tsx:279
 msgid "Customer"
 msgstr "Customer"
 
-#: src/components/common/OrdersTable/index.tsx:159
+#: src/components/common/OrdersTable/index.tsx:218
 msgid "Customer link copied to clipboard"
 msgstr "Customer link copied to clipboard"
 
@@ -2556,7 +2567,7 @@ msgstr "Daily sales, tax, and fee breakdown"
 
 #: src/components/common/CapacityAssignmentList/index.tsx:153
 #: src/components/common/CheckInListList/index.tsx:174
-#: src/components/common/OrdersTable/index.tsx:189
+#: src/components/common/OrdersTable/index.tsx:261
 #: src/components/common/OrganizerWebhookTable/index.tsx:116
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:500
 #: src/components/common/PromoCodeTable/index.tsx:181
@@ -2799,13 +2810,17 @@ msgstr "Download .ics"
 msgid "Download CSV"
 msgstr "Download CSV"
 
-#: src/components/common/OrdersTable/index.tsx:165
+#: src/components/common/OrdersTable/index.tsx:224
 msgid "Download invoice"
 msgstr "Download invoice"
 
 #: src/components/layouts/Checkout/index.tsx:260
 msgid "Download Invoice"
 msgstr "Download Invoice"
+
+#: src/components/common/OrdersTable/index.tsx:229
+msgid "Download KSeF XML"
+msgstr "Download KSeF XML"
 
 #: src/components/modals/ShareModal/index.tsx:228
 msgid "Download QR Code"
@@ -2815,10 +2830,14 @@ msgstr "Download QR Code"
 msgid "Download sales, attendee, and financial reports for all completed orders."
 msgstr "Download sales, attendee, and financial reports for all completed orders."
 
-#: src/components/common/OrdersTable/index.tsx:98
+#: src/components/common/OrdersTable/index.tsx:127
 #: src/components/layouts/Checkout/index.tsx:87
 msgid "Downloading Invoice"
 msgstr "Downloading Invoice"
+
+#: src/components/common/OrdersTable/index.tsx:150
+msgid "Downloading KSeF XML"
+msgstr "Downloading KSeF XML"
 
 #: src/components/common/EventCard/index.tsx:84
 #: src/components/layouts/Event/index.tsx:191
@@ -3080,7 +3099,7 @@ msgid "Email Address"
 msgstr "Email Address"
 
 #: src/components/common/AttendeeTable/index.tsx:118
-#: src/components/common/OrdersTable/index.tsx:115
+#: src/components/common/OrdersTable/index.tsx:174
 msgid "Email address copied to clipboard"
 msgstr "Email address copied to clipboard"
 
@@ -3293,7 +3312,8 @@ msgstr "Enter your VAT number including the country code, without spaces (e.g., 
 msgid "Entries will appear here when customers join the waitlist for sold out products."
 msgstr "Entries will appear here when customers join the waitlist for sold out products."
 
-#: src/components/common/OrdersTable/index.tsx:106
+#: src/components/common/OrdersTable/index.tsx:135
+#: src/components/common/OrdersTable/index.tsx:158
 #: src/components/common/OrganizerWebhookTable/index.tsx:149
 #: src/components/layouts/Checkout/index.tsx:95
 msgid "Error"
@@ -3705,10 +3725,14 @@ msgstr "Failed to delete question"
 msgid "Failed to delete template"
 msgstr "Failed to delete template"
 
-#: src/components/common/OrdersTable/index.tsx:107
+#: src/components/common/OrdersTable/index.tsx:136
 #: src/components/layouts/Checkout/index.tsx:96
 msgid "Failed to download invoice. Please try again."
 msgstr "Failed to download invoice. Please try again."
+
+#: src/components/common/OrdersTable/index.tsx:159
+msgid "Failed to download KSeF XML. Please try again."
+msgstr "Failed to download KSeF XML. Please try again."
 
 #: src/components/routes/event/Affiliates/index.tsx:51
 msgid "Failed to export affiliates"
@@ -3779,6 +3803,10 @@ msgstr "Failed to retry job"
 msgid "Failed to retry jobs"
 msgstr "Failed to retry jobs"
 
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:50
+msgid "Failed to save seller settings. Please try again."
+msgstr "Failed to save seller settings. Please try again."
+
 #: src/components/common/EmailTemplateSettings/EmailTemplateSettingsBase.tsx:148
 #: src/components/common/EmailTemplateSettings/EmailTemplateSettingsBase.tsx:151
 #: src/components/common/EmailTemplateSettings/EmailTemplateSettingsBase.tsx:154
@@ -3789,6 +3817,10 @@ msgstr "Failed to save template"
 #: src/components/routes/account/ManageAccount/sections/PaymentSettings/VatSettings/VatSettingsForm.tsx:182
 msgid "Failed to save VAT settings. Please try again."
 msgstr "Failed to save VAT settings. Please try again."
+
+#: src/components/common/OrdersTable/index.tsx:168
+msgid "Failed to send invoice to KSeF. Please try again."
+msgstr "Failed to send invoice to KSeF. Please try again."
 
 #: src/components/common/ContactOrganizerModal/index.tsx:57
 msgid "Failed to send message. Please try again."
@@ -3887,7 +3919,7 @@ msgid "Fee Handling"
 msgstr "Fee Handling"
 
 #: src/components/common/InlineOrderSummary/index.tsx:140
-#: src/components/common/OrdersTable/index.tsx:359
+#: src/components/common/OrdersTable/index.tsx:436
 #: src/components/forms/ProductForm/index.tsx:409
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
 msgid "Fees"
@@ -4625,11 +4657,11 @@ msgstr "Invite User"
 msgid "Invite Your Team"
 msgstr "Invite Your Team"
 
-#: src/components/common/OrdersTable/index.tsx:301
+#: src/components/common/OrdersTable/index.tsx:374
 msgid "Invoice"
 msgstr "Invoice"
 
-#: src/components/common/OrdersTable/index.tsx:103
+#: src/components/common/OrdersTable/index.tsx:132
 #: src/components/layouts/Checkout/index.tsx:92
 msgid "Invoice downloaded successfully"
 msgstr "Invoice downloaded successfully"
@@ -4641,6 +4673,10 @@ msgstr "Invoice Notes"
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:205
 msgid "Invoice Numbering"
 msgstr "Invoice Numbering"
+
+#: src/components/common/OrdersTable/index.tsx:167
+msgid "Invoice queued for KSeF submission"
+msgstr "Invoice queued for KSeF submission"
 
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:185
 msgid "Invoice Settings"
@@ -4662,11 +4698,11 @@ msgstr "Italian"
 msgid "Item"
 msgstr "Item"
 
-#: src/components/common/OrdersTable/index.tsx:340
+#: src/components/common/OrdersTable/index.tsx:417
 msgid "item(s)"
 msgstr "item(s)"
 
-#: src/components/common/OrdersTable/index.tsx:322
+#: src/components/common/OrdersTable/index.tsx:399
 msgid "Items"
 msgstr "Items"
 
@@ -4728,6 +4764,26 @@ msgstr "Just looking for your tickets?"
 #: src/components/routes/product-widget/CollectInformation/index.tsx:610
 msgid "Keep me updated on news and events from {0}"
 msgstr "Keep me updated on news and events from {0}"
+
+#: src/components/common/OrdersTable/index.tsx:56
+msgid "KSeF number: {0}"
+msgstr "KSeF number: {0}"
+
+#: src/components/common/OrdersTable/index.tsx:155
+msgid "KSeF XML downloaded successfully"
+msgstr "KSeF XML downloaded successfully"
+
+#: src/components/common/OrdersTable/index.tsx:69
+msgid "KSeF: Failed"
+msgstr "KSeF: Failed"
+
+#: src/components/common/OrdersTable/index.tsx:63
+msgid "KSeF: Pending"
+msgstr "KSeF: Pending"
+
+#: src/components/common/OrdersTable/index.tsx:57
+msgid "KSeF: Sent"
+msgstr "KSeF: Sent"
 
 #: src/components/forms/ProductForm/index.tsx:85
 msgid "Label"
@@ -4971,7 +5027,7 @@ msgstr "Make your event live"
 
 #: src/components/common/CapacityAssignmentList/index.tsx:140
 #: src/components/common/CheckInListList/index.tsx:143
-#: src/components/common/OrdersTable/index.tsx:151
+#: src/components/common/OrdersTable/index.tsx:210
 #: src/components/common/OrganizerWebhookTable/index.tsx:96
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:469
 #: src/components/common/PromoCodeTable/index.tsx:167
@@ -4987,7 +5043,7 @@ msgstr "Manage attendee"
 msgid "Manage event"
 msgstr "Manage event"
 
-#: src/components/common/OrdersTable/index.tsx:153
+#: src/components/common/OrdersTable/index.tsx:212
 msgid "Manage order"
 msgstr "Manage order"
 
@@ -4999,7 +5055,7 @@ msgstr "Manage payment and invoicing settings for this event."
 msgid "Manage Profile"
 msgstr "Manage Profile"
 
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/index.tsx:17
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/index.tsx:20
 msgid "Manage taxes and fees which can be applied to your products"
 msgstr "Manage taxes and fees which can be applied to your products"
 
@@ -5040,7 +5096,7 @@ msgstr "Manually add an Attendee"
 msgid "Manually Add Attendee"
 msgstr "Manually Add Attendee"
 
-#: src/components/common/OrdersTable/index.tsx:170
+#: src/components/common/OrdersTable/index.tsx:242
 msgid "Mark as paid"
 msgstr "Mark as paid"
 
@@ -5062,7 +5118,7 @@ msgstr "Medium"
 
 #: src/components/common/AttendeeTable/index.tsx:188
 #: src/components/common/ContactOrganizerModal/index.tsx:88
-#: src/components/common/OrdersTable/index.tsx:254
+#: src/components/common/OrdersTable/index.tsx:326
 #: src/components/modals/SendMessageModal/index.tsx:353
 msgid "Message"
 msgstr "Message"
@@ -5083,7 +5139,7 @@ msgstr "Message Attendees"
 msgid "Message attendees with specific tickets"
 msgstr "Message attendees with specific tickets"
 
-#: src/components/common/OrdersTable/index.tsx:155
+#: src/components/common/OrdersTable/index.tsx:214
 msgid "Message buyer"
 msgstr "Message buyer"
 
@@ -5281,13 +5337,22 @@ msgstr "New Signups"
 msgid "Nightlife"
 msgstr "Nightlife"
 
+#: src/components/common/OrderDetails/index.tsx:106
 #: src/components/routes/product-widget/CollectInformation/index.tsx:467
 msgid "NIP"
 msgstr ""
 
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:63
+msgid "NIP (Tax Identification Number)"
+msgstr "NIP (Tax Identification Number)"
+
 #: src/components/routes/product-widget/CollectInformation/index.tsx:117
 msgid "NIP is required for company orders"
 msgstr ""
+
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:37
+msgid "NIP must be exactly 10 digits"
+msgstr "NIP must be exactly 10 digits"
 
 #: src/components/routes/product-widget/CollectInformation/index.tsx:468
 msgid "NIP number"
@@ -5415,7 +5480,7 @@ msgstr "No filters available"
 msgid "No impact on your current or past transactions"
 msgstr "No impact on your current or past transactions"
 
-#: src/components/common/OrdersTable/index.tsx:306
+#: src/components/common/OrdersTable/index.tsx:383
 msgid "No invoice"
 msgstr "No invoice"
 
@@ -5444,7 +5509,7 @@ msgstr "No order questions yet"
 msgid "No orders found"
 msgstr "No orders found"
 
-#: src/components/common/OrdersTable/index.tsx:466
+#: src/components/common/OrdersTable/index.tsx:543
 msgid "No orders to show"
 msgstr "No orders to show"
 
@@ -5685,7 +5750,7 @@ msgstr "Offers expire after {timeoutHours} hours."
 msgid "Office or venue name"
 msgstr "Office or venue name"
 
-#: src/components/common/OrdersTable/index.tsx:389
+#: src/components/common/OrdersTable/index.tsx:466
 #: src/components/routes/product-widget/Payment/index.tsx:131
 msgid "Offline"
 msgstr "Offline"
@@ -5893,7 +5958,7 @@ msgstr "Order Currency"
 msgid "Order Date"
 msgstr "Order Date"
 
-#: src/components/common/OrdersTable/index.tsx:277
+#: src/components/common/OrdersTable/index.tsx:349
 #: src/components/modals/ManageAttendeeModal/index.tsx:166
 #: src/components/modals/ManageOrderModal/index.tsx:86
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:592
@@ -5945,7 +6010,7 @@ msgstr "Order limits set"
 msgid "Order Locale"
 msgstr "Order Locale"
 
-#: src/components/common/OrdersTable/index.tsx:78
+#: src/components/common/OrdersTable/index.tsx:107
 msgid "Order marked as paid"
 msgstr "Order marked as paid"
 
@@ -6176,7 +6241,7 @@ msgid "Organizers can only manage events and products. They cannot manage users,
 msgstr "Organizers can only manage events and products. They cannot manage users, account settings or billing information."
 
 #: src/components/common/Editor/Controls/InsertLiquidVariableControl.tsx:98
-#: src/components/common/OrdersTable/index.tsx:394
+#: src/components/common/OrdersTable/index.tsx:471
 #: src/constants/eventCategories.ts:22
 msgid "Other"
 msgstr "Other"
@@ -6246,7 +6311,7 @@ msgstr "Partial refund"
 msgid "Partially Refunded"
 msgstr "Partially Refunded"
 
-#: src/components/common/OrdersTable/index.tsx:364
+#: src/components/common/OrdersTable/index.tsx:441
 msgid "Partially refunded: {0}"
 msgstr "Partially refunded: {0}"
 
@@ -6325,7 +6390,7 @@ msgstr "Pay to unlock"
 msgid "Payload"
 msgstr "Payload"
 
-#: src/components/common/OrdersTable/index.tsx:375
+#: src/components/common/OrdersTable/index.tsx:452
 #: src/components/common/ProgressStepper/index.tsx:19
 #: src/components/forms/StripeCheckoutForm/index.tsx:127
 msgid "Payment"
@@ -6614,6 +6679,10 @@ msgstr "Please verify your email address to access all features"
 msgid "Please wait before requesting another code"
 msgstr "Please wait before requesting another code"
 
+#: src/components/common/OrdersTable/index.tsx:151
+msgid "Please wait while we prepare the FA(3) XML..."
+msgstr "Please wait while we prepare the FA(3) XML..."
+
 #: src/components/routes/event/Affiliates/index.tsx:43
 msgid "Please wait while we prepare your affiliates for export..."
 msgstr "Please wait while we prepare your affiliates for export..."
@@ -6622,7 +6691,7 @@ msgstr "Please wait while we prepare your affiliates for export..."
 msgid "Please wait while we prepare your attendees for export..."
 msgstr "Please wait while we prepare your attendees for export..."
 
-#: src/components/common/OrdersTable/index.tsx:99
+#: src/components/common/OrdersTable/index.tsx:128
 #: src/components/layouts/Checkout/index.tsx:88
 msgid "Please wait while we prepare your invoice..."
 msgstr "Please wait while we prepare your invoice..."
@@ -7053,7 +7122,7 @@ msgstr "Refresh Preview"
 msgid "Refund amount"
 msgstr "Refund amount"
 
-#: src/components/common/OrdersTable/index.tsx:366
+#: src/components/common/OrdersTable/index.tsx:443
 msgid "Refund failed"
 msgstr "Refund failed"
 
@@ -7061,7 +7130,7 @@ msgstr "Refund failed"
 msgid "Refund Failed"
 msgstr "Refund Failed"
 
-#: src/components/common/OrdersTable/index.tsx:175
+#: src/components/common/OrdersTable/index.tsx:247
 msgid "Refund order"
 msgstr "Refund order"
 
@@ -7069,7 +7138,7 @@ msgstr "Refund order"
 msgid "Refund Order {0}"
 msgstr "Refund Order {0}"
 
-#: src/components/common/OrdersTable/index.tsx:365
+#: src/components/common/OrdersTable/index.tsx:442
 msgid "Refund pending"
 msgstr "Refund pending"
 
@@ -7089,7 +7158,7 @@ msgstr "Refund Status"
 msgid "Refunded"
 msgstr "Refunded"
 
-#: src/components/common/OrdersTable/index.tsx:363
+#: src/components/common/OrdersTable/index.tsx:440
 msgid "Refunded: {0}"
 msgstr "Refunded: {0}"
 
@@ -7177,7 +7246,7 @@ msgstr "Resend in {resendCooldown}s"
 msgid "Resend invitation"
 msgstr "Resend invitation"
 
-#: src/components/common/OrdersTable/index.tsx:182
+#: src/components/common/OrdersTable/index.tsx:254
 msgid "Resend order email"
 msgstr "Resend order email"
 
@@ -7193,11 +7262,11 @@ msgstr "Resend ticket email"
 msgid "Resending..."
 msgstr "Resending..."
 
-#: src/components/common/OrdersTable/index.tsx:418
+#: src/components/common/OrdersTable/index.tsx:495
 msgid "Reserved"
 msgstr "Reserved"
 
-#: src/components/common/OrdersTable/index.tsx:312
+#: src/components/common/OrdersTable/index.tsx:389
 msgid "Reserved until"
 msgstr "Reserved until"
 
@@ -7406,6 +7475,10 @@ msgstr "Save Configuration"
 #: src/components/modals/EditOrganizerModal/index.tsx:70
 msgid "Save Organizer"
 msgstr "Save Organizer"
+
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:86
+msgid "Save Seller Settings"
+msgstr "Save Seller Settings"
 
 #: src/components/routes/account/ManageAccount/sections/AccountSettings/index.tsx:90
 msgid "Save Settings"
@@ -7687,6 +7760,14 @@ msgstr "Select..."
 msgid "Selected"
 msgstr "Selected"
 
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:57
+msgid "Seller Details (KSeF)"
+msgstr "Seller Details (KSeF)"
+
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:48
+msgid "Seller settings saved successfully"
+msgstr "Seller settings saved successfully"
+
 #: src/components/forms/ProductForm/index.tsx:515
 msgid "Selling fast 🔥"
 msgstr "Selling fast 🔥"
@@ -7741,6 +7822,10 @@ msgstr "Send reset link"
 msgid "Send Test"
 msgstr "Send Test"
 
+#: src/components/common/OrdersTable/index.tsx:237
+msgid "Send to KSeF"
+msgstr "Send to KSeF"
+
 #: src/components/routes/event/messages.tsx:334
 msgid "Send your first message"
 msgstr "Send your first message"
@@ -7765,6 +7850,10 @@ msgstr "Sent to customers when they place an order"
 #: src/components/common/EmailTemplateSettings/EmailTemplateSettingsBase.tsx:206
 msgid "Sent to each attendee with their ticket details"
 msgstr "Sent to each attendee with their ticket details"
+
+#: src/components/common/OrdersTable/index.tsx:56
+msgid "Sent to KSeF"
+msgstr "Sent to KSeF"
 
 #: src/components/routes/event/Settings/index.tsx:58
 #: src/components/routes/organizer/Settings/index.tsx:60
@@ -8087,7 +8176,7 @@ msgstr "Statistics are based on account creation date"
 #: src/components/common/AffiliateTable/index.tsx:83
 #: src/components/common/AttendeeTable/index.tsx:274
 #: src/components/common/OrderDetails/index.tsx:51
-#: src/components/common/OrdersTable/index.tsx:403
+#: src/components/common/OrdersTable/index.tsx:480
 #: src/components/common/OrganizerWebhookTable/index.tsx:238
 #: src/components/common/WaitlistTable/index.tsx:181
 #: src/components/common/WebhookTable/index.tsx:238
@@ -8113,7 +8202,7 @@ msgstr "Still handling refunds for your older transactions."
 msgid "Stop Impersonating"
 msgstr "Stop Impersonating"
 
-#: src/components/common/OrdersTable/index.tsx:384
+#: src/components/common/OrdersTable/index.tsx:461
 #: src/components/routes/admin/Dashboard/index.tsx:424
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:93
 msgid "Stripe"
@@ -8167,7 +8256,8 @@ msgstr "Subject:"
 msgid "Subtotal"
 msgstr "Subtotal"
 
-#: src/components/common/OrdersTable/index.tsx:102
+#: src/components/common/OrdersTable/index.tsx:131
+#: src/components/common/OrdersTable/index.tsx:154
 #: src/components/common/OrganizerWebhookTable/index.tsx:149
 #: src/components/layouts/Checkout/index.tsx:91
 msgid "Success"
@@ -8373,7 +8463,7 @@ msgid "Takes just a few minutes"
 msgstr "Takes just a few minutes"
 
 #: src/components/common/AdminOrdersTable/index.tsx:84
-#: src/components/common/OrdersTable/index.tsx:358
+#: src/components/common/OrdersTable/index.tsx:435
 #: src/components/forms/TaxAndFeeForm/index.tsx:12
 #: src/components/forms/TaxAndFeeForm/index.tsx:39
 #: src/components/modals/CreateTaxOrFeeModal/index.tsx:36
@@ -8385,7 +8475,7 @@ msgid "Tax"
 msgstr "Tax"
 
 #: src/components/routes/account/ManageAccount/index.tsx:27
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/index.tsx:16
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/index.tsx:19
 msgid "Tax & Fees"
 msgstr "Tax & Fees"
 
@@ -8644,7 +8734,7 @@ msgstr "There are no products available in this category"
 msgid "There is a refund pending. Please wait for it to complete before requesting another refund."
 msgstr "There is a refund pending. Please wait for it to complete before requesting another refund."
 
-#: src/components/common/OrdersTable/index.tsx:79
+#: src/components/common/OrdersTable/index.tsx:108
 msgid "There was an error marking the order as paid"
 msgstr "There was an error marking the order as paid"
 
@@ -8652,9 +8742,13 @@ msgstr "There was an error marking the order as paid"
 msgid "There was an error processing your request. Please try again."
 msgstr "There was an error processing your request. Please try again."
 
-#: src/components/common/OrdersTable/index.tsx:86
+#: src/components/common/OrdersTable/index.tsx:115
 msgid "There was an error sending your message"
 msgstr "There was an error sending your message"
+
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:58
+msgid "These details are used when generating KSeF FA(3) XML invoices for B2B orders"
+msgstr "These details are used when generating KSeF FA(3) XML invoices for B2B orders"
 
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:105
 msgid "These details will only be shown if order is completed successfully. Orders awaiting payment will not show this message."
@@ -9206,6 +9300,10 @@ msgstr "Type of ticket"
 msgid "Typography"
 msgstr "Typography"
 
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:79
+msgid "ul. Przykładowa 1, 00-001 Warszawa"
+msgstr "ul. Przykładowa 1, 00-001 Warszawa"
+
 #: src/components/layouts/CheckIn/index.tsx:146
 msgid "Unable to check in attendee"
 msgstr "Unable to check in attendee"
@@ -9271,6 +9369,10 @@ msgstr "Unknown"
 #: src/components/common/QuestionAndAnswerList/index.tsx:284
 msgid "Unknown Attendee"
 msgstr "Unknown Attendee"
+
+#: src/components/common/OrdersTable/index.tsx:68
+msgid "Unknown error"
+msgstr "Unknown error"
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:414
 #: src/components/forms/CapaciyAssigmentForm/index.tsx:43
@@ -10332,7 +10434,7 @@ msgstr "Your event must be live before you can sell tickets to attendees."
 msgid "Your logo, colors, and style on every page"
 msgstr "Your logo, colors, and style on every page"
 
-#: src/components/common/OrdersTable/index.tsx:85
+#: src/components/common/OrdersTable/index.tsx:114
 msgid "Your message has been sent"
 msgstr "Your message has been sent"
 
@@ -10376,7 +10478,7 @@ msgstr "Your order is awaiting payment"
 msgid "Your orders have been exported successfully."
 msgstr "Your orders have been exported successfully."
 
-#: src/components/common/OrdersTable/index.tsx:469
+#: src/components/common/OrdersTable/index.tsx:546
 msgid "Your orders will appear here once they start rolling in."
 msgstr "Your orders will appear here once they start rolling in."
 

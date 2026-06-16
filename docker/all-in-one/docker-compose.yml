@@ -43,6 +43,9 @@ services:
       - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
       - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
       - WEBHOOK_QUEUE_NAME=webhook-queue
+      - KSEF_ENABLED=${KSEF_ENABLED:-false}
+      - KSEF_AUTH_TOKEN=${KSEF_AUTH_TOKEN:-}
+      - KSEF_ENVIRONMENT=${KSEF_ENVIRONMENT:-test}
 
     depends_on:
       postgres:

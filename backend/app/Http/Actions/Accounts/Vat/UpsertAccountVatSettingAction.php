@@ -30,12 +30,16 @@ class UpsertAccountVatSettingAction extends BaseAction
         $validated = $request->validate([
             'vat_registered' => 'required|boolean',
             'vat_number' => 'nullable|string|max:20',
+            'business_name' => 'nullable|string|max:200',
+            'business_address' => 'nullable|string|max:500',
         ]);
 
         $vatSetting = $this->handler->handle(new UpsertAccountVatSettingDTO(
             accountId: $accountId,
             vatRegistered: $validated['vat_registered'],
             vatNumber: $validated['vat_number'] ?? null,
+            businessName: $validated['business_name'] ?? null,
+            businessAddress: $validated['business_address'] ?? null,
         ));
 
         return $this->resourceResponse(AccountVatSettingResource::class, $vatSetting);

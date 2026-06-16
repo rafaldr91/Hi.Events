@@ -10,6 +10,8 @@ class UpsertAccountVatSettingDTO extends BaseDataObject
         public readonly int $accountId,
         public readonly bool $vatRegistered,
         public readonly ?string $vatNumber = null,
+        public readonly ?string $businessName = null,
+        public readonly ?string $businessAddress = null,
     ) {
     }
 }

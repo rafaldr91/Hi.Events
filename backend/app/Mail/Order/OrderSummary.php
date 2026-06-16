@@ -78,7 +78,7 @@ class OrderSummary extends BaseMail
 
     public function attachments(): array
     {
-        if ($this->invoice === null) {
+        if ($this->invoice === null || $this->order->getBuyerType() === 'company') {
             return [];
         }
 

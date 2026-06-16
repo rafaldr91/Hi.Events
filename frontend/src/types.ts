@@ -676,6 +676,11 @@ export interface Invoice {
     id: IdParam,
     order_id: IdParam,
     status: 'PAID' | 'UNPAID' | 'VOID',
+    document_type?: 'invoice' | 'confirmation',
+    ksef_status?: 'PENDING' | 'SENT' | 'FAILED' | 'NOT_APPLICABLE',
+    ksef_number?: string,
+    ksef_reference_number?: string,
+    ksef_error_message?: string,
 }
 
 export interface OrderItem {

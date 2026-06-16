@@ -255,7 +255,7 @@ const Checkout = () => {
                                                 </Tooltip>
                                             )}
 
-                                            {order.latest_invoice && (
+                                            {order.latest_invoice && order.buyer_type !== 'company' && (
                                                 <Tooltip
                                                     label={t`Download Invoice`}>
                                                     <ActionIcon

@@ -8,6 +8,7 @@ use HiEvents\DomainObjects\EventSettingDomainObject;
 use HiEvents\DomainObjects\InvoiceDomainObject;
 use HiEvents\DomainObjects\OrderItemDomainObject;
 use HiEvents\DomainObjects\Status\InvoiceStatus;
+use HiEvents\DomainObjects\Status\KsefStatus;
 use HiEvents\Exceptions\ResourceConflictException;
 use HiEvents\Repository\Eloquent\Value\Relationship;
 use HiEvents\Repository\Interfaces\InvoiceRepositoryInterface;
@@ -47,7 +48,9 @@ class InvoiceCreateService
         /** @var EventDomainObject $event */
         $event = $order->getEvent();
 
-        $documentType = $order->getBuyerType() === 'individual' ? 'confirmation' : 'invoice';
+        $documentType = ($order->getBuyerType() === 'company' && !empty($order->getCompanyNip()))
+            ? 'invoice'
+            : 'confirmation';
         $issueDate = Carbon::now();
         $sequenceNumber = $this->getNextSequenceNumber($event->getId(), $eventSettings, $documentType, $issueDate);
         $invoiceNumber = $this->formatDocumentNumber($sequenceNumber, $eventSettings, $documentType, $issueDate);
@@ -61,6 +64,7 @@ class InvoiceCreateService
             'items' => collect($order->getOrderItems())->map(fn(OrderItemDomainObject $item) => $item->toArray())->toArray(),
             'taxes_and_fees' => $order->getTaxesAndFeesRollup(),
             'issue_date' => $issueDate->toDateString(),
+            'ksef_status' => $documentType === 'invoice' ? KsefStatus::PENDING->value : KsefStatus::NOT_APPLICABLE->value,
             'status' => $order->isOrderCompleted() ? InvoiceStatus::PAID->name : InvoiceStatus::UNPAID->name,
             'total_amount' => $order->getTotalGross(),
             'due_date' => $eventSettings->getInvoicePaymentTermsDays() !== null
@@ -80,9 +84,9 @@ class InvoiceCreateService
             : ($eventSettings->getConfirmationStartNumber() ?? 1);
 
         $includesMonth = str_contains($format, '{month}');
-        [$month, $year] = $includesMonth
-            ? [(int)$issueDate->format('m'), (int)$issueDate->format('Y')]
-            : [null, null];
+        $includesYear = str_contains($format, '{year}');
+        $month = $includesMonth ? (int)$issueDate->format('m') : null;
+        $year = ($includesMonth || $includesYear) ? (int)$issueDate->format('Y') : null;
 
         $maxSeq = $this->invoiceRepository->findMaxSequenceNumberForEvent($eventId, $documentType, $month, $year);
 
