@@ -1,5 +1,5 @@
 import {t} from "@lingui/macro";
-import {Anchor, Badge, Button, Group, Menu, Popover, Text, Tooltip} from '@mantine/core';
+import {Anchor, Badge, Button, Group, Loader, Menu, Popover, Text, Tooltip} from '@mantine/core';
 import {Event, IdParam, Invoice, MessageType, Order} from "../../../types.ts";
 import {
     IconAlertCircle,
@@ -86,6 +86,7 @@ export const OrdersTable = ({orders, event}: OrdersTableProps) => {
     const [isRefundModalOpen, refundModal] = useDisclosure(false);
     const [orderId, setOrderId] = useState<IdParam>();
     const [emailPopoverId, setEmailPopoverId] = useState<IdParam | null>(null);
+    const [sendingKsefOrderId, setSendingKsefOrderId] = useState<IdParam | null>(null);
     const resendConfirmationMutation = useResendOrderConfirmation();
     const markAsPaidMutation = useMarkOrderAsPaid();
     const sendKsefInvoiceMutation = useSendKsefInvoice();
@@ -163,9 +164,16 @@ export const OrdersTable = ({orders, event}: OrdersTableProps) => {
     };
 
     const handleSendKsefInvoice = (eventId: IdParam, orderId: IdParam) => {
+        setSendingKsefOrderId(orderId);
         sendKsefInvoiceMutation.mutate({eventId, orderId}, {
-            onSuccess: () => showSuccess(t`Invoice queued for KSeF submission`),
-            onError: () => showError(t`Failed to send invoice to KSeF. Please try again.`)
+            onSuccess: () => {
+                showSuccess(t`Invoice queued for KSeF submission`);
+                setSendingKsefOrderId(null);
+            },
+            onError: () => {
+                showError(t`Failed to send invoice to KSeF. Please try again.`);
+                setSendingKsefOrderId(null);
+            },
         });
     };
 
@@ -233,7 +241,10 @@ export const OrdersTable = ({orders, event}: OrdersTableProps) => {
                             order.latest_invoice?.ksef_status !== 'SENT' && (
                             <Menu.Item
                                 onClick={() => handleSendKsefInvoice(event.id, order.id)}
-                                leftSection={<IconSend size={14}/>}
+                                leftSection={sendingKsefOrderId === order.id
+                                    ? <Loader size={14}/>
+                                    : <IconSend size={14}/>}
+                                disabled={sendingKsefOrderId === order.id}
                             >{t`Send to KSeF`}</Menu.Item>
                         )}
 

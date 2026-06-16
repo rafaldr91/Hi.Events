@@ -62,7 +62,7 @@ class SendInvoiceToKsefJob implements ShouldQueue
                 'ksef_number'           => $result->ksefNumber,
                 'ksef_reference_number' => $result->referenceNumber,
                 'ksef_error_message'    => null,
-                'ksef_sent_at'          => now(),
+                'ksef_sent_at'          => now()->toDateTimeString(),
                 'ksef_retry_count'      => $this->attempts(),
             ]);
 
