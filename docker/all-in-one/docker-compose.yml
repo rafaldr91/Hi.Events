@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile.all-in-one
     restart: unless-stopped
     ports:
-      - "8123:80"
+      - "80:80"
     environment:
       - VITE_FRONTEND_URL=${VITE_FRONTEND_URL}
       - VITE_API_URL_CLIENT=${VITE_API_URL_CLIENT}
@@ -79,9 +79,9 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secret}
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pgdata2:/var/lib/postgresql/data2
 
 volumes:
-  pgdata:
+  pgdata2:
   redisdata:
   storage:
