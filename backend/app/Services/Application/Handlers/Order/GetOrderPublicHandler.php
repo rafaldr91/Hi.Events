@@ -16,10 +16,13 @@ use HiEvents\DomainObjects\OrganizerDomainObject;
 use HiEvents\DomainObjects\ProductDomainObject;
 use HiEvents\DomainObjects\ProductPriceDomainObject;
 use HiEvents\DomainObjects\Status\OrderStatus;
+use HiEvents\DomainObjects\TaxAndFeesDomainObject;
 use HiEvents\Exceptions\UnauthorizedException;
+use HiEvents\Helper\Currency;
 use HiEvents\Repository\Eloquent\Value\Relationship;
 use HiEvents\Repository\Interfaces\OrderRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Order\DTO\GetOrderPublicDTO;
+use HiEvents\Services\Domain\Tax\TaxAndFeeCalculationService;
 use HiEvents\Services\Infrastructure\Session\CheckoutSessionManagementService;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
@@ -27,7 +30,8 @@ class GetOrderPublicHandler
 {
     public function __construct(
         private readonly OrderRepositoryInterface         $orderRepository,
-        private readonly CheckoutSessionManagementService $sessionIdentifierService
+        private readonly CheckoutSessionManagementService $sessionIdentifierService,
+        private readonly TaxAndFeeCalculationService      $taxCalculationService,
     )
     {
     }
@@ -49,7 +53,27 @@ class GetOrderPublicHandler
             $this->verifySessionId($order->getSessionId());
         }
 
+        $this->calculateProductPriceTotals($order);
+
         return $order;
+    }
+
+    private function calculateProductPriceTotals(OrderDomainObject $order): void
+    {
+        foreach ($order->getAttendees() ?? [] as $attendee) {
+            $product = $attendee->getProduct();
+            if (!$product) {
+                continue;
+            }
+            foreach ($product->getProductPrices() ?? [] as $price) {
+                if (!$price->isFree()) {
+                    $taxAndFees = $this->taxCalculationService->calculateTaxAndFeesForProductPrice($product, $price);
+                    $price
+                        ->setTaxTotal(Currency::round($taxAndFees->taxTotal))
+                        ->setFeeTotal(Currency::round($taxAndFees->feeTotal));
+                }
+            }
+        }
     }
 
     private function verifySessionId(string $orderSessionId): void
@@ -70,9 +94,8 @@ class GetOrderPublicHandler
                     new Relationship(
                         domainObject: ProductDomainObject::class,
                         nested: [
-                            new Relationship(
-                                domainObject: ProductPriceDomainObject::class,
-                            )
+                            new Relationship(domainObject: ProductPriceDomainObject::class),
+                            new Relationship(domainObject: TaxAndFeesDomainObject::class),
                         ],
                         name: ProductDomainObjectAbstract::SINGULAR_NAME,
                     )

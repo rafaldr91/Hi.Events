@@ -39,6 +39,13 @@ export const PrintOrder = () => {
         <div className={classes.container}>
             <h2 className={classes.title}>{t`Tickets for`} {event.title}</h2>
             {order.attendees?.map((attendee) => {
+                const orderItem = order.order_items?.find(
+                    (item) => item.product_price_id === attendee.product_price_id
+                );
+                const pricePerUnit = orderItem && orderItem.total_gross !== undefined && orderItem.quantity > 0
+                    ? orderItem.total_gross / orderItem.quantity
+                    : undefined;
+
                 return (
                     <div key={attendee.id} className={classes.ticketPage}>
                         <AttendeeTicket
@@ -47,6 +54,7 @@ export const PrintOrder = () => {
                             event={event}
                             hideButtons
                             showPoweredBy
+                            overridePrice={pricePerUnit}
                         />
                     </div>
                 );
