@@ -47,6 +47,8 @@ services:
       - KSEF_AUTH_TOKEN=${KSEF_AUTH_TOKEN:-}
       - KSEF_ENVIRONMENT=${KSEF_ENVIRONMENT:-test}
 
+    volumes:
+      - storage:/app/backend/storage
     depends_on:
       postgres:
         condition: service_healthy
@@ -82,3 +84,4 @@ services:
 volumes:
   pgdata:
   redisdata:
+  storage:

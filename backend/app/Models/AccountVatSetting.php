@@ -21,6 +21,12 @@ use Illuminate\Support\Carbon;
  * @property string|null $business_name
  * @property string|null $business_address
  * @property string|null $vat_country_code
+ * @property string|null $invoice_number_format
+ * @property string|null $invoice_prefix
+ * @property string|null $invoice_suffix
+ * @property int $invoice_start_number
+ * @property string|null $confirmation_prefix
+ * @property int $confirmation_start_number
  */
 class AccountVatSetting extends BaseModel
 {
@@ -41,6 +47,12 @@ class AccountVatSetting extends BaseModel
             'business_name',
             'business_address',
             'vat_country_code',
+            'invoice_number_format',
+            'invoice_prefix',
+            'invoice_suffix',
+            'invoice_start_number',
+            'confirmation_prefix',
+            'confirmation_start_number',
         ];
     }
 

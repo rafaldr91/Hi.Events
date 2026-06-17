@@ -212,7 +212,7 @@ msgstr "1 tipo de entrada"
 msgid "1 week before event"
 msgstr "1 semana antes del evento"
 
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:64
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:82
 msgid "10-digit Polish tax number, without spaces or dashes (e.g. 1234567890)"
 msgstr "Número de identificación fiscal polaco de 10 dígitos, sin espacios ni guiones (ej. 1234567890)"
 
@@ -304,7 +304,7 @@ msgstr "Una sola pregunta por producto. Ej., ¿Cuál es su talla de camiseta?"
 msgid "A standard tax, like VAT or GST"
 msgstr "Un impuesto estándar, como el IVA o el GST"
 
-#: src/components/common/OrdersTable/index.tsx:513
+#: src/components/common/OrdersTable/index.tsx:531
 msgid "Abandoned"
 msgstr "Abandonado"
 
@@ -402,7 +402,7 @@ msgstr "Cuenta actualizada exitosamente"
 msgid "Accounts"
 msgstr "Cuentas"
 
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:72
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:90
 msgid "Acme Sp. z o.o."
 msgstr ""
 
@@ -417,7 +417,7 @@ msgstr "Acción Requerida: Se Necesita Información del IVA"
 #: src/components/common/AdminEventsTable/index.tsx:112
 #: src/components/common/AffiliateTable/index.tsx:167
 #: src/components/common/AttendeeTable/index.tsx:346
-#: src/components/common/OrdersTable/index.tsx:522
+#: src/components/common/OrdersTable/index.tsx:540
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:475
 #: src/components/common/WaitlistTable/index.tsx:55
 #: src/components/common/WaitlistTable/index.tsx:210
@@ -752,7 +752,7 @@ msgstr "Siempre disponible"
 msgid "Amazing, Event, Keywords..."
 msgstr "Increíble, evento, palabras clave..."
 
-#: src/components/common/OrdersTable/index.tsx:425
+#: src/components/common/OrdersTable/index.tsx:443
 #: src/components/forms/TaxAndFeeForm/index.tsx:71
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:36
 msgid "Amount"
@@ -1221,7 +1221,7 @@ msgid "Awaiting payment"
 msgstr "Esperando pago"
 
 #: src/components/common/AttendeeTable/index.tsx:289
-#: src/components/common/OrdersTable/index.tsx:501
+#: src/components/common/OrdersTable/index.tsx:519
 #: src/components/routes/event/attendees.tsx:28
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:356
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:57
@@ -1317,16 +1317,16 @@ msgstr "Portugués brasileño"
 msgid "Business"
 msgstr "Negocios"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:147
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:78
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:171
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:96
 msgid "Business Address"
 msgstr "Dirección comercial"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:148
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:172
 msgid "Business address for VAT purposes"
 msgstr "Dirección comercial para fines de IVA"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:140
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:164
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:294
 msgid "Business Name"
 msgstr "Nombre comercial"
@@ -1415,7 +1415,7 @@ msgstr "Cancelar todos los productos y devolverlos al grupo disponible"
 msgid "Cancel email change"
 msgstr "Cancelar cambio de correo electrónico"
 
-#: src/components/common/OrdersTable/index.tsx:265
+#: src/components/common/OrdersTable/index.tsx:276
 msgid "Cancel order"
 msgstr "Cancelar orden"
 
@@ -1433,7 +1433,7 @@ msgstr "Cancelar anulará todos los asistentes asociados con este pedido y liber
 
 #: src/components/common/AttendeeTable/index.tsx:295
 #: src/components/common/AttendeeTicket/index.tsx:149
-#: src/components/common/OrdersTable/index.tsx:507
+#: src/components/common/OrdersTable/index.tsx:525
 #: src/components/common/OrderStatusBadge/index.tsx:12
 #: src/components/common/WaitlistTable/index.tsx:27
 #: src/components/routes/admin/Messages/index.tsx:126
@@ -1806,7 +1806,7 @@ msgid "Company name"
 msgstr "Nombre de la empresa"
 
 #: src/components/common/OrderDetails/index.tsx:96
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:71
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:89
 #: src/components/routes/product-widget/CollectInformation/index.tsx:461
 msgid "Company Name"
 msgstr "Nombre de la empresa"
@@ -1849,7 +1849,7 @@ msgstr "Completa tu pago para asegurar tus entradas."
 msgid "Complete your profile to join the team."
 msgstr "Completa tu perfil para unirte al equipo."
 
-#: src/components/common/OrdersTable/index.tsx:489
+#: src/components/common/OrdersTable/index.tsx:507
 #: src/components/modals/SendMessageModal/index.tsx:333
 #: src/components/routes/event/GettingStarted/index.tsx:75
 #: src/components/routes/event/orders.tsx:23
@@ -1963,9 +1963,19 @@ msgstr "Confirma tu correo electrónico para acceder a todas las funciones."
 msgid "Confirmation email sent! Please check your inbox."
 msgstr "¡Correo de confirmación enviado! Por favor, revisa tu bandeja de entrada."
 
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:212
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:140
+msgid "Confirmation prefix"
+msgstr "Prefijo de confirmación"
+
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:197
 msgid "Confirmation sent to"
 msgstr "Confirmación enviada a"
+
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:217
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:148
+msgid "Confirmation start number"
+msgstr "Número inicial de confirmación"
 
 #: src/components/routes/profile/ConfirmEmailAddress/index.tsx:36
 msgid "Confirming email address..."
@@ -2149,7 +2159,7 @@ msgstr "Copiar URL de registro"
 msgid "Copy Code"
 msgstr "Copiar código"
 
-#: src/components/common/OrdersTable/index.tsx:220
+#: src/components/common/OrdersTable/index.tsx:228
 msgid "Copy customer link"
 msgstr ""
 
@@ -2158,7 +2168,7 @@ msgid "Copy details to first attendee"
 msgstr "Copiar datos al primer asistente"
 
 #: src/components/common/AttendeeTable/index.tsx:197
-#: src/components/common/OrdersTable/index.tsx:335
+#: src/components/common/OrdersTable/index.tsx:346
 msgid "Copy Email"
 msgstr "Copiar Correo"
 
@@ -2433,11 +2443,11 @@ msgstr "Contraseña actual"
 msgid "Current payment processor"
 msgstr "Procesador de pagos actual"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:156
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:180
 msgid "Current VAT number is validated"
 msgstr "El número de IVA actual está validado"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:157
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:181
 msgid "Current VAT number validation failed"
 msgstr "Falló la validación del número de IVA actual"
 
@@ -2476,11 +2486,11 @@ msgid "Custom template"
 msgstr "Plantilla personalizada"
 
 #: src/components/common/AdminOrdersTable/index.tsx:71
-#: src/components/common/OrdersTable/index.tsx:279
+#: src/components/common/OrdersTable/index.tsx:290
 msgid "Customer"
 msgstr "Cliente"
 
-#: src/components/common/OrdersTable/index.tsx:218
+#: src/components/common/OrdersTable/index.tsx:226
 msgid "Customer link copied to clipboard"
 msgstr ""
 
@@ -2567,7 +2577,7 @@ msgstr "Desglose de ventas diarias, impuestos y tarifas"
 
 #: src/components/common/CapacityAssignmentList/index.tsx:153
 #: src/components/common/CheckInListList/index.tsx:174
-#: src/components/common/OrdersTable/index.tsx:261
+#: src/components/common/OrdersTable/index.tsx:272
 #: src/components/common/OrganizerWebhookTable/index.tsx:116
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:500
 #: src/components/common/PromoCodeTable/index.tsx:181
@@ -2810,7 +2820,7 @@ msgstr "Descargar .ics"
 msgid "Download CSV"
 msgstr "Descargar CSV"
 
-#: src/components/common/OrdersTable/index.tsx:224
+#: src/components/common/OrdersTable/index.tsx:232
 msgid "Download invoice"
 msgstr "Descargar factura"
 
@@ -2818,7 +2828,7 @@ msgstr "Descargar factura"
 msgid "Download Invoice"
 msgstr "Descargar factura"
 
-#: src/components/common/OrdersTable/index.tsx:229
+#: src/components/common/OrdersTable/index.tsx:237
 msgid "Download KSeF XML"
 msgstr "Descargar XML KSeF"
 
@@ -2830,12 +2840,12 @@ msgstr "Descargar código QR"
 msgid "Download sales, attendee, and financial reports for all completed orders."
 msgstr "Descargue informes de ventas, asistentes y financieros para todos los pedidos completados."
 
-#: src/components/common/OrdersTable/index.tsx:127
+#: src/components/common/OrdersTable/index.tsx:128
 #: src/components/layouts/Checkout/index.tsx:87
 msgid "Downloading Invoice"
 msgstr "Descargando factura"
 
-#: src/components/common/OrdersTable/index.tsx:150
+#: src/components/common/OrdersTable/index.tsx:151
 msgid "Downloading KSeF XML"
 msgstr "Descargando XML KSeF"
 
@@ -3014,7 +3024,7 @@ msgstr "Editar usuario"
 msgid "Edit User"
 msgstr "editar usuario"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:111
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:135
 msgid "Edit VAT Settings"
 msgstr "Editar configuración de IVA"
 
@@ -3097,7 +3107,7 @@ msgid "Email Address"
 msgstr "Dirección de correo electrónico"
 
 #: src/components/common/AttendeeTable/index.tsx:118
-#: src/components/common/OrdersTable/index.tsx:174
+#: src/components/common/OrdersTable/index.tsx:182
 msgid "Email address copied to clipboard"
 msgstr "Dirección de correo copiada al portapapeles"
 
@@ -3249,11 +3259,11 @@ msgstr "Ingresa el nombre del afiliado"
 msgid "Enter an amount excluding taxes and fees."
 msgstr "Ingrese un monto sin incluir impuestos ni tarifas."
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:149
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:173
 msgid "Enter business address"
 msgstr "Ingresa dirección comercial"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:142
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:166
 msgid "Enter business name"
 msgstr "Ingresa nombre comercial"
 
@@ -3280,7 +3290,7 @@ msgstr "Ingrese apellido"
 msgid "Enter new password"
 msgstr "Ingresa nueva contraseña"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:124
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:148
 msgid "Enter the VAT number including country code"
 msgstr "Ingresa el número de IVA incluyendo el código de país"
 
@@ -3310,8 +3320,8 @@ msgstr "Ingresa tu número de IVA incluyendo el código de país, sin espacios (
 msgid "Entries will appear here when customers join the waitlist for sold out products."
 msgstr "Las entradas aparecerán aquí cuando los clientes se unan a la lista de espera de productos agotados."
 
-#: src/components/common/OrdersTable/index.tsx:135
-#: src/components/common/OrdersTable/index.tsx:158
+#: src/components/common/OrdersTable/index.tsx:136
+#: src/components/common/OrdersTable/index.tsx:159
 #: src/components/common/OrganizerWebhookTable/index.tsx:149
 #: src/components/layouts/Checkout/index.tsx:95
 msgid "Error"
@@ -3723,12 +3733,12 @@ msgstr "Error al eliminar la pregunta"
 msgid "Failed to delete template"
 msgstr "Error al eliminar la plantilla"
 
-#: src/components/common/OrdersTable/index.tsx:136
+#: src/components/common/OrdersTable/index.tsx:137
 #: src/components/layouts/Checkout/index.tsx:96
 msgid "Failed to download invoice. Please try again."
 msgstr "No se pudo descargar la factura. Inténtalo de nuevo."
 
-#: src/components/common/OrdersTable/index.tsx:159
+#: src/components/common/OrdersTable/index.tsx:160
 msgid "Failed to download KSeF XML. Please try again."
 msgstr "Error al descargar el XML KSeF. Por favor, inténtelo de nuevo."
 
@@ -3801,7 +3811,7 @@ msgstr "Error al reintentar el trabajo"
 msgid "Failed to retry jobs"
 msgstr "Error al reintentar los trabajos"
 
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:50
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:68
 msgid "Failed to save seller settings. Please try again."
 msgstr "No se pudieron guardar los ajustes del vendedor. Inténtelo de nuevo."
 
@@ -3816,7 +3826,7 @@ msgstr "Error al guardar la plantilla"
 msgid "Failed to save VAT settings. Please try again."
 msgstr "Error al guardar la configuración del IVA. Por favor, inténtelo de nuevo."
 
-#: src/components/common/OrdersTable/index.tsx:168
+#: src/components/common/OrdersTable/index.tsx:174
 msgid "Failed to send invoice to KSeF. Please try again."
 msgstr "Error al enviar la factura a KSeF. Por favor, inténtalo de nuevo."
 
@@ -3882,7 +3892,7 @@ msgstr "Error al actualizar el estado del organizador"
 msgid "Failed to update setting"
 msgstr "Error al actualizar la configuración"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:103
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:127
 msgid "Failed to update VAT settings"
 msgstr "Error al actualizar configuración de IVA"
 
@@ -3917,7 +3927,7 @@ msgid "Fee Handling"
 msgstr "Gestión de comisiones"
 
 #: src/components/common/InlineOrderSummary/index.tsx:140
-#: src/components/common/OrdersTable/index.tsx:436
+#: src/components/common/OrdersTable/index.tsx:454
 #: src/components/forms/ProductForm/index.tsx:409
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
 msgid "Fees"
@@ -4029,6 +4039,14 @@ msgstr "El nombre es obligatorio"
 #: src/components/routes/auth/AcceptInvitation/index.tsx:30
 msgid "First name must be between 1 and 50 characters"
 msgstr "El nombre debe tener entre 1 y 50 caracteres."
+
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:149
+msgid "First sequence number for new confirmations"
+msgstr "Primer número de secuencia para nuevas confirmaciones"
+
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:133
+msgid "First sequence number for new invoices"
+msgstr "Primer número de secuencia para nuevas facturas"
 
 #: src/components/routes/event/Reports/PromoCodesReport/index.tsx:64
 msgid "First Used"
@@ -4655,11 +4673,12 @@ msgstr "Invitar usuario"
 msgid "Invite Your Team"
 msgstr "Invita a tu equipo"
 
-#: src/components/common/OrdersTable/index.tsx:374
+#: src/components/common/OrdersTable/index.tsx:386
+#: src/components/common/OrdersTable/index.tsx:391
 msgid "Invoice"
 msgstr "Factura"
 
-#: src/components/common/OrdersTable/index.tsx:132
+#: src/components/common/OrdersTable/index.tsx:133
 #: src/components/layouts/Checkout/index.tsx:92
 msgid "Invoice downloaded successfully"
 msgstr "Factura descargada con éxito"
@@ -4668,11 +4687,23 @@ msgstr "Factura descargada con éxito"
 msgid "Invoice Notes"
 msgstr "Notas de la factura"
 
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:192
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:108
+msgid "Invoice number format"
+msgstr "Formato del número de factura"
+
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:189
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:105
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:205
 msgid "Invoice Numbering"
 msgstr "Numeración de facturas"
 
-#: src/components/common/OrdersTable/index.tsx:167
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:198
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:117
+msgid "Invoice prefix"
+msgstr "Prefijo de factura"
+
+#: src/components/common/OrdersTable/index.tsx:170
 msgid "Invoice queued for KSeF submission"
 msgstr "Factura en cola para envío a KSeF"
 
@@ -4680,11 +4711,21 @@ msgstr "Factura en cola para envío a KSeF"
 msgid "Invoice Settings"
 msgstr "Configuración de facturación"
 
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:207
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:132
+msgid "Invoice start number"
+msgstr "Número inicial de factura"
+
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:203
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:124
+msgid "Invoice suffix"
+msgstr "Sufijo de factura"
+
 #: src/components/routes/account/ManageAccount/sections/PaymentSettings/VatNotice/index.tsx:42
 msgid "Irish VAT at 23% will be applied to platform fees (domestic supply)."
 msgstr "Se aplicará el IVA irlandés del 23% a las tarifas de la plataforma (suministro nacional)."
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:116
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:140
 msgid "Is this account VAT registered in the EU?"
 msgstr "¿Esta cuenta está registrada para IVA en la UE?"
 
@@ -4696,11 +4737,11 @@ msgstr "Italiano"
 msgid "Item"
 msgstr "Artículo"
 
-#: src/components/common/OrdersTable/index.tsx:417
+#: src/components/common/OrdersTable/index.tsx:435
 msgid "item(s)"
 msgstr "artículo(s)"
 
-#: src/components/common/OrdersTable/index.tsx:399
+#: src/components/common/OrdersTable/index.tsx:417
 msgid "Items"
 msgstr "Artículos"
 
@@ -4767,7 +4808,7 @@ msgstr "Mantenerme informado sobre noticias y eventos de {0}"
 msgid "KSeF number: {0}"
 msgstr "Número KSeF: {0}"
 
-#: src/components/common/OrdersTable/index.tsx:155
+#: src/components/common/OrdersTable/index.tsx:156
 msgid "KSeF XML downloaded successfully"
 msgstr "XML KSeF descargado correctamente"
 
@@ -4887,7 +4928,7 @@ msgstr "Última vez usado"
 msgid "Leave blank to use the default word \"Invoice\""
 msgstr "Dejar en blanco para usar la palabra predeterminada \"Factura\""
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:141
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:165
 msgid "Legal business name for VAT purposes"
 msgstr "Nombre legal de la empresa para fines de IVA"
 
@@ -5025,7 +5066,7 @@ msgstr "Haga que su evento esté en vivo"
 
 #: src/components/common/CapacityAssignmentList/index.tsx:140
 #: src/components/common/CheckInListList/index.tsx:143
-#: src/components/common/OrdersTable/index.tsx:210
+#: src/components/common/OrdersTable/index.tsx:218
 #: src/components/common/OrganizerWebhookTable/index.tsx:96
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:469
 #: src/components/common/PromoCodeTable/index.tsx:167
@@ -5041,7 +5082,7 @@ msgstr "Gestionar asistente"
 msgid "Manage event"
 msgstr "Administrar evento"
 
-#: src/components/common/OrdersTable/index.tsx:212
+#: src/components/common/OrdersTable/index.tsx:220
 msgid "Manage order"
 msgstr "Gestionar pedido"
 
@@ -5094,7 +5135,7 @@ msgstr "Agregar manualmente un asistente"
 msgid "Manually Add Attendee"
 msgstr "Agregar asistente manualmente"
 
-#: src/components/common/OrdersTable/index.tsx:242
+#: src/components/common/OrdersTable/index.tsx:253
 msgid "Mark as paid"
 msgstr "Marcar como pagado"
 
@@ -5116,7 +5157,7 @@ msgstr "Medio"
 
 #: src/components/common/AttendeeTable/index.tsx:188
 #: src/components/common/ContactOrganizerModal/index.tsx:88
-#: src/components/common/OrdersTable/index.tsx:326
+#: src/components/common/OrdersTable/index.tsx:337
 #: src/components/modals/SendMessageModal/index.tsx:353
 msgid "Message"
 msgstr "Mensaje"
@@ -5137,7 +5178,7 @@ msgstr "Mensaje a los asistentes"
 msgid "Message attendees with specific tickets"
 msgstr "Enviar mensajes a los asistentes con entradas específicas"
 
-#: src/components/common/OrdersTable/index.tsx:214
+#: src/components/common/OrdersTable/index.tsx:222
 msgid "Message buyer"
 msgstr "Mensaje del comprador"
 
@@ -5340,7 +5381,7 @@ msgstr "Vida nocturna"
 msgid "NIP"
 msgstr "NIF"
 
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:63
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:81
 msgid "NIP (Tax Identification Number)"
 msgstr "NIP (Número de identificación fiscal)"
 
@@ -5348,7 +5389,7 @@ msgstr "NIP (Número de identificación fiscal)"
 msgid "NIP is required for company orders"
 msgstr "NIF es obligatorio para pedidos de empresa"
 
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:37
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:49
 msgid "NIP must be exactly 10 digits"
 msgstr "El NIP debe tener exactamente 10 dígitos"
 
@@ -5478,7 +5519,7 @@ msgstr "No hay filtros disponibles"
 msgid "No impact on your current or past transactions"
 msgstr "Sin impacto en sus transacciones actuales o pasadas"
 
-#: src/components/common/OrdersTable/index.tsx:383
+#: src/components/common/OrdersTable/index.tsx:401
 msgid "No invoice"
 msgstr "Sin factura"
 
@@ -5507,7 +5548,7 @@ msgstr "Aún no hay preguntas de pedido"
 msgid "No orders found"
 msgstr "No se encontraron pedidos"
 
-#: src/components/common/OrdersTable/index.tsx:543
+#: src/components/common/OrdersTable/index.tsx:561
 msgid "No orders to show"
 msgstr "No hay pedidos para mostrar"
 
@@ -5748,7 +5789,7 @@ msgstr "Las ofertas expiran después de {timeoutHours} horas."
 msgid "Office or venue name"
 msgstr "Nombre de oficina o lugar"
 
-#: src/components/common/OrdersTable/index.tsx:466
+#: src/components/common/OrdersTable/index.tsx:484
 #: src/components/routes/product-widget/Payment/index.tsx:131
 msgid "Offline"
 msgstr "Fuera de línea"
@@ -5956,7 +5997,7 @@ msgstr "Moneda del Pedido"
 msgid "Order Date"
 msgstr "Fecha de orden"
 
-#: src/components/common/OrdersTable/index.tsx:349
+#: src/components/common/OrdersTable/index.tsx:360
 #: src/components/modals/ManageAttendeeModal/index.tsx:166
 #: src/components/modals/ManageOrderModal/index.tsx:86
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:592
@@ -6008,7 +6049,7 @@ msgstr "Límites de pedido establecidos"
 msgid "Order Locale"
 msgstr "Idioma del Pedido"
 
-#: src/components/common/OrdersTable/index.tsx:107
+#: src/components/common/OrdersTable/index.tsx:108
 msgid "Order marked as paid"
 msgstr "Pedido marcado como pagado"
 
@@ -6239,7 +6280,7 @@ msgid "Organizers can only manage events and products. They cannot manage users,
 msgstr "Los organizadores solo pueden gestionar eventos y productos. No pueden gestionar usuarios, configuraciones de cuenta o información de facturación."
 
 #: src/components/common/Editor/Controls/InsertLiquidVariableControl.tsx:98
-#: src/components/common/OrdersTable/index.tsx:471
+#: src/components/common/OrdersTable/index.tsx:489
 #: src/constants/eventCategories.ts:22
 msgid "Other"
 msgstr "Otro"
@@ -6309,7 +6350,7 @@ msgstr "Reembolso parcial"
 msgid "Partially Refunded"
 msgstr "Reembolsado parcialmente"
 
-#: src/components/common/OrdersTable/index.tsx:441
+#: src/components/common/OrdersTable/index.tsx:459
 msgid "Partially refunded: {0}"
 msgstr "Reembolsado parcialmente: {0}"
 
@@ -6388,7 +6429,7 @@ msgstr "Pagar para desbloquear"
 msgid "Payload"
 msgstr "Carga útil"
 
-#: src/components/common/OrdersTable/index.tsx:452
+#: src/components/common/OrdersTable/index.tsx:470
 #: src/components/common/ProgressStepper/index.tsx:19
 #: src/components/forms/StripeCheckoutForm/index.tsx:127
 msgid "Payment"
@@ -6677,7 +6718,7 @@ msgstr "Verifique su dirección de correo electrónico para acceder a todas las 
 msgid "Please wait before requesting another code"
 msgstr "Por favor, espera antes de solicitar otro código"
 
-#: src/components/common/OrdersTable/index.tsx:151
+#: src/components/common/OrdersTable/index.tsx:152
 msgid "Please wait while we prepare the FA(3) XML..."
 msgstr "Por favor espere mientras preparamos el XML FA(3)..."
 
@@ -6689,7 +6730,7 @@ msgstr "Por favor, espera mientras preparamos tus afiliados para exportar..."
 msgid "Please wait while we prepare your attendees for export..."
 msgstr "Por favor, espera mientras preparamos la exportación de tus asistentes..."
 
-#: src/components/common/OrdersTable/index.tsx:128
+#: src/components/common/OrdersTable/index.tsx:129
 #: src/components/layouts/Checkout/index.tsx:88
 msgid "Please wait while we prepare your invoice..."
 msgstr "Por favor, espere mientras preparamos su factura..."
@@ -6726,6 +6767,10 @@ msgstr "Energizado por"
 #: src/components/routes/event/Settings/Sections/HomepageAndCheckoutSettings/index.tsx:88
 msgid "Pre Checkout message"
 msgstr "Mensaje previo al pago"
+
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:141
+msgid "Prefix for purchase confirmation documents"
+msgstr "Prefijo para documentos de confirmación de compra"
 
 #: src/components/routes/event/CapacityAssignments/index.tsx:32
 msgid "Prevent overselling by sharing inventory across multiple ticket types."
@@ -7118,7 +7163,7 @@ msgstr "Actualizar vista previa"
 msgid "Refund amount"
 msgstr "Monto del reembolso"
 
-#: src/components/common/OrdersTable/index.tsx:443
+#: src/components/common/OrdersTable/index.tsx:461
 msgid "Refund failed"
 msgstr "Reembolso fallido"
 
@@ -7126,7 +7171,7 @@ msgstr "Reembolso fallido"
 msgid "Refund Failed"
 msgstr "Reembolso fallido"
 
-#: src/components/common/OrdersTable/index.tsx:247
+#: src/components/common/OrdersTable/index.tsx:258
 msgid "Refund order"
 msgstr "Orden de reembolso"
 
@@ -7134,7 +7179,7 @@ msgstr "Orden de reembolso"
 msgid "Refund Order {0}"
 msgstr "Reembolsar pedido {0}"
 
-#: src/components/common/OrdersTable/index.tsx:442
+#: src/components/common/OrdersTable/index.tsx:460
 msgid "Refund pending"
 msgstr "Reembolso pendiente"
 
@@ -7154,7 +7199,7 @@ msgstr "Estado del reembolso"
 msgid "Refunded"
 msgstr "Reintegrado"
 
-#: src/components/common/OrdersTable/index.tsx:440
+#: src/components/common/OrdersTable/index.tsx:458
 msgid "Refunded: {0}"
 msgstr "Reembolsado: {0}"
 
@@ -7242,7 +7287,7 @@ msgstr "Reenviar en {resendCooldown}s"
 msgid "Resend invitation"
 msgstr "Reenviar invitacíon"
 
-#: src/components/common/OrdersTable/index.tsx:254
+#: src/components/common/OrdersTable/index.tsx:265
 msgid "Resend order email"
 msgstr "Reenviar correo electrónico del pedido"
 
@@ -7258,11 +7303,11 @@ msgstr "Reenviar correo del entrada"
 msgid "Resending..."
 msgstr "Reenviando..."
 
-#: src/components/common/OrdersTable/index.tsx:495
+#: src/components/common/OrdersTable/index.tsx:513
 msgid "Reserved"
 msgstr "Reservado"
 
-#: src/components/common/OrdersTable/index.tsx:389
+#: src/components/common/OrdersTable/index.tsx:407
 msgid "Reserved until"
 msgstr "Reservado hasta"
 
@@ -7472,7 +7517,7 @@ msgstr "Guardar configuración"
 msgid "Save Organizer"
 msgstr "Guardar organizador"
 
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:86
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:157
 msgid "Save Seller Settings"
 msgstr "Guardar ajustes del vendedor"
 
@@ -7492,7 +7537,7 @@ msgstr "Guardar plantilla"
 msgid "Save Ticket Design"
 msgstr "Guardar Diseño del Ticket"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:168
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:227
 #: src/components/routes/account/ManageAccount/sections/PaymentSettings/VatSettings/VatSettingsForm.tsx:243
 msgid "Save VAT Settings"
 msgstr "Guardar Configuración del IVA"
@@ -7651,7 +7696,7 @@ msgstr "Seleccionar cámara"
 msgid "Select category..."
 msgstr "Seleccionar categoría..."
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:133
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:157
 msgid "Select country"
 msgstr "Seleccionar país"
 
@@ -7708,7 +7753,7 @@ msgstr "Seleccionar hora de inicio"
 msgid "Select status"
 msgstr "Seleccionar estado"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:132
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:156
 msgid "Select the country where VAT is registered"
 msgstr "Selecciona el país donde está registrado el IVA"
 
@@ -7756,11 +7801,11 @@ msgstr "Seleccionar..."
 msgid "Selected"
 msgstr "Seleccionado"
 
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:57
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:75
 msgid "Seller Details (KSeF)"
 msgstr "Datos del vendedor (KSeF)"
 
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:48
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:66
 msgid "Seller settings saved successfully"
 msgstr "Ajustes del vendedor guardados correctamente"
 
@@ -7818,7 +7863,7 @@ msgstr "Enviar enlace de restablecimiento"
 msgid "Send Test"
 msgstr "Enviar prueba"
 
-#: src/components/common/OrdersTable/index.tsx:237
+#: src/components/common/OrdersTable/index.tsx:248
 msgid "Send to KSeF"
 msgstr "Enviar a KSeF"
 
@@ -8172,7 +8217,7 @@ msgstr "Las estadísticas se basan en la fecha de creación de la cuenta"
 #: src/components/common/AffiliateTable/index.tsx:83
 #: src/components/common/AttendeeTable/index.tsx:274
 #: src/components/common/OrderDetails/index.tsx:51
-#: src/components/common/OrdersTable/index.tsx:480
+#: src/components/common/OrdersTable/index.tsx:498
 #: src/components/common/OrganizerWebhookTable/index.tsx:238
 #: src/components/common/WaitlistTable/index.tsx:181
 #: src/components/common/WebhookTable/index.tsx:238
@@ -8198,7 +8243,7 @@ msgstr "Aún manejando reembolsos para sus transacciones anteriores."
 msgid "Stop Impersonating"
 msgstr "Detener Suplantación"
 
-#: src/components/common/OrdersTable/index.tsx:461
+#: src/components/common/OrdersTable/index.tsx:479
 #: src/components/routes/admin/Dashboard/index.tsx:424
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:93
 msgid "Stripe"
@@ -8252,8 +8297,8 @@ msgstr "Asunto:"
 msgid "Subtotal"
 msgstr "Total parcial"
 
-#: src/components/common/OrdersTable/index.tsx:131
-#: src/components/common/OrdersTable/index.tsx:154
+#: src/components/common/OrdersTable/index.tsx:132
+#: src/components/common/OrdersTable/index.tsx:155
 #: src/components/common/OrganizerWebhookTable/index.tsx:149
 #: src/components/layouts/Checkout/index.tsx:91
 msgid "Success"
@@ -8459,7 +8504,7 @@ msgid "Takes just a few minutes"
 msgstr "Solo toma unos minutos"
 
 #: src/components/common/AdminOrdersTable/index.tsx:84
-#: src/components/common/OrdersTable/index.tsx:435
+#: src/components/common/OrdersTable/index.tsx:453
 #: src/components/forms/TaxAndFeeForm/index.tsx:12
 #: src/components/forms/TaxAndFeeForm/index.tsx:39
 #: src/components/modals/CreateTaxOrFeeModal/index.tsx:36
@@ -8730,7 +8775,7 @@ msgstr "No hay productos disponibles en esta categoría"
 msgid "There is a refund pending. Please wait for it to complete before requesting another refund."
 msgstr "Hay un reembolso pendiente. Espere a que se complete antes de solicitar otro reembolso."
 
-#: src/components/common/OrdersTable/index.tsx:108
+#: src/components/common/OrdersTable/index.tsx:109
 msgid "There was an error marking the order as paid"
 msgstr "Hubo un error al marcar el pedido como pagado"
 
@@ -8738,11 +8783,11 @@ msgstr "Hubo un error al marcar el pedido como pagado"
 msgid "There was an error processing your request. Please try again."
 msgstr "Hubo un error al procesar su solicitud. Inténtalo de nuevo."
 
-#: src/components/common/OrdersTable/index.tsx:115
+#: src/components/common/OrdersTable/index.tsx:116
 msgid "There was an error sending your message"
 msgstr "Hubo un error al enviar tu mensaje"
 
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:58
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:76
 msgid "These details are used when generating KSeF FA(3) XML invoices for B2B orders"
 msgstr "Estos datos se usan al generar facturas XML KSeF FA(3) para pedidos B2B"
 
@@ -9296,7 +9341,7 @@ msgstr "Tipo de boleto"
 msgid "Typography"
 msgstr "Tipografía"
 
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:79
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:97
 msgid "ul. Przykładowa 1, 00-001 Warszawa"
 msgstr ""
 
@@ -9488,6 +9533,14 @@ msgstr "Modo escáner USB desactivado"
 msgid "USB/HID Scanner"
 msgstr "Escáner USB/HID"
 
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:193
+msgid "Use {number}, {month}, {year} as placeholders"
+msgstr "Utiliza {number}, {month}, {year} como marcadores de posición"
+
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:109
+msgid "Use {number}, {month}, {year} as placeholders. Leave empty to use the default {number} format."
+msgstr "Utiliza {number}, {month}, {year} como marcadores de posición. Deja vacío para usar el formato predeterminado {number}."
+
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:150
 msgid "Use <0>Liquid templating</0> to personalize your emails"
 msgstr "Use <0>plantillas Liquid</0> para personalizar sus correos electrónicos"
@@ -9570,7 +9623,7 @@ msgstr "Validando tu número de IVA..."
 msgid "VAT"
 msgstr "IVA"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:131
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:155
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:300
 msgid "VAT Country"
 msgstr "País de IVA"
@@ -9583,7 +9636,7 @@ msgstr "Información del IVA"
 msgid "VAT may be applied to platform fees depending on your VAT registration status. Please complete the VAT information section below."
 msgstr "El IVA puede aplicarse a las tarifas de la plataforma según su estado de registro de IVA. Por favor complete la sección de información del IVA a continuación."
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:123
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:147
 #: src/components/routes/account/ManageAccount/sections/PaymentSettings/VatSettings/VatSettingsForm.tsx:216
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:283
 msgid "VAT Number"
@@ -9618,7 +9671,7 @@ msgstr "IVA sobre tarifa"
 msgid "VAT Rate"
 msgstr "Tasa de IVA"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:115
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:139
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:275
 msgid "VAT Registered"
 msgstr "Registrado para IVA"
@@ -9641,7 +9694,7 @@ msgstr "Configuración del IVA guardada exitosamente"
 msgid "VAT settings saved. We're validating your VAT number in the background."
 msgstr "Configuración de IVA guardada. Estamos validando tu número de IVA en segundo plano."
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:96
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:120
 msgid "VAT settings updated successfully"
 msgstr "Configuración de IVA actualizada correctamente"
 
@@ -10430,7 +10483,7 @@ msgstr "Tu evento debe estar activo antes de que puedas vender entradas a los as
 msgid "Your logo, colors, and style on every page"
 msgstr "Tu logo, colores y estilo en cada página"
 
-#: src/components/common/OrdersTable/index.tsx:114
+#: src/components/common/OrdersTable/index.tsx:115
 msgid "Your message has been sent"
 msgstr "Tu mensaje ha sido enviado"
 
@@ -10474,7 +10527,7 @@ msgstr "Tu pedido está esperando el pago"
 msgid "Your orders have been exported successfully."
 msgstr "Tus pedidos se han exportado con éxito."
 
-#: src/components/common/OrdersTable/index.tsx:546
+#: src/components/common/OrdersTable/index.tsx:564
 msgid "Your orders will appear here once they start rolling in."
 msgstr "Tus pedidos aparecerán aquí una vez que comiencen a llegar."
 

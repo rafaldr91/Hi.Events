@@ -71,4 +71,22 @@ class InvoiceRepository extends BaseRepository implements InvoiceRepositoryInter
 
         return (int)($query->max('sequence_number') ?? 0);
     }
+
+    public function findMaxSequenceNumberForAccount(int $accountId, string $documentType, ?int $month, ?int $year): int
+    {
+        $query = $this->model
+            ->where('account_id', $accountId)
+            ->where('document_type', $documentType)
+            ->whereNotNull('sequence_number');
+
+        if ($year !== null) {
+            $query->whereYear('issue_date', $year);
+        }
+
+        if ($month !== null) {
+            $query->whereMonth('issue_date', $month);
+        }
+
+        return (int)($query->max('sequence_number') ?? 0);
+    }
 }

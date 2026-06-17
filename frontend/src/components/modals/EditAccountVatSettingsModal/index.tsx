@@ -1,4 +1,4 @@
-import {Button, Select, Stack, Switch, Text, TextInput} from "@mantine/core";
+import {Button, Divider, NumberInput, Select, Stack, Switch, Text, TextInput} from "@mantine/core";
 import {GenericModalProps, IdParam} from "../../../types";
 import {useForm} from "@mantine/form";
 import {Modal} from "../../common/Modal";
@@ -20,6 +20,12 @@ interface FormValues {
     business_name: string;
     business_address: string;
     vat_country_code: string;
+    invoice_number_format: string;
+    invoice_prefix: string;
+    invoice_suffix: string;
+    invoice_start_number: number;
+    confirmation_prefix: string;
+    confirmation_start_number: number;
 }
 
 const EU_COUNTRIES = [
@@ -67,6 +73,12 @@ export const EditAccountVatSettingsModal = ({
             business_name: '',
             business_address: '',
             vat_country_code: '',
+            invoice_number_format: '',
+            invoice_prefix: '',
+            invoice_suffix: '',
+            invoice_start_number: 1,
+            confirmation_prefix: '',
+            confirmation_start_number: 1,
         },
     });
 
@@ -78,6 +90,12 @@ export const EditAccountVatSettingsModal = ({
                 business_name: vatSetting.business_name || '',
                 business_address: vatSetting.business_address || '',
                 vat_country_code: vatSetting.vat_country_code || '',
+                invoice_number_format: vatSetting.invoice_number_format || '',
+                invoice_prefix: vatSetting.invoice_prefix || '',
+                invoice_suffix: vatSetting.invoice_suffix || '',
+                invoice_start_number: vatSetting.invoice_start_number ?? 1,
+                confirmation_prefix: vatSetting.confirmation_prefix || '',
+                confirmation_start_number: vatSetting.confirmation_start_number ?? 1,
             });
         }
     }, [vatSetting]);
@@ -90,6 +108,12 @@ export const EditAccountVatSettingsModal = ({
                 business_name: values.vat_registered ? values.business_name.trim() : null,
                 business_address: values.vat_registered ? values.business_address.trim() : null,
                 vat_country_code: values.vat_registered ? values.vat_country_code : null,
+                invoice_number_format: values.invoice_number_format.trim() || null,
+                invoice_prefix: values.invoice_prefix.trim() || null,
+                invoice_suffix: values.invoice_suffix.trim() || null,
+                invoice_start_number: values.invoice_start_number,
+                confirmation_prefix: values.confirmation_prefix.trim() || null,
+                confirmation_start_number: values.confirmation_start_number,
             },
             {
                 onSuccess: () => {
@@ -159,6 +183,41 @@ export const EditAccountVatSettingsModal = ({
                             )}
                         </>
                     )}
+
+                    <Divider />
+
+                    <Text fw={500} size="sm">{t`Invoice Numbering`}</Text>
+
+                    <TextInput
+                        label={t`Invoice number format`}
+                        description={t`Use {number}, {month}, {year} as placeholders`}
+                        placeholder="{number}/{month}/{year}"
+                        {...form.getInputProps('invoice_number_format')}
+                    />
+                    <TextInput
+                        label={t`Invoice prefix`}
+                        placeholder="FV/"
+                        {...form.getInputProps('invoice_prefix')}
+                    />
+                    <TextInput
+                        label={t`Invoice suffix`}
+                        {...form.getInputProps('invoice_suffix')}
+                    />
+                    <NumberInput
+                        label={t`Invoice start number`}
+                        min={1}
+                        {...form.getInputProps('invoice_start_number')}
+                    />
+                    <TextInput
+                        label={t`Confirmation prefix`}
+                        placeholder="PC/"
+                        {...form.getInputProps('confirmation_prefix')}
+                    />
+                    <NumberInput
+                        label={t`Confirmation start number`}
+                        min={1}
+                        {...form.getInputProps('confirmation_start_number')}
+                    />
 
                     <Button
                         fullWidth

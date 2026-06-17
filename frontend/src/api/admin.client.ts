@@ -90,6 +90,12 @@ export interface AccountVatSetting {
     business_name: string | null;
     business_address: string | null;
     vat_country_code: string | null;
+    invoice_number_format: string | null;
+    invoice_prefix: string | null;
+    invoice_suffix: string | null;
+    invoice_start_number: number;
+    confirmation_prefix: string | null;
+    confirmation_start_number: number;
     created_at: string;
     updated_at: string;
 }
@@ -107,6 +113,12 @@ export interface UpdateAccountVatSettingsData {
     business_name?: string | null;
     business_address?: string | null;
     vat_country_code?: string | null;
+    invoice_number_format?: string | null;
+    invoice_prefix?: string | null;
+    invoice_suffix?: string | null;
+    invoice_start_number?: number;
+    confirmation_prefix?: string | null;
+    confirmation_start_number?: number;
 }
 
 export interface AdminStats {

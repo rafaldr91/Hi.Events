@@ -25,6 +25,12 @@ abstract class AccountVatSettingDomainObjectAbstract extends \HiEvents\DomainObj
     final public const VAT_VALIDATION_STATUS = 'vat_validation_status';
     final public const VAT_VALIDATION_ERROR = 'vat_validation_error';
     final public const VAT_VALIDATION_ATTEMPTS = 'vat_validation_attempts';
+    final public const INVOICE_NUMBER_FORMAT = 'invoice_number_format';
+    final public const INVOICE_PREFIX = 'invoice_prefix';
+    final public const INVOICE_SUFFIX = 'invoice_suffix';
+    final public const INVOICE_START_NUMBER = 'invoice_start_number';
+    final public const CONFIRMATION_PREFIX = 'confirmation_prefix';
+    final public const CONFIRMATION_START_NUMBER = 'confirmation_start_number';
 
     protected int $id;
     protected int $account_id;
@@ -41,6 +47,12 @@ abstract class AccountVatSettingDomainObjectAbstract extends \HiEvents\DomainObj
     protected string $vat_validation_status = 'PENDING';
     protected ?string $vat_validation_error = null;
     protected int $vat_validation_attempts = 0;
+    protected ?string $invoice_number_format = null;
+    protected ?string $invoice_prefix = null;
+    protected ?string $invoice_suffix = null;
+    protected int $invoice_start_number = 1;
+    protected ?string $confirmation_prefix = null;
+    protected int $confirmation_start_number = 1;
 
     public function toArray(): array
     {
@@ -60,6 +72,12 @@ abstract class AccountVatSettingDomainObjectAbstract extends \HiEvents\DomainObj
                     'vat_validation_status' => $this->vat_validation_status ?? null,
                     'vat_validation_error' => $this->vat_validation_error ?? null,
                     'vat_validation_attempts' => $this->vat_validation_attempts ?? null,
+                    'invoice_number_format' => $this->invoice_number_format ?? null,
+                    'invoice_prefix' => $this->invoice_prefix ?? null,
+                    'invoice_suffix' => $this->invoice_suffix ?? null,
+                    'invoice_start_number' => $this->invoice_start_number ?? null,
+                    'confirmation_prefix' => $this->confirmation_prefix ?? null,
+                    'confirmation_start_number' => $this->confirmation_start_number ?? null,
                 ];
     }
 
@@ -226,5 +244,71 @@ abstract class AccountVatSettingDomainObjectAbstract extends \HiEvents\DomainObj
     public function getVatValidationAttempts(): int
     {
         return $this->vat_validation_attempts;
+    }
+
+    public function setInvoiceNumberFormat(?string $invoice_number_format): self
+    {
+        $this->invoice_number_format = $invoice_number_format;
+        return $this;
+    }
+
+    public function getInvoiceNumberFormat(): ?string
+    {
+        return $this->invoice_number_format;
+    }
+
+    public function setInvoicePrefix(?string $invoice_prefix): self
+    {
+        $this->invoice_prefix = $invoice_prefix;
+        return $this;
+    }
+
+    public function getInvoicePrefix(): ?string
+    {
+        return $this->invoice_prefix;
+    }
+
+    public function setInvoiceSuffix(?string $invoice_suffix): self
+    {
+        $this->invoice_suffix = $invoice_suffix;
+        return $this;
+    }
+
+    public function getInvoiceSuffix(): ?string
+    {
+        return $this->invoice_suffix;
+    }
+
+    public function setInvoiceStartNumber(int $invoice_start_number): self
+    {
+        $this->invoice_start_number = $invoice_start_number;
+        return $this;
+    }
+
+    public function getInvoiceStartNumber(): int
+    {
+        return $this->invoice_start_number;
+    }
+
+    public function setConfirmationPrefix(?string $confirmation_prefix): self
+    {
+        $this->confirmation_prefix = $confirmation_prefix;
+        return $this;
+    }
+
+    public function getConfirmationPrefix(): ?string
+    {
+        return $this->confirmation_prefix;
+    }
+
+    public function setConfirmationStartNumber(int $confirmation_start_number): self
+    {
+        $this->confirmation_start_number = $confirmation_start_number;
+        return $this;
+    }
+
+    public function getConfirmationStartNumber(): int
+    {
+        return $this->confirmation_start_number;
     }
 }

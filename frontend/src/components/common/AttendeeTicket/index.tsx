@@ -17,6 +17,7 @@ interface AttendeeTicketProps {
     product: Product;
     hideButtons?: boolean;
     showPoweredBy?: boolean;
+    overridePrice?: number;
 }
 
 export const AttendeeTicket = ({
@@ -25,8 +26,9 @@ export const AttendeeTicket = ({
                                    event,
                                    hideButtons = false,
                                    showPoweredBy = false,
+                                   overridePrice,
                                }: AttendeeTicketProps) => {
-    const productPrice = getAttendeeProductPrice(attendee, product);
+    const productPrice = overridePrice ?? getAttendeeProductPrice(attendee, product);
     const hasVenue = event?.settings?.location_details?.venue_name || event?.settings?.location_details?.address_line_1;
 
     const ticketDesignSettings = event?.settings?.ticket_design_settings;
