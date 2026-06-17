@@ -666,5 +666,7 @@
     "No completed paid orders on this account": "",
     "Event was created less than 24 hours ago": "",
     "Review Message": "",
-    "Purchase Confirmation": "Conferma d'acquisto"
+    "Purchase Confirmation": "Conferma d'acquisto",
+    "The ticket price (net, excluding tax)": "Il prezzo del biglietto (netto, IVA esclusa)",
+    "The ticket price (gross, including tax)": "Il prezzo del biglietto (lordo, IVA inclusa)"
 }

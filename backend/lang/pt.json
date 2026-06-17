@@ -665,5 +665,7 @@
     "No completed paid orders on this account": "",
     "Event was created less than 24 hours ago": "",
     "Review Message": "",
-    "Purchase Confirmation": "Confirmação de compra"
+    "Purchase Confirmation": "Confirmação de compra",
+    "The ticket price (net, excluding tax)": "O preço do bilhete (líquido, sem impostos)",
+    "The ticket price (gross, including tax)": "O preço do bilhete (bruto, com impostos)"
 }

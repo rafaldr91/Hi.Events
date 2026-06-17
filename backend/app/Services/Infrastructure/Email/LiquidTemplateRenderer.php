@@ -204,8 +204,13 @@ class LiquidTemplateRenderer
             ],
             [
                 'token' => '{{ ticket.price }}',
-                'description' => __('The ticket price'),
+                'description' => __('The ticket price (net, excluding tax)'),
                 'example' => '$75.00',
+            ],
+            [
+                'token' => '{{ ticket.price_gross }}',
+                'description' => __('The ticket price (gross, including tax)'),
+                'example' => '$81.00',
             ],
             [
                 'token' => '{{ ticket.url }}',

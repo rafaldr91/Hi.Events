@@ -665,5 +665,7 @@
     "No completed paid orders on this account": "",
     "Event was created less than 24 hours ago": "",
     "Review Message": "",
-    "Purchase Confirmation": "Vásárlási visszaigazolás"
+    "Purchase Confirmation": "Vásárlási visszaigazolás",
+    "The ticket price (net, excluding tax)": "A jegy ára (nettó, adó nélkül)",
+    "The ticket price (gross, including tax)": "A jegy ára (bruttó, adóval)"
 }

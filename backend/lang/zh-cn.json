@@ -665,5 +665,7 @@
     "No completed paid orders on this account": "",
     "Event was created less than 24 hours ago": "",
     "Review Message": "",
-    "Purchase Confirmation": "购买确认"
+    "Purchase Confirmation": "购买确认",
+    "The ticket price (net, excluding tax)": "票价（不含税）",
+    "The ticket price (gross, including tax)": "票价（含税）"
 }

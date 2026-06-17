@@ -629,5 +629,7 @@
     "No completed paid orders on this account": "",
     "Event was created less than 24 hours ago": "",
     "Review Message": "",
-    "Purchase Confirmation": "Xác nhận mua hàng"
+    "Purchase Confirmation": "Xác nhận mua hàng",
+    "The ticket price (net, excluding tax)": "Giá vé (chưa bao gồm thuế)",
+    "The ticket price (gross, including tax)": "Giá vé (đã bao gồm thuế)"
 }

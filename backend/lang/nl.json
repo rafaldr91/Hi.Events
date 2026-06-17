@@ -665,5 +665,7 @@
     "No completed paid orders on this account": "",
     "Event was created less than 24 hours ago": "",
     "Review Message": "",
-    "Purchase Confirmation": "Aankoopbevestiging"
+    "Purchase Confirmation": "Aankoopbevestiging",
+    "The ticket price (net, excluding tax)": "De ticketprijs (netto, exclusief btw)",
+    "The ticket price (gross, including tax)": "De ticketprijs (bruto, inclusief btw)"
 }

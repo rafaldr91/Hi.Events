@@ -680,5 +680,7 @@
     "No completed paid orders on this account": "",
     "Event was created less than 24 hours ago": "",
     "Review Message": "",
-    "Purchase Confirmation": "Satın Alma Onayı"
+    "Purchase Confirmation": "Satın Alma Onayı",
+    "The ticket price (net, excluding tax)": "Bilet fiyatı (net, vergi hariç)",
+    "The ticket price (gross, including tax)": "Bilet fiyatı (brüt, vergi dahil)"
 }

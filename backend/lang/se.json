@@ -493,5 +493,7 @@
     "Reply to :name": "Svara till :name",
     "This message was sent via your organizer contact form.": "Detta meddelande skickades via ditt kontaktformulär för arrangörer.",
     "Your email confirmation code is:": "Din e-postbekräftelsekod är:",
-    "Purchase Confirmation": "Köpbekräftelse"
+    "Purchase Confirmation": "Köpbekräftelse",
+    "The ticket price (net, excluding tax)": "Biljettpriset (netto, exkl. moms)",
+    "The ticket price (gross, including tax)": "Biljettpriset (brutto, inkl. moms)"
 }

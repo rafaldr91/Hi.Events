@@ -665,5 +665,7 @@
     "No completed paid orders on this account": "Brak zakończonych płatnych zamówień na tym koncie",
     "Event was created less than 24 hours ago": "Wydarzenie zostało utworzone mniej niż 24 godziny temu",
     "Review Message": "Przejrzyj wiadomość",
-    "Purchase Confirmation": "Potwierdzenie zakupu"
+    "Purchase Confirmation": "Potwierdzenie zakupu",
+    "The ticket price (net, excluding tax)": "Cena biletu (netto, bez podatku)",
+    "The ticket price (gross, including tax)": "Cena biletu (brutto, z podatkiem)"
 }

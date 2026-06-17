@@ -665,5 +665,7 @@
     "No completed paid orders on this account": "",
     "Event was created less than 24 hours ago": "",
     "Review Message": "",
-    "Purchase Confirmation": "Confirmation d'achat"
+    "Purchase Confirmation": "Confirmation d'achat",
+    "The ticket price (net, excluding tax)": "Le prix du billet (HT, hors taxes)",
+    "The ticket price (gross, including tax)": "Le prix du billet (TTC, taxes comprises)"
 }
