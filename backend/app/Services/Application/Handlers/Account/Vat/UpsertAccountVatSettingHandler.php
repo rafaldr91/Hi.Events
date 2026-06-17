@@ -81,6 +81,13 @@ class UpsertAccountVatSettingHandler
             $data['vat_validation_date'] = null;
         }
 
+        $data['invoice_number_format'] = $command->invoiceNumberFormat;
+        $data['invoice_prefix'] = $command->invoicePrefix;
+        $data['invoice_suffix'] = $command->invoiceSuffix;
+        $data['invoice_start_number'] = $command->invoiceStartNumber;
+        $data['confirmation_prefix'] = $command->confirmationPrefix;
+        $data['confirmation_start_number'] = $command->confirmationStartNumber;
+
         if ($existing) {
             $vatSetting = $this->vatSettingRepository->updateFromArray(
                 id: $existing->getId(),

@@ -27,6 +27,12 @@ class AccountVatSettingResource extends BaseResource
             'business_name' => $this->getBusinessName(),
             'business_address' => $this->getBusinessAddress(),
             'vat_country_code' => $this->getVatCountryCode(),
+            'invoice_number_format' => $this->getInvoiceNumberFormat(),
+            'invoice_prefix' => $this->getInvoicePrefix(),
+            'invoice_suffix' => $this->getInvoiceSuffix(),
+            'invoice_start_number' => $this->getInvoiceStartNumber(),
+            'confirmation_prefix' => $this->getConfirmationPrefix(),
+            'confirmation_start_number' => $this->getConfirmationStartNumber(),
             'created_at' => $this->getCreatedAt(),
             'updated_at' => $this->getUpdatedAt(),
         ];

@@ -16,4 +16,6 @@ interface InvoiceRepositoryInterface extends RepositoryInterface
     public function findLatestInvoiceForEventByDocumentType(int $eventId, string $documentType): ?InvoiceDomainObject;
 
     public function findMaxSequenceNumberForEvent(int $eventId, string $documentType, ?int $month, ?int $year): int;
+
+    public function findMaxSequenceNumberForAccount(int $accountId, string $documentType, ?int $month, ?int $year): int;
 }

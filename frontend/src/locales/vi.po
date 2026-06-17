@@ -212,7 +212,7 @@ msgstr "1 loại vé"
 msgid "1 week before event"
 msgstr "1 tuần trước sự kiện"
 
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:64
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:82
 msgid "10-digit Polish tax number, without spaces or dashes (e.g. 1234567890)"
 msgstr "Mã số thuế Ba Lan 10 chữ số, không có khoảng trắng hoặc dấu gạch ngang (vd. 1234567890)"
 
@@ -304,7 +304,7 @@ msgstr "Một câu hỏi duy nhất cho mỗi sản phẩm. Ví dụ: Kích thư
 msgid "A standard tax, like VAT or GST"
 msgstr "Thuế tiêu chuẩn, như VAT hoặc GST"
 
-#: src/components/common/OrdersTable/index.tsx:513
+#: src/components/common/OrdersTable/index.tsx:531
 msgid "Abandoned"
 msgstr "Đã bỏ"
 
@@ -402,7 +402,7 @@ msgstr "Tài khoản được cập nhật thành công"
 msgid "Accounts"
 msgstr "Tài Khoản"
 
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:72
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:90
 msgid "Acme Sp. z o.o."
 msgstr ""
 
@@ -417,7 +417,7 @@ msgstr "Cần hành động: Cần thông tin VAT"
 #: src/components/common/AdminEventsTable/index.tsx:112
 #: src/components/common/AffiliateTable/index.tsx:167
 #: src/components/common/AttendeeTable/index.tsx:346
-#: src/components/common/OrdersTable/index.tsx:522
+#: src/components/common/OrdersTable/index.tsx:540
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:475
 #: src/components/common/WaitlistTable/index.tsx:55
 #: src/components/common/WaitlistTable/index.tsx:210
@@ -752,7 +752,7 @@ msgstr "Luôn có sẵn"
 msgid "Amazing, Event, Keywords..."
 msgstr "Tuyệt vời, sự kiện, từ khóa ..."
 
-#: src/components/common/OrdersTable/index.tsx:425
+#: src/components/common/OrdersTable/index.tsx:443
 #: src/components/forms/TaxAndFeeForm/index.tsx:71
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:36
 msgid "Amount"
@@ -1221,7 +1221,7 @@ msgid "Awaiting payment"
 msgstr "Đang chờ thanh toán"
 
 #: src/components/common/AttendeeTable/index.tsx:289
-#: src/components/common/OrdersTable/index.tsx:501
+#: src/components/common/OrdersTable/index.tsx:519
 #: src/components/routes/event/attendees.tsx:28
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:356
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:57
@@ -1317,16 +1317,16 @@ msgstr "Tiếng Bồ Đào Nha Brazil"
 msgid "Business"
 msgstr "Kinh doanh"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:147
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:78
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:171
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:96
 msgid "Business Address"
 msgstr "Địa chỉ doanh nghiệp"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:148
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:172
 msgid "Business address for VAT purposes"
 msgstr "Địa chỉ doanh nghiệp cho mục đích VAT"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:140
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:164
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:294
 msgid "Business Name"
 msgstr "Tên doanh nghiệp"
@@ -1415,7 +1415,7 @@ msgstr "Hủy tất cả sản phẩm và trả lại pool có sẵn"
 msgid "Cancel email change"
 msgstr "Hủy thay đổi email"
 
-#: src/components/common/OrdersTable/index.tsx:265
+#: src/components/common/OrdersTable/index.tsx:276
 msgid "Cancel order"
 msgstr "Hủy đơn hàng"
 
@@ -1433,7 +1433,7 @@ msgstr "Hủy sẽ hủy tất cả người tham dự liên quan đến đơn h
 
 #: src/components/common/AttendeeTable/index.tsx:295
 #: src/components/common/AttendeeTicket/index.tsx:149
-#: src/components/common/OrdersTable/index.tsx:507
+#: src/components/common/OrdersTable/index.tsx:525
 #: src/components/common/OrderStatusBadge/index.tsx:12
 #: src/components/common/WaitlistTable/index.tsx:27
 #: src/components/routes/admin/Messages/index.tsx:126
@@ -1806,7 +1806,7 @@ msgid "Company name"
 msgstr "Tên công ty"
 
 #: src/components/common/OrderDetails/index.tsx:96
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:71
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:89
 #: src/components/routes/product-widget/CollectInformation/index.tsx:461
 msgid "Company Name"
 msgstr "Tên công ty"
@@ -1849,7 +1849,7 @@ msgstr "Hoàn tất thanh toán để đảm bảo vé của bạn."
 msgid "Complete your profile to join the team."
 msgstr "Hoàn thành hồ sơ của bạn để tham gia nhóm."
 
-#: src/components/common/OrdersTable/index.tsx:489
+#: src/components/common/OrdersTable/index.tsx:507
 #: src/components/modals/SendMessageModal/index.tsx:333
 #: src/components/routes/event/GettingStarted/index.tsx:75
 #: src/components/routes/event/orders.tsx:23
@@ -1963,9 +1963,19 @@ msgstr "Xác nhận email của bạn để sử dụng đầy đủ tính năng
 msgid "Confirmation email sent! Please check your inbox."
 msgstr "Email xác nhận đã được gửi! Vui lòng kiểm tra hộp thư đến của bạn."
 
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:212
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:140
+msgid "Confirmation prefix"
+msgstr "Tiền tố xác nhận"
+
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:197
 msgid "Confirmation sent to"
 msgstr "Xác nhận đã gửi đến"
+
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:217
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:148
+msgid "Confirmation start number"
+msgstr "Số bắt đầu xác nhận"
 
 #: src/components/routes/profile/ConfirmEmailAddress/index.tsx:36
 msgid "Confirming email address..."
@@ -2149,7 +2159,7 @@ msgstr "Sao chép URL check-in"
 msgid "Copy Code"
 msgstr "Sao chép mã"
 
-#: src/components/common/OrdersTable/index.tsx:220
+#: src/components/common/OrdersTable/index.tsx:228
 msgid "Copy customer link"
 msgstr ""
 
@@ -2158,7 +2168,7 @@ msgid "Copy details to first attendee"
 msgstr "Sao chép chi tiết cho người tham dự đầu tiên"
 
 #: src/components/common/AttendeeTable/index.tsx:197
-#: src/components/common/OrdersTable/index.tsx:335
+#: src/components/common/OrdersTable/index.tsx:346
 msgid "Copy Email"
 msgstr "Sao chép Email"
 
@@ -2433,11 +2443,11 @@ msgstr "Mật khẩu hiện tại"
 msgid "Current payment processor"
 msgstr "Bộ xử lý thanh toán hiện tại"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:156
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:180
 msgid "Current VAT number is validated"
 msgstr "Số VAT hiện tại đã được xác thực"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:157
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:181
 msgid "Current VAT number validation failed"
 msgstr "Xác thực số VAT hiện tại không thành công"
 
@@ -2476,11 +2486,11 @@ msgid "Custom template"
 msgstr "Mẫu tùy chỉnh"
 
 #: src/components/common/AdminOrdersTable/index.tsx:71
-#: src/components/common/OrdersTable/index.tsx:279
+#: src/components/common/OrdersTable/index.tsx:290
 msgid "Customer"
 msgstr "Khách hàng"
 
-#: src/components/common/OrdersTable/index.tsx:218
+#: src/components/common/OrdersTable/index.tsx:226
 msgid "Customer link copied to clipboard"
 msgstr ""
 
@@ -2567,7 +2577,7 @@ msgstr "Chi tiết doanh số hàng ngày, thuế và phí"
 
 #: src/components/common/CapacityAssignmentList/index.tsx:153
 #: src/components/common/CheckInListList/index.tsx:174
-#: src/components/common/OrdersTable/index.tsx:261
+#: src/components/common/OrdersTable/index.tsx:272
 #: src/components/common/OrganizerWebhookTable/index.tsx:116
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:500
 #: src/components/common/PromoCodeTable/index.tsx:181
@@ -2810,7 +2820,7 @@ msgstr "Tải xuống .ics"
 msgid "Download CSV"
 msgstr "Tải xuống CSV"
 
-#: src/components/common/OrdersTable/index.tsx:224
+#: src/components/common/OrdersTable/index.tsx:232
 msgid "Download invoice"
 msgstr "Tải xuống hóa đơn"
 
@@ -2818,7 +2828,7 @@ msgstr "Tải xuống hóa đơn"
 msgid "Download Invoice"
 msgstr "Tải xuống hóa đơn"
 
-#: src/components/common/OrdersTable/index.tsx:229
+#: src/components/common/OrdersTable/index.tsx:237
 msgid "Download KSeF XML"
 msgstr "Tải xuống XML KSeF"
 
@@ -2830,12 +2840,12 @@ msgstr "Tải về mã QR"
 msgid "Download sales, attendee, and financial reports for all completed orders."
 msgstr "Tải xuống báo cáo bán hàng, người tham dự và tài chính cho tất cả đơn hàng đã hoàn thành."
 
-#: src/components/common/OrdersTable/index.tsx:127
+#: src/components/common/OrdersTable/index.tsx:128
 #: src/components/layouts/Checkout/index.tsx:87
 msgid "Downloading Invoice"
 msgstr "Tải xuống hóa đơn"
 
-#: src/components/common/OrdersTable/index.tsx:150
+#: src/components/common/OrdersTable/index.tsx:151
 msgid "Downloading KSeF XML"
 msgstr "Đang tải xuống XML KSeF"
 
@@ -3014,7 +3024,7 @@ msgstr "Chỉnh sửa người dùng"
 msgid "Edit User"
 msgstr "Chỉnh sửa người dùng"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:111
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:135
 msgid "Edit VAT Settings"
 msgstr "Chỉnh sửa cài đặt VAT"
 
@@ -3097,7 +3107,7 @@ msgid "Email Address"
 msgstr "Địa chỉ Email"
 
 #: src/components/common/AttendeeTable/index.tsx:118
-#: src/components/common/OrdersTable/index.tsx:174
+#: src/components/common/OrdersTable/index.tsx:182
 msgid "Email address copied to clipboard"
 msgstr "Đã sao chép địa chỉ email vào clipboard"
 
@@ -3249,11 +3259,11 @@ msgstr "Nhập tên đối tác"
 msgid "Enter an amount excluding taxes and fees."
 msgstr "Nhập một số tiền không bao gồm thuế và phí."
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:149
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:173
 msgid "Enter business address"
 msgstr "Nhập địa chỉ doanh nghiệp"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:142
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:166
 msgid "Enter business name"
 msgstr "Nhập tên doanh nghiệp"
 
@@ -3280,7 +3290,7 @@ msgstr "Nhập họ"
 msgid "Enter new password"
 msgstr "Nhập mật khẩu mới"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:124
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:148
 msgid "Enter the VAT number including country code"
 msgstr "Nhập số VAT bao gồm mã quốc gia"
 
@@ -3310,8 +3320,8 @@ msgstr "Nhập số VAT của bạn bao gồm mã quốc gia, không có khoản
 msgid "Entries will appear here when customers join the waitlist for sold out products."
 msgstr "Các mục sẽ xuất hiện ở đây khi khách hàng tham gia danh sách chờ cho các sản phẩm đã bán hết."
 
-#: src/components/common/OrdersTable/index.tsx:135
-#: src/components/common/OrdersTable/index.tsx:158
+#: src/components/common/OrdersTable/index.tsx:136
+#: src/components/common/OrdersTable/index.tsx:159
 #: src/components/common/OrganizerWebhookTable/index.tsx:149
 #: src/components/layouts/Checkout/index.tsx:95
 msgid "Error"
@@ -3723,12 +3733,12 @@ msgstr "Không thể xóa câu hỏi"
 msgid "Failed to delete template"
 msgstr "Không thể xóa mẫu"
 
-#: src/components/common/OrdersTable/index.tsx:136
+#: src/components/common/OrdersTable/index.tsx:137
 #: src/components/layouts/Checkout/index.tsx:96
 msgid "Failed to download invoice. Please try again."
 msgstr "Không thể tải hóa đơn. Vui lòng thử lại."
 
-#: src/components/common/OrdersTable/index.tsx:159
+#: src/components/common/OrdersTable/index.tsx:160
 msgid "Failed to download KSeF XML. Please try again."
 msgstr "Không thể tải xuống XML KSeF. Vui lòng thử lại."
 
@@ -3801,7 +3811,7 @@ msgstr "Không thể thử lại công việc"
 msgid "Failed to retry jobs"
 msgstr "Không thể thử lại các công việc"
 
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:50
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:68
 msgid "Failed to save seller settings. Please try again."
 msgstr "Không thể lưu cài đặt người bán. Vui lòng thử lại."
 
@@ -3816,7 +3826,7 @@ msgstr "Không thể lưu mẫu"
 msgid "Failed to save VAT settings. Please try again."
 msgstr "Không thể lưu cài đặt VAT. Vui lòng thử lại."
 
-#: src/components/common/OrdersTable/index.tsx:168
+#: src/components/common/OrdersTable/index.tsx:174
 msgid "Failed to send invoice to KSeF. Please try again."
 msgstr "Gửi hóa đơn đến KSeF thất bại. Vui lòng thử lại."
 
@@ -3882,7 +3892,7 @@ msgstr "Không thể cập nhật trạng thái ban tổ chức"
 msgid "Failed to update setting"
 msgstr "Không thể cập nhật cài đặt"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:103
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:127
 msgid "Failed to update VAT settings"
 msgstr "Không thể cập nhật cài đặt VAT"
 
@@ -3917,7 +3927,7 @@ msgid "Fee Handling"
 msgstr "Xử lý phí"
 
 #: src/components/common/InlineOrderSummary/index.tsx:140
-#: src/components/common/OrdersTable/index.tsx:436
+#: src/components/common/OrdersTable/index.tsx:454
 #: src/components/forms/ProductForm/index.tsx:409
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
 msgid "Fees"
@@ -4029,6 +4039,14 @@ msgstr "Tên là bắt buộc"
 #: src/components/routes/auth/AcceptInvitation/index.tsx:30
 msgid "First name must be between 1 and 50 characters"
 msgstr "Tên của bạn phải nằm trong khoảng từ 1 đến 50 ký tự"
+
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:149
+msgid "First sequence number for new confirmations"
+msgstr "Số thứ tự đầu tiên cho xác nhận mới"
+
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:133
+msgid "First sequence number for new invoices"
+msgstr "Số thứ tự đầu tiên cho hóa đơn mới"
 
 #: src/components/routes/event/Reports/PromoCodesReport/index.tsx:64
 msgid "First Used"
@@ -4655,11 +4673,12 @@ msgstr "Mời người dùng"
 msgid "Invite Your Team"
 msgstr "Mời nhóm của bạn"
 
-#: src/components/common/OrdersTable/index.tsx:374
+#: src/components/common/OrdersTable/index.tsx:386
+#: src/components/common/OrdersTable/index.tsx:391
 msgid "Invoice"
 msgstr "Hóa đơn"
 
-#: src/components/common/OrdersTable/index.tsx:132
+#: src/components/common/OrdersTable/index.tsx:133
 #: src/components/layouts/Checkout/index.tsx:92
 msgid "Invoice downloaded successfully"
 msgstr "Hóa đơn được tải xuống thành công"
@@ -4668,11 +4687,23 @@ msgstr "Hóa đơn được tải xuống thành công"
 msgid "Invoice Notes"
 msgstr "Ghi chú hóa đơn"
 
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:192
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:108
+msgid "Invoice number format"
+msgstr "Định dạng số hóa đơn"
+
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:189
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:105
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:205
 msgid "Invoice Numbering"
 msgstr "Đánh số hóa đơn"
 
-#: src/components/common/OrdersTable/index.tsx:167
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:198
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:117
+msgid "Invoice prefix"
+msgstr "Tiền tố hóa đơn"
+
+#: src/components/common/OrdersTable/index.tsx:170
 msgid "Invoice queued for KSeF submission"
 msgstr "Hóa đơn đã được xếp hàng để gửi KSeF"
 
@@ -4680,11 +4711,21 @@ msgstr "Hóa đơn đã được xếp hàng để gửi KSeF"
 msgid "Invoice Settings"
 msgstr "Cài đặt hóa đơn"
 
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:207
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:132
+msgid "Invoice start number"
+msgstr "Số bắt đầu hóa đơn"
+
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:203
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:124
+msgid "Invoice suffix"
+msgstr "Hậu tố hóa đơn"
+
 #: src/components/routes/account/ManageAccount/sections/PaymentSettings/VatNotice/index.tsx:42
 msgid "Irish VAT at 23% will be applied to platform fees (domestic supply)."
 msgstr "VAT Ireland 23% sẽ được áp dụng cho phí nền tảng (cung cấp trong nước)."
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:116
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:140
 msgid "Is this account VAT registered in the EU?"
 msgstr "Tài khoản này có đăng ký VAT ở EU không?"
 
@@ -4696,11 +4737,11 @@ msgstr "Tiếng Ý"
 msgid "Item"
 msgstr "Mục"
 
-#: src/components/common/OrdersTable/index.tsx:417
+#: src/components/common/OrdersTable/index.tsx:435
 msgid "item(s)"
 msgstr "mục"
 
-#: src/components/common/OrdersTable/index.tsx:399
+#: src/components/common/OrdersTable/index.tsx:417
 msgid "Items"
 msgstr "Mục"
 
@@ -4767,7 +4808,7 @@ msgstr "Giữ cho tôi cập nhật tin tức và sự kiện từ {0}"
 msgid "KSeF number: {0}"
 msgstr "Số KSeF: {0}"
 
-#: src/components/common/OrdersTable/index.tsx:155
+#: src/components/common/OrdersTable/index.tsx:156
 msgid "KSeF XML downloaded successfully"
 msgstr "Tải xuống XML KSeF thành công"
 
@@ -4887,7 +4928,7 @@ msgstr "Được sử dụng lần cuối"
 msgid "Leave blank to use the default word \"Invoice\""
 msgstr "Để trống để sử dụng từ mặc định \"Hóa đơn\""
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:141
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:165
 msgid "Legal business name for VAT purposes"
 msgstr "Tên doanh nghiệp hợp pháp cho mục đích VAT"
 
@@ -5025,7 +5066,7 @@ msgstr "Làm cho sự kiện của bạn hoạt động"
 
 #: src/components/common/CapacityAssignmentList/index.tsx:140
 #: src/components/common/CheckInListList/index.tsx:143
-#: src/components/common/OrdersTable/index.tsx:210
+#: src/components/common/OrdersTable/index.tsx:218
 #: src/components/common/OrganizerWebhookTable/index.tsx:96
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:469
 #: src/components/common/PromoCodeTable/index.tsx:167
@@ -5041,7 +5082,7 @@ msgstr "Quản lý người tham dự"
 msgid "Manage event"
 msgstr "Quản lý sự kiện"
 
-#: src/components/common/OrdersTable/index.tsx:212
+#: src/components/common/OrdersTable/index.tsx:220
 msgid "Manage order"
 msgstr "Quản lý đơn hàng"
 
@@ -5094,7 +5135,7 @@ msgstr "Thêm một người tham dự theo cách thủ công"
 msgid "Manually Add Attendee"
 msgstr "Thêm người tham dự"
 
-#: src/components/common/OrdersTable/index.tsx:242
+#: src/components/common/OrdersTable/index.tsx:253
 msgid "Mark as paid"
 msgstr "Đánh dấu đã trả tiền"
 
@@ -5116,7 +5157,7 @@ msgstr "Phương tiện"
 
 #: src/components/common/AttendeeTable/index.tsx:188
 #: src/components/common/ContactOrganizerModal/index.tsx:88
-#: src/components/common/OrdersTable/index.tsx:326
+#: src/components/common/OrdersTable/index.tsx:337
 #: src/components/modals/SendMessageModal/index.tsx:353
 msgid "Message"
 msgstr "Tin nhắn"
@@ -5137,7 +5178,7 @@ msgstr "Tin nhắn cho người tham dự"
 msgid "Message attendees with specific tickets"
 msgstr "Nhắn tin cho người tham dự có vé cụ thể"
 
-#: src/components/common/OrdersTable/index.tsx:214
+#: src/components/common/OrdersTable/index.tsx:222
 msgid "Message buyer"
 msgstr "Tin nhắn cho người mua"
 
@@ -5340,7 +5381,7 @@ msgstr "Cuộc sống về đêm"
 msgid "NIP"
 msgstr "Mã số thuế"
 
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:63
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:81
 msgid "NIP (Tax Identification Number)"
 msgstr "NIP (Mã số thuế)"
 
@@ -5348,7 +5389,7 @@ msgstr "NIP (Mã số thuế)"
 msgid "NIP is required for company orders"
 msgstr "Mã số thuế bắt buộc cho đơn hàng công ty"
 
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:37
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:49
 msgid "NIP must be exactly 10 digits"
 msgstr "NIP phải có đúng 10 chữ số"
 
@@ -5478,7 +5519,7 @@ msgstr "Không có bộ lọc có sẵn"
 msgid "No impact on your current or past transactions"
 msgstr "Không ảnh hưởng đến giao dịch hiện tại hoặc quá khứ của bạn"
 
-#: src/components/common/OrdersTable/index.tsx:383
+#: src/components/common/OrdersTable/index.tsx:401
 msgid "No invoice"
 msgstr "Không có hóa đơn"
 
@@ -5507,7 +5548,7 @@ msgstr "Chưa có câu hỏi đơn hàng"
 msgid "No orders found"
 msgstr "Không tìm thấy đơn hàng"
 
-#: src/components/common/OrdersTable/index.tsx:543
+#: src/components/common/OrdersTable/index.tsx:561
 msgid "No orders to show"
 msgstr "Không có đơn hàng nào để hiển thị"
 
@@ -5748,7 +5789,7 @@ msgstr "Đề nghị hết hạn sau {timeoutHours} giờ."
 msgid "Office or venue name"
 msgstr "Tên văn phòng hoặc địa điểm"
 
-#: src/components/common/OrdersTable/index.tsx:466
+#: src/components/common/OrdersTable/index.tsx:484
 #: src/components/routes/product-widget/Payment/index.tsx:131
 msgid "Offline"
 msgstr "Ngoại tuyến"
@@ -5956,7 +5997,7 @@ msgstr "Đơn Vị Tiền Tệ Đơn Hàng"
 msgid "Order Date"
 msgstr "Ngày đơn hàng"
 
-#: src/components/common/OrdersTable/index.tsx:349
+#: src/components/common/OrdersTable/index.tsx:360
 #: src/components/modals/ManageAttendeeModal/index.tsx:166
 #: src/components/modals/ManageOrderModal/index.tsx:86
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:592
@@ -6008,7 +6049,7 @@ msgstr "Giới hạn đơn hàng đã đặt"
 msgid "Order Locale"
 msgstr "Ngôn Ngữ Đơn Hàng"
 
-#: src/components/common/OrdersTable/index.tsx:107
+#: src/components/common/OrdersTable/index.tsx:108
 msgid "Order marked as paid"
 msgstr "Đơn hàng được đánh dấu là đã thanh toán"
 
@@ -6239,7 +6280,7 @@ msgid "Organizers can only manage events and products. They cannot manage users,
 msgstr "Ban tổ chức chỉ có thể quản lý các sự kiện và sản phẩm. Họ không thể quản lý người dùng, tài khoản hoặc thông tin thanh toán."
 
 #: src/components/common/Editor/Controls/InsertLiquidVariableControl.tsx:98
-#: src/components/common/OrdersTable/index.tsx:471
+#: src/components/common/OrdersTable/index.tsx:489
 #: src/constants/eventCategories.ts:22
 msgid "Other"
 msgstr "Khác"
@@ -6309,7 +6350,7 @@ msgstr "Hoàn tiền một phần"
 msgid "Partially Refunded"
 msgstr "Hoàn lại tiền một phần"
 
-#: src/components/common/OrdersTable/index.tsx:441
+#: src/components/common/OrdersTable/index.tsx:459
 msgid "Partially refunded: {0}"
 msgstr "Hoàn tiền một phần: {0}"
 
@@ -6388,7 +6429,7 @@ msgstr "Thanh toán để mở khóa"
 msgid "Payload"
 msgstr "Tải trọng"
 
-#: src/components/common/OrdersTable/index.tsx:452
+#: src/components/common/OrdersTable/index.tsx:470
 #: src/components/common/ProgressStepper/index.tsx:19
 #: src/components/forms/StripeCheckoutForm/index.tsx:127
 msgid "Payment"
@@ -6677,7 +6718,7 @@ msgstr "Vui lòng xác minh địa chỉ email của bạn để truy cập tấ
 msgid "Please wait before requesting another code"
 msgstr "Vui lòng đợi trước khi yêu cầu mã khác"
 
-#: src/components/common/OrdersTable/index.tsx:151
+#: src/components/common/OrdersTable/index.tsx:152
 msgid "Please wait while we prepare the FA(3) XML..."
 msgstr "Vui lòng đợi trong khi chúng tôi chuẩn bị XML FA(3)..."
 
@@ -6689,7 +6730,7 @@ msgstr "Vui lòng đợi trong khi chúng tôi chuẩn bị xuất danh sách đ
 msgid "Please wait while we prepare your attendees for export..."
 msgstr "Vui lòng đợi trong khi chúng tôi chuẩn bị cho người tham dự xuất ra..."
 
-#: src/components/common/OrdersTable/index.tsx:128
+#: src/components/common/OrdersTable/index.tsx:129
 #: src/components/layouts/Checkout/index.tsx:88
 msgid "Please wait while we prepare your invoice..."
 msgstr "Vui lòng đợi trong khi chúng tôi chuẩn bị hóa đơn của bạn ..."
@@ -6726,6 +6767,10 @@ msgstr "Được cung cấp bởi"
 #: src/components/routes/event/Settings/Sections/HomepageAndCheckoutSettings/index.tsx:88
 msgid "Pre Checkout message"
 msgstr "Thông báo trước khi thanh toán"
+
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:141
+msgid "Prefix for purchase confirmation documents"
+msgstr "Tiền tố cho tài liệu xác nhận mua hàng"
 
 #: src/components/routes/event/CapacityAssignments/index.tsx:32
 msgid "Prevent overselling by sharing inventory across multiple ticket types."
@@ -7118,7 +7163,7 @@ msgstr "Làm mới xem trước"
 msgid "Refund amount"
 msgstr "Số tiền hoàn lại"
 
-#: src/components/common/OrdersTable/index.tsx:443
+#: src/components/common/OrdersTable/index.tsx:461
 msgid "Refund failed"
 msgstr "Hoàn tiền thất bại"
 
@@ -7126,7 +7171,7 @@ msgstr "Hoàn tiền thất bại"
 msgid "Refund Failed"
 msgstr "Hoàn tiền không thành công"
 
-#: src/components/common/OrdersTable/index.tsx:247
+#: src/components/common/OrdersTable/index.tsx:258
 msgid "Refund order"
 msgstr "Lệnh hoàn trả"
 
@@ -7134,7 +7179,7 @@ msgstr "Lệnh hoàn trả"
 msgid "Refund Order {0}"
 msgstr "Hoàn tiền đơn hàng {0}"
 
-#: src/components/common/OrdersTable/index.tsx:442
+#: src/components/common/OrdersTable/index.tsx:460
 msgid "Refund pending"
 msgstr "Hoàn tiền đang chờ"
 
@@ -7154,7 +7199,7 @@ msgstr "Trạng thái hoàn trả"
 msgid "Refunded"
 msgstr "Đã hoàn lại"
 
-#: src/components/common/OrdersTable/index.tsx:440
+#: src/components/common/OrdersTable/index.tsx:458
 msgid "Refunded: {0}"
 msgstr "Đã hoàn tiền: {0}"
 
@@ -7242,7 +7287,7 @@ msgstr "Gửi lại sau {resendCooldown}s"
 msgid "Resend invitation"
 msgstr "Gửi lại lời mời"
 
-#: src/components/common/OrdersTable/index.tsx:254
+#: src/components/common/OrdersTable/index.tsx:265
 msgid "Resend order email"
 msgstr "Gửi lại email đơn hàng"
 
@@ -7258,11 +7303,11 @@ msgstr "Gửi lại email vé"
 msgid "Resending..."
 msgstr "Đang gửi lại ..."
 
-#: src/components/common/OrdersTable/index.tsx:495
+#: src/components/common/OrdersTable/index.tsx:513
 msgid "Reserved"
 msgstr "Đã đặt chỗ"
 
-#: src/components/common/OrdersTable/index.tsx:389
+#: src/components/common/OrdersTable/index.tsx:407
 msgid "Reserved until"
 msgstr "Đặt trước đến"
 
@@ -7472,7 +7517,7 @@ msgstr "Lưu cấu hình"
 msgid "Save Organizer"
 msgstr "Lưu tổ chức"
 
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:86
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:157
 msgid "Save Seller Settings"
 msgstr "Lưu cài đặt người bán"
 
@@ -7492,7 +7537,7 @@ msgstr "Lưu mẫu"
 msgid "Save Ticket Design"
 msgstr "Lưu thiết kế vé"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:168
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:227
 #: src/components/routes/account/ManageAccount/sections/PaymentSettings/VatSettings/VatSettingsForm.tsx:243
 msgid "Save VAT Settings"
 msgstr "Lưu cài đặt VAT"
@@ -7651,7 +7696,7 @@ msgstr "Chọn máy ảnh"
 msgid "Select category..."
 msgstr "Chọn danh mục..."
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:133
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:157
 msgid "Select country"
 msgstr "Chọn quốc gia"
 
@@ -7708,7 +7753,7 @@ msgstr "Chọn thời gian bắt đầu"
 msgid "Select status"
 msgstr "Chọn trạng thái"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:132
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:156
 msgid "Select the country where VAT is registered"
 msgstr "Chọn quốc gia nơi đăng ký VAT"
 
@@ -7756,11 +7801,11 @@ msgstr "Chọn ..."
 msgid "Selected"
 msgstr "Đã chọn"
 
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:57
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:75
 msgid "Seller Details (KSeF)"
 msgstr "Thông tin người bán (KSeF)"
 
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:48
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:66
 msgid "Seller settings saved successfully"
 msgstr "Cài đặt người bán đã được lưu thành công"
 
@@ -7818,7 +7863,7 @@ msgstr "Gửi liên kết đặt lại"
 msgid "Send Test"
 msgstr "Gửi Test"
 
-#: src/components/common/OrdersTable/index.tsx:237
+#: src/components/common/OrdersTable/index.tsx:248
 msgid "Send to KSeF"
 msgstr "Gửi đến KSeF"
 
@@ -8172,7 +8217,7 @@ msgstr "Thống kê dựa trên ngày tạo tài khoản"
 #: src/components/common/AffiliateTable/index.tsx:83
 #: src/components/common/AttendeeTable/index.tsx:274
 #: src/components/common/OrderDetails/index.tsx:51
-#: src/components/common/OrdersTable/index.tsx:480
+#: src/components/common/OrdersTable/index.tsx:498
 #: src/components/common/OrganizerWebhookTable/index.tsx:238
 #: src/components/common/WaitlistTable/index.tsx:181
 #: src/components/common/WebhookTable/index.tsx:238
@@ -8198,7 +8243,7 @@ msgstr "Vẫn đang xử lý hoàn tiền cho các giao dịch cũ của bạn."
 msgid "Stop Impersonating"
 msgstr "Dừng Mạo Danh"
 
-#: src/components/common/OrdersTable/index.tsx:461
+#: src/components/common/OrdersTable/index.tsx:479
 #: src/components/routes/admin/Dashboard/index.tsx:424
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:93
 msgid "Stripe"
@@ -8252,8 +8297,8 @@ msgstr "Tiêu đề:"
 msgid "Subtotal"
 msgstr "Tổng phụ"
 
-#: src/components/common/OrdersTable/index.tsx:131
-#: src/components/common/OrdersTable/index.tsx:154
+#: src/components/common/OrdersTable/index.tsx:132
+#: src/components/common/OrdersTable/index.tsx:155
 #: src/components/common/OrganizerWebhookTable/index.tsx:149
 #: src/components/layouts/Checkout/index.tsx:91
 msgid "Success"
@@ -8459,7 +8504,7 @@ msgid "Takes just a few minutes"
 msgstr "Chỉ mất vài phút"
 
 #: src/components/common/AdminOrdersTable/index.tsx:84
-#: src/components/common/OrdersTable/index.tsx:435
+#: src/components/common/OrdersTable/index.tsx:453
 #: src/components/forms/TaxAndFeeForm/index.tsx:12
 #: src/components/forms/TaxAndFeeForm/index.tsx:39
 #: src/components/modals/CreateTaxOrFeeModal/index.tsx:36
@@ -8730,7 +8775,7 @@ msgstr "Không có sản phẩm nào trong danh mục này"
 msgid "There is a refund pending. Please wait for it to complete before requesting another refund."
 msgstr "Có một khoản hoàn tiền đang chờ xử lý. Vui lòng đợi hoàn tất trước khi yêu cầu hoàn tiền khác."
 
-#: src/components/common/OrdersTable/index.tsx:108
+#: src/components/common/OrdersTable/index.tsx:109
 msgid "There was an error marking the order as paid"
 msgstr "Đã xảy ra lỗi khi đánh dấu đơn hàng là đã thanh toán"
 
@@ -8738,11 +8783,11 @@ msgstr "Đã xảy ra lỗi khi đánh dấu đơn hàng là đã thanh toán"
 msgid "There was an error processing your request. Please try again."
 msgstr "Đã xảy ra lỗi khi xử lý yêu cầu của bạn. Vui lòng thử lại."
 
-#: src/components/common/OrdersTable/index.tsx:115
+#: src/components/common/OrdersTable/index.tsx:116
 msgid "There was an error sending your message"
 msgstr "Có một lỗi khi gửi tin nhắn của bạn"
 
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:58
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:76
 msgid "These details are used when generating KSeF FA(3) XML invoices for B2B orders"
 msgstr "Thông tin này được sử dụng khi tạo hóa đơn XML KSeF FA(3) cho đơn hàng B2B"
 
@@ -9296,7 +9341,7 @@ msgstr "Loại vé"
 msgid "Typography"
 msgstr "Kiểu chữ"
 
-#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:79
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:97
 msgid "ul. Przykładowa 1, 00-001 Warszawa"
 msgstr ""
 
@@ -9488,6 +9533,14 @@ msgstr "Chế độ máy quét USB đã tắt"
 msgid "USB/HID Scanner"
 msgstr "Máy quét USB/HID"
 
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:193
+msgid "Use {number}, {month}, {year} as placeholders"
+msgstr "Sử dụng {number}, {month}, {year} làm ký tự giữ chỗ"
+
+#: src/components/routes/account/ManageAccount/sections/TaxSettings/SellerSettings.tsx:109
+msgid "Use {number}, {month}, {year} as placeholders. Leave empty to use the default {number} format."
+msgstr "Sử dụng {number}, {month}, {year} làm ký tự giữ chỗ. Để trống để sử dụng định dạng mặc định {number}."
+
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:150
 msgid "Use <0>Liquid templating</0> to personalize your emails"
 msgstr "Sử dụng <0>mẫu Liquid</0> để cá nhân hóa email của bạn"
@@ -9570,7 +9623,7 @@ msgstr "Đang xác thực số VAT của bạn..."
 msgid "VAT"
 msgstr "Thuế VAT"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:131
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:155
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:300
 msgid "VAT Country"
 msgstr "Quốc gia VAT"
@@ -9583,7 +9636,7 @@ msgstr "Thông tin VAT"
 msgid "VAT may be applied to platform fees depending on your VAT registration status. Please complete the VAT information section below."
 msgstr "VAT có thể được áp dụng cho phí nền tảng tùy thuộc vào trạng thái đăng ký VAT của bạn. Vui lòng hoàn thành phần thông tin VAT bên dưới."
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:123
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:147
 #: src/components/routes/account/ManageAccount/sections/PaymentSettings/VatSettings/VatSettingsForm.tsx:216
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:283
 msgid "VAT Number"
@@ -9618,7 +9671,7 @@ msgstr "VAT trên phí"
 msgid "VAT Rate"
 msgstr "Thuế suất VAT"
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:115
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:139
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:275
 msgid "VAT Registered"
 msgstr "Đã đăng ký VAT"
@@ -9641,7 +9694,7 @@ msgstr "Cài đặt VAT đã được lưu thành công"
 msgid "VAT settings saved. We're validating your VAT number in the background."
 msgstr "Cài đặt VAT đã được lưu. Chúng tôi đang xác thực số VAT của bạn ở chế độ nền."
 
-#: src/components/modals/EditAccountVatSettingsModal/index.tsx:96
+#: src/components/modals/EditAccountVatSettingsModal/index.tsx:120
 msgid "VAT settings updated successfully"
 msgstr "Cài đặt VAT đã được cập nhật thành công"
 
@@ -10430,7 +10483,7 @@ msgstr "Sự kiện của bạn phải được phát trực tiếp trước khi
 msgid "Your logo, colors, and style on every page"
 msgstr "Logo, màu sắc và phong cách của bạn trên mọi trang"
 
-#: src/components/common/OrdersTable/index.tsx:114
+#: src/components/common/OrdersTable/index.tsx:115
 msgid "Your message has been sent"
 msgstr "Tin nhắn của bạn đã được gửi"
 
@@ -10474,7 +10527,7 @@ msgstr "Đơn hàng của bạn đang chờ thanh toán"
 msgid "Your orders have been exported successfully."
 msgstr "Đơn hàng của bạn đã được xuất thành công."
 
-#: src/components/common/OrdersTable/index.tsx:546
+#: src/components/common/OrdersTable/index.tsx:564
 msgid "Your orders will appear here once they start rolling in."
 msgstr "Đơn hàng của bạn sẽ xuất hiện ở đây sau khi chúng bắt đầu tham gia."
 
