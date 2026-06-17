@@ -8,7 +8,7 @@ services:
             - "1234:80"
         volumes:
             - ./../../backend:/var/www/html
-            - ./../../backend/storage:/var/www/html/storage
+            - app-storage:/var/www/html/storage
             - ./../../backend/bootstrap/cache:/var/www/html/bootstrap/cache
             - ./../../VERSION:/var/www/html/VERSION:ro
         environment:
@@ -188,4 +188,6 @@ volumes:
     app-pgsql:
         driver: local
     app-minio:
+        driver: local
+    app-storage:
         driver: local

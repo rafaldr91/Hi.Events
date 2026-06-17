@@ -9,12 +9,38 @@ do named volume `all-in-one_storage`, co zapewnia trwałość danych między akt
 - Docker + Docker Compose
 - Uprawnienia do uruchamiania `docker` (sudo lub grupa docker)
 
-## Uruchomienie
+## Uruchomienie lokalne (development)
 
 ```bash
 cd docker/all-in-one
 python3 migrate_storage_volume.py
 ```
+
+## Wdrożenie na serwer produkcyjny
+
+```bash
+# 1. Zaloguj się na serwer
+ssh user@serwer
+
+# 2. Przejdź do katalogu projektu
+cd /ścieżka/do/hi.events
+
+# 3. Pobierz najnowsze zmiany z aktualnego brancha
+git pull
+
+# 4. Uruchom skrypt migracji
+cd docker/all-in-one
+python3 migrate_storage_volume.py
+```
+
+Skrypt zapyta o dwie rzeczy:
+
+```
+Zatrzymać kontenery? (docker compose down) [t/N]: t
+Przebudować obraz przed startem? (--no-cache, zalecane przy nowym kodzie) [t/N]: t
+```
+
+Odpowiedz **t** na oba pytania — przy nowym kodzie zawsze przebuduj obraz.
 
 ## Co robi skrypt
 

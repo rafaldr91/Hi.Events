@@ -173,6 +173,14 @@ def main():
             "alpine", "sh", "-c", "cp -r /source/. /dest/",
         ])
         print("  Dane skopiowane do wolumenu.")
+
+        target_container = find_container()
+        if target_container:
+            print("  Ustawiam uprawnienia przez kontener (jako root)...")
+            run([
+                "docker", "exec", "-u", "root", target_container,
+                "chown", "-R", "www-data:www-data", CONTAINER_STORAGE_PATH,
+            ])
     else:
         print("  Pomijam — brak backupu lub kontener nie działał przed migracją.")
 
