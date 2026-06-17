@@ -317,7 +317,26 @@ class KsefXmlGenerationService
             return 'zw';
         }
 
-        $rate = (float)($taxes[0]['rate'] ?? -1);
+        $tax = $taxes[0];
+        $type = $tax['type'] ?? 'PERCENTAGE';
+        $rate = (float)($tax['rate'] ?? -1);
+
+        if ($type === 'FIXED') {
+            if (preg_match('/(\d+(?:\.\d+)?)\s*%/', $tax['name'] ?? '', $matches)) {
+                $rate = (float)$matches[1];
+            } else {
+                $net = (float)($item['total_before_additions'] ?? 0);
+                if ($net > 0) {
+                    $calculated = $rate / $net * 100;
+                    $knownRates = array_keys(self::VAT_RATE_MAP);
+                    usort($knownRates, fn($a, $b) => abs($a - $calculated) <=> abs($b - $calculated));
+                    $nearest = $knownRates[0];
+                    $rate = abs($nearest - $calculated) <= 1.5 ? $nearest : -1;
+                } else {
+                    $rate = -1;
+                }
+            }
+        }
 
         return self::VAT_RATE_MAP[$rate] ?? 'zw';
     }
