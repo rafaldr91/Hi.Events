@@ -86,6 +86,17 @@ class KsefXmlGenerationService
         if (empty($invoice->getItems())) {
             throw new KsefValidationException(__('Invoice has no line items'));
         }
+
+        foreach (is_array($invoice->getItems()) ? $invoice->getItems() : [] as $item) {
+            $taxes = $item['taxes_and_fees_rollup']['taxes'] ?? [];
+            if (empty($taxes)) {
+                throw new KsefValidationException(
+                    __('Item ":name" has no tax rate configured. Please add a tax to the ticket before sending to KSeF.', [
+                        'name' => $item['item_name'] ?? 'unknown',
+                    ])
+                );
+            }
+        }
     }
 
     /**
@@ -338,7 +349,16 @@ class KsefXmlGenerationService
             }
         }
 
-        return self::VAT_RATE_MAP[$rate] ?? 'zw';
+        if (!array_key_exists($rate, self::VAT_RATE_MAP)) {
+            throw new KsefValidationException(
+                __('Item ":name" has an unrecognized tax rate (:rate%). Only 23%, 8%, 5% and 0% are supported.', [
+                    'name' => $item['item_name'] ?? 'unknown',
+                    'rate' => $rate,
+                ])
+            );
+        }
+
+        return self::VAT_RATE_MAP[$rate];
     }
 
     private function formatAmount(float $amount): string

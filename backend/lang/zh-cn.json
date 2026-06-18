@@ -667,5 +667,7 @@
     "Review Message": "",
     "Purchase Confirmation": "购买确认",
     "The ticket price (net, excluding tax)": "票价（不含税）",
-    "The ticket price (gross, including tax)": "票价（含税）"
+    "The ticket price (gross, including tax)": "票价（含税）",
+    "Item \":name\" has no tax rate configured. Please add a tax to the ticket before sending to KSeF.": "项目\":name\"未配置税率。请在发送至KSeF之前为票务添加税率。",
+    "Item \":name\" has an unrecognized tax rate (:rate%). Only 23%, 8%, 5% and 0% are supported.": "项目\":name\"的税率无法识别（:rate%）。仅支持23%、8%、5%和0%。"
 }

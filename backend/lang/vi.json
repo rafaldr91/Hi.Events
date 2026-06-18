@@ -631,5 +631,7 @@
     "Review Message": "",
     "Purchase Confirmation": "Xác nhận mua hàng",
     "The ticket price (net, excluding tax)": "Giá vé (chưa bao gồm thuế)",
-    "The ticket price (gross, including tax)": "Giá vé (đã bao gồm thuế)"
+    "The ticket price (gross, including tax)": "Giá vé (đã bao gồm thuế)",
+    "Item \":name\" has no tax rate configured. Please add a tax to the ticket before sending to KSeF.": "Mục \":name\" chưa được cấu hình thuế suất. Vui lòng thêm thuế vào vé trước khi gửi đến KSeF.",
+    "Item \":name\" has an unrecognized tax rate (:rate%). Only 23%, 8%, 5% and 0% are supported.": "Mục \":name\" có thuế suất không được nhận dạng (:rate%). Chỉ hỗ trợ 23%, 8%, 5% và 0%."
 }
