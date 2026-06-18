@@ -493,5 +493,9 @@
     "Reply to :name": "Svara till :name",
     "This message was sent via your organizer contact form.": "Detta meddelande skickades via ditt kontaktformulär för arrangörer.",
     "Your email confirmation code is:": "Din e-postbekräftelsekod är:",
-    "Purchase Confirmation": "Köpbekräftelse"
+    "Purchase Confirmation": "Köpbekräftelse",
+    "The ticket price (net, excluding tax)": "Biljettpriset (netto, exkl. moms)",
+    "The ticket price (gross, including tax)": "Biljettpriset (brutto, inkl. moms)",
+    "Item \":name\" has no tax rate configured. Please add a tax to the ticket before sending to KSeF.": "Artikel \":name\" har ingen momssats konfigurerad. Lägg till en skatt på biljetten innan du skickar till KSeF.",
+    "Item \":name\" has an unrecognized tax rate (:rate%). Only 23%, 8%, 5% and 0% are supported.": "Artikel \":name\" har en okänd momssats (:rate%). Endast 23%, 8%, 5% och 0% stöds."
 }

@@ -92,6 +92,10 @@ class EmailTokenContextBuilder
 
         $ticketPrice = Currency::format($orderItem?->getPrice() ?? 0, $event->getCurrency());
         $ticketName = $orderItem?->getItemName();
+        $grossUnitPrice = $orderItem !== null && $orderItem->getTotalGross() !== null && $orderItem->getQuantity() > 0
+            ? $orderItem->getTotalGross() / $orderItem->getQuantity()
+            : ($orderItem?->getPrice() ?? 0);
+        $ticketPriceGross = Currency::format($grossUnitPrice, $event->getCurrency());
 
         // Add attendee and ticket objects
         $baseContext['attendee'] = [
@@ -102,6 +106,7 @@ class EmailTokenContextBuilder
         $baseContext['ticket'] = [
             'name' => $ticketName,
             'price' => $ticketPrice,
+            'price_gross' => $ticketPriceGross,
             'url' => sprintf(
                 Url::getFrontEndUrlFromConfig(Url::ATTENDEE_TICKET),
                 $event->getId(),
@@ -166,6 +171,7 @@ class EmailTokenContextBuilder
             $baseContext['ticket'] = [
                 'name' => 'VIP Pass',
                 'price' => '$75.00',
+                'price_gross' => '$81.00',
                 'url' => 'https://example.com/ticket/XYZ789',
             ];
         }

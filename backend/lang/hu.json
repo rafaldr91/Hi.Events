@@ -665,5 +665,9 @@
     "No completed paid orders on this account": "",
     "Event was created less than 24 hours ago": "",
     "Review Message": "",
-    "Purchase Confirmation": "Vásárlási visszaigazolás"
+    "Purchase Confirmation": "Vásárlási visszaigazolás",
+    "The ticket price (net, excluding tax)": "A jegy ára (nettó, adó nélkül)",
+    "The ticket price (gross, including tax)": "A jegy ára (bruttó, adóval)",
+    "Item \":name\" has no tax rate configured. Please add a tax to the ticket before sending to KSeF.": "A(z) \":name\" tételhez nincs adókulcs beállítva. Kérjük, adjon hozzá adót a jegyhez a KSeF-be küldés előtt.",
+    "Item \":name\" has an unrecognized tax rate (:rate%). Only 23%, 8%, 5% and 0% are supported.": "A(z) \":name\" tételnek ismeretlen adókulcsa van (:rate%). Csak 23%, 8%, 5% és 0% támogatott."
 }

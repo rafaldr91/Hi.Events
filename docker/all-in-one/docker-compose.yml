@@ -69,6 +69,8 @@ services:
   postgres:
     image: postgres:17-alpine
     restart: unless-stopped
+    ports:
+      - "5432:5432"
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-postgres} -d $${POSTGRES_DB:-hi-events}" ]
       interval: 10s
@@ -79,9 +81,10 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secret}
     volumes:
-      - pgdata2:/var/lib/postgresql/data2
+      - dba046e5d4e75b22665a2b715b74a5b9e739271d678f66a1ca08c228ae5264ab:/var/lib/postgresql/data
 
 volumes:
-  pgdata2:
+  dba046e5d4e75b22665a2b715b74a5b9e739271d678f66a1ca08c228ae5264ab:
+    external: true
   redisdata:
   storage:

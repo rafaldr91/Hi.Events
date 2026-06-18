@@ -86,6 +86,17 @@ class KsefXmlGenerationService
         if (empty($invoice->getItems())) {
             throw new KsefValidationException(__('Invoice has no line items'));
         }
+
+        foreach (is_array($invoice->getItems()) ? $invoice->getItems() : [] as $item) {
+            $taxes = $item['taxes_and_fees_rollup']['taxes'] ?? [];
+            if (empty($taxes)) {
+                throw new KsefValidationException(
+                    __('Item ":name" has no tax rate configured. Please add a tax to the ticket before sending to KSeF.', [
+                        'name' => $item['item_name'] ?? 'unknown',
+                    ])
+                );
+            }
+        }
     }
 
     /**
@@ -317,9 +328,37 @@ class KsefXmlGenerationService
             return 'zw';
         }
 
-        $rate = (float)($taxes[0]['rate'] ?? -1);
+        $tax = $taxes[0];
+        $type = $tax['type'] ?? 'PERCENTAGE';
+        $rate = (float)($tax['rate'] ?? -1);
 
-        return self::VAT_RATE_MAP[$rate] ?? 'zw';
+        if ($type === 'FIXED') {
+            if (preg_match('/(\d+(?:\.\d+)?)\s*%/', $tax['name'] ?? '', $matches)) {
+                $rate = (float)$matches[1];
+            } else {
+                $net = (float)($item['total_before_additions'] ?? 0);
+                if ($net > 0) {
+                    $calculated = $rate / $net * 100;
+                    $knownRates = array_keys(self::VAT_RATE_MAP);
+                    usort($knownRates, fn($a, $b) => abs($a - $calculated) <=> abs($b - $calculated));
+                    $nearest = $knownRates[0];
+                    $rate = abs($nearest - $calculated) <= 1.5 ? $nearest : -1;
+                } else {
+                    $rate = -1;
+                }
+            }
+        }
+
+        if (!array_key_exists($rate, self::VAT_RATE_MAP)) {
+            throw new KsefValidationException(
+                __('Item ":name" has an unrecognized tax rate (:rate%). Only 23%, 8%, 5% and 0% are supported.', [
+                    'name' => $item['item_name'] ?? 'unknown',
+                    'rate' => $rate,
+                ])
+            );
+        }
+
+        return self::VAT_RATE_MAP[$rate];
     }
 
     private function formatAmount(float $amount): string
