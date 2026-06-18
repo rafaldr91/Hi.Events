@@ -217,7 +217,7 @@ Please find your ticket details below.<br>
 
 <strong>Your Ticket</strong><br>
 <strong>Ticket Type:</strong> {{ ticket.name }}<br>
-<strong>Price:</strong> {{ ticket.price }}<br>
+<strong>Price:</strong> {{ ticket.price_gross }}<br>
 <strong>Attendee:</strong> {{ attendee.name }}<br>
 
 <strong>💡Remember:</strong> Please have your ticket ready when you arrive at the event.<br>
