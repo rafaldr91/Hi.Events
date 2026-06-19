@@ -56,9 +56,10 @@ class GenerateOrderInvoicePDFService
             throw new ResourceNotFoundException(__('Invoice not found'));
         }
 
+        $safeInvoiceNumber = str_replace(['/', '\\'], '-', $invoice->getInvoiceNumber());
         $filename = $order->getBuyerType() === 'individual'
-            ? 'potwierdzenie-' . $invoice->getInvoiceNumber() . '.pdf'
-            : $invoice->getInvoiceNumber() . '.pdf';
+            ? 'potwierdzenie-' . $safeInvoiceNumber . '.pdf'
+            : $safeInvoiceNumber . '.pdf';
 
         return new InvoicePdfResponseDTO(
             pdf: Pdf::loadView('invoice', [
