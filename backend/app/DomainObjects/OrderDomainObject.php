@@ -215,7 +215,18 @@ class OrderDomainObject extends Generated\OrderDomainObjectAbstract implements I
 
     public function getLatestInvoice(): ?InvoiceDomainObject
     {
-        return $this->getInvoices()?->sortByDesc(fn(InvoiceDomainObject $invoice) => $invoice->getId())->first();
+        return $this->getInvoices()
+            ?->filter(fn(InvoiceDomainObject $invoice) => $invoice->getDocumentType() !== 'correction')
+            ->sortByDesc(fn(InvoiceDomainObject $invoice) => $invoice->getId())
+            ->first();
+    }
+
+    public function getLatestCorrectionInvoice(): ?InvoiceDomainObject
+    {
+        return $this->getInvoices()
+            ?->filter(fn(InvoiceDomainObject $invoice) => $invoice->getDocumentType() === 'correction')
+            ->sortByDesc(fn(InvoiceDomainObject $invoice) => $invoice->getId())
+            ->first();
     }
 
     public function getStripePayment(): ?StripePaymentDomainObject

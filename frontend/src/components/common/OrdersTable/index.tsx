@@ -36,6 +36,7 @@ import {RefundOrderModal} from "../../modals/RefundOrderModal";
 import classes from "./OrdersTable.module.scss";
 import {useResendOrderConfirmation} from "../../../mutations/useResendOrderConfirmation.ts";
 import {useSendKsefInvoice} from "../../../mutations/useSendKsefInvoice.ts";
+import {useSendKsefCorrection} from "../../../mutations/useSendKsefCorrection.ts";
 import {formatNumber} from "../../../utilites/helpers.ts";
 import {useUrlHash} from "../../../hooks/useUrlHash.ts";
 import {useMarkOrderAsPaid} from "../../../mutations/useMarkOrderAsPaid.ts";
@@ -48,6 +49,31 @@ import {ColumnVisibilityToggle} from "../ColumnVisibilityToggle";
 import {CellContext} from "@tanstack/react-table";
 import {formatCurrency} from "../../../utilites/currency.ts";
 import {eventCheckoutUrl} from "../../../utilites/urlHelper.ts";
+
+const KsefCorrectionStatusBadge = ({invoice}: { invoice: Invoice }) => {
+    switch (invoice.ksef_status) {
+        case 'SENT':
+            return (
+                <Tooltip label={invoice.ksef_number ? t`KSeF correction number: ${invoice.ksef_number}` : t`Correction sent to KSeF`}>
+                    <Badge size="xs" color="teal" variant="light">{t`KSeF: Correction sent`}</Badge>
+                </Tooltip>
+            );
+        case 'PENDING':
+            return (
+                <Badge size="xs" color="blue" variant="light" leftSection={<IconLoader2 size={10}/>}>
+                    {t`KSeF: Correction pending`}
+                </Badge>
+            );
+        case 'FAILED':
+            return (
+                <Tooltip label={invoice.ksef_error_message ?? t`Unknown error`} multiline maw={300}>
+                    <Badge size="xs" color="red" variant="light">{t`KSeF: Correction failed`}</Badge>
+                </Tooltip>
+            );
+        default:
+            return null;
+    }
+};
 
 const KsefStatusBadge = ({invoice}: { invoice: Invoice }) => {
     switch (invoice.ksef_status) {
@@ -87,9 +113,11 @@ export const OrdersTable = ({orders, event}: OrdersTableProps) => {
     const [orderId, setOrderId] = useState<IdParam>();
     const [emailPopoverId, setEmailPopoverId] = useState<IdParam | null>(null);
     const [sendingKsefOrderId, setSendingKsefOrderId] = useState<IdParam | null>(null);
+    const [sendingKsefCorrectionOrderId, setSendingKsefCorrectionOrderId] = useState<IdParam | null>(null);
     const resendConfirmationMutation = useResendOrderConfirmation();
     const markAsPaidMutation = useMarkOrderAsPaid();
     const sendKsefInvoiceMutation = useSendKsefInvoice();
+    const sendKsefCorrectionMutation = useSendKsefCorrection();
     const clipboard = useClipboard({timeout: 2000});
 
     useUrlHash(/^#order-(\d+)$/, (matches => {
@@ -161,6 +189,20 @@ export const OrdersTable = ({orders, event}: OrdersTableProps) => {
                 }
             }
         );
+    };
+
+    const handleSendKsefCorrection = (eventId: IdParam, orderId: IdParam) => {
+        setSendingKsefCorrectionOrderId(orderId);
+        sendKsefCorrectionMutation.mutate({eventId, orderId}, {
+            onSuccess: () => {
+                showSuccess(t`Correction queued for KSeF submission`);
+                setSendingKsefCorrectionOrderId(null);
+            },
+            onError: () => {
+                showError(t`Failed to send KSeF correction. Please try again.`);
+                setSendingKsefCorrectionOrderId(null);
+            },
+        });
     };
 
     const handleSendKsefInvoice = (eventId: IdParam, orderId: IdParam) => {
@@ -246,6 +288,17 @@ export const OrdersTable = ({orders, event}: OrdersTableProps) => {
                                     : <IconSend size={14}/>}
                                 disabled={sendingKsefOrderId === order.id}
                             >{t`Send to KSeF`}</Menu.Item>
+                        )}
+
+                        {order.latest_invoice?.ksef_status === 'SENT' &&
+                            order.correction_invoice?.ksef_status !== 'SENT' && (
+                            <Menu.Item
+                                onClick={() => handleSendKsefCorrection(event.id, order.id)}
+                                leftSection={sendingKsefCorrectionOrderId === order.id
+                                    ? <Loader size={14}/>
+                                    : <IconSend size={14}/>}
+                                disabled={sendingKsefCorrectionOrderId === order.id}
+                            >{t`Send KSeF correction`}</Menu.Item>
                         )}
 
                         {order.status === 'AWAITING_OFFLINE_PAYMENT' && (
@@ -393,6 +446,9 @@ export const OrdersTable = ({orders, event}: OrdersTableProps) => {
                                         )}
                                         {order.latest_invoice.document_type === 'invoice' && (
                                             <KsefStatusBadge invoice={order.latest_invoice}/>
+                                        )}
+                                        {order.correction_invoice && (
+                                            <KsefCorrectionStatusBadge invoice={order.correction_invoice}/>
                                         )}
                                     </>
                                 ) : (

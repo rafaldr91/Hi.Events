@@ -239,6 +239,10 @@ msgstr "94103"
 msgid "A cancellation notice has been sent to"
 msgstr "取消通知已发送至"
 
+#: src/components/modals/CancelOrderModal/index.tsx:95
+msgid "A correction invoice will be automatically sent to KSeF."
+msgstr "更正发票将自动发送至 KSeF。"
+
 #: src/components/forms/QuestionForm/index.tsx:138
 msgid "A date input. Perfect for asking for a date of birth etc."
 msgstr "日期输入字段。非常适合询问出生日期等。"
@@ -304,7 +308,7 @@ msgstr "每个产品一个问题。例如，您的T恤尺码是多少？"
 msgid "A standard tax, like VAT or GST"
 msgstr "标准税，如增值税或消费税"
 
-#: src/components/common/OrdersTable/index.tsx:531
+#: src/components/common/OrdersTable/index.tsx:587
 msgid "Abandoned"
 msgstr "已放弃"
 
@@ -417,7 +421,7 @@ msgstr "需要操作:需要提供增值税信息"
 #: src/components/common/AdminEventsTable/index.tsx:112
 #: src/components/common/AffiliateTable/index.tsx:167
 #: src/components/common/AttendeeTable/index.tsx:346
-#: src/components/common/OrdersTable/index.tsx:540
+#: src/components/common/OrdersTable/index.tsx:596
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:475
 #: src/components/common/WaitlistTable/index.tsx:55
 #: src/components/common/WaitlistTable/index.tsx:210
@@ -739,7 +743,7 @@ msgstr "已退款"
 msgid "Also cancel this order"
 msgstr "同时取消此订单"
 
-#: src/components/modals/CancelOrderModal/index.tsx:76
+#: src/components/modals/CancelOrderModal/index.tsx:83
 msgid "Also refund this order"
 msgstr "同时退款此订单"
 
@@ -752,7 +756,7 @@ msgstr "始终可用"
 msgid "Amazing, Event, Keywords..."
 msgstr "令人惊叹, 活动, 关键词..."
 
-#: src/components/common/OrdersTable/index.tsx:443
+#: src/components/common/OrdersTable/index.tsx:499
 #: src/components/forms/TaxAndFeeForm/index.tsx:71
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:36
 msgid "Amount"
@@ -1047,7 +1051,7 @@ msgstr "尝试次数"
 msgid "Attendance and check-in rates across all events"
 msgstr "所有活动的出席率和签到率"
 
-#: src/components/common/AttendeeTicket/index.tsx:108
+#: src/components/common/AttendeeTicket/index.tsx:110
 #: src/components/common/Editor/Controls/InsertLiquidVariableControl.tsx:54
 #: src/components/common/Editor/Controls/InsertLiquidVariableControl.tsx:55
 #: src/components/common/QuestionsTable/index.tsx:461
@@ -1221,7 +1225,7 @@ msgid "Awaiting payment"
 msgstr "等待付款"
 
 #: src/components/common/AttendeeTable/index.tsx:289
-#: src/components/common/OrdersTable/index.tsx:519
+#: src/components/common/OrdersTable/index.tsx:575
 #: src/components/routes/event/attendees.tsx:28
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:356
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:57
@@ -1415,25 +1419,25 @@ msgstr "取消所有产品并释放回可用池"
 msgid "Cancel email change"
 msgstr "取消更改电子邮件"
 
-#: src/components/common/OrdersTable/index.tsx:276
+#: src/components/common/OrdersTable/index.tsx:329
 msgid "Cancel order"
 msgstr "取消订单"
 
-#: src/components/modals/CancelOrderModal/index.tsx:83
+#: src/components/modals/CancelOrderModal/index.tsx:101
 msgid "Cancel Order"
 msgstr "取消订单"
 
-#: src/components/modals/CancelOrderModal/index.tsx:57
+#: src/components/modals/CancelOrderModal/index.tsx:64
 msgid "Cancel Order {0}"
 msgstr "取消订单 {0}"
 
-#: src/components/modals/CancelOrderModal/index.tsx:67
+#: src/components/modals/CancelOrderModal/index.tsx:74
 msgid "Canceling will cancel all attendees associated with this order, and release the tickets back into the available pool."
 msgstr "取消将取消与此订单关联的所有参与者，并将门票释放回可用池。"
 
 #: src/components/common/AttendeeTable/index.tsx:295
-#: src/components/common/AttendeeTicket/index.tsx:149
-#: src/components/common/OrdersTable/index.tsx:525
+#: src/components/common/AttendeeTicket/index.tsx:151
+#: src/components/common/OrdersTable/index.tsx:581
 #: src/components/common/OrderStatusBadge/index.tsx:12
 #: src/components/common/WaitlistTable/index.tsx:27
 #: src/components/routes/admin/Messages/index.tsx:126
@@ -1849,7 +1853,7 @@ msgstr "完成付款以确保您的门票。"
 msgid "Complete your profile to join the team."
 msgstr "完成你的个人资料以加入团队。"
 
-#: src/components/common/OrdersTable/index.tsx:507
+#: src/components/common/OrdersTable/index.tsx:563
 #: src/components/modals/SendMessageModal/index.tsx:333
 #: src/components/routes/event/GettingStarted/index.tsx:75
 #: src/components/routes/event/orders.tsx:23
@@ -2115,7 +2119,7 @@ msgstr "继续付款"
 msgid "Control how platform fees are handled for this event"
 msgstr "控制此活动的平台费用如何处理"
 
-#: src/components/common/AttendeeTicket/index.tsx:208
+#: src/components/common/AttendeeTicket/index.tsx:210
 #: src/components/common/CopyButton/index.tsx:13
 #: src/components/modals/CheckInListSuccessModal/index.tsx:42
 #: src/components/modals/EventLiveCelebrationModal/index.tsx:75
@@ -2159,7 +2163,7 @@ msgstr "复制签到链接"
 msgid "Copy Code"
 msgstr "复制代码"
 
-#: src/components/common/OrdersTable/index.tsx:228
+#: src/components/common/OrdersTable/index.tsx:270
 msgid "Copy customer link"
 msgstr ""
 
@@ -2168,7 +2172,7 @@ msgid "Copy details to first attendee"
 msgstr "将详情复制到第一位参与者"
 
 #: src/components/common/AttendeeTable/index.tsx:197
-#: src/components/common/OrdersTable/index.tsx:346
+#: src/components/common/OrdersTable/index.tsx:399
 msgid "Copy Email"
 msgstr "复制邮箱"
 
@@ -2176,7 +2180,7 @@ msgstr "复制邮箱"
 msgid "Copy link"
 msgstr "复制链接"
 
-#: src/components/common/AttendeeTicket/index.tsx:208
+#: src/components/common/AttendeeTicket/index.tsx:210
 #: src/components/modals/ShareModal/index.tsx:171
 msgid "Copy Link"
 msgstr "复制链接"
@@ -2197,6 +2201,14 @@ msgstr "复制到剪贴板"
 #: src/components/common/PromoCodeTable/index.tsx:177
 msgid "Copy URL"
 msgstr "复制 URL"
+
+#: src/components/common/OrdersTable/index.tsx:198
+msgid "Correction queued for KSeF submission"
+msgstr "更正已加入 KSeF 提交队列"
+
+#: src/components/common/OrdersTable/index.tsx:57
+msgid "Correction sent to KSeF"
+msgstr "更正已发送至 KSeF"
 
 #: src/components/common/CheckoutQuestion/index.tsx:174
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:152
@@ -2486,11 +2498,11 @@ msgid "Custom template"
 msgstr "自定义模板"
 
 #: src/components/common/AdminOrdersTable/index.tsx:71
-#: src/components/common/OrdersTable/index.tsx:290
+#: src/components/common/OrdersTable/index.tsx:343
 msgid "Customer"
 msgstr "客户"
 
-#: src/components/common/OrdersTable/index.tsx:226
+#: src/components/common/OrdersTable/index.tsx:268
 msgid "Customer link copied to clipboard"
 msgstr ""
 
@@ -2577,7 +2589,7 @@ msgstr "每日销售、税费和费用明细"
 
 #: src/components/common/CapacityAssignmentList/index.tsx:153
 #: src/components/common/CheckInListList/index.tsx:174
-#: src/components/common/OrdersTable/index.tsx:272
+#: src/components/common/OrdersTable/index.tsx:325
 #: src/components/common/OrganizerWebhookTable/index.tsx:116
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:500
 #: src/components/common/PromoCodeTable/index.tsx:181
@@ -2614,7 +2626,7 @@ msgstr "数据所有权"
 msgid "Date"
 msgstr "日期"
 
-#: src/components/common/AttendeeTicket/index.tsx:75
+#: src/components/common/AttendeeTicket/index.tsx:77
 msgid "Date & Time"
 msgstr "日期和时间"
 
@@ -2820,7 +2832,7 @@ msgstr "下载 .ics"
 msgid "Download CSV"
 msgstr "下载 CSV"
 
-#: src/components/common/OrdersTable/index.tsx:232
+#: src/components/common/OrdersTable/index.tsx:274
 msgid "Download invoice"
 msgstr "下载发票"
 
@@ -2828,7 +2840,7 @@ msgstr "下载发票"
 msgid "Download Invoice"
 msgstr "下载发票"
 
-#: src/components/common/OrdersTable/index.tsx:237
+#: src/components/common/OrdersTable/index.tsx:279
 msgid "Download KSeF XML"
 msgstr "下载KSeF XML"
 
@@ -2840,12 +2852,12 @@ msgstr "下载二维码"
 msgid "Download sales, attendee, and financial reports for all completed orders."
 msgstr "下载所有已完成订单的销售、参与者和财务报告。"
 
-#: src/components/common/OrdersTable/index.tsx:128
+#: src/components/common/OrdersTable/index.tsx:156
 #: src/components/layouts/Checkout/index.tsx:87
 msgid "Downloading Invoice"
 msgstr "正在下载发票"
 
-#: src/components/common/OrdersTable/index.tsx:151
+#: src/components/common/OrdersTable/index.tsx:179
 msgid "Downloading KSeF XML"
 msgstr "正在下载KSeF XML"
 
@@ -3107,7 +3119,7 @@ msgid "Email Address"
 msgstr "电子邮件地址"
 
 #: src/components/common/AttendeeTable/index.tsx:118
-#: src/components/common/OrdersTable/index.tsx:182
+#: src/components/common/OrdersTable/index.tsx:224
 msgid "Email address copied to clipboard"
 msgstr "邮箱地址已复制到剪贴板"
 
@@ -3320,8 +3332,8 @@ msgstr "输入您的增值税号，包括国家代码，不带空格（例如，
 msgid "Entries will appear here when customers join the waitlist for sold out products."
 msgstr "当客户加入已售罄产品的候补名单时，条目将显示在此处。"
 
-#: src/components/common/OrdersTable/index.tsx:136
-#: src/components/common/OrdersTable/index.tsx:159
+#: src/components/common/OrdersTable/index.tsx:164
+#: src/components/common/OrdersTable/index.tsx:187
 #: src/components/common/OrganizerWebhookTable/index.tsx:149
 #: src/components/layouts/Checkout/index.tsx:95
 msgid "Error"
@@ -3687,7 +3699,7 @@ msgstr "取消与会者失败"
 msgid "Failed to cancel message"
 msgstr "取消消息失败"
 
-#: src/components/modals/CancelOrderModal/index.tsx:46
+#: src/components/modals/CancelOrderModal/index.tsx:53
 msgid "Failed to cancel order"
 msgstr "取消订单失败"
 
@@ -3733,12 +3745,12 @@ msgstr "删除问题失败"
 msgid "Failed to delete template"
 msgstr "删除模板失败"
 
-#: src/components/common/OrdersTable/index.tsx:137
+#: src/components/common/OrdersTable/index.tsx:165
 #: src/components/layouts/Checkout/index.tsx:96
 msgid "Failed to download invoice. Please try again."
 msgstr "下载发票失败。请重试。"
 
-#: src/components/common/OrdersTable/index.tsx:160
+#: src/components/common/OrdersTable/index.tsx:188
 msgid "Failed to download KSeF XML. Please try again."
 msgstr "下载KSeF XML失败，请重试。"
 
@@ -3826,9 +3838,13 @@ msgstr "保存模板失败"
 msgid "Failed to save VAT settings. Please try again."
 msgstr "保存增值税设置失败。请重试。"
 
-#: src/components/common/OrdersTable/index.tsx:174
+#: src/components/common/OrdersTable/index.tsx:216
 msgid "Failed to send invoice to KSeF. Please try again."
 msgstr "发送发票到KSeF失败。请重试。"
+
+#: src/components/common/OrdersTable/index.tsx:202
+msgid "Failed to send KSeF correction. Please try again."
+msgstr "发送 KSeF 更正失败。请重试。"
 
 #: src/components/common/ContactOrganizerModal/index.tsx:57
 msgid "Failed to send message. Please try again."
@@ -3927,7 +3943,7 @@ msgid "Fee Handling"
 msgstr "费用处理"
 
 #: src/components/common/InlineOrderSummary/index.tsx:140
-#: src/components/common/OrdersTable/index.tsx:454
+#: src/components/common/OrdersTable/index.tsx:510
 #: src/components/forms/ProductForm/index.tsx:409
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
 msgid "Fees"
@@ -4112,7 +4128,7 @@ msgstr "忘记密码？"
 msgid "Format template using placeholders: {number}, {month}, {year}. Leave blank to use {number} only. Example: {number}/{month}/{year}"
 msgstr "使用占位符的格式模板：{number}、{month}、{year}。留空则只使用 {number}。示例：{number}/{month}/{year}"
 
-#: src/components/common/AttendeeTicket/index.tsx:64
+#: src/components/common/AttendeeTicket/index.tsx:66
 #: src/components/common/Currency/index.tsx:90
 #: src/components/common/OrderSummary/index.tsx:46
 #: src/components/common/OrderSummary/index.tsx:99
@@ -4673,12 +4689,12 @@ msgstr "邀请用户"
 msgid "Invite Your Team"
 msgstr "邀请您的团队"
 
-#: src/components/common/OrdersTable/index.tsx:386
-#: src/components/common/OrdersTable/index.tsx:391
+#: src/components/common/OrdersTable/index.tsx:439
+#: src/components/common/OrdersTable/index.tsx:444
 msgid "Invoice"
 msgstr "发票"
 
-#: src/components/common/OrdersTable/index.tsx:133
+#: src/components/common/OrdersTable/index.tsx:161
 #: src/components/layouts/Checkout/index.tsx:92
 msgid "Invoice downloaded successfully"
 msgstr "发票下载成功"
@@ -4703,7 +4719,7 @@ msgstr "发票编号"
 msgid "Invoice prefix"
 msgstr "发票前缀"
 
-#: src/components/common/OrdersTable/index.tsx:170
+#: src/components/common/OrdersTable/index.tsx:212
 msgid "Invoice queued for KSeF submission"
 msgstr "发票已加入KSeF提交队列"
 
@@ -4737,11 +4753,11 @@ msgstr "意大利语"
 msgid "Item"
 msgstr "项目"
 
-#: src/components/common/OrdersTable/index.tsx:435
+#: src/components/common/OrdersTable/index.tsx:491
 msgid "item(s)"
 msgstr "项"
 
-#: src/components/common/OrdersTable/index.tsx:417
+#: src/components/common/OrdersTable/index.tsx:473
 msgid "Items"
 msgstr "项目"
 
@@ -4804,23 +4820,39 @@ msgstr "只是在找您的票？"
 msgid "Keep me updated on news and events from {0}"
 msgstr "及时向我更新来自{0}的新闻和活动"
 
-#: src/components/common/OrdersTable/index.tsx:56
+#: src/components/common/OrdersTable/index.tsx:57
+msgid "KSeF correction number: {0}"
+msgstr "KSeF 更正编号：{0}"
+
+#: src/components/common/OrdersTable/index.tsx:82
 msgid "KSeF number: {0}"
 msgstr "KSeF编号：{0}"
 
-#: src/components/common/OrdersTable/index.tsx:156
+#: src/components/common/OrdersTable/index.tsx:184
 msgid "KSeF XML downloaded successfully"
 msgstr "KSeF XML下载成功"
 
-#: src/components/common/OrdersTable/index.tsx:69
+#: src/components/common/OrdersTable/index.tsx:70
+msgid "KSeF: Correction failed"
+msgstr "KSeF：更正失败"
+
+#: src/components/common/OrdersTable/index.tsx:64
+msgid "KSeF: Correction pending"
+msgstr "KSeF：更正待处理"
+
+#: src/components/common/OrdersTable/index.tsx:58
+msgid "KSeF: Correction sent"
+msgstr "KSeF：更正已发送"
+
+#: src/components/common/OrdersTable/index.tsx:95
 msgid "KSeF: Failed"
 msgstr "KSeF：失败"
 
-#: src/components/common/OrdersTable/index.tsx:63
+#: src/components/common/OrdersTable/index.tsx:89
 msgid "KSeF: Pending"
 msgstr "KSeF：待处理"
 
-#: src/components/common/OrdersTable/index.tsx:57
+#: src/components/common/OrdersTable/index.tsx:83
 msgid "KSeF: Sent"
 msgstr "KSeF：已发送"
 
@@ -5000,7 +5032,7 @@ msgstr "正在加载 Webhook"
 msgid "Loading..."
 msgstr "加载中..."
 
-#: src/components/common/AttendeeTicket/index.tsx:91
+#: src/components/common/AttendeeTicket/index.tsx:93
 #: src/components/layouts/EventHomepage/index.tsx:426
 #: src/components/routes/event/Settings/index.tsx:46
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:84
@@ -5066,7 +5098,7 @@ msgstr "让您的活动上线"
 
 #: src/components/common/CapacityAssignmentList/index.tsx:140
 #: src/components/common/CheckInListList/index.tsx:143
-#: src/components/common/OrdersTable/index.tsx:218
+#: src/components/common/OrdersTable/index.tsx:260
 #: src/components/common/OrganizerWebhookTable/index.tsx:96
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:469
 #: src/components/common/PromoCodeTable/index.tsx:167
@@ -5082,7 +5114,7 @@ msgstr "管理与会者"
 msgid "Manage event"
 msgstr "管理活动"
 
-#: src/components/common/OrdersTable/index.tsx:220
+#: src/components/common/OrdersTable/index.tsx:262
 msgid "Manage order"
 msgstr "管理订单"
 
@@ -5135,7 +5167,7 @@ msgstr "手动添加与会者"
 msgid "Manually Add Attendee"
 msgstr "手动添加与会者"
 
-#: src/components/common/OrdersTable/index.tsx:253
+#: src/components/common/OrdersTable/index.tsx:306
 msgid "Mark as paid"
 msgstr "标记为已支付"
 
@@ -5157,7 +5189,7 @@ msgstr "媒介"
 
 #: src/components/common/AttendeeTable/index.tsx:188
 #: src/components/common/ContactOrganizerModal/index.tsx:88
-#: src/components/common/OrdersTable/index.tsx:337
+#: src/components/common/OrdersTable/index.tsx:390
 #: src/components/modals/SendMessageModal/index.tsx:353
 msgid "Message"
 msgstr "消息"
@@ -5178,7 +5210,7 @@ msgstr "留言参与者"
 msgid "Message attendees with specific tickets"
 msgstr "向与会者发送特定门票的信息"
 
-#: src/components/common/OrdersTable/index.tsx:222
+#: src/components/common/OrdersTable/index.tsx:264
 msgid "Message buyer"
 msgstr "留言买家"
 
@@ -5519,7 +5551,7 @@ msgstr "没有可用筛选器"
 msgid "No impact on your current or past transactions"
 msgstr "不影响您当前或过去的交易"
 
-#: src/components/common/OrdersTable/index.tsx:401
+#: src/components/common/OrdersTable/index.tsx:457
 msgid "No invoice"
 msgstr "无发票"
 
@@ -5548,7 +5580,7 @@ msgstr "暂无订单问题"
 msgid "No orders found"
 msgstr "未找到订单"
 
-#: src/components/common/OrdersTable/index.tsx:561
+#: src/components/common/OrdersTable/index.tsx:617
 msgid "No orders to show"
 msgstr "无订单显示"
 
@@ -5789,7 +5821,7 @@ msgstr "报价将在 {timeoutHours} 小时后过期。"
 msgid "Office or venue name"
 msgstr "办公室或场地名称"
 
-#: src/components/common/OrdersTable/index.tsx:484
+#: src/components/common/OrdersTable/index.tsx:540
 #: src/components/routes/product-widget/Payment/index.tsx:131
 msgid "Offline"
 msgstr "离线"
@@ -5997,7 +6029,7 @@ msgstr "订单货币"
 msgid "Order Date"
 msgstr "订购日期"
 
-#: src/components/common/OrdersTable/index.tsx:360
+#: src/components/common/OrdersTable/index.tsx:413
 #: src/components/modals/ManageAttendeeModal/index.tsx:166
 #: src/components/modals/ManageOrderModal/index.tsx:86
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:592
@@ -6012,11 +6044,11 @@ msgstr "订单邮箱"
 msgid "Order First Name"
 msgstr "订单名字"
 
-#: src/components/modals/CancelOrderModal/index.tsx:40
+#: src/components/modals/CancelOrderModal/index.tsx:47
 msgid "Order has been canceled and refunded. The order owner has been notified."
 msgstr "订单已取消并退款。订单所有者已收到通知。"
 
-#: src/components/modals/CancelOrderModal/index.tsx:41
+#: src/components/modals/CancelOrderModal/index.tsx:48
 msgid "Order has been canceled and the order owner has been notified."
 msgstr "订单已取消，并已通知订单所有者。"
 
@@ -6049,7 +6081,7 @@ msgstr "订单限制已设置"
 msgid "Order Locale"
 msgstr "订单语言"
 
-#: src/components/common/OrdersTable/index.tsx:108
+#: src/components/common/OrdersTable/index.tsx:136
 msgid "Order marked as paid"
 msgstr "订单已标记为已支付"
 
@@ -6197,7 +6229,7 @@ msgid "Organization Name"
 msgstr "组织名称"
 
 #: src/components/common/AdminEventsTable/index.tsx:87
-#: src/components/common/AttendeeTicket/index.tsx:82
+#: src/components/common/AttendeeTicket/index.tsx:84
 #: src/components/layouts/EventHomepage/index.tsx:519
 #: src/components/modals/EditUserModal/index.tsx:55
 #: src/components/modals/InviteUserModal/index.tsx:47
@@ -6280,7 +6312,7 @@ msgid "Organizers can only manage events and products. They cannot manage users,
 msgstr "组织者只能管理活动和产品。他们无法管理用户、账户设置或账单信息。"
 
 #: src/components/common/Editor/Controls/InsertLiquidVariableControl.tsx:98
-#: src/components/common/OrdersTable/index.tsx:489
+#: src/components/common/OrdersTable/index.tsx:545
 #: src/constants/eventCategories.ts:22
 msgid "Other"
 msgstr "其他"
@@ -6350,7 +6382,7 @@ msgstr "部分退款"
 msgid "Partially Refunded"
 msgstr "部分退款"
 
-#: src/components/common/OrdersTable/index.tsx:459
+#: src/components/common/OrdersTable/index.tsx:515
 msgid "Partially refunded: {0}"
 msgstr "部分退款:{0}"
 
@@ -6420,7 +6452,7 @@ msgstr "已暂停"
 msgid "Pay"
 msgstr "付款"
 
-#: src/components/common/AttendeeTicket/index.tsx:149
+#: src/components/common/AttendeeTicket/index.tsx:151
 msgid "Pay to unlock"
 msgstr "付款解锁"
 
@@ -6429,7 +6461,7 @@ msgstr "付款解锁"
 msgid "Payload"
 msgstr "负载数据"
 
-#: src/components/common/OrdersTable/index.tsx:470
+#: src/components/common/OrdersTable/index.tsx:526
 #: src/components/common/ProgressStepper/index.tsx:19
 #: src/components/forms/StripeCheckoutForm/index.tsx:127
 msgid "Payment"
@@ -6676,7 +6708,7 @@ msgstr "请输入5位数验证码"
 msgid "Please enter your VAT number"
 msgstr "请输入您的增值税号码"
 
-#: src/components/modals/CancelOrderModal/index.tsx:65
+#: src/components/modals/CancelOrderModal/index.tsx:72
 msgid "Please Note"
 msgstr "请注意"
 
@@ -6718,7 +6750,7 @@ msgstr "请验证您的电子邮件地址，以访问所有功能"
 msgid "Please wait before requesting another code"
 msgstr "请稍候再请求新的验证码"
 
-#: src/components/common/OrdersTable/index.tsx:152
+#: src/components/common/OrdersTable/index.tsx:180
 msgid "Please wait while we prepare the FA(3) XML..."
 msgstr "请稍候，正在准备FA(3) XML..."
 
@@ -6730,7 +6762,7 @@ msgstr "请稍候，我们正在准备导出您的推广员..."
 msgid "Please wait while we prepare your attendees for export..."
 msgstr "请稍候，我们正在准备导出您的与会者..."
 
-#: src/components/common/OrdersTable/index.tsx:129
+#: src/components/common/OrdersTable/index.tsx:157
 #: src/components/layouts/Checkout/index.tsx:88
 msgid "Please wait while we prepare your invoice..."
 msgstr "请稍候，我们正在准备您的发票..."
@@ -6841,7 +6873,7 @@ msgstr "打印门票"
 msgid "Print Tickets"
 msgstr "打印票"
 
-#: src/components/common/AttendeeTicket/index.tsx:196
+#: src/components/common/AttendeeTicket/index.tsx:198
 msgid "Print to PDF"
 msgstr "打印为PDF"
 
@@ -7163,7 +7195,7 @@ msgstr "刷新预览"
 msgid "Refund amount"
 msgstr "退款金额"
 
-#: src/components/common/OrdersTable/index.tsx:461
+#: src/components/common/OrdersTable/index.tsx:517
 msgid "Refund failed"
 msgstr "退款失败"
 
@@ -7171,7 +7203,7 @@ msgstr "退款失败"
 msgid "Refund Failed"
 msgstr "退款失败"
 
-#: src/components/common/OrdersTable/index.tsx:258
+#: src/components/common/OrdersTable/index.tsx:311
 msgid "Refund order"
 msgstr "退款订单"
 
@@ -7179,7 +7211,7 @@ msgstr "退款订单"
 msgid "Refund Order {0}"
 msgstr "退款订单 {0}"
 
-#: src/components/common/OrdersTable/index.tsx:460
+#: src/components/common/OrdersTable/index.tsx:516
 msgid "Refund pending"
 msgstr "退款处理中"
 
@@ -7199,7 +7231,7 @@ msgstr "退款状态"
 msgid "Refunded"
 msgstr "退款"
 
-#: src/components/common/OrdersTable/index.tsx:458
+#: src/components/common/OrdersTable/index.tsx:514
 msgid "Refunded: {0}"
 msgstr "已退款:{0}"
 
@@ -7287,7 +7319,7 @@ msgstr "{resendCooldown}秒后重新发送"
 msgid "Resend invitation"
 msgstr "重新发送邀请"
 
-#: src/components/common/OrdersTable/index.tsx:265
+#: src/components/common/OrdersTable/index.tsx:318
 msgid "Resend order email"
 msgstr "重新发送订单电子邮件"
 
@@ -7303,11 +7335,11 @@ msgstr "重新发送门票邮件"
 msgid "Resending..."
 msgstr "重新发送..."
 
-#: src/components/common/OrdersTable/index.tsx:513
+#: src/components/common/OrdersTable/index.tsx:569
 msgid "Reserved"
 msgstr "已预订"
 
-#: src/components/common/OrdersTable/index.tsx:407
+#: src/components/common/OrdersTable/index.tsx:463
 msgid "Reserved until"
 msgstr "保留至"
 
@@ -7830,6 +7862,11 @@ msgstr "作为测试发送"
 msgid "Send emails to attendees, ticket holders, or order owners. Messages can be sent immediately or scheduled for later."
 msgstr "向参与者、持票人或订单所有者发送电子邮件。消息可以立即发送或安排稍后发送。"
 
+#: src/components/common/OrdersTable/index.tsx:301
+#: src/components/modals/CancelOrderModal/index.tsx:94
+msgid "Send KSeF correction"
+msgstr "发送 KSeF 更正"
+
 #: src/components/modals/SendMessageModal/index.tsx:476
 msgid "Send me a copy"
 msgstr "给我发送副本"
@@ -7863,7 +7900,7 @@ msgstr "发送重置链接"
 msgid "Send Test"
 msgstr "发送测试"
 
-#: src/components/common/OrdersTable/index.tsx:248
+#: src/components/common/OrdersTable/index.tsx:290
 msgid "Send to KSeF"
 msgstr "发送到KSeF"
 
@@ -7892,7 +7929,7 @@ msgstr "客户下单时发送"
 msgid "Sent to each attendee with their ticket details"
 msgstr "发送给每位参会者及其门票详情"
 
-#: src/components/common/OrdersTable/index.tsx:56
+#: src/components/common/OrdersTable/index.tsx:82
 msgid "Sent to KSeF"
 msgstr "已发送到KSeF"
 
@@ -8217,7 +8254,7 @@ msgstr "统计数据基于账户创建日期"
 #: src/components/common/AffiliateTable/index.tsx:83
 #: src/components/common/AttendeeTable/index.tsx:274
 #: src/components/common/OrderDetails/index.tsx:51
-#: src/components/common/OrdersTable/index.tsx:498
+#: src/components/common/OrdersTable/index.tsx:554
 #: src/components/common/OrganizerWebhookTable/index.tsx:238
 #: src/components/common/WaitlistTable/index.tsx:181
 #: src/components/common/WebhookTable/index.tsx:238
@@ -8243,7 +8280,7 @@ msgstr "仍在处理您旧交易的退款。"
 msgid "Stop Impersonating"
 msgstr "停止模拟"
 
-#: src/components/common/OrdersTable/index.tsx:479
+#: src/components/common/OrdersTable/index.tsx:535
 #: src/components/routes/admin/Dashboard/index.tsx:424
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:93
 msgid "Stripe"
@@ -8297,8 +8334,8 @@ msgstr "主题："
 msgid "Subtotal"
 msgstr "小计"
 
-#: src/components/common/OrdersTable/index.tsx:132
-#: src/components/common/OrdersTable/index.tsx:155
+#: src/components/common/OrdersTable/index.tsx:160
+#: src/components/common/OrdersTable/index.tsx:183
 #: src/components/common/OrganizerWebhookTable/index.tsx:149
 #: src/components/layouts/Checkout/index.tsx:91
 msgid "Success"
@@ -8504,7 +8541,7 @@ msgid "Takes just a few minutes"
 msgstr "只需几分钟"
 
 #: src/components/common/AdminOrdersTable/index.tsx:84
-#: src/components/common/OrdersTable/index.tsx:453
+#: src/components/common/OrdersTable/index.tsx:509
 #: src/components/forms/TaxAndFeeForm/index.tsx:12
 #: src/components/forms/TaxAndFeeForm/index.tsx:39
 #: src/components/modals/CreateTaxOrFeeModal/index.tsx:36
@@ -8679,7 +8716,7 @@ msgstr "您查找的活动目前不可用。它可能已被删除、过期或 UR
 msgid "The full event address"
 msgstr "活动的完整地址"
 
-#: src/components/modals/CancelOrderModal/index.tsx:77
+#: src/components/modals/CancelOrderModal/index.tsx:84
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "订单全额将退款至客户的原始付款方式。"
 
@@ -8775,7 +8812,7 @@ msgstr "此类别中没有可用产品"
 msgid "There is a refund pending. Please wait for it to complete before requesting another refund."
 msgstr "退款正在处理中。请等待退款完成后再申请退款。"
 
-#: src/components/common/OrdersTable/index.tsx:109
+#: src/components/common/OrdersTable/index.tsx:137
 msgid "There was an error marking the order as paid"
 msgstr "标记订单为已支付时出错"
 
@@ -8783,7 +8820,7 @@ msgstr "标记订单为已支付时出错"
 msgid "There was an error processing your request. Please try again."
 msgstr "处理您的请求时出现错误。请重试。"
 
-#: src/components/common/OrdersTable/index.tsx:116
+#: src/components/common/OrdersTable/index.tsx:144
 msgid "There was an error sending your message"
 msgstr "发送信息时出现错误"
 
@@ -9040,7 +9077,7 @@ msgstr "票务持有人"
 msgid "Ticket Holders"
 msgstr "票务持有人"
 
-#: src/components/common/AttendeeTicket/index.tsx:168
+#: src/components/common/AttendeeTicket/index.tsx:170
 msgid "Ticket ID"
 msgstr "门票 ID"
 
@@ -9076,7 +9113,7 @@ msgstr "门票价格"
 msgid "Ticket resent successfully"
 msgstr "门票重新发送成功"
 
-#: src/components/common/AttendeeTicket/index.tsx:99
+#: src/components/common/AttendeeTicket/index.tsx:101
 #: src/components/routes/event/attendees.tsx:66
 msgid "Ticket Type"
 msgstr "票券类型"
@@ -9411,7 +9448,8 @@ msgstr "未知"
 msgid "Unknown Attendee"
 msgstr "未知参会者"
 
-#: src/components/common/OrdersTable/index.tsx:68
+#: src/components/common/OrdersTable/index.tsx:69
+#: src/components/common/OrdersTable/index.tsx:94
 msgid "Unknown error"
 msgstr "未知错误"
 
@@ -10483,7 +10521,7 @@ msgstr "在向与会者销售门票之前，您的活动必须处于上线状态
 msgid "Your logo, colors, and style on every page"
 msgstr "您的徽标、颜色和样式在每一页上"
 
-#: src/components/common/OrdersTable/index.tsx:115
+#: src/components/common/OrdersTable/index.tsx:143
 msgid "Your message has been sent"
 msgstr "您的信息已发送"
 
@@ -10527,7 +10565,7 @@ msgstr "您的订单正在等待付款"
 msgid "Your orders have been exported successfully."
 msgstr "您的订单已成功导出。"
 
-#: src/components/common/OrdersTable/index.tsx:564
+#: src/components/common/OrdersTable/index.tsx:620
 msgid "Your orders will appear here once they start rolling in."
 msgstr "您的订单一旦开始滚动，就会出现在这里。"
 

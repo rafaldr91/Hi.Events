@@ -239,6 +239,10 @@ msgstr "94103"
 msgid "A cancellation notice has been sent to"
 msgstr "Thông báo hủy đã được gửi đến"
 
+#: src/components/modals/CancelOrderModal/index.tsx:95
+msgid "A correction invoice will be automatically sent to KSeF."
+msgstr "Hóa đơn điều chỉnh sẽ tự động được gửi đến KSeF."
+
 #: src/components/forms/QuestionForm/index.tsx:138
 msgid "A date input. Perfect for asking for a date of birth etc."
 msgstr "Trường nhập ngày. Hoàn hảo để hỏi ngày sinh, v.v."
@@ -304,7 +308,7 @@ msgstr "Một câu hỏi duy nhất cho mỗi sản phẩm. Ví dụ: Kích thư
 msgid "A standard tax, like VAT or GST"
 msgstr "Thuế tiêu chuẩn, như VAT hoặc GST"
 
-#: src/components/common/OrdersTable/index.tsx:531
+#: src/components/common/OrdersTable/index.tsx:587
 msgid "Abandoned"
 msgstr "Đã bỏ"
 
@@ -417,7 +421,7 @@ msgstr "Cần hành động: Cần thông tin VAT"
 #: src/components/common/AdminEventsTable/index.tsx:112
 #: src/components/common/AffiliateTable/index.tsx:167
 #: src/components/common/AttendeeTable/index.tsx:346
-#: src/components/common/OrdersTable/index.tsx:540
+#: src/components/common/OrdersTable/index.tsx:596
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:475
 #: src/components/common/WaitlistTable/index.tsx:55
 #: src/components/common/WaitlistTable/index.tsx:210
@@ -739,7 +743,7 @@ msgstr "Đã hoàn tiền"
 msgid "Also cancel this order"
 msgstr "Cũng hủy đơn hàng này"
 
-#: src/components/modals/CancelOrderModal/index.tsx:76
+#: src/components/modals/CancelOrderModal/index.tsx:83
 msgid "Also refund this order"
 msgstr "Cũng hoàn tiền đơn hàng này"
 
@@ -752,7 +756,7 @@ msgstr "Luôn có sẵn"
 msgid "Amazing, Event, Keywords..."
 msgstr "Tuyệt vời, sự kiện, từ khóa ..."
 
-#: src/components/common/OrdersTable/index.tsx:443
+#: src/components/common/OrdersTable/index.tsx:499
 #: src/components/forms/TaxAndFeeForm/index.tsx:71
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:36
 msgid "Amount"
@@ -1047,7 +1051,7 @@ msgstr "Lần thử"
 msgid "Attendance and check-in rates across all events"
 msgstr "Tỷ lệ tham dự và check-in cho tất cả sự kiện"
 
-#: src/components/common/AttendeeTicket/index.tsx:108
+#: src/components/common/AttendeeTicket/index.tsx:110
 #: src/components/common/Editor/Controls/InsertLiquidVariableControl.tsx:54
 #: src/components/common/Editor/Controls/InsertLiquidVariableControl.tsx:55
 #: src/components/common/QuestionsTable/index.tsx:461
@@ -1221,7 +1225,7 @@ msgid "Awaiting payment"
 msgstr "Đang chờ thanh toán"
 
 #: src/components/common/AttendeeTable/index.tsx:289
-#: src/components/common/OrdersTable/index.tsx:519
+#: src/components/common/OrdersTable/index.tsx:575
 #: src/components/routes/event/attendees.tsx:28
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:356
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:57
@@ -1415,25 +1419,25 @@ msgstr "Hủy tất cả sản phẩm và trả lại pool có sẵn"
 msgid "Cancel email change"
 msgstr "Hủy thay đổi email"
 
-#: src/components/common/OrdersTable/index.tsx:276
+#: src/components/common/OrdersTable/index.tsx:329
 msgid "Cancel order"
 msgstr "Hủy đơn hàng"
 
-#: src/components/modals/CancelOrderModal/index.tsx:83
+#: src/components/modals/CancelOrderModal/index.tsx:101
 msgid "Cancel Order"
 msgstr "Hủy đơn hàng"
 
-#: src/components/modals/CancelOrderModal/index.tsx:57
+#: src/components/modals/CancelOrderModal/index.tsx:64
 msgid "Cancel Order {0}"
 msgstr "Hủy đơn hàng {0}"
 
-#: src/components/modals/CancelOrderModal/index.tsx:67
+#: src/components/modals/CancelOrderModal/index.tsx:74
 msgid "Canceling will cancel all attendees associated with this order, and release the tickets back into the available pool."
 msgstr "Hủy sẽ hủy tất cả người tham dự liên quan đến đơn hàng này và trả vé về pool có sẵn."
 
 #: src/components/common/AttendeeTable/index.tsx:295
-#: src/components/common/AttendeeTicket/index.tsx:149
-#: src/components/common/OrdersTable/index.tsx:525
+#: src/components/common/AttendeeTicket/index.tsx:151
+#: src/components/common/OrdersTable/index.tsx:581
 #: src/components/common/OrderStatusBadge/index.tsx:12
 #: src/components/common/WaitlistTable/index.tsx:27
 #: src/components/routes/admin/Messages/index.tsx:126
@@ -1849,7 +1853,7 @@ msgstr "Hoàn tất thanh toán để đảm bảo vé của bạn."
 msgid "Complete your profile to join the team."
 msgstr "Hoàn thành hồ sơ của bạn để tham gia nhóm."
 
-#: src/components/common/OrdersTable/index.tsx:507
+#: src/components/common/OrdersTable/index.tsx:563
 #: src/components/modals/SendMessageModal/index.tsx:333
 #: src/components/routes/event/GettingStarted/index.tsx:75
 #: src/components/routes/event/orders.tsx:23
@@ -2115,7 +2119,7 @@ msgstr "Tiếp tục thanh toán"
 msgid "Control how platform fees are handled for this event"
 msgstr "Kiểm soát cách xử lý phí nền tảng cho sự kiện này"
 
-#: src/components/common/AttendeeTicket/index.tsx:208
+#: src/components/common/AttendeeTicket/index.tsx:210
 #: src/components/common/CopyButton/index.tsx:13
 #: src/components/modals/CheckInListSuccessModal/index.tsx:42
 #: src/components/modals/EventLiveCelebrationModal/index.tsx:75
@@ -2159,7 +2163,7 @@ msgstr "Sao chép URL check-in"
 msgid "Copy Code"
 msgstr "Sao chép mã"
 
-#: src/components/common/OrdersTable/index.tsx:228
+#: src/components/common/OrdersTable/index.tsx:270
 msgid "Copy customer link"
 msgstr ""
 
@@ -2168,7 +2172,7 @@ msgid "Copy details to first attendee"
 msgstr "Sao chép chi tiết cho người tham dự đầu tiên"
 
 #: src/components/common/AttendeeTable/index.tsx:197
-#: src/components/common/OrdersTable/index.tsx:346
+#: src/components/common/OrdersTable/index.tsx:399
 msgid "Copy Email"
 msgstr "Sao chép Email"
 
@@ -2176,7 +2180,7 @@ msgstr "Sao chép Email"
 msgid "Copy link"
 msgstr "Sao chép liên kết"
 
-#: src/components/common/AttendeeTicket/index.tsx:208
+#: src/components/common/AttendeeTicket/index.tsx:210
 #: src/components/modals/ShareModal/index.tsx:171
 msgid "Copy Link"
 msgstr "Sao chép Link"
@@ -2197,6 +2201,14 @@ msgstr "Sao chép vào bộ nhớ tạm"
 #: src/components/common/PromoCodeTable/index.tsx:177
 msgid "Copy URL"
 msgstr "Sao chép URL"
+
+#: src/components/common/OrdersTable/index.tsx:198
+msgid "Correction queued for KSeF submission"
+msgstr "Bản sửa đổi đang chờ gửi đến KSeF"
+
+#: src/components/common/OrdersTable/index.tsx:57
+msgid "Correction sent to KSeF"
+msgstr "Bản sửa đổi đã gửi đến KSeF"
 
 #: src/components/common/CheckoutQuestion/index.tsx:174
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:152
@@ -2486,11 +2498,11 @@ msgid "Custom template"
 msgstr "Mẫu tùy chỉnh"
 
 #: src/components/common/AdminOrdersTable/index.tsx:71
-#: src/components/common/OrdersTable/index.tsx:290
+#: src/components/common/OrdersTable/index.tsx:343
 msgid "Customer"
 msgstr "Khách hàng"
 
-#: src/components/common/OrdersTable/index.tsx:226
+#: src/components/common/OrdersTable/index.tsx:268
 msgid "Customer link copied to clipboard"
 msgstr ""
 
@@ -2577,7 +2589,7 @@ msgstr "Chi tiết doanh số hàng ngày, thuế và phí"
 
 #: src/components/common/CapacityAssignmentList/index.tsx:153
 #: src/components/common/CheckInListList/index.tsx:174
-#: src/components/common/OrdersTable/index.tsx:272
+#: src/components/common/OrdersTable/index.tsx:325
 #: src/components/common/OrganizerWebhookTable/index.tsx:116
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:500
 #: src/components/common/PromoCodeTable/index.tsx:181
@@ -2614,7 +2626,7 @@ msgstr "Quyền sở hữu dữ liệu"
 msgid "Date"
 msgstr "Ngày"
 
-#: src/components/common/AttendeeTicket/index.tsx:75
+#: src/components/common/AttendeeTicket/index.tsx:77
 msgid "Date & Time"
 msgstr "Ngày và giờ"
 
@@ -2820,7 +2832,7 @@ msgstr "Tải xuống .ics"
 msgid "Download CSV"
 msgstr "Tải xuống CSV"
 
-#: src/components/common/OrdersTable/index.tsx:232
+#: src/components/common/OrdersTable/index.tsx:274
 msgid "Download invoice"
 msgstr "Tải xuống hóa đơn"
 
@@ -2828,7 +2840,7 @@ msgstr "Tải xuống hóa đơn"
 msgid "Download Invoice"
 msgstr "Tải xuống hóa đơn"
 
-#: src/components/common/OrdersTable/index.tsx:237
+#: src/components/common/OrdersTable/index.tsx:279
 msgid "Download KSeF XML"
 msgstr "Tải xuống XML KSeF"
 
@@ -2840,12 +2852,12 @@ msgstr "Tải về mã QR"
 msgid "Download sales, attendee, and financial reports for all completed orders."
 msgstr "Tải xuống báo cáo bán hàng, người tham dự và tài chính cho tất cả đơn hàng đã hoàn thành."
 
-#: src/components/common/OrdersTable/index.tsx:128
+#: src/components/common/OrdersTable/index.tsx:156
 #: src/components/layouts/Checkout/index.tsx:87
 msgid "Downloading Invoice"
 msgstr "Tải xuống hóa đơn"
 
-#: src/components/common/OrdersTable/index.tsx:151
+#: src/components/common/OrdersTable/index.tsx:179
 msgid "Downloading KSeF XML"
 msgstr "Đang tải xuống XML KSeF"
 
@@ -3107,7 +3119,7 @@ msgid "Email Address"
 msgstr "Địa chỉ Email"
 
 #: src/components/common/AttendeeTable/index.tsx:118
-#: src/components/common/OrdersTable/index.tsx:182
+#: src/components/common/OrdersTable/index.tsx:224
 msgid "Email address copied to clipboard"
 msgstr "Đã sao chép địa chỉ email vào clipboard"
 
@@ -3320,8 +3332,8 @@ msgstr "Nhập số VAT của bạn bao gồm mã quốc gia, không có khoản
 msgid "Entries will appear here when customers join the waitlist for sold out products."
 msgstr "Các mục sẽ xuất hiện ở đây khi khách hàng tham gia danh sách chờ cho các sản phẩm đã bán hết."
 
-#: src/components/common/OrdersTable/index.tsx:136
-#: src/components/common/OrdersTable/index.tsx:159
+#: src/components/common/OrdersTable/index.tsx:164
+#: src/components/common/OrdersTable/index.tsx:187
 #: src/components/common/OrganizerWebhookTable/index.tsx:149
 #: src/components/layouts/Checkout/index.tsx:95
 msgid "Error"
@@ -3687,7 +3699,7 @@ msgstr "Không thể hủy người tham dự"
 msgid "Failed to cancel message"
 msgstr "Không thể hủy tin nhắn"
 
-#: src/components/modals/CancelOrderModal/index.tsx:46
+#: src/components/modals/CancelOrderModal/index.tsx:53
 msgid "Failed to cancel order"
 msgstr "Không thể hủy đơn hàng"
 
@@ -3733,12 +3745,12 @@ msgstr "Không thể xóa câu hỏi"
 msgid "Failed to delete template"
 msgstr "Không thể xóa mẫu"
 
-#: src/components/common/OrdersTable/index.tsx:137
+#: src/components/common/OrdersTable/index.tsx:165
 #: src/components/layouts/Checkout/index.tsx:96
 msgid "Failed to download invoice. Please try again."
 msgstr "Không thể tải hóa đơn. Vui lòng thử lại."
 
-#: src/components/common/OrdersTable/index.tsx:160
+#: src/components/common/OrdersTable/index.tsx:188
 msgid "Failed to download KSeF XML. Please try again."
 msgstr "Không thể tải xuống XML KSeF. Vui lòng thử lại."
 
@@ -3826,9 +3838,13 @@ msgstr "Không thể lưu mẫu"
 msgid "Failed to save VAT settings. Please try again."
 msgstr "Không thể lưu cài đặt VAT. Vui lòng thử lại."
 
-#: src/components/common/OrdersTable/index.tsx:174
+#: src/components/common/OrdersTable/index.tsx:216
 msgid "Failed to send invoice to KSeF. Please try again."
 msgstr "Gửi hóa đơn đến KSeF thất bại. Vui lòng thử lại."
+
+#: src/components/common/OrdersTable/index.tsx:202
+msgid "Failed to send KSeF correction. Please try again."
+msgstr "Gửi bản sửa đổi KSeF thất bại. Vui lòng thử lại."
 
 #: src/components/common/ContactOrganizerModal/index.tsx:57
 msgid "Failed to send message. Please try again."
@@ -3927,7 +3943,7 @@ msgid "Fee Handling"
 msgstr "Xử lý phí"
 
 #: src/components/common/InlineOrderSummary/index.tsx:140
-#: src/components/common/OrdersTable/index.tsx:454
+#: src/components/common/OrdersTable/index.tsx:510
 #: src/components/forms/ProductForm/index.tsx:409
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
 msgid "Fees"
@@ -4112,7 +4128,7 @@ msgstr "Quên mật khẩu?"
 msgid "Format template using placeholders: {number}, {month}, {year}. Leave blank to use {number} only. Example: {number}/{month}/{year}"
 msgstr "Mẫu định dạng với các biến: {number}, {month}, {year}. Để trống để chỉ dùng {number}. Ví dụ: {number}/{month}/{year}"
 
-#: src/components/common/AttendeeTicket/index.tsx:64
+#: src/components/common/AttendeeTicket/index.tsx:66
 #: src/components/common/Currency/index.tsx:90
 #: src/components/common/OrderSummary/index.tsx:46
 #: src/components/common/OrderSummary/index.tsx:99
@@ -4673,12 +4689,12 @@ msgstr "Mời người dùng"
 msgid "Invite Your Team"
 msgstr "Mời nhóm của bạn"
 
-#: src/components/common/OrdersTable/index.tsx:386
-#: src/components/common/OrdersTable/index.tsx:391
+#: src/components/common/OrdersTable/index.tsx:439
+#: src/components/common/OrdersTable/index.tsx:444
 msgid "Invoice"
 msgstr "Hóa đơn"
 
-#: src/components/common/OrdersTable/index.tsx:133
+#: src/components/common/OrdersTable/index.tsx:161
 #: src/components/layouts/Checkout/index.tsx:92
 msgid "Invoice downloaded successfully"
 msgstr "Hóa đơn được tải xuống thành công"
@@ -4703,7 +4719,7 @@ msgstr "Đánh số hóa đơn"
 msgid "Invoice prefix"
 msgstr "Tiền tố hóa đơn"
 
-#: src/components/common/OrdersTable/index.tsx:170
+#: src/components/common/OrdersTable/index.tsx:212
 msgid "Invoice queued for KSeF submission"
 msgstr "Hóa đơn đã được xếp hàng để gửi KSeF"
 
@@ -4737,11 +4753,11 @@ msgstr "Tiếng Ý"
 msgid "Item"
 msgstr "Mục"
 
-#: src/components/common/OrdersTable/index.tsx:435
+#: src/components/common/OrdersTable/index.tsx:491
 msgid "item(s)"
 msgstr "mục"
 
-#: src/components/common/OrdersTable/index.tsx:417
+#: src/components/common/OrdersTable/index.tsx:473
 msgid "Items"
 msgstr "Mục"
 
@@ -4804,23 +4820,39 @@ msgstr "Chỉ đang tìm vé của bạn?"
 msgid "Keep me updated on news and events from {0}"
 msgstr "Giữ cho tôi cập nhật tin tức và sự kiện từ {0}"
 
-#: src/components/common/OrdersTable/index.tsx:56
+#: src/components/common/OrdersTable/index.tsx:57
+msgid "KSeF correction number: {0}"
+msgstr "Số bản sửa đổi KSeF: {0}"
+
+#: src/components/common/OrdersTable/index.tsx:82
 msgid "KSeF number: {0}"
 msgstr "Số KSeF: {0}"
 
-#: src/components/common/OrdersTable/index.tsx:156
+#: src/components/common/OrdersTable/index.tsx:184
 msgid "KSeF XML downloaded successfully"
 msgstr "Tải xuống XML KSeF thành công"
 
-#: src/components/common/OrdersTable/index.tsx:69
+#: src/components/common/OrdersTable/index.tsx:70
+msgid "KSeF: Correction failed"
+msgstr "KSeF: Bản sửa đổi thất bại"
+
+#: src/components/common/OrdersTable/index.tsx:64
+msgid "KSeF: Correction pending"
+msgstr "KSeF: Bản sửa đổi đang chờ"
+
+#: src/components/common/OrdersTable/index.tsx:58
+msgid "KSeF: Correction sent"
+msgstr "KSeF: Bản sửa đổi đã gửi"
+
+#: src/components/common/OrdersTable/index.tsx:95
 msgid "KSeF: Failed"
 msgstr "KSeF: Thất bại"
 
-#: src/components/common/OrdersTable/index.tsx:63
+#: src/components/common/OrdersTable/index.tsx:89
 msgid "KSeF: Pending"
 msgstr "KSeF: Đang chờ"
 
-#: src/components/common/OrdersTable/index.tsx:57
+#: src/components/common/OrdersTable/index.tsx:83
 msgid "KSeF: Sent"
 msgstr "KSeF: Đã gửi"
 
@@ -5000,7 +5032,7 @@ msgstr "Đang tải Webhooks"
 msgid "Loading..."
 msgstr "Đang tải ..."
 
-#: src/components/common/AttendeeTicket/index.tsx:91
+#: src/components/common/AttendeeTicket/index.tsx:93
 #: src/components/layouts/EventHomepage/index.tsx:426
 #: src/components/routes/event/Settings/index.tsx:46
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:84
@@ -5066,7 +5098,7 @@ msgstr "Làm cho sự kiện của bạn hoạt động"
 
 #: src/components/common/CapacityAssignmentList/index.tsx:140
 #: src/components/common/CheckInListList/index.tsx:143
-#: src/components/common/OrdersTable/index.tsx:218
+#: src/components/common/OrdersTable/index.tsx:260
 #: src/components/common/OrganizerWebhookTable/index.tsx:96
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:469
 #: src/components/common/PromoCodeTable/index.tsx:167
@@ -5082,7 +5114,7 @@ msgstr "Quản lý người tham dự"
 msgid "Manage event"
 msgstr "Quản lý sự kiện"
 
-#: src/components/common/OrdersTable/index.tsx:220
+#: src/components/common/OrdersTable/index.tsx:262
 msgid "Manage order"
 msgstr "Quản lý đơn hàng"
 
@@ -5135,7 +5167,7 @@ msgstr "Thêm một người tham dự theo cách thủ công"
 msgid "Manually Add Attendee"
 msgstr "Thêm người tham dự"
 
-#: src/components/common/OrdersTable/index.tsx:253
+#: src/components/common/OrdersTable/index.tsx:306
 msgid "Mark as paid"
 msgstr "Đánh dấu đã trả tiền"
 
@@ -5157,7 +5189,7 @@ msgstr "Phương tiện"
 
 #: src/components/common/AttendeeTable/index.tsx:188
 #: src/components/common/ContactOrganizerModal/index.tsx:88
-#: src/components/common/OrdersTable/index.tsx:337
+#: src/components/common/OrdersTable/index.tsx:390
 #: src/components/modals/SendMessageModal/index.tsx:353
 msgid "Message"
 msgstr "Tin nhắn"
@@ -5178,7 +5210,7 @@ msgstr "Tin nhắn cho người tham dự"
 msgid "Message attendees with specific tickets"
 msgstr "Nhắn tin cho người tham dự có vé cụ thể"
 
-#: src/components/common/OrdersTable/index.tsx:222
+#: src/components/common/OrdersTable/index.tsx:264
 msgid "Message buyer"
 msgstr "Tin nhắn cho người mua"
 
@@ -5519,7 +5551,7 @@ msgstr "Không có bộ lọc có sẵn"
 msgid "No impact on your current or past transactions"
 msgstr "Không ảnh hưởng đến giao dịch hiện tại hoặc quá khứ của bạn"
 
-#: src/components/common/OrdersTable/index.tsx:401
+#: src/components/common/OrdersTable/index.tsx:457
 msgid "No invoice"
 msgstr "Không có hóa đơn"
 
@@ -5548,7 +5580,7 @@ msgstr "Chưa có câu hỏi đơn hàng"
 msgid "No orders found"
 msgstr "Không tìm thấy đơn hàng"
 
-#: src/components/common/OrdersTable/index.tsx:561
+#: src/components/common/OrdersTable/index.tsx:617
 msgid "No orders to show"
 msgstr "Không có đơn hàng nào để hiển thị"
 
@@ -5789,7 +5821,7 @@ msgstr "Đề nghị hết hạn sau {timeoutHours} giờ."
 msgid "Office or venue name"
 msgstr "Tên văn phòng hoặc địa điểm"
 
-#: src/components/common/OrdersTable/index.tsx:484
+#: src/components/common/OrdersTable/index.tsx:540
 #: src/components/routes/product-widget/Payment/index.tsx:131
 msgid "Offline"
 msgstr "Ngoại tuyến"
@@ -5997,7 +6029,7 @@ msgstr "Đơn Vị Tiền Tệ Đơn Hàng"
 msgid "Order Date"
 msgstr "Ngày đơn hàng"
 
-#: src/components/common/OrdersTable/index.tsx:360
+#: src/components/common/OrdersTable/index.tsx:413
 #: src/components/modals/ManageAttendeeModal/index.tsx:166
 #: src/components/modals/ManageOrderModal/index.tsx:86
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:592
@@ -6012,11 +6044,11 @@ msgstr "Email đơn hàng"
 msgid "Order First Name"
 msgstr "Tên trong đơn hàng"
 
-#: src/components/modals/CancelOrderModal/index.tsx:40
+#: src/components/modals/CancelOrderModal/index.tsx:47
 msgid "Order has been canceled and refunded. The order owner has been notified."
 msgstr "Đơn hàng đã được hủy và hoàn tiền. Chủ đơn hàng đã được thông báo."
 
-#: src/components/modals/CancelOrderModal/index.tsx:41
+#: src/components/modals/CancelOrderModal/index.tsx:48
 msgid "Order has been canceled and the order owner has been notified."
 msgstr "Đơn hàng đã bị hủy và chủ sở hữu đơn hàng đã được thông báo."
 
@@ -6049,7 +6081,7 @@ msgstr "Giới hạn đơn hàng đã đặt"
 msgid "Order Locale"
 msgstr "Ngôn Ngữ Đơn Hàng"
 
-#: src/components/common/OrdersTable/index.tsx:108
+#: src/components/common/OrdersTable/index.tsx:136
 msgid "Order marked as paid"
 msgstr "Đơn hàng được đánh dấu là đã thanh toán"
 
@@ -6197,7 +6229,7 @@ msgid "Organization Name"
 msgstr "Tên tổ chức"
 
 #: src/components/common/AdminEventsTable/index.tsx:87
-#: src/components/common/AttendeeTicket/index.tsx:82
+#: src/components/common/AttendeeTicket/index.tsx:84
 #: src/components/layouts/EventHomepage/index.tsx:519
 #: src/components/modals/EditUserModal/index.tsx:55
 #: src/components/modals/InviteUserModal/index.tsx:47
@@ -6280,7 +6312,7 @@ msgid "Organizers can only manage events and products. They cannot manage users,
 msgstr "Ban tổ chức chỉ có thể quản lý các sự kiện và sản phẩm. Họ không thể quản lý người dùng, tài khoản hoặc thông tin thanh toán."
 
 #: src/components/common/Editor/Controls/InsertLiquidVariableControl.tsx:98
-#: src/components/common/OrdersTable/index.tsx:489
+#: src/components/common/OrdersTable/index.tsx:545
 #: src/constants/eventCategories.ts:22
 msgid "Other"
 msgstr "Khác"
@@ -6350,7 +6382,7 @@ msgstr "Hoàn tiền một phần"
 msgid "Partially Refunded"
 msgstr "Hoàn lại tiền một phần"
 
-#: src/components/common/OrdersTable/index.tsx:459
+#: src/components/common/OrdersTable/index.tsx:515
 msgid "Partially refunded: {0}"
 msgstr "Hoàn tiền một phần: {0}"
 
@@ -6420,7 +6452,7 @@ msgstr "Tạm dừng"
 msgid "Pay"
 msgstr "Thanh toán"
 
-#: src/components/common/AttendeeTicket/index.tsx:149
+#: src/components/common/AttendeeTicket/index.tsx:151
 msgid "Pay to unlock"
 msgstr "Thanh toán để mở khóa"
 
@@ -6429,7 +6461,7 @@ msgstr "Thanh toán để mở khóa"
 msgid "Payload"
 msgstr "Tải trọng"
 
-#: src/components/common/OrdersTable/index.tsx:470
+#: src/components/common/OrdersTable/index.tsx:526
 #: src/components/common/ProgressStepper/index.tsx:19
 #: src/components/forms/StripeCheckoutForm/index.tsx:127
 msgid "Payment"
@@ -6676,7 +6708,7 @@ msgstr "Vui lòng nhập mã 5 chữ số"
 msgid "Please enter your VAT number"
 msgstr "Vui lòng nhập mã số VAT của bạn"
 
-#: src/components/modals/CancelOrderModal/index.tsx:65
+#: src/components/modals/CancelOrderModal/index.tsx:72
 msgid "Please Note"
 msgstr "Xin lưu ý"
 
@@ -6718,7 +6750,7 @@ msgstr "Vui lòng xác minh địa chỉ email của bạn để truy cập tấ
 msgid "Please wait before requesting another code"
 msgstr "Vui lòng đợi trước khi yêu cầu mã khác"
 
-#: src/components/common/OrdersTable/index.tsx:152
+#: src/components/common/OrdersTable/index.tsx:180
 msgid "Please wait while we prepare the FA(3) XML..."
 msgstr "Vui lòng đợi trong khi chúng tôi chuẩn bị XML FA(3)..."
 
@@ -6730,7 +6762,7 @@ msgstr "Vui lòng đợi trong khi chúng tôi chuẩn bị xuất danh sách đ
 msgid "Please wait while we prepare your attendees for export..."
 msgstr "Vui lòng đợi trong khi chúng tôi chuẩn bị cho người tham dự xuất ra..."
 
-#: src/components/common/OrdersTable/index.tsx:129
+#: src/components/common/OrdersTable/index.tsx:157
 #: src/components/layouts/Checkout/index.tsx:88
 msgid "Please wait while we prepare your invoice..."
 msgstr "Vui lòng đợi trong khi chúng tôi chuẩn bị hóa đơn của bạn ..."
@@ -6841,7 +6873,7 @@ msgstr "In vé"
 msgid "Print Tickets"
 msgstr "In vé"
 
-#: src/components/common/AttendeeTicket/index.tsx:196
+#: src/components/common/AttendeeTicket/index.tsx:198
 msgid "Print to PDF"
 msgstr "In ra PDF"
 
@@ -7163,7 +7195,7 @@ msgstr "Làm mới xem trước"
 msgid "Refund amount"
 msgstr "Số tiền hoàn lại"
 
-#: src/components/common/OrdersTable/index.tsx:461
+#: src/components/common/OrdersTable/index.tsx:517
 msgid "Refund failed"
 msgstr "Hoàn tiền thất bại"
 
@@ -7171,7 +7203,7 @@ msgstr "Hoàn tiền thất bại"
 msgid "Refund Failed"
 msgstr "Hoàn tiền không thành công"
 
-#: src/components/common/OrdersTable/index.tsx:258
+#: src/components/common/OrdersTable/index.tsx:311
 msgid "Refund order"
 msgstr "Lệnh hoàn trả"
 
@@ -7179,7 +7211,7 @@ msgstr "Lệnh hoàn trả"
 msgid "Refund Order {0}"
 msgstr "Hoàn tiền đơn hàng {0}"
 
-#: src/components/common/OrdersTable/index.tsx:460
+#: src/components/common/OrdersTable/index.tsx:516
 msgid "Refund pending"
 msgstr "Hoàn tiền đang chờ"
 
@@ -7199,7 +7231,7 @@ msgstr "Trạng thái hoàn trả"
 msgid "Refunded"
 msgstr "Đã hoàn lại"
 
-#: src/components/common/OrdersTable/index.tsx:458
+#: src/components/common/OrdersTable/index.tsx:514
 msgid "Refunded: {0}"
 msgstr "Đã hoàn tiền: {0}"
 
@@ -7287,7 +7319,7 @@ msgstr "Gửi lại sau {resendCooldown}s"
 msgid "Resend invitation"
 msgstr "Gửi lại lời mời"
 
-#: src/components/common/OrdersTable/index.tsx:265
+#: src/components/common/OrdersTable/index.tsx:318
 msgid "Resend order email"
 msgstr "Gửi lại email đơn hàng"
 
@@ -7303,11 +7335,11 @@ msgstr "Gửi lại email vé"
 msgid "Resending..."
 msgstr "Đang gửi lại ..."
 
-#: src/components/common/OrdersTable/index.tsx:513
+#: src/components/common/OrdersTable/index.tsx:569
 msgid "Reserved"
 msgstr "Đã đặt chỗ"
 
-#: src/components/common/OrdersTable/index.tsx:407
+#: src/components/common/OrdersTable/index.tsx:463
 msgid "Reserved until"
 msgstr "Đặt trước đến"
 
@@ -7830,6 +7862,11 @@ msgstr "Gửi thử"
 msgid "Send emails to attendees, ticket holders, or order owners. Messages can be sent immediately or scheduled for later."
 msgstr "Gửi email cho người tham dự, chủ vé hoặc chủ đơn hàng. Tin nhắn có thể được gửi ngay hoặc lên lịch gửi sau."
 
+#: src/components/common/OrdersTable/index.tsx:301
+#: src/components/modals/CancelOrderModal/index.tsx:94
+msgid "Send KSeF correction"
+msgstr "Gửi bản sửa đổi KSeF"
+
 #: src/components/modals/SendMessageModal/index.tsx:476
 msgid "Send me a copy"
 msgstr "Gửi cho tôi một bản sao"
@@ -7863,7 +7900,7 @@ msgstr "Gửi liên kết đặt lại"
 msgid "Send Test"
 msgstr "Gửi Test"
 
-#: src/components/common/OrdersTable/index.tsx:248
+#: src/components/common/OrdersTable/index.tsx:290
 msgid "Send to KSeF"
 msgstr "Gửi đến KSeF"
 
@@ -7892,7 +7929,7 @@ msgstr "Gửi cho khách hàng khi họ đặt hàng"
 msgid "Sent to each attendee with their ticket details"
 msgstr "Gửi cho từng người tham dự với chi tiết vé của họ"
 
-#: src/components/common/OrdersTable/index.tsx:56
+#: src/components/common/OrdersTable/index.tsx:82
 msgid "Sent to KSeF"
 msgstr "Đã gửi đến KSeF"
 
@@ -8217,7 +8254,7 @@ msgstr "Thống kê dựa trên ngày tạo tài khoản"
 #: src/components/common/AffiliateTable/index.tsx:83
 #: src/components/common/AttendeeTable/index.tsx:274
 #: src/components/common/OrderDetails/index.tsx:51
-#: src/components/common/OrdersTable/index.tsx:498
+#: src/components/common/OrdersTable/index.tsx:554
 #: src/components/common/OrganizerWebhookTable/index.tsx:238
 #: src/components/common/WaitlistTable/index.tsx:181
 #: src/components/common/WebhookTable/index.tsx:238
@@ -8243,7 +8280,7 @@ msgstr "Vẫn đang xử lý hoàn tiền cho các giao dịch cũ của bạn."
 msgid "Stop Impersonating"
 msgstr "Dừng Mạo Danh"
 
-#: src/components/common/OrdersTable/index.tsx:479
+#: src/components/common/OrdersTable/index.tsx:535
 #: src/components/routes/admin/Dashboard/index.tsx:424
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:93
 msgid "Stripe"
@@ -8297,8 +8334,8 @@ msgstr "Tiêu đề:"
 msgid "Subtotal"
 msgstr "Tổng phụ"
 
-#: src/components/common/OrdersTable/index.tsx:132
-#: src/components/common/OrdersTable/index.tsx:155
+#: src/components/common/OrdersTable/index.tsx:160
+#: src/components/common/OrdersTable/index.tsx:183
 #: src/components/common/OrganizerWebhookTable/index.tsx:149
 #: src/components/layouts/Checkout/index.tsx:91
 msgid "Success"
@@ -8504,7 +8541,7 @@ msgid "Takes just a few minutes"
 msgstr "Chỉ mất vài phút"
 
 #: src/components/common/AdminOrdersTable/index.tsx:84
-#: src/components/common/OrdersTable/index.tsx:453
+#: src/components/common/OrdersTable/index.tsx:509
 #: src/components/forms/TaxAndFeeForm/index.tsx:12
 #: src/components/forms/TaxAndFeeForm/index.tsx:39
 #: src/components/modals/CreateTaxOrFeeModal/index.tsx:36
@@ -8679,7 +8716,7 @@ msgstr "Sự kiện bạn đang tìm kiếm hiện không khả dụng. Nó có 
 msgid "The full event address"
 msgstr "Địa chỉ đầy đủ của sự kiện"
 
-#: src/components/modals/CancelOrderModal/index.tsx:77
+#: src/components/modals/CancelOrderModal/index.tsx:84
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "Toàn bộ số tiền đơn hàng sẽ được hoàn lại phương thức thanh toán gốc của khách hàng."
 
@@ -8775,7 +8812,7 @@ msgstr "Không có sản phẩm nào trong danh mục này"
 msgid "There is a refund pending. Please wait for it to complete before requesting another refund."
 msgstr "Có một khoản hoàn tiền đang chờ xử lý. Vui lòng đợi hoàn tất trước khi yêu cầu hoàn tiền khác."
 
-#: src/components/common/OrdersTable/index.tsx:109
+#: src/components/common/OrdersTable/index.tsx:137
 msgid "There was an error marking the order as paid"
 msgstr "Đã xảy ra lỗi khi đánh dấu đơn hàng là đã thanh toán"
 
@@ -8783,7 +8820,7 @@ msgstr "Đã xảy ra lỗi khi đánh dấu đơn hàng là đã thanh toán"
 msgid "There was an error processing your request. Please try again."
 msgstr "Đã xảy ra lỗi khi xử lý yêu cầu của bạn. Vui lòng thử lại."
 
-#: src/components/common/OrdersTable/index.tsx:116
+#: src/components/common/OrdersTable/index.tsx:144
 msgid "There was an error sending your message"
 msgstr "Có một lỗi khi gửi tin nhắn của bạn"
 
@@ -9040,7 +9077,7 @@ msgstr "Người sở hữu vé"
 msgid "Ticket Holders"
 msgstr "Người giữ vé"
 
-#: src/components/common/AttendeeTicket/index.tsx:168
+#: src/components/common/AttendeeTicket/index.tsx:170
 msgid "Ticket ID"
 msgstr "ID vé"
 
@@ -9076,7 +9113,7 @@ msgstr "Giá vé"
 msgid "Ticket resent successfully"
 msgstr "Vé đã được gửi lại thành công"
 
-#: src/components/common/AttendeeTicket/index.tsx:99
+#: src/components/common/AttendeeTicket/index.tsx:101
 #: src/components/routes/event/attendees.tsx:66
 msgid "Ticket Type"
 msgstr "Loại vé"
@@ -9411,7 +9448,8 @@ msgstr "Không rõ"
 msgid "Unknown Attendee"
 msgstr "Người tham dự không xác định"
 
-#: src/components/common/OrdersTable/index.tsx:68
+#: src/components/common/OrdersTable/index.tsx:69
+#: src/components/common/OrdersTable/index.tsx:94
 msgid "Unknown error"
 msgstr "Lỗi không xác định"
 
@@ -10483,7 +10521,7 @@ msgstr "Sự kiện của bạn phải được phát trực tiếp trước khi
 msgid "Your logo, colors, and style on every page"
 msgstr "Logo, màu sắc và phong cách của bạn trên mọi trang"
 
-#: src/components/common/OrdersTable/index.tsx:115
+#: src/components/common/OrdersTable/index.tsx:143
 msgid "Your message has been sent"
 msgstr "Tin nhắn của bạn đã được gửi"
 
@@ -10527,7 +10565,7 @@ msgstr "Đơn hàng của bạn đang chờ thanh toán"
 msgid "Your orders have been exported successfully."
 msgstr "Đơn hàng của bạn đã được xuất thành công."
 
-#: src/components/common/OrdersTable/index.tsx:564
+#: src/components/common/OrdersTable/index.tsx:620
 msgid "Your orders will appear here once they start rolling in."
 msgstr "Đơn hàng của bạn sẽ xuất hiện ở đây sau khi chúng bắt đầu tham gia."
 

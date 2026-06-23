@@ -28,6 +28,57 @@ class KsefInvoiceSenderService
     ) {
     }
 
+    public function sendCorrection(
+        InvoiceDomainObject $correction,
+        InvoiceDomainObject $originalInvoice,
+        OrderDomainObject $order,
+    ): KsefSendResult {
+        $invoiceId = $correction->getId();
+        $this->logger->info('KSeF: starting correction send', ['invoice_id' => $invoiceId]);
+
+        try {
+            $sellerNip = $this->getSellerNip($correction->getAccountId());
+            $xml = $this->xmlGenerationService->generateCorrection($correction, $originalInvoice, $order);
+        } catch (KsefValidationException $e) {
+            return new KsefSendResult(success: false, errorMessage: $e->getMessage(), isRetryable: false);
+        }
+
+        try {
+            $client = $this->buildClient($sellerNip);
+
+            $openResponse = $client->sessions()->online()->open([
+                'formCode' => 'FA (3)',
+            ])->object();
+
+            $sessionRef = $openResponse->referenceNumber;
+            $this->logger->info('KSeF: correction session opened', ['invoice_id' => $invoiceId, 'session_ref' => $sessionRef]);
+
+            $sendResponse = $client->sessions()->online()->send(
+                new SendXmlRequest(
+                    referenceNumber: ReferenceNumber::from($sessionRef),
+                    faktura: $xml,
+                )
+            )->object();
+
+            $invoiceRef = $sendResponse->referenceNumber;
+            $this->logger->info('KSeF: correction sent', ['invoice_id' => $invoiceId, 'invoice_ref' => $invoiceRef]);
+
+            $client->sessions()->online()->close(['referenceNumber' => $sessionRef]);
+
+            $ksefNumber = $this->pollForKsefNumber($client, $sessionRef, $invoiceRef, $invoiceId);
+
+            $this->logger->info('KSeF: correction accepted', ['invoice_id' => $invoiceId, 'ksef_number' => $ksefNumber]);
+
+            return new KsefSendResult(success: true, ksefNumber: $ksefNumber, referenceNumber: $invoiceRef);
+        } catch (Throwable $e) {
+            $this->logger->error('KSeF: correction send failed', ['invoice_id' => $invoiceId, 'error' => $e->getMessage()]);
+
+            $isRetryable = !($e instanceof ClientException && $e->getCode() < 500);
+
+            return new KsefSendResult(success: false, errorMessage: $e->getMessage(), isRetryable: $isRetryable);
+        }
+    }
+
     public function send(InvoiceDomainObject $invoice, OrderDomainObject $order): KsefSendResult
     {
         $invoiceId = $invoice->getId();

@@ -89,4 +89,23 @@ class InvoiceRepository extends BaseRepository implements InvoiceRepositoryInter
 
         return (int)($query->max('sequence_number') ?? 0);
     }
+
+    public function findLatestByDocumentTypeForOrder(int $orderId, string $documentType): ?InvoiceDomainObject
+    {
+        $invoice = $this->model
+            ->where('order_id', $orderId)
+            ->where('document_type', $documentType)
+            ->orderBy('id', 'desc')
+            ->first();
+
+        return $this->handleSingleResult($invoice);
+    }
+
+    public function countCorrectionsByOriginalInvoiceId(int $originalInvoiceId): int
+    {
+        return $this->model
+            ->where('corrected_invoice_id', $originalInvoiceId)
+            ->where('document_type', 'correction')
+            ->count();
+    }
 }

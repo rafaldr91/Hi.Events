@@ -23,6 +23,12 @@ export const CancelOrderModal = ({onClose, orderId}: RefundOrderModalProps) => {
     const {data: event, data: {products} = {}} = useGetEvent(eventId);
     const cancelOrderMutation = useCancelOrder();
     const [shouldRefund, setShouldRefund] = useState(true);
+    const [shouldSendKsefCorrection, setShouldSendKsefCorrection] = useState(true);
+
+    const isKsefCorrectionApplicable = !!(
+        order?.latest_invoice?.ksef_status === 'SENT' &&
+        order?.correction_invoice?.ksef_status !== 'SENT'
+    );
 
     const isRefundable = order && !order.is_free_order
         && order.status !== 'AWAITING_OFFLINE_PAYMENT'
@@ -31,9 +37,10 @@ export const CancelOrderModal = ({onClose, orderId}: RefundOrderModalProps) => {
 
     const handleCancelOrder = () => {
         cancelOrderMutation.mutate({
-            eventId, 
+            eventId,
             orderId,
-            refund: shouldRefund && isRefundable
+            refund: shouldRefund && isRefundable,
+            sendKsefCorrection: shouldSendKsefCorrection && isKsefCorrectionApplicable,
         }, {
             onSuccess: () => {
                 const message = shouldRefund && isRefundable 
@@ -70,11 +77,22 @@ export const CancelOrderModal = ({onClose, orderId}: RefundOrderModalProps) => {
             {isRefundable && (
                 <Checkbox
                     mt={20}
-                    mb={20}
+                    mb={10}
                     checked={shouldRefund}
                     onChange={(event) => setShouldRefund(event.currentTarget.checked)}
                     label={t`Also refund this order`}
                     description={t`The full order amount will be refunded to the customer's original payment method.`}
+                />
+            )}
+
+            {isKsefCorrectionApplicable && (
+                <Checkbox
+                    mt={isRefundable ? 0 : 20}
+                    mb={20}
+                    checked={shouldSendKsefCorrection}
+                    onChange={(e) => setShouldSendKsefCorrection(e.currentTarget.checked)}
+                    label={t`Send KSeF correction`}
+                    description={t`A correction invoice will be automatically sent to KSeF.`}
                 />
             )}
 

@@ -55,9 +55,16 @@ class OrderResource extends BaseResource
                 !is_null($this->getQuestionAndAnswerViews()),
                 fn() => QuestionAnswerViewResource::collection($this->getQuestionAndAnswerViews()),
             ),
+            'buyer_type' => $this->getBuyerType(),
+            'company_name' => $this->getCompanyName(),
+            'company_nip' => $this->getCompanyNip(),
             'latest_invoice' => $this->when(
                 !is_null($this->getLatestInvoice()),
                 fn() => (new InvoiceResource($this->getLatestInvoice()))->toArray($request),
+            ),
+            'correction_invoice' => $this->when(
+                !is_null($this->getLatestCorrectionInvoice()),
+                fn() => (new InvoiceResource($this->getLatestCorrectionInvoice()))->toArray($request),
             ),
         ];
     }

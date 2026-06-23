@@ -86,6 +86,7 @@ use HiEvents\Http\Actions\Messages\SendMessageAction;
 use HiEvents\Http\Actions\Orders\CancelOrderAction;
 use HiEvents\Http\Actions\Orders\DownloadOrderInvoiceAction;
 use HiEvents\Http\Actions\Orders\DownloadOrderKsefXmlAction;
+use HiEvents\Http\Actions\Orders\SendOrderKsefCorrectionAction;
 use HiEvents\Http\Actions\Orders\SendOrderKsefInvoiceAction;
 use HiEvents\Http\Actions\Orders\EditOrderAction;
 use HiEvents\Http\Actions\Orders\ExportOrdersAction;
@@ -370,6 +371,7 @@ $router->middleware(['auth:api'])->group(
         $router->get('/events/{event_id}/orders/{order_id}/invoice', DownloadOrderInvoiceAction::class);
         $router->get('/events/{event_id}/orders/{order_id}/invoice/xml', DownloadOrderKsefXmlAction::class);
         $router->post('/events/{event_id}/orders/{order_id}/invoice/send-ksef', SendOrderKsefInvoiceAction::class);
+        $router->post('/events/{event_id}/orders/{order_id}/invoice/send-ksef-correction', SendOrderKsefCorrectionAction::class);
 
         // Questions
         $router->post('/events/{event_id}/questions', CreateQuestionAction::class);

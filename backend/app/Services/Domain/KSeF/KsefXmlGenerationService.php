@@ -41,6 +41,35 @@ class KsefXmlGenerationService
     /**
      * @throws KsefValidationException
      */
+    public function generateCorrection(
+        InvoiceDomainObject $correction,
+        InvoiceDomainObject $originalInvoice,
+        OrderDomainObject $order,
+    ): string {
+        $vatSettings = $this->accountVatSettingRepository->findByAccountId($correction->getAccountId());
+
+        $this->validate($correction, $order, $vatSettings);
+
+        $sellerNip = $this->normalizeNip($vatSettings->getVatNumber());
+        $buyerNip  = $this->normalizeNip($order->getCompanyNip());
+
+        $dom = new DOMDocument('1.0', 'UTF-8');
+        $dom->formatOutput = true;
+
+        $root = $dom->createElementNS(self::FA_NAMESPACE, 'Faktura');
+        $dom->appendChild($root);
+
+        $root->appendChild($this->buildNaglowek($dom));
+        $root->appendChild($this->buildPodmiot1($dom, $vatSettings, $sellerNip));
+        $root->appendChild($this->buildPodmiot2($dom, $order, $buyerNip));
+        $root->appendChild($this->buildFaCorrection($dom, $correction, $originalInvoice, $order));
+
+        return $dom->saveXML();
+    }
+
+    /**
+     * @throws KsefValidationException
+     */
     public function generate(InvoiceDomainObject $invoice, OrderDomainObject $order): string
     {
         $vatSettings = $this->accountVatSettingRepository->findByAccountId($invoice->getAccountId());
@@ -364,5 +393,72 @@ class KsefXmlGenerationService
     private function formatAmount(float $amount): string
     {
         return number_format($amount, 2, '.', '');
+    }
+
+    private function buildFaCorrection(
+        DOMDocument $dom,
+        InvoiceDomainObject $correction,
+        InvoiceDomainObject $originalInvoice,
+        OrderDomainObject $order,
+    ): DOMElement {
+        $fa = $dom->createElement('Fa');
+
+        $fa->appendChild($dom->createElement('KodWaluty', 'PLN'));
+        $fa->appendChild($dom->createElement('P_1', substr($correction->getIssueDate(), 0, 10)));
+        $fa->appendChild($dom->createElement('P_2', $correction->getInvoiceNumber()));
+
+        $items    = is_array($correction->getItems()) ? $correction->getItems() : [];
+        $totalFee = (float)($order->getTotalFee() ?? 0);
+
+        $vatSummary = $this->buildVatSummary($items, 0.0);
+        foreach (self::VAT_SUMMARY_FIELDS as $rateCode => $fields) {
+            if (!isset($vatSummary[$rateCode])) {
+                continue;
+            }
+            $amounts = $vatSummary[$rateCode];
+            $fa->appendChild($dom->createElement($fields['net'], $this->formatAmount($amounts['net'])));
+            if ($fields['vat'] !== null) {
+                $fa->appendChild($dom->createElement($fields['vat'], $this->formatAmount($amounts['vat'])));
+            }
+        }
+
+        $fa->appendChild($dom->createElement('P_15', $this->formatAmount((float)$correction->getTotalAmount())));
+
+        $fa->appendChild($this->buildAdnotacje($dom));
+        $fa->appendChild($dom->createElement('RodzajFaktury', 'KOR'));
+
+        $daneFaKorygowanej = $dom->createElement('DaneFaKorygowanej');
+        $daneFaKorygowanej->appendChild($dom->createElement(
+            'DataWystFaKorygowanej',
+            substr($originalInvoice->getIssueDate(), 0, 10),
+        ));
+        $daneFaKorygowanej->appendChild($dom->createElement(
+            'NrFaKorygowanej',
+            $originalInvoice->getInvoiceNumber(),
+        ));
+        if ($originalInvoice->getKsefNumber() !== null) {
+            $daneFaKorygowanej->appendChild($dom->createElement('NrKSeF', '1'));
+            $daneFaKorygowanej->appendChild($dom->createElement(
+                'NrKSeFFaKorygowanej',
+                $originalInvoice->getKsefNumber(),
+            ));
+        } else {
+            $daneFaKorygowanej->appendChild($dom->createElement('NrKSeFN', '1'));
+        }
+        $fa->appendChild($daneFaKorygowanej);
+
+        $lineNo = 1;
+        foreach ($items as $item) {
+            $fa->appendChild($this->buildFaWiersz($dom, $item, $lineNo++));
+        }
+
+        if ($totalFee > 0.0) {
+            $correctionFee = -$totalFee;
+            $fa->appendChild($this->buildFeeWiersz($dom, $correctionFee, $lineNo));
+        }
+
+        $fa->appendChild($this->buildPlatnosc($dom, $correction));
+
+        return $fa;
     }
 }

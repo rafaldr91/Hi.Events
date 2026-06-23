@@ -239,6 +239,10 @@ msgstr "94103"
 msgid "A cancellation notice has been sent to"
 msgstr "Lemondási értesítés elküldve ide:"
 
+#: src/components/modals/CancelOrderModal/index.tsx:95
+msgid "A correction invoice will be automatically sent to KSeF."
+msgstr "A korrekciós számla automatikusan elküldésre kerül a KSeF-nek."
+
 #: src/components/forms/QuestionForm/index.tsx:138
 msgid "A date input. Perfect for asking for a date of birth etc."
 msgstr "Dátum beviteli mező. Tökéletes születési dátum stb. kérésére."
@@ -304,7 +308,7 @@ msgstr "Egyetlen kérdés termékenként. Pl. Mi a póló mérete?"
 msgid "A standard tax, like VAT or GST"
 msgstr "Standard adó, mint az ÁFA vagy a GST"
 
-#: src/components/common/OrdersTable/index.tsx:531
+#: src/components/common/OrdersTable/index.tsx:587
 msgid "Abandoned"
 msgstr "Elhagyott"
 
@@ -417,7 +421,7 @@ msgstr "Beavatkozás szükséges: ÁFA információ szükséges"
 #: src/components/common/AdminEventsTable/index.tsx:112
 #: src/components/common/AffiliateTable/index.tsx:167
 #: src/components/common/AttendeeTable/index.tsx:346
-#: src/components/common/OrdersTable/index.tsx:540
+#: src/components/common/OrdersTable/index.tsx:596
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:475
 #: src/components/common/WaitlistTable/index.tsx:55
 #: src/components/common/WaitlistTable/index.tsx:210
@@ -739,7 +743,7 @@ msgstr "Már visszatérítve"
 msgid "Also cancel this order"
 msgstr "A megrendelés lemondása is"
 
-#: src/components/modals/CancelOrderModal/index.tsx:76
+#: src/components/modals/CancelOrderModal/index.tsx:83
 msgid "Also refund this order"
 msgstr "A megrendelés visszatérítése is"
 
@@ -752,7 +756,7 @@ msgstr "Mindig elérhető"
 msgid "Amazing, Event, Keywords..."
 msgstr "Csodálatos, esemény, kulcsszavak..."
 
-#: src/components/common/OrdersTable/index.tsx:443
+#: src/components/common/OrdersTable/index.tsx:499
 #: src/components/forms/TaxAndFeeForm/index.tsx:71
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:36
 msgid "Amount"
@@ -1047,7 +1051,7 @@ msgstr "Próbálkozások"
 msgid "Attendance and check-in rates across all events"
 msgstr "Részvétel és bejelentkezési arányok minden eseményen"
 
-#: src/components/common/AttendeeTicket/index.tsx:108
+#: src/components/common/AttendeeTicket/index.tsx:110
 #: src/components/common/Editor/Controls/InsertLiquidVariableControl.tsx:54
 #: src/components/common/Editor/Controls/InsertLiquidVariableControl.tsx:55
 #: src/components/common/QuestionsTable/index.tsx:461
@@ -1221,7 +1225,7 @@ msgid "Awaiting payment"
 msgstr "Fizetésre vár"
 
 #: src/components/common/AttendeeTable/index.tsx:289
-#: src/components/common/OrdersTable/index.tsx:519
+#: src/components/common/OrdersTable/index.tsx:575
 #: src/components/routes/event/attendees.tsx:28
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:356
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:57
@@ -1415,25 +1419,25 @@ msgstr "Minden termék törlése és visszahelyezése a készletbe"
 msgid "Cancel email change"
 msgstr "E-mail cím módosításának visszavonása"
 
-#: src/components/common/OrdersTable/index.tsx:276
+#: src/components/common/OrdersTable/index.tsx:329
 msgid "Cancel order"
 msgstr "Megrendelés törlése"
 
-#: src/components/modals/CancelOrderModal/index.tsx:83
+#: src/components/modals/CancelOrderModal/index.tsx:101
 msgid "Cancel Order"
 msgstr "Megrendelés törlése"
 
-#: src/components/modals/CancelOrderModal/index.tsx:57
+#: src/components/modals/CancelOrderModal/index.tsx:64
 msgid "Cancel Order {0}"
 msgstr "Megrendelés törlése {0}"
 
-#: src/components/modals/CancelOrderModal/index.tsx:67
+#: src/components/modals/CancelOrderModal/index.tsx:74
 msgid "Canceling will cancel all attendees associated with this order, and release the tickets back into the available pool."
 msgstr "A törlés törli az összes ehhez a rendeléshez tartozó résztvevőt, és visszahelyezi a jegyeket az elérhető készletbe."
 
 #: src/components/common/AttendeeTable/index.tsx:295
-#: src/components/common/AttendeeTicket/index.tsx:149
-#: src/components/common/OrdersTable/index.tsx:525
+#: src/components/common/AttendeeTicket/index.tsx:151
+#: src/components/common/OrdersTable/index.tsx:581
 #: src/components/common/OrderStatusBadge/index.tsx:12
 #: src/components/common/WaitlistTable/index.tsx:27
 #: src/components/routes/admin/Messages/index.tsx:126
@@ -1849,7 +1853,7 @@ msgstr "Fejezze be a fizetést a jegyek biztosításához."
 msgid "Complete your profile to join the team."
 msgstr "Töltse ki a profilját a csapathoz való csatlakozáshoz."
 
-#: src/components/common/OrdersTable/index.tsx:507
+#: src/components/common/OrdersTable/index.tsx:563
 #: src/components/modals/SendMessageModal/index.tsx:333
 #: src/components/routes/event/GettingStarted/index.tsx:75
 #: src/components/routes/event/orders.tsx:23
@@ -2115,7 +2119,7 @@ msgstr "Tovább a fizetéshez"
 msgid "Control how platform fees are handled for this event"
 msgstr "Szabályozza, hogyan kezelje a platformdíjakat ezen eseménynél"
 
-#: src/components/common/AttendeeTicket/index.tsx:208
+#: src/components/common/AttendeeTicket/index.tsx:210
 #: src/components/common/CopyButton/index.tsx:13
 #: src/components/modals/CheckInListSuccessModal/index.tsx:42
 #: src/components/modals/EventLiveCelebrationModal/index.tsx:75
@@ -2159,7 +2163,7 @@ msgstr "Bejelentkezési URL másolása"
 msgid "Copy Code"
 msgstr "Kód másolása"
 
-#: src/components/common/OrdersTable/index.tsx:228
+#: src/components/common/OrdersTable/index.tsx:270
 msgid "Copy customer link"
 msgstr ""
 
@@ -2168,7 +2172,7 @@ msgid "Copy details to first attendee"
 msgstr "Adatok másolása az első résztvevőhöz"
 
 #: src/components/common/AttendeeTable/index.tsx:197
-#: src/components/common/OrdersTable/index.tsx:346
+#: src/components/common/OrdersTable/index.tsx:399
 msgid "Copy Email"
 msgstr "E-mail másolása"
 
@@ -2176,7 +2180,7 @@ msgstr "E-mail másolása"
 msgid "Copy link"
 msgstr "Link másolása"
 
-#: src/components/common/AttendeeTicket/index.tsx:208
+#: src/components/common/AttendeeTicket/index.tsx:210
 #: src/components/modals/ShareModal/index.tsx:171
 msgid "Copy Link"
 msgstr "Link másolása"
@@ -2197,6 +2201,14 @@ msgstr "Vágólapra másolás"
 #: src/components/common/PromoCodeTable/index.tsx:177
 msgid "Copy URL"
 msgstr "URL másolása"
+
+#: src/components/common/OrdersTable/index.tsx:198
+msgid "Correction queued for KSeF submission"
+msgstr "Korrekció KSeF beküldési sorba helyezve"
+
+#: src/components/common/OrdersTable/index.tsx:57
+msgid "Correction sent to KSeF"
+msgstr "Korrekció elküldve KSeF-be"
 
 #: src/components/common/CheckoutQuestion/index.tsx:174
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:152
@@ -2486,11 +2498,11 @@ msgid "Custom template"
 msgstr "Egyedi sablon"
 
 #: src/components/common/AdminOrdersTable/index.tsx:71
-#: src/components/common/OrdersTable/index.tsx:290
+#: src/components/common/OrdersTable/index.tsx:343
 msgid "Customer"
 msgstr "Ügyfél"
 
-#: src/components/common/OrdersTable/index.tsx:226
+#: src/components/common/OrdersTable/index.tsx:268
 msgid "Customer link copied to clipboard"
 msgstr ""
 
@@ -2577,7 +2589,7 @@ msgstr "Napi értékesítési, adó- és díj bontás."
 
 #: src/components/common/CapacityAssignmentList/index.tsx:153
 #: src/components/common/CheckInListList/index.tsx:174
-#: src/components/common/OrdersTable/index.tsx:272
+#: src/components/common/OrdersTable/index.tsx:325
 #: src/components/common/OrganizerWebhookTable/index.tsx:116
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:500
 #: src/components/common/PromoCodeTable/index.tsx:181
@@ -2614,7 +2626,7 @@ msgstr "Adattulajdonlás"
 msgid "Date"
 msgstr "Dátum"
 
-#: src/components/common/AttendeeTicket/index.tsx:75
+#: src/components/common/AttendeeTicket/index.tsx:77
 msgid "Date & Time"
 msgstr "Dátum és idő"
 
@@ -2820,7 +2832,7 @@ msgstr ".ics letöltése"
 msgid "Download CSV"
 msgstr "CSV letöltése"
 
-#: src/components/common/OrdersTable/index.tsx:232
+#: src/components/common/OrdersTable/index.tsx:274
 msgid "Download invoice"
 msgstr "Számla letöltése"
 
@@ -2828,7 +2840,7 @@ msgstr "Számla letöltése"
 msgid "Download Invoice"
 msgstr "Számla letöltése"
 
-#: src/components/common/OrdersTable/index.tsx:237
+#: src/components/common/OrdersTable/index.tsx:279
 msgid "Download KSeF XML"
 msgstr "KSeF XML letöltése"
 
@@ -2840,12 +2852,12 @@ msgstr "QR kód letöltése"
 msgid "Download sales, attendee, and financial reports for all completed orders."
 msgstr "Értékesítési, résztvevői és pénzügyi jelentések letöltése minden befejezett rendeléshez."
 
-#: src/components/common/OrdersTable/index.tsx:128
+#: src/components/common/OrdersTable/index.tsx:156
 #: src/components/layouts/Checkout/index.tsx:87
 msgid "Downloading Invoice"
 msgstr "Számla letöltése"
 
-#: src/components/common/OrdersTable/index.tsx:151
+#: src/components/common/OrdersTable/index.tsx:179
 msgid "Downloading KSeF XML"
 msgstr "KSeF XML letöltése folyamatban"
 
@@ -3107,7 +3119,7 @@ msgid "Email Address"
 msgstr "E-mail cím"
 
 #: src/components/common/AttendeeTable/index.tsx:118
-#: src/components/common/OrdersTable/index.tsx:182
+#: src/components/common/OrdersTable/index.tsx:224
 msgid "Email address copied to clipboard"
 msgstr "E-mail cím vágólapra másolva"
 
@@ -3320,8 +3332,8 @@ msgstr "Írja be az ÁFA számát az országkóddal együtt, szóközök nélkü
 msgid "Entries will appear here when customers join the waitlist for sold out products."
 msgstr "A bejegyzések itt jelennek meg, amikor az ügyfelek csatlakoznak az elfogyott termékek várólistájához."
 
-#: src/components/common/OrdersTable/index.tsx:136
-#: src/components/common/OrdersTable/index.tsx:159
+#: src/components/common/OrdersTable/index.tsx:164
+#: src/components/common/OrdersTable/index.tsx:187
 #: src/components/common/OrganizerWebhookTable/index.tsx:149
 #: src/components/layouts/Checkout/index.tsx:95
 msgid "Error"
@@ -3687,7 +3699,7 @@ msgstr "Nem sikerült törölni a résztvevőt."
 msgid "Failed to cancel message"
 msgstr "Nem sikerült törölni az üzenetet"
 
-#: src/components/modals/CancelOrderModal/index.tsx:46
+#: src/components/modals/CancelOrderModal/index.tsx:53
 msgid "Failed to cancel order"
 msgstr "Nem sikerült törölni a megrendelést."
 
@@ -3733,12 +3745,12 @@ msgstr "A kérdés törlése sikertelen"
 msgid "Failed to delete template"
 msgstr "A sablon törlése sikertelen"
 
-#: src/components/common/OrdersTable/index.tsx:137
+#: src/components/common/OrdersTable/index.tsx:165
 #: src/components/layouts/Checkout/index.tsx:96
 msgid "Failed to download invoice. Please try again."
 msgstr "Nem sikerült letölteni a számlát. Kérjük, próbálja újra."
 
-#: src/components/common/OrdersTable/index.tsx:160
+#: src/components/common/OrdersTable/index.tsx:188
 msgid "Failed to download KSeF XML. Please try again."
 msgstr "Nem sikerült letölteni a KSeF XML-t. Kérjük, próbálja újra."
 
@@ -3826,9 +3838,13 @@ msgstr "A sablon mentése sikertelen"
 msgid "Failed to save VAT settings. Please try again."
 msgstr "Az ÁFA beállítások mentése sikertelen. Kérjük, próbálja újra."
 
-#: src/components/common/OrdersTable/index.tsx:174
+#: src/components/common/OrdersTable/index.tsx:216
 msgid "Failed to send invoice to KSeF. Please try again."
 msgstr "Számla KSeF-be küldése sikertelen. Kérjük, próbálja újra."
+
+#: src/components/common/OrdersTable/index.tsx:202
+msgid "Failed to send KSeF correction. Please try again."
+msgstr "KSeF-korrekció küldése sikertelen. Kérjük, próbálja újra."
 
 #: src/components/common/ContactOrganizerModal/index.tsx:57
 msgid "Failed to send message. Please try again."
@@ -3927,7 +3943,7 @@ msgid "Fee Handling"
 msgstr "Díjkezelés"
 
 #: src/components/common/InlineOrderSummary/index.tsx:140
-#: src/components/common/OrdersTable/index.tsx:454
+#: src/components/common/OrdersTable/index.tsx:510
 #: src/components/forms/ProductForm/index.tsx:409
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
 msgid "Fees"
@@ -4112,7 +4128,7 @@ msgstr "Elfelejtette jelszavát?"
 msgid "Format template using placeholders: {number}, {month}, {year}. Leave blank to use {number} only. Example: {number}/{month}/{year}"
 msgstr "Formátumssablon helyőrzőkkel: {number}, {month}, {year}. Hagyja üresen a csak {number} használatához. Példa: {number}/{month}/{year}"
 
-#: src/components/common/AttendeeTicket/index.tsx:64
+#: src/components/common/AttendeeTicket/index.tsx:66
 #: src/components/common/Currency/index.tsx:90
 #: src/components/common/OrderSummary/index.tsx:46
 #: src/components/common/OrderSummary/index.tsx:99
@@ -4673,12 +4689,12 @@ msgstr "Felhasználó meghívása"
 msgid "Invite Your Team"
 msgstr "Hívja meg csapatát"
 
-#: src/components/common/OrdersTable/index.tsx:386
-#: src/components/common/OrdersTable/index.tsx:391
+#: src/components/common/OrdersTable/index.tsx:439
+#: src/components/common/OrdersTable/index.tsx:444
 msgid "Invoice"
 msgstr "Számla"
 
-#: src/components/common/OrdersTable/index.tsx:133
+#: src/components/common/OrdersTable/index.tsx:161
 #: src/components/layouts/Checkout/index.tsx:92
 msgid "Invoice downloaded successfully"
 msgstr "Számla sikeresen letöltve"
@@ -4703,7 +4719,7 @@ msgstr "Számlaszámozás"
 msgid "Invoice prefix"
 msgstr "Számla előtag"
 
-#: src/components/common/OrdersTable/index.tsx:170
+#: src/components/common/OrdersTable/index.tsx:212
 msgid "Invoice queued for KSeF submission"
 msgstr "Számla KSeF beküldési sorba helyezve"
 
@@ -4737,11 +4753,11 @@ msgstr "Olasz"
 msgid "Item"
 msgstr "Tétel"
 
-#: src/components/common/OrdersTable/index.tsx:435
+#: src/components/common/OrdersTable/index.tsx:491
 msgid "item(s)"
 msgstr "tétel(ek)"
 
-#: src/components/common/OrdersTable/index.tsx:417
+#: src/components/common/OrdersTable/index.tsx:473
 msgid "Items"
 msgstr "Tételek"
 
@@ -4804,23 +4820,39 @@ msgstr "Csak a jegyeit keresi?"
 msgid "Keep me updated on news and events from {0}"
 msgstr "Tartsanak naprakészen a {0} híreivel és eseményeivel"
 
-#: src/components/common/OrdersTable/index.tsx:56
+#: src/components/common/OrdersTable/index.tsx:57
+msgid "KSeF correction number: {0}"
+msgstr "KSeF-korrekció száma: {0}"
+
+#: src/components/common/OrdersTable/index.tsx:82
 msgid "KSeF number: {0}"
 msgstr "KSeF szám: {0}"
 
-#: src/components/common/OrdersTable/index.tsx:156
+#: src/components/common/OrdersTable/index.tsx:184
 msgid "KSeF XML downloaded successfully"
 msgstr "KSeF XML sikeresen letöltve"
 
-#: src/components/common/OrdersTable/index.tsx:69
+#: src/components/common/OrdersTable/index.tsx:70
+msgid "KSeF: Correction failed"
+msgstr "KSeF: Korrekció sikertelen"
+
+#: src/components/common/OrdersTable/index.tsx:64
+msgid "KSeF: Correction pending"
+msgstr "KSeF: Korrekció függőben"
+
+#: src/components/common/OrdersTable/index.tsx:58
+msgid "KSeF: Correction sent"
+msgstr "KSeF: Korrekció elküldve"
+
+#: src/components/common/OrdersTable/index.tsx:95
 msgid "KSeF: Failed"
 msgstr "KSeF: Sikertelen"
 
-#: src/components/common/OrdersTable/index.tsx:63
+#: src/components/common/OrdersTable/index.tsx:89
 msgid "KSeF: Pending"
 msgstr "KSeF: Függőben"
 
-#: src/components/common/OrdersTable/index.tsx:57
+#: src/components/common/OrdersTable/index.tsx:83
 msgid "KSeF: Sent"
 msgstr "KSeF: Elküldve"
 
@@ -5000,7 +5032,7 @@ msgstr "Webhookok betöltése"
 msgid "Loading..."
 msgstr "Betöltés..."
 
-#: src/components/common/AttendeeTicket/index.tsx:91
+#: src/components/common/AttendeeTicket/index.tsx:93
 #: src/components/layouts/EventHomepage/index.tsx:426
 #: src/components/routes/event/Settings/index.tsx:46
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:84
@@ -5066,7 +5098,7 @@ msgstr "Tegye élővé eseményét"
 
 #: src/components/common/CapacityAssignmentList/index.tsx:140
 #: src/components/common/CheckInListList/index.tsx:143
-#: src/components/common/OrdersTable/index.tsx:218
+#: src/components/common/OrdersTable/index.tsx:260
 #: src/components/common/OrganizerWebhookTable/index.tsx:96
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:469
 #: src/components/common/PromoCodeTable/index.tsx:167
@@ -5082,7 +5114,7 @@ msgstr "Résztvevő kezelése"
 msgid "Manage event"
 msgstr "Esemény kezelése"
 
-#: src/components/common/OrdersTable/index.tsx:220
+#: src/components/common/OrdersTable/index.tsx:262
 msgid "Manage order"
 msgstr "Megrendelés kezelése"
 
@@ -5135,7 +5167,7 @@ msgstr "Résztvevő manuális hozzáadása"
 msgid "Manually Add Attendee"
 msgstr "Résztvevő manuális hozzáadása"
 
-#: src/components/common/OrdersTable/index.tsx:253
+#: src/components/common/OrdersTable/index.tsx:306
 msgid "Mark as paid"
 msgstr "Fizetettként jelölés"
 
@@ -5157,7 +5189,7 @@ msgstr "Médium"
 
 #: src/components/common/AttendeeTable/index.tsx:188
 #: src/components/common/ContactOrganizerModal/index.tsx:88
-#: src/components/common/OrdersTable/index.tsx:337
+#: src/components/common/OrdersTable/index.tsx:390
 #: src/components/modals/SendMessageModal/index.tsx:353
 msgid "Message"
 msgstr "Üzenet"
@@ -5178,7 +5210,7 @@ msgstr "Üzenet a résztvevőknek"
 msgid "Message attendees with specific tickets"
 msgstr "Üzenet a résztvevőknek meghatározott jegyekkel"
 
-#: src/components/common/OrdersTable/index.tsx:222
+#: src/components/common/OrdersTable/index.tsx:264
 msgid "Message buyer"
 msgstr "Üzenet a vásárlónak"
 
@@ -5519,7 +5551,7 @@ msgstr "Nincsenek elérhető szűrők"
 msgid "No impact on your current or past transactions"
 msgstr "Nincs hatása a jelenlegi vagy múltbeli tranzakciókra"
 
-#: src/components/common/OrdersTable/index.tsx:401
+#: src/components/common/OrdersTable/index.tsx:457
 msgid "No invoice"
 msgstr "Nincs számla"
 
@@ -5548,7 +5580,7 @@ msgstr "Még nincsenek rendelési kérdések"
 msgid "No orders found"
 msgstr "Nem találhatók rendelések"
 
-#: src/components/common/OrdersTable/index.tsx:561
+#: src/components/common/OrdersTable/index.tsx:617
 msgid "No orders to show"
 msgstr "Nincs megjeleníthető megrendelés"
 
@@ -5789,7 +5821,7 @@ msgstr "Az ajánlatok {timeoutHours} óra után lejárnak."
 msgid "Office or venue name"
 msgstr "Iroda vagy helyszín neve"
 
-#: src/components/common/OrdersTable/index.tsx:484
+#: src/components/common/OrdersTable/index.tsx:540
 #: src/components/routes/product-widget/Payment/index.tsx:131
 msgid "Offline"
 msgstr "Offline"
@@ -5997,7 +6029,7 @@ msgstr "Rendelés pénzneme"
 msgid "Order Date"
 msgstr "Megrendelés dátuma"
 
-#: src/components/common/OrdersTable/index.tsx:360
+#: src/components/common/OrdersTable/index.tsx:413
 #: src/components/modals/ManageAttendeeModal/index.tsx:166
 #: src/components/modals/ManageOrderModal/index.tsx:86
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:592
@@ -6012,11 +6044,11 @@ msgstr "Rendelés e-mail"
 msgid "Order First Name"
 msgstr "Rendelés keresztnév"
 
-#: src/components/modals/CancelOrderModal/index.tsx:40
+#: src/components/modals/CancelOrderModal/index.tsx:47
 msgid "Order has been canceled and refunded. The order owner has been notified."
 msgstr "A rendelés törölve és visszatérítve lett. A rendelés tulajdonosa értesítve lett."
 
-#: src/components/modals/CancelOrderModal/index.tsx:41
+#: src/components/modals/CancelOrderModal/index.tsx:48
 msgid "Order has been canceled and the order owner has been notified."
 msgstr "A megrendelés törölve lett, és a megrendelő értesítést kapott."
 
@@ -6049,7 +6081,7 @@ msgstr "Rendelési limitek beállítva"
 msgid "Order Locale"
 msgstr "Rendelés nyelve"
 
-#: src/components/common/OrdersTable/index.tsx:108
+#: src/components/common/OrdersTable/index.tsx:136
 msgid "Order marked as paid"
 msgstr "Megrendelés fizetettként megjelölve"
 
@@ -6197,7 +6229,7 @@ msgid "Organization Name"
 msgstr "Szervezet neve"
 
 #: src/components/common/AdminEventsTable/index.tsx:87
-#: src/components/common/AttendeeTicket/index.tsx:82
+#: src/components/common/AttendeeTicket/index.tsx:84
 #: src/components/layouts/EventHomepage/index.tsx:519
 #: src/components/modals/EditUserModal/index.tsx:55
 #: src/components/modals/InviteUserModal/index.tsx:47
@@ -6280,7 +6312,7 @@ msgid "Organizers can only manage events and products. They cannot manage users,
 msgstr "A szervezők csak eseményeket és termékeket kezelhetnek. Nem kezelhetik a felhasználókat, fiókbeállításokat vagy számlázási információkat."
 
 #: src/components/common/Editor/Controls/InsertLiquidVariableControl.tsx:98
-#: src/components/common/OrdersTable/index.tsx:489
+#: src/components/common/OrdersTable/index.tsx:545
 #: src/constants/eventCategories.ts:22
 msgid "Other"
 msgstr "Egyéb"
@@ -6350,7 +6382,7 @@ msgstr "Részleges visszatérítés"
 msgid "Partially Refunded"
 msgstr "Részben visszatérítve"
 
-#: src/components/common/OrdersTable/index.tsx:459
+#: src/components/common/OrdersTable/index.tsx:515
 msgid "Partially refunded: {0}"
 msgstr "Részben visszatérítve: {0}"
 
@@ -6420,7 +6452,7 @@ msgstr "Szüneteltetve"
 msgid "Pay"
 msgstr "Fizetés"
 
-#: src/components/common/AttendeeTicket/index.tsx:149
+#: src/components/common/AttendeeTicket/index.tsx:151
 msgid "Pay to unlock"
 msgstr "Fizessen a feloldáshoz"
 
@@ -6429,7 +6461,7 @@ msgstr "Fizessen a feloldáshoz"
 msgid "Payload"
 msgstr "Adattartalom"
 
-#: src/components/common/OrdersTable/index.tsx:470
+#: src/components/common/OrdersTable/index.tsx:526
 #: src/components/common/ProgressStepper/index.tsx:19
 #: src/components/forms/StripeCheckoutForm/index.tsx:127
 msgid "Payment"
@@ -6676,7 +6708,7 @@ msgstr "Kérjük, adja meg az 5 jegyű kódot."
 msgid "Please enter your VAT number"
 msgstr "Kérjük, adja meg ÁFA számát"
 
-#: src/components/modals/CancelOrderModal/index.tsx:65
+#: src/components/modals/CancelOrderModal/index.tsx:72
 msgid "Please Note"
 msgstr "Kérjük, vegye figyelembe"
 
@@ -6718,7 +6750,7 @@ msgstr "Kérjük, erősítse meg e-mail címét az összes funkció eléréséhe
 msgid "Please wait before requesting another code"
 msgstr "Kérjük, várjon, mielőtt újabb kódot kér."
 
-#: src/components/common/OrdersTable/index.tsx:152
+#: src/components/common/OrdersTable/index.tsx:180
 msgid "Please wait while we prepare the FA(3) XML..."
 msgstr "Kérjük, várjon, amíg előkészítjük a FA(3) XML-t..."
 
@@ -6730,7 +6762,7 @@ msgstr "Kérjük, várjon, amíg előkészítjük partnereit az exportálásra..
 msgid "Please wait while we prepare your attendees for export..."
 msgstr "Kérjük, várjon, amíg előkészítjük résztvevőit az exportálásra..."
 
-#: src/components/common/OrdersTable/index.tsx:129
+#: src/components/common/OrdersTable/index.tsx:157
 #: src/components/layouts/Checkout/index.tsx:88
 msgid "Please wait while we prepare your invoice..."
 msgstr "Kérjük, várjon, amíg előkészítjük számláját..."
@@ -6841,7 +6873,7 @@ msgstr "Jegy nyomtatása"
 msgid "Print Tickets"
 msgstr "Jegyek nyomtatása"
 
-#: src/components/common/AttendeeTicket/index.tsx:196
+#: src/components/common/AttendeeTicket/index.tsx:198
 msgid "Print to PDF"
 msgstr "Nyomtatás PDF-be"
 
@@ -7163,7 +7195,7 @@ msgstr "Előnézet frissítése"
 msgid "Refund amount"
 msgstr "Visszatérítés összege"
 
-#: src/components/common/OrdersTable/index.tsx:461
+#: src/components/common/OrdersTable/index.tsx:517
 msgid "Refund failed"
 msgstr "Visszatérítés sikertelen"
 
@@ -7171,7 +7203,7 @@ msgstr "Visszatérítés sikertelen"
 msgid "Refund Failed"
 msgstr "Visszatérítés sikertelen"
 
-#: src/components/common/OrdersTable/index.tsx:258
+#: src/components/common/OrdersTable/index.tsx:311
 msgid "Refund order"
 msgstr "Megrendelés visszatérítése"
 
@@ -7179,7 +7211,7 @@ msgstr "Megrendelés visszatérítése"
 msgid "Refund Order {0}"
 msgstr "Rendelés visszatérítése {0}"
 
-#: src/components/common/OrdersTable/index.tsx:460
+#: src/components/common/OrdersTable/index.tsx:516
 msgid "Refund pending"
 msgstr "Visszatérítés folyamatban"
 
@@ -7199,7 +7231,7 @@ msgstr "Visszatérítés állapota"
 msgid "Refunded"
 msgstr "Visszatérítve"
 
-#: src/components/common/OrdersTable/index.tsx:458
+#: src/components/common/OrdersTable/index.tsx:514
 msgid "Refunded: {0}"
 msgstr "Visszatérítve: {0}"
 
@@ -7287,7 +7319,7 @@ msgstr "Újraküldés {resendCooldown} másodperc múlva"
 msgid "Resend invitation"
 msgstr "Meghívó újraküldése"
 
-#: src/components/common/OrdersTable/index.tsx:265
+#: src/components/common/OrdersTable/index.tsx:318
 msgid "Resend order email"
 msgstr "Megrendelés e-mail újraküldése"
 
@@ -7303,11 +7335,11 @@ msgstr "Jegy e-mail újraküldése"
 msgid "Resending..."
 msgstr "Újraküldés..."
 
-#: src/components/common/OrdersTable/index.tsx:513
+#: src/components/common/OrdersTable/index.tsx:569
 msgid "Reserved"
 msgstr "Lefoglalva"
 
-#: src/components/common/OrdersTable/index.tsx:407
+#: src/components/common/OrdersTable/index.tsx:463
 msgid "Reserved until"
 msgstr "Lefoglalva eddig:"
 
@@ -7830,6 +7862,11 @@ msgstr "Küldés tesztként"
 msgid "Send emails to attendees, ticket holders, or order owners. Messages can be sent immediately or scheduled for later."
 msgstr "E-mailek küldése résztvevőknek, jegytulajdonosoknak vagy rendelés tulajdonosoknak. Az üzenetek azonnal elküldhetők vagy későbbre ütemezhetők."
 
+#: src/components/common/OrdersTable/index.tsx:301
+#: src/components/modals/CancelOrderModal/index.tsx:94
+msgid "Send KSeF correction"
+msgstr "KSeF-korrekció küldése"
+
 #: src/components/modals/SendMessageModal/index.tsx:476
 msgid "Send me a copy"
 msgstr "Küldjön nekem egy másolatot"
@@ -7863,7 +7900,7 @@ msgstr "Visszaállítási link küldése"
 msgid "Send Test"
 msgstr "Teszt küldése"
 
-#: src/components/common/OrdersTable/index.tsx:248
+#: src/components/common/OrdersTable/index.tsx:290
 msgid "Send to KSeF"
 msgstr "Küldés KSeF-be"
 
@@ -7892,7 +7929,7 @@ msgstr "Elküldve a vásárlóknak, amikor rendelést adnak le"
 msgid "Sent to each attendee with their ticket details"
 msgstr "Elküldve minden résztvevőnek a jegy részleteivel"
 
-#: src/components/common/OrdersTable/index.tsx:56
+#: src/components/common/OrdersTable/index.tsx:82
 msgid "Sent to KSeF"
 msgstr "KSeF-be elküldve"
 
@@ -8217,7 +8254,7 @@ msgstr "A statisztikák a fiók létrehozásának dátumán alapulnak"
 #: src/components/common/AffiliateTable/index.tsx:83
 #: src/components/common/AttendeeTable/index.tsx:274
 #: src/components/common/OrderDetails/index.tsx:51
-#: src/components/common/OrdersTable/index.tsx:498
+#: src/components/common/OrdersTable/index.tsx:554
 #: src/components/common/OrganizerWebhookTable/index.tsx:238
 #: src/components/common/WaitlistTable/index.tsx:181
 #: src/components/common/WebhookTable/index.tsx:238
@@ -8243,7 +8280,7 @@ msgstr "Még mindig feldolgozza a régebbi tranzakciók visszatérítéseit."
 msgid "Stop Impersonating"
 msgstr "Megszemélyesítés leállítása"
 
-#: src/components/common/OrdersTable/index.tsx:479
+#: src/components/common/OrdersTable/index.tsx:535
 #: src/components/routes/admin/Dashboard/index.tsx:424
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:93
 msgid "Stripe"
@@ -8297,8 +8334,8 @@ msgstr "Tárgy:"
 msgid "Subtotal"
 msgstr "Részösszeg"
 
-#: src/components/common/OrdersTable/index.tsx:132
-#: src/components/common/OrdersTable/index.tsx:155
+#: src/components/common/OrdersTable/index.tsx:160
+#: src/components/common/OrdersTable/index.tsx:183
 #: src/components/common/OrganizerWebhookTable/index.tsx:149
 #: src/components/layouts/Checkout/index.tsx:91
 msgid "Success"
@@ -8504,7 +8541,7 @@ msgid "Takes just a few minutes"
 msgstr "Csak néhány percet vesz igénybe"
 
 #: src/components/common/AdminOrdersTable/index.tsx:84
-#: src/components/common/OrdersTable/index.tsx:453
+#: src/components/common/OrdersTable/index.tsx:509
 #: src/components/forms/TaxAndFeeForm/index.tsx:12
 #: src/components/forms/TaxAndFeeForm/index.tsx:39
 #: src/components/modals/CreateTaxOrFeeModal/index.tsx:36
@@ -8679,7 +8716,7 @@ msgstr "A keresett esemény jelenleg nem elérhető. Lehet, hogy eltávolított�
 msgid "The full event address"
 msgstr "Az esemény teljes címe"
 
-#: src/components/modals/CancelOrderModal/index.tsx:77
+#: src/components/modals/CancelOrderModal/index.tsx:84
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "A teljes rendelési összeg visszatérítésre kerül a vásárló eredeti fizetési módjára."
 
@@ -8775,7 +8812,7 @@ msgstr "Nincsenek elérhető termékek ebben a kategóriában."
 msgid "There is a refund pending. Please wait for it to complete before requesting another refund."
 msgstr "Függőben lévő visszatérítés van. Kérjük, várja meg a befejezését, mielőtt újabb visszatérítést kérne."
 
-#: src/components/common/OrdersTable/index.tsx:109
+#: src/components/common/OrdersTable/index.tsx:137
 msgid "There was an error marking the order as paid"
 msgstr "Hiba történt a megrendelés fizetettként való megjelölésekor."
 
@@ -8783,7 +8820,7 @@ msgstr "Hiba történt a megrendelés fizetettként való megjelölésekor."
 msgid "There was an error processing your request. Please try again."
 msgstr "Hiba történt a kérés feldolgozása során. Kérjük, próbálja újra."
 
-#: src/components/common/OrdersTable/index.tsx:116
+#: src/components/common/OrdersTable/index.tsx:144
 msgid "There was an error sending your message"
 msgstr "Hiba történt az üzenet küldésekor."
 
@@ -9040,7 +9077,7 @@ msgstr "Jegytulajdonosok"
 msgid "Ticket Holders"
 msgstr "Jegytulajdonosok"
 
-#: src/components/common/AttendeeTicket/index.tsx:168
+#: src/components/common/AttendeeTicket/index.tsx:170
 msgid "Ticket ID"
 msgstr "Jegy azonosító"
 
@@ -9076,7 +9113,7 @@ msgstr "Jegy ára"
 msgid "Ticket resent successfully"
 msgstr "Jegy sikeresen újraküldve"
 
-#: src/components/common/AttendeeTicket/index.tsx:99
+#: src/components/common/AttendeeTicket/index.tsx:101
 #: src/components/routes/event/attendees.tsx:66
 msgid "Ticket Type"
 msgstr "Jegy típusa"
@@ -9411,7 +9448,8 @@ msgstr "Ismeretlen"
 msgid "Unknown Attendee"
 msgstr "Ismeretlen résztvevő"
 
-#: src/components/common/OrdersTable/index.tsx:68
+#: src/components/common/OrdersTable/index.tsx:69
+#: src/components/common/OrdersTable/index.tsx:94
 msgid "Unknown error"
 msgstr "Ismeretlen hiba"
 
@@ -10483,7 +10521,7 @@ msgstr "Eseménye élőnek kell lennie, mielőtt jegyeket értékesíthetne a r�
 msgid "Your logo, colors, and style on every page"
 msgstr "Az Ön logója, színei és stílusa minden oldalon"
 
-#: src/components/common/OrdersTable/index.tsx:115
+#: src/components/common/OrdersTable/index.tsx:143
 msgid "Your message has been sent"
 msgstr "Üzenetét elküldtük."
 
@@ -10527,7 +10565,7 @@ msgstr "A rendelése fizetésre vár"
 msgid "Your orders have been exported successfully."
 msgstr "Megrendelései sikeresen exportálva."
 
-#: src/components/common/OrdersTable/index.tsx:564
+#: src/components/common/OrdersTable/index.tsx:620
 msgid "Your orders will appear here once they start rolling in."
 msgstr "Megrendelései itt fognak megjelenni, amint beérkeznek."
 

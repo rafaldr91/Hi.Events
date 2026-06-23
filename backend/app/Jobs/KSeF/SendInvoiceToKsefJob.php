@@ -54,7 +54,21 @@ class SendInvoiceToKsefJob implements ShouldQueue
             ->loadRelation(OrderItemDomainObject::class)
             ->findById($invoice->getOrderId());
 
-        $result = $sender->send($invoice, $order);
+        if ($invoice->getDocumentType() === 'correction') {
+            $originalInvoice = $invoiceRepo->findById($invoice->getCorrectedInvoiceId());
+
+            if ($originalInvoice === null) {
+                $logger->error('SendInvoiceToKsefJob: original invoice not found for correction', [
+                    'invoice_id'           => $this->invoiceId,
+                    'corrected_invoice_id' => $invoice->getCorrectedInvoiceId(),
+                ]);
+                return;
+            }
+
+            $result = $sender->sendCorrection($invoice, $originalInvoice, $order);
+        } else {
+            $result = $sender->send($invoice, $order);
+        }
 
         if ($result->success) {
             $invoiceRepo->updateFromArray($this->invoiceId, [

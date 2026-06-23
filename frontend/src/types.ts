@@ -667,6 +667,7 @@ export interface Order {
     question_answers?: QuestionAnswer[];
     event?: Event;
     latest_invoice?: Invoice;
+    correction_invoice?: Invoice;
     session_identifier?: string;
 }
 
@@ -676,7 +677,7 @@ export interface Invoice {
     id: IdParam,
     order_id: IdParam,
     status: 'PAID' | 'UNPAID' | 'VOID',
-    document_type?: 'invoice' | 'confirmation',
+    document_type?: 'invoice' | 'confirmation' | 'correction',
     ksef_status?: 'PENDING' | 'SENT' | 'FAILED' | 'NOT_APPLICABLE',
     ksef_number?: string,
     ksef_reference_number?: string,

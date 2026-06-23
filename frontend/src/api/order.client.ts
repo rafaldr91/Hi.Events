@@ -82,9 +82,10 @@ export const orderClient = {
         return response.data;
     },
 
-    cancel: async (eventId: IdParam, orderId: IdParam, refund?: boolean) => {
+    cancel: async (eventId: IdParam, orderId: IdParam, refund?: boolean, sendKsefCorrection?: boolean) => {
         const response = await api.post<GenericDataResponse<Order>>('events/' + eventId + '/orders/' + orderId + '/cancel', {
-            refund: refund ?? false
+            refund: refund ?? false,
+            send_ksef_correction: sendKsefCorrection ?? false,
         });
         return response.data;
     },
@@ -120,6 +121,11 @@ export const orderClient = {
 
     sendKsefInvoice: async (eventId: IdParam, orderId: IdParam) => {
         const response = await api.post(`events/${eventId}/orders/${orderId}/invoice/send-ksef`);
+        return response.data;
+    },
+
+    sendKsefCorrection: async (eventId: IdParam, orderId: IdParam) => {
+        const response = await api.post(`events/${eventId}/orders/${orderId}/invoice/send-ksef-correction`);
         return response.data;
     },
 
