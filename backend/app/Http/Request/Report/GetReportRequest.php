@@ -9,8 +9,11 @@ class GetReportRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'start_date' => 'date|before:end_date|required_with:end_date|nullable',
-            'end_date' => 'date|after:start_date|required_with:start_date|nullable',
+            'start_date'       => 'date|before:end_date|required_with:end_date|nullable',
+            'end_date'         => 'date|after:start_date|required_with:start_date|nullable',
+            'payment_providers'   => 'array|nullable',
+            'payment_providers.*' => 'string|in:STRIPE,OFFLINE,OTHER',
+            'hide_empty_rows'     => 'boolean|nullable',
         ];
     }
 }

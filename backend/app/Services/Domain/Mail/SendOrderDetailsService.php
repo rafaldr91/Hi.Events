@@ -86,12 +86,7 @@ class SendOrderDetailsService
 
     private function sendAttendeeTicketEmails(OrderDomainObject $order, EventDomainObject $event): void
     {
-        $sentEmails = [];
         foreach ($order->getAttendees() as $attendee) {
-            if (in_array($attendee->getEmail(), $sentEmails, true)) {
-                continue;
-            }
-
             $this->sendAttendeeTicketService->send(
                 order: $order,
                 attendee: $attendee,
@@ -99,8 +94,6 @@ class SendOrderDetailsService
                 eventSettings: $event->getEventSettings(),
                 organizer: $event->getOrganizer(),
             );
-
-            $sentEmails[] = $attendee->getEmail();
         }
     }
 
