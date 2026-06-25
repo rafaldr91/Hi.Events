@@ -79,6 +79,7 @@ export const DailySalesReport = () => {
             showTotals={true}
             showExcelExport={true}
             showHideEmptyRows={true}
+            showBuyerTypeFilter={true}
             event={event}
         />
     );

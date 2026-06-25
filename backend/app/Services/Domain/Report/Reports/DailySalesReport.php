@@ -8,12 +8,12 @@ use Illuminate\Support\Carbon;
 
 class DailySalesReport extends AbstractReportService
 {
-    protected function getSqlQuery(Carbon $startDate, Carbon $endDate, ?array $paymentProviders = null): string
+    protected function getSqlQuery(Carbon $startDate, Carbon $endDate, ?array $paymentProviders = null, ?array $buyerTypes = null): string
     {
-        return $this->getOrdersQuery($startDate, $endDate, $paymentProviders ?? []);
+        return $this->getOrdersQuery($startDate, $endDate, $paymentProviders ?? [], $buyerTypes);
     }
 
-    private function getOrdersQuery(Carbon $startDate, Carbon $endDate, array $paymentProviders): string
+    private function getOrdersQuery(Carbon $startDate, Carbon $endDate, array $paymentProviders, ?array $buyerTypes): string
     {
         $startDateStr = $startDate->format('Y-m-d H:i:s');
         $endDateStr = $endDate->format('Y-m-d H:i:s');
@@ -22,6 +22,7 @@ class DailySalesReport extends AbstractReportService
         $completedStatus = OrderStatus::COMPLETED->name;
 
         $providerCondition = $this->buildProviderCondition($paymentProviders);
+        $buyerTypeCondition = $this->buildBuyerTypeCondition($buyerTypes);
 
         return <<<SQL
             WITH date_range AS (
@@ -39,6 +40,7 @@ class DailySalesReport extends AbstractReportService
                 WHERE o.event_id = :event_id
                     AND o.status = '$completedStatus'
                     AND $providerCondition
+                    AND $buyerTypeCondition
                     AND o.deleted_at IS NULL
                     AND o.created_at >= '$startDateStr'
                     AND o.created_at <= '$endDateStr'
@@ -53,6 +55,7 @@ class DailySalesReport extends AbstractReportService
                 WHERE o.event_id = :event_id
                     AND o.status = '$completedStatus'
                     AND $providerCondition
+                    AND $buyerTypeCondition
                     AND o.deleted_at IS NULL
                     AND oi.deleted_at IS NULL
                     AND o.created_at >= '$startDateStr'
@@ -67,6 +70,7 @@ class DailySalesReport extends AbstractReportService
                 JOIN orders o ON orr.order_id = o.id
                 WHERE o.event_id = :event_id
                     AND $providerCondition
+                    AND $buyerTypeCondition
                     AND o.deleted_at IS NULL
                     AND orr.deleted_at IS NULL
                     AND o.created_at >= '$startDateStr'
@@ -89,6 +93,25 @@ class DailySalesReport extends AbstractReportService
             LEFT JOIN daily_refunds dr ON d.date = dr.order_date
             ORDER BY d.date DESC;
         SQL;
+    }
+
+    private function buildBuyerTypeCondition(?array $buyerTypes): string
+    {
+        if (empty($buyerTypes)) {
+            return '1=1';
+        }
+
+        $conditions = [];
+
+        if (in_array('company', $buyerTypes, true)) {
+            $conditions[] = "o.buyer_type = 'company'";
+        }
+
+        if (in_array('individual', $buyerTypes, true)) {
+            $conditions[] = "o.buyer_type != 'company'";
+        }
+
+        return '(' . implode(' OR ', $conditions) . ')';
     }
 
     private function buildProviderCondition(array $paymentProviders): string

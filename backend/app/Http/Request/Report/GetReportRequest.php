@@ -14,6 +14,8 @@ class GetReportRequest extends BaseRequest
             'payment_providers'   => 'array|nullable',
             'payment_providers.*' => 'string|in:STRIPE,OFFLINE,OTHER',
             'hide_empty_rows'     => 'boolean|nullable',
+            'buyer_types'         => 'array|nullable',
+            'buyer_types.*'       => 'string|in:company,individual',
         ];
     }
 }

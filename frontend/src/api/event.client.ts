@@ -92,23 +92,29 @@ export const eventsClient = {
         return response.data;
     },
 
-    getEventReport: async (eventId: IdParam, reportType: IdParam, startDate?: string, endDate?: string, paymentProviders?: string[]) => {
+    getEventReport: async (eventId: IdParam, reportType: IdParam, startDate?: string, endDate?: string, paymentProviders?: string[], buyerTypes?: string[]) => {
         const params = new URLSearchParams();
         if (startDate) params.set('start_date', startDate);
         if (endDate) params.set('end_date', endDate);
         if (paymentProviders?.length) {
             paymentProviders.forEach(p => params.append('payment_providers[]', p));
         }
+        if (buyerTypes?.length) {
+            buyerTypes.forEach(t => params.append('buyer_types[]', t));
+        }
         const response = await api.get<GenericDataResponse<any>>(`events/${eventId}/reports/${reportType}?${params.toString()}`);
         return response.data;
     },
 
-    exportEventReport: async (eventId: IdParam, reportType: IdParam, startDate?: string, endDate?: string, paymentProviders?: string[], hideEmptyRows?: boolean): Promise<Blob> => {
+    exportEventReport: async (eventId: IdParam, reportType: IdParam, startDate?: string, endDate?: string, paymentProviders?: string[], hideEmptyRows?: boolean, buyerTypes?: string[]): Promise<Blob> => {
         const params = new URLSearchParams();
         if (startDate) params.set('start_date', startDate);
         if (endDate) params.set('end_date', endDate);
         if (paymentProviders?.length) {
             paymentProviders.forEach(p => params.append('payment_providers[]', p));
+        }
+        if (buyerTypes?.length) {
+            buyerTypes.forEach(t => params.append('buyer_types[]', t));
         }
         if (hideEmptyRows) params.set('hide_empty_rows', '1');
         const response = await api.get(`events/${eventId}/reports/${reportType}/export?${params.toString()}`, {

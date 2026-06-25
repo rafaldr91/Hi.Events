@@ -1801,6 +1801,10 @@ msgstr "Kommunikationspreferens"
 msgid "Company"
 msgstr "Företag"
 
+#: src/components/common/ReportTable/index.tsx:416
+msgid "Company (NIP)"
+msgstr "Företag (NIP)"
+
 #: src/components/routes/product-widget/CollectInformation/index.tsx:462
 msgid "Company name"
 msgstr "Företagsnamn"
@@ -2486,7 +2490,7 @@ msgid "Custom Questions"
 msgstr "Anpassade frågor"
 
 #: src/components/common/OrganizerReportTable/index.tsx:61
-#: src/components/common/ReportTable/index.tsx:61
+#: src/components/common/ReportTable/index.tsx:62
 msgid "Custom Range"
 msgstr "Anpassat intervall"
 
@@ -3636,7 +3640,7 @@ msgstr "Exportera svar"
 msgid "Export CSV"
 msgstr "Exportera CSV"
 
-#: src/components/common/ReportTable/index.tsx:380
+#: src/components/common/ReportTable/index.tsx:346
 msgid "Export Excel"
 msgstr "Exportera Excel"
 
@@ -3769,7 +3773,7 @@ msgstr "Misslyckades med att exportera deltagare"
 msgid "Failed to export orders"
 msgstr "Misslyckades med att exportera ordrar"
 
-#: src/components/common/ReportTable/index.tsx:110
+#: src/components/common/ReportTable/index.tsx:116
 msgid "Failed to export report"
 msgstr "Det gick inte att exportera rapporten"
 
@@ -4344,7 +4348,7 @@ msgstr "Dölj"
 msgid "Hide Answers"
 msgstr "Dölj svar"
 
-#: src/components/common/ReportTable/index.tsx:362
+#: src/components/common/ReportTable/index.tsx:438
 msgid "Hide days with no sales"
 msgstr "Dölj dagar utan försäljning"
 
@@ -4604,6 +4608,7 @@ msgstr "Innehåller 1 produkt"
 msgid "Indicate whether you're VAT-registered in the EU"
 msgstr "Ange om du är momsregistrerad i EU"
 
+#: src/components/common/ReportTable/index.tsx:423
 #: src/components/routes/product-widget/CollectInformation/index.tsx:450
 msgid "Individual"
 msgstr "Privatperson"
@@ -4879,12 +4884,12 @@ msgid "Language"
 msgstr "Språk"
 
 #: src/components/common/OrganizerReportTable/index.tsx:60
-#: src/components/common/ReportTable/index.tsx:60
+#: src/components/common/ReportTable/index.tsx:61
 msgid "Last 12 months"
 msgstr "Senaste 12 månaderna"
 
 #: src/components/common/OrganizerReportTable/index.tsx:55
-#: src/components/common/ReportTable/index.tsx:55
+#: src/components/common/ReportTable/index.tsx:56
 msgid "Last 14 days"
 msgstr "Senaste 14 dagarna"
 
@@ -4893,33 +4898,33 @@ msgid "Last 14 Days"
 msgstr "Senaste 14 dagarna"
 
 #: src/components/common/OrganizerReportTable/index.tsx:52
-#: src/components/common/ReportTable/index.tsx:52
+#: src/components/common/ReportTable/index.tsx:53
 msgid "Last 24 hours"
 msgstr "Senaste 24 timmarna"
 
 #: src/components/common/OrganizerReportTable/index.tsx:56
-#: src/components/common/ReportTable/index.tsx:56
+#: src/components/common/ReportTable/index.tsx:57
 #: src/components/routes/event/EventDashboard/index.tsx:266
 msgid "Last 30 days"
 msgstr "Senaste 30 dagarna"
 
 #: src/components/common/OrganizerReportTable/index.tsx:53
-#: src/components/common/ReportTable/index.tsx:53
+#: src/components/common/ReportTable/index.tsx:54
 msgid "Last 48 hours"
 msgstr "Senaste 48 timmarna"
 
 #: src/components/common/OrganizerReportTable/index.tsx:58
-#: src/components/common/ReportTable/index.tsx:58
+#: src/components/common/ReportTable/index.tsx:59
 msgid "Last 6 months"
 msgstr "Senaste 6 månaderna"
 
 #: src/components/common/OrganizerReportTable/index.tsx:54
-#: src/components/common/ReportTable/index.tsx:54
+#: src/components/common/ReportTable/index.tsx:55
 msgid "Last 7 days"
 msgstr "Senaste 7 dagarna"
 
 #: src/components/common/OrganizerReportTable/index.tsx:57
-#: src/components/common/ReportTable/index.tsx:57
+#: src/components/common/ReportTable/index.tsx:58
 msgid "Last 90 days"
 msgstr "Senaste 90 dagarna"
 
@@ -5038,7 +5043,7 @@ msgid "Loading Webhooks"
 msgstr "Laddar webhooks"
 
 #: src/components/common/OrganizerReportTable/index.tsx:265
-#: src/components/common/ReportTable/index.tsx:276
+#: src/components/common/ReportTable/index.tsx:282
 #: src/components/routes/event/Settings/Sections/DangerZoneSettings/index.tsx:86
 #: src/components/routes/organizer/Settings/Sections/DangerZoneSettings/index.tsx:92
 msgid "Loading..."
@@ -5515,7 +5520,7 @@ msgstr "Inga incheckningslistor tillgängliga för detta evenemang."
 msgid "No configurations found"
 msgstr "Inga konfigurationer hittades"
 
-#: src/components/common/ReportTable/index.tsx:284
+#: src/components/common/ReportTable/index.tsx:290
 msgid "No data available"
 msgstr "Ingen data tillgänglig"
 
@@ -5523,7 +5528,7 @@ msgstr "Ingen data tillgänglig"
 msgid "No data found for the selected filters. Try adjusting the date range or currency."
 msgstr "Ingen data hittades för de valda filtren. Prova att justera datumintervall eller valuta."
 
-#: src/components/common/ReportTable/index.tsx:280
+#: src/components/common/ReportTable/index.tsx:286
 msgid "No data to show. Please select a date range"
 msgstr "Ingen data att visa. Välj ett datumintervall"
 
@@ -5769,7 +5774,7 @@ msgstr "Inte behörig"
 msgid "Notes"
 msgstr "Anteckningar"
 
-#: src/components/common/ReportTable/index.tsx:306
+#: src/components/common/ReportTable/index.tsx:312
 msgid "Nothing to show yet"
 msgstr "Inget att visa ännu"
 
@@ -5838,7 +5843,7 @@ msgid "Office or venue name"
 msgstr "Kontors- eller lokalnamn"
 
 #: src/components/common/OrdersTable/index.tsx:540
-#: src/components/common/ReportTable/index.tsx:353
+#: src/components/common/ReportTable/index.tsx:395
 #: src/components/routes/product-widget/Payment/index.tsx:131
 msgid "Offline"
 msgstr "Offline"
@@ -5892,7 +5897,7 @@ msgstr "När du har slutfört uppgraderingen kommer ditt gamla konto endast att 
 msgid "Once you create an event, you'll see it here."
 msgstr "När du skapar ett evenemang visas det här."
 
-#: src/components/common/ReportTable/index.tsx:311
+#: src/components/common/ReportTable/index.tsx:317
 msgid "Once you start collecting data, you'll see it here."
 msgstr "När du börjar samla in data visas det här."
 
@@ -6330,7 +6335,7 @@ msgstr "Arrangörer kan endast hantera evenemang och produkter. De kan inte hant
 
 #: src/components/common/Editor/Controls/InsertLiquidVariableControl.tsx:98
 #: src/components/common/OrdersTable/index.tsx:545
-#: src/components/common/ReportTable/index.tsx:354
+#: src/components/common/ReportTable/index.tsx:402
 #: src/constants/eventCategories.ts:22
 msgid "Other"
 msgstr "Övrigt"
@@ -7834,7 +7839,7 @@ msgid "Select tickets"
 msgstr "Välj biljetter"
 
 #: src/components/common/OrganizerReportTable/index.tsx:317
-#: src/components/common/ReportTable/index.tsx:327
+#: src/components/common/ReportTable/index.tsx:359
 msgid "Select time period"
 msgstr "Välj tidsperiod"
 
@@ -8316,7 +8321,7 @@ msgid "Stop Impersonating"
 msgstr "Sluta impersonera"
 
 #: src/components/common/OrdersTable/index.tsx:535
-#: src/components/common/ReportTable/index.tsx:352
+#: src/components/common/ReportTable/index.tsx:388
 #: src/components/routes/admin/Dashboard/index.tsx:424
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:93
 msgid "Stripe"
@@ -9266,7 +9271,7 @@ msgstr "Topparrangörer (Senaste 14 dagarna)"
 #: src/components/common/AdminOrdersTable/index.tsx:81
 #: src/components/common/InlineOrderSummary/index.tsx:203
 #: src/components/common/OrderSummary/index.tsx:92
-#: src/components/common/ReportTable/index.tsx:245
+#: src/components/common/ReportTable/index.tsx:251
 msgid "Total"
 msgstr "Totalt"
 
@@ -10328,7 +10333,7 @@ msgid "X (Twitter)"
 msgstr "X (Twitter)"
 
 #: src/components/common/OrganizerReportTable/index.tsx:59
-#: src/components/common/ReportTable/index.tsx:59
+#: src/components/common/ReportTable/index.tsx:60
 msgid "Year to date"
 msgstr "Hittills i år"
 

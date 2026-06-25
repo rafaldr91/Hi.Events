@@ -1801,6 +1801,10 @@ msgstr "Kommunikációs beállítások"
 msgid "Company"
 msgstr "Vállalkozás"
 
+#: src/components/common/ReportTable/index.tsx:416
+msgid "Company (NIP)"
+msgstr "Cég (NIP)"
+
 #: src/components/routes/product-widget/CollectInformation/index.tsx:462
 msgid "Company name"
 msgstr "Cégnév"
@@ -2486,7 +2490,7 @@ msgid "Custom Questions"
 msgstr "Egyedi kérdések"
 
 #: src/components/common/OrganizerReportTable/index.tsx:61
-#: src/components/common/ReportTable/index.tsx:61
+#: src/components/common/ReportTable/index.tsx:62
 msgid "Custom Range"
 msgstr "Egyedi tartomány"
 
@@ -3636,7 +3640,7 @@ msgstr "Válaszok exportálása"
 msgid "Export CSV"
 msgstr "CSV exportálása"
 
-#: src/components/common/ReportTable/index.tsx:380
+#: src/components/common/ReportTable/index.tsx:346
 msgid "Export Excel"
 msgstr "Excel exportálása"
 
@@ -3769,7 +3773,7 @@ msgstr "Résztvevők exportálása sikertelen"
 msgid "Failed to export orders"
 msgstr "Megrendelések exportálása sikertelen"
 
-#: src/components/common/ReportTable/index.tsx:110
+#: src/components/common/ReportTable/index.tsx:116
 msgid "Failed to export report"
 msgstr "A jelentés exportálása sikertelen"
 
@@ -4344,7 +4348,7 @@ msgstr "Elrejtés"
 msgid "Hide Answers"
 msgstr "Válaszok elrejtése"
 
-#: src/components/common/ReportTable/index.tsx:362
+#: src/components/common/ReportTable/index.tsx:438
 msgid "Hide days with no sales"
 msgstr "Értékesítés nélküli napok elrejtése"
 
@@ -4604,6 +4608,7 @@ msgstr "1 terméket tartalmaz"
 msgid "Indicate whether you're VAT-registered in the EU"
 msgstr "Jelölje meg, ha ÁFA-s az EU-ban"
 
+#: src/components/common/ReportTable/index.tsx:423
 #: src/components/routes/product-widget/CollectInformation/index.tsx:450
 msgid "Individual"
 msgstr "Magánszemély"
@@ -4879,12 +4884,12 @@ msgid "Language"
 msgstr "Nyelv"
 
 #: src/components/common/OrganizerReportTable/index.tsx:60
-#: src/components/common/ReportTable/index.tsx:60
+#: src/components/common/ReportTable/index.tsx:61
 msgid "Last 12 months"
 msgstr "Utolsó 12 hónap"
 
 #: src/components/common/OrganizerReportTable/index.tsx:55
-#: src/components/common/ReportTable/index.tsx:55
+#: src/components/common/ReportTable/index.tsx:56
 msgid "Last 14 days"
 msgstr "Utolsó 14 nap"
 
@@ -4893,33 +4898,33 @@ msgid "Last 14 Days"
 msgstr "Elmúlt 14 nap"
 
 #: src/components/common/OrganizerReportTable/index.tsx:52
-#: src/components/common/ReportTable/index.tsx:52
+#: src/components/common/ReportTable/index.tsx:53
 msgid "Last 24 hours"
 msgstr "Utolsó 24 óra"
 
 #: src/components/common/OrganizerReportTable/index.tsx:56
-#: src/components/common/ReportTable/index.tsx:56
+#: src/components/common/ReportTable/index.tsx:57
 #: src/components/routes/event/EventDashboard/index.tsx:266
 msgid "Last 30 days"
 msgstr "Utolsó 30 nap"
 
 #: src/components/common/OrganizerReportTable/index.tsx:53
-#: src/components/common/ReportTable/index.tsx:53
+#: src/components/common/ReportTable/index.tsx:54
 msgid "Last 48 hours"
 msgstr "Utolsó 48 óra"
 
 #: src/components/common/OrganizerReportTable/index.tsx:58
-#: src/components/common/ReportTable/index.tsx:58
+#: src/components/common/ReportTable/index.tsx:59
 msgid "Last 6 months"
 msgstr "Utolsó 6 hónap"
 
 #: src/components/common/OrganizerReportTable/index.tsx:54
-#: src/components/common/ReportTable/index.tsx:54
+#: src/components/common/ReportTable/index.tsx:55
 msgid "Last 7 days"
 msgstr "Utolsó 7 nap"
 
 #: src/components/common/OrganizerReportTable/index.tsx:57
-#: src/components/common/ReportTable/index.tsx:57
+#: src/components/common/ReportTable/index.tsx:58
 msgid "Last 90 days"
 msgstr "Utolsó 90 nap"
 
@@ -5038,7 +5043,7 @@ msgid "Loading Webhooks"
 msgstr "Webhookok betöltése"
 
 #: src/components/common/OrganizerReportTable/index.tsx:265
-#: src/components/common/ReportTable/index.tsx:276
+#: src/components/common/ReportTable/index.tsx:282
 #: src/components/routes/event/Settings/Sections/DangerZoneSettings/index.tsx:86
 #: src/components/routes/organizer/Settings/Sections/DangerZoneSettings/index.tsx:92
 msgid "Loading..."
@@ -5515,7 +5520,7 @@ msgstr "Nincs elérhető bejelentkezési lista ehhez az eseményhez."
 msgid "No configurations found"
 msgstr "Nem találhatók konfigurációk"
 
-#: src/components/common/ReportTable/index.tsx:284
+#: src/components/common/ReportTable/index.tsx:290
 msgid "No data available"
 msgstr "Nincs adat"
 
@@ -5523,7 +5528,7 @@ msgstr "Nincs adat"
 msgid "No data found for the selected filters. Try adjusting the date range or currency."
 msgstr "Nincs adat a kiválasztott szűrőkhöz. Próbálja meg módosítani a dátumtartományt vagy a pénznemet."
 
-#: src/components/common/ReportTable/index.tsx:280
+#: src/components/common/ReportTable/index.tsx:286
 msgid "No data to show. Please select a date range"
 msgstr "Nincs megjeleníthető adat. Kérjük, válasszon dátumtartományt."
 
@@ -5769,7 +5774,7 @@ msgstr "Nem jogosult"
 msgid "Notes"
 msgstr "Jegyzetek"
 
-#: src/components/common/ReportTable/index.tsx:306
+#: src/components/common/ReportTable/index.tsx:312
 msgid "Nothing to show yet"
 msgstr "Még nincs mit mutatni"
 
@@ -5838,7 +5843,7 @@ msgid "Office or venue name"
 msgstr "Iroda vagy helyszín neve"
 
 #: src/components/common/OrdersTable/index.tsx:540
-#: src/components/common/ReportTable/index.tsx:353
+#: src/components/common/ReportTable/index.tsx:395
 #: src/components/routes/product-widget/Payment/index.tsx:131
 msgid "Offline"
 msgstr "Offline"
@@ -5892,7 +5897,7 @@ msgstr "Miután befejezte a frissítést, a régi fiókját csak visszatéríté
 msgid "Once you create an event, you'll see it here."
 msgstr "Miután létrehozott egy eseményt, itt fogja látni."
 
-#: src/components/common/ReportTable/index.tsx:311
+#: src/components/common/ReportTable/index.tsx:317
 msgid "Once you start collecting data, you'll see it here."
 msgstr "Miután elkezd gyűjteni adatokat, itt fogja látni."
 
@@ -6330,7 +6335,7 @@ msgstr "A szervezők csak eseményeket és termékeket kezelhetnek. Nem kezelhet
 
 #: src/components/common/Editor/Controls/InsertLiquidVariableControl.tsx:98
 #: src/components/common/OrdersTable/index.tsx:545
-#: src/components/common/ReportTable/index.tsx:354
+#: src/components/common/ReportTable/index.tsx:402
 #: src/constants/eventCategories.ts:22
 msgid "Other"
 msgstr "Egyéb"
@@ -7834,7 +7839,7 @@ msgid "Select tickets"
 msgstr "Jegyek kiválasztása"
 
 #: src/components/common/OrganizerReportTable/index.tsx:317
-#: src/components/common/ReportTable/index.tsx:327
+#: src/components/common/ReportTable/index.tsx:359
 msgid "Select time period"
 msgstr "Időszak kiválasztása"
 
@@ -8316,7 +8321,7 @@ msgid "Stop Impersonating"
 msgstr "Megszemélyesítés leállítása"
 
 #: src/components/common/OrdersTable/index.tsx:535
-#: src/components/common/ReportTable/index.tsx:352
+#: src/components/common/ReportTable/index.tsx:388
 #: src/components/routes/admin/Dashboard/index.tsx:424
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:93
 msgid "Stripe"
@@ -9266,7 +9271,7 @@ msgstr "Legjobb szervezők (Elmúlt 14 nap)"
 #: src/components/common/AdminOrdersTable/index.tsx:81
 #: src/components/common/InlineOrderSummary/index.tsx:203
 #: src/components/common/OrderSummary/index.tsx:92
-#: src/components/common/ReportTable/index.tsx:245
+#: src/components/common/ReportTable/index.tsx:251
 msgid "Total"
 msgstr "Összesen"
 
@@ -10328,7 +10333,7 @@ msgid "X (Twitter)"
 msgstr "X (Twitter)"
 
 #: src/components/common/OrganizerReportTable/index.tsx:59
-#: src/components/common/ReportTable/index.tsx:59
+#: src/components/common/ReportTable/index.tsx:60
 msgid "Year to date"
 msgstr "Év elejétől napjainkig"
 

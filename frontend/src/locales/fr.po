@@ -1801,6 +1801,10 @@ msgstr "Préférences de communication"
 msgid "Company"
 msgstr "Entreprise"
 
+#: src/components/common/ReportTable/index.tsx:416
+msgid "Company (NIP)"
+msgstr "Entreprise (NIP)"
+
 #: src/components/routes/product-widget/CollectInformation/index.tsx:462
 msgid "Company name"
 msgstr "Nom de l'entreprise"
@@ -2486,7 +2490,7 @@ msgid "Custom Questions"
 msgstr "Questions personnalisées"
 
 #: src/components/common/OrganizerReportTable/index.tsx:61
-#: src/components/common/ReportTable/index.tsx:61
+#: src/components/common/ReportTable/index.tsx:62
 msgid "Custom Range"
 msgstr "Plage personnalisée"
 
@@ -3636,7 +3640,7 @@ msgstr "Exporter les réponses"
 msgid "Export CSV"
 msgstr "Exporter CSV"
 
-#: src/components/common/ReportTable/index.tsx:380
+#: src/components/common/ReportTable/index.tsx:346
 msgid "Export Excel"
 msgstr "Exporter Excel"
 
@@ -3769,7 +3773,7 @@ msgstr "Échec de l'exportation des participants"
 msgid "Failed to export orders"
 msgstr "Échec de l'exportation des commandes"
 
-#: src/components/common/ReportTable/index.tsx:110
+#: src/components/common/ReportTable/index.tsx:116
 msgid "Failed to export report"
 msgstr "Échec de l'exportation du rapport"
 
@@ -4344,7 +4348,7 @@ msgstr "Cacher"
 msgid "Hide Answers"
 msgstr "Masquer les réponses"
 
-#: src/components/common/ReportTable/index.tsx:362
+#: src/components/common/ReportTable/index.tsx:438
 msgid "Hide days with no sales"
 msgstr "Masquer les jours sans ventes"
 
@@ -4604,6 +4608,7 @@ msgstr "Comprend 1 produit"
 msgid "Indicate whether you're VAT-registered in the EU"
 msgstr "Indiquez si vous êtes assujetti à la TVA dans l'UE"
 
+#: src/components/common/ReportTable/index.tsx:423
 #: src/components/routes/product-widget/CollectInformation/index.tsx:450
 msgid "Individual"
 msgstr "Particulier"
@@ -4879,12 +4884,12 @@ msgid "Language"
 msgstr "Langue"
 
 #: src/components/common/OrganizerReportTable/index.tsx:60
-#: src/components/common/ReportTable/index.tsx:60
+#: src/components/common/ReportTable/index.tsx:61
 msgid "Last 12 months"
 msgstr "12 derniers mois"
 
 #: src/components/common/OrganizerReportTable/index.tsx:55
-#: src/components/common/ReportTable/index.tsx:55
+#: src/components/common/ReportTable/index.tsx:56
 msgid "Last 14 days"
 msgstr "14 derniers jours"
 
@@ -4893,33 +4898,33 @@ msgid "Last 14 Days"
 msgstr "14 derniers jours"
 
 #: src/components/common/OrganizerReportTable/index.tsx:52
-#: src/components/common/ReportTable/index.tsx:52
+#: src/components/common/ReportTable/index.tsx:53
 msgid "Last 24 hours"
 msgstr "Dernières 24 heures"
 
 #: src/components/common/OrganizerReportTable/index.tsx:56
-#: src/components/common/ReportTable/index.tsx:56
+#: src/components/common/ReportTable/index.tsx:57
 #: src/components/routes/event/EventDashboard/index.tsx:266
 msgid "Last 30 days"
 msgstr "30 derniers jours"
 
 #: src/components/common/OrganizerReportTable/index.tsx:53
-#: src/components/common/ReportTable/index.tsx:53
+#: src/components/common/ReportTable/index.tsx:54
 msgid "Last 48 hours"
 msgstr "Dernières 48 heures"
 
 #: src/components/common/OrganizerReportTable/index.tsx:58
-#: src/components/common/ReportTable/index.tsx:58
+#: src/components/common/ReportTable/index.tsx:59
 msgid "Last 6 months"
 msgstr "6 derniers mois"
 
 #: src/components/common/OrganizerReportTable/index.tsx:54
-#: src/components/common/ReportTable/index.tsx:54
+#: src/components/common/ReportTable/index.tsx:55
 msgid "Last 7 days"
 msgstr "7 derniers jours"
 
 #: src/components/common/OrganizerReportTable/index.tsx:57
-#: src/components/common/ReportTable/index.tsx:57
+#: src/components/common/ReportTable/index.tsx:58
 msgid "Last 90 days"
 msgstr "90 derniers jours"
 
@@ -5038,7 +5043,7 @@ msgid "Loading Webhooks"
 msgstr "Chargement des webhooks"
 
 #: src/components/common/OrganizerReportTable/index.tsx:265
-#: src/components/common/ReportTable/index.tsx:276
+#: src/components/common/ReportTable/index.tsx:282
 #: src/components/routes/event/Settings/Sections/DangerZoneSettings/index.tsx:86
 #: src/components/routes/organizer/Settings/Sections/DangerZoneSettings/index.tsx:92
 msgid "Loading..."
@@ -5515,7 +5520,7 @@ msgstr "Aucune liste d'enregistrement disponible pour cet événement."
 msgid "No configurations found"
 msgstr "Aucune configuration trouvée"
 
-#: src/components/common/ReportTable/index.tsx:284
+#: src/components/common/ReportTable/index.tsx:290
 msgid "No data available"
 msgstr "Aucune donnée disponible"
 
@@ -5523,7 +5528,7 @@ msgstr "Aucune donnée disponible"
 msgid "No data found for the selected filters. Try adjusting the date range or currency."
 msgstr "Aucune donnée trouvée pour les filtres sélectionnés. Essayez d'ajuster la plage de dates ou la devise."
 
-#: src/components/common/ReportTable/index.tsx:280
+#: src/components/common/ReportTable/index.tsx:286
 msgid "No data to show. Please select a date range"
 msgstr "Aucune donnée à afficher. Veuillez sélectionner une plage de dates"
 
@@ -5769,7 +5774,7 @@ msgstr "Non Éligible"
 msgid "Notes"
 msgstr "Notes"
 
-#: src/components/common/ReportTable/index.tsx:306
+#: src/components/common/ReportTable/index.tsx:312
 msgid "Nothing to show yet"
 msgstr "Rien à montrer pour le moment"
 
@@ -5838,7 +5843,7 @@ msgid "Office or venue name"
 msgstr "Nom du bureau ou du lieu"
 
 #: src/components/common/OrdersTable/index.tsx:540
-#: src/components/common/ReportTable/index.tsx:353
+#: src/components/common/ReportTable/index.tsx:395
 #: src/components/routes/product-widget/Payment/index.tsx:131
 msgid "Offline"
 msgstr "Hors ligne"
@@ -5892,7 +5897,7 @@ msgstr "Une fois la mise à niveau terminée, votre ancien compte ne sera utilis
 msgid "Once you create an event, you'll see it here."
 msgstr "Une fois que vous avez créé un événement, vous le verrez ici."
 
-#: src/components/common/ReportTable/index.tsx:311
+#: src/components/common/ReportTable/index.tsx:317
 msgid "Once you start collecting data, you'll see it here."
 msgstr "Une fois que vous commencerez à collecter des données, elles apparaîtront ici."
 
@@ -6330,7 +6335,7 @@ msgstr "Les organisateurs ne peuvent gérer que les événements et les produits
 
 #: src/components/common/Editor/Controls/InsertLiquidVariableControl.tsx:98
 #: src/components/common/OrdersTable/index.tsx:545
-#: src/components/common/ReportTable/index.tsx:354
+#: src/components/common/ReportTable/index.tsx:402
 #: src/constants/eventCategories.ts:22
 msgid "Other"
 msgstr "Autre"
@@ -7834,7 +7839,7 @@ msgid "Select tickets"
 msgstr "Sélectionner des billets"
 
 #: src/components/common/OrganizerReportTable/index.tsx:317
-#: src/components/common/ReportTable/index.tsx:327
+#: src/components/common/ReportTable/index.tsx:359
 msgid "Select time period"
 msgstr "Sélectionnez la période"
 
@@ -8316,7 +8321,7 @@ msgid "Stop Impersonating"
 msgstr "Arrêter l'usurpation"
 
 #: src/components/common/OrdersTable/index.tsx:535
-#: src/components/common/ReportTable/index.tsx:352
+#: src/components/common/ReportTable/index.tsx:388
 #: src/components/routes/admin/Dashboard/index.tsx:424
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:93
 msgid "Stripe"
@@ -9266,7 +9271,7 @@ msgstr "Meilleurs organisateurs (14 derniers jours)"
 #: src/components/common/AdminOrdersTable/index.tsx:81
 #: src/components/common/InlineOrderSummary/index.tsx:203
 #: src/components/common/OrderSummary/index.tsx:92
-#: src/components/common/ReportTable/index.tsx:245
+#: src/components/common/ReportTable/index.tsx:251
 msgid "Total"
 msgstr "Total"
 
@@ -10328,7 +10333,7 @@ msgid "X (Twitter)"
 msgstr "X (Twitter)"
 
 #: src/components/common/OrganizerReportTable/index.tsx:59
-#: src/components/common/ReportTable/index.tsx:59
+#: src/components/common/ReportTable/index.tsx:60
 msgid "Year to date"
 msgstr "Année à ce jour"
 

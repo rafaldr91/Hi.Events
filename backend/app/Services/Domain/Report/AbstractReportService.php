@@ -23,6 +23,7 @@ abstract class AbstractReportService
         ?Carbon $startDate = null,
         ?Carbon $endDate = null,
         ?array  $paymentProviders = null,
+        ?array  $buyerTypes = null,
     ): Collection {
         $event = $this->eventRepository->findById($eventId);
         $timezone = $event->getTimezone();
@@ -36,10 +37,10 @@ abstract class AbstractReportService
             : $endDate->copy()->subDays(30)->startOfDay();
 
         $reportResults = $this->cache->remember(
-            key: $this->getCacheKey($eventId, $startDate, $endDate, $paymentProviders),
+            key: $this->getCacheKey($eventId, $startDate, $endDate, $paymentProviders, $buyerTypes),
             ttl: Carbon::now()->addSeconds(20),
             callback: fn() => $this->queryBuilder->select(
-                $this->getSqlQuery($startDate, $endDate, $paymentProviders),
+                $this->getSqlQuery($startDate, $endDate, $paymentProviders, $buyerTypes),
                 [
                     'event_id' => $eventId,
                 ]
@@ -49,11 +50,12 @@ abstract class AbstractReportService
         return collect($reportResults);
     }
 
-    abstract protected function getSqlQuery(Carbon $startDate, Carbon $endDate, ?array $paymentProviders = null): string;
+    abstract protected function getSqlQuery(Carbon $startDate, Carbon $endDate, ?array $paymentProviders = null, ?array $buyerTypes = null): string;
 
-    protected function getCacheKey(int $eventId, ?Carbon $startDate, ?Carbon $endDate, ?array $paymentProviders = null): string
+    protected function getCacheKey(int $eventId, ?Carbon $startDate, ?Carbon $endDate, ?array $paymentProviders = null, ?array $buyerTypes = null): string
     {
         $providerSegment = $paymentProviders ? implode('_', $paymentProviders) : 'all';
-        return static::class . "$eventId.{$startDate?->toDateString()}.{$endDate?->toDateString()}.$providerSegment";
+        $buyerSegment = $buyerTypes ? implode('_', $buyerTypes) : 'all';
+        return static::class . "$eventId.{$startDate?->toDateString()}.{$endDate?->toDateString()}.$providerSegment.$buyerSegment";
     }
 }

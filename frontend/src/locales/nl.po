@@ -1802,6 +1802,10 @@ msgstr "Communicatievoorkeuren"
 msgid "Company"
 msgstr "Bedrijf"
 
+#: src/components/common/ReportTable/index.tsx:416
+msgid "Company (NIP)"
+msgstr "Bedrijf (NIP)"
+
 #: src/components/routes/product-widget/CollectInformation/index.tsx:462
 msgid "Company name"
 msgstr "Bedrijfsnaam"
@@ -2487,7 +2491,7 @@ msgid "Custom Questions"
 msgstr "Aangepaste vragen"
 
 #: src/components/common/OrganizerReportTable/index.tsx:61
-#: src/components/common/ReportTable/index.tsx:61
+#: src/components/common/ReportTable/index.tsx:62
 msgid "Custom Range"
 msgstr "Aangepast bereik"
 
@@ -3637,7 +3641,7 @@ msgstr "Antwoorden exporteren"
 msgid "Export CSV"
 msgstr "CSV exporteren"
 
-#: src/components/common/ReportTable/index.tsx:380
+#: src/components/common/ReportTable/index.tsx:346
 msgid "Export Excel"
 msgstr "Exporteer Excel"
 
@@ -3770,7 +3774,7 @@ msgstr "Geen deelnemers geëxporteerd"
 msgid "Failed to export orders"
 msgstr "Geen orders kunnen exporteren"
 
-#: src/components/common/ReportTable/index.tsx:110
+#: src/components/common/ReportTable/index.tsx:116
 msgid "Failed to export report"
 msgstr "Exporteren van rapport mislukt"
 
@@ -4345,7 +4349,7 @@ msgstr "Verberg"
 msgid "Hide Answers"
 msgstr "Antwoorden verbergen"
 
-#: src/components/common/ReportTable/index.tsx:362
+#: src/components/common/ReportTable/index.tsx:438
 msgid "Hide days with no sales"
 msgstr "Dagen zonder verkoop verbergen"
 
@@ -4605,6 +4609,7 @@ msgstr "Omvat 1 product"
 msgid "Indicate whether you're VAT-registered in the EU"
 msgstr "Geef aan of u BTW-geregistreerd bent in de EU"
 
+#: src/components/common/ReportTable/index.tsx:423
 #: src/components/routes/product-widget/CollectInformation/index.tsx:450
 msgid "Individual"
 msgstr "Particulier"
@@ -4880,12 +4885,12 @@ msgid "Language"
 msgstr "Taal"
 
 #: src/components/common/OrganizerReportTable/index.tsx:60
-#: src/components/common/ReportTable/index.tsx:60
+#: src/components/common/ReportTable/index.tsx:61
 msgid "Last 12 months"
 msgstr "Laatste 12 maanden"
 
 #: src/components/common/OrganizerReportTable/index.tsx:55
-#: src/components/common/ReportTable/index.tsx:55
+#: src/components/common/ReportTable/index.tsx:56
 msgid "Last 14 days"
 msgstr "Laatste 14 dagen"
 
@@ -4894,33 +4899,33 @@ msgid "Last 14 Days"
 msgstr "Laatste 14 dagen"
 
 #: src/components/common/OrganizerReportTable/index.tsx:52
-#: src/components/common/ReportTable/index.tsx:52
+#: src/components/common/ReportTable/index.tsx:53
 msgid "Last 24 hours"
 msgstr "Laatste 24 uur"
 
 #: src/components/common/OrganizerReportTable/index.tsx:56
-#: src/components/common/ReportTable/index.tsx:56
+#: src/components/common/ReportTable/index.tsx:57
 #: src/components/routes/event/EventDashboard/index.tsx:266
 msgid "Last 30 days"
 msgstr "Laatste 30 dagen"
 
 #: src/components/common/OrganizerReportTable/index.tsx:53
-#: src/components/common/ReportTable/index.tsx:53
+#: src/components/common/ReportTable/index.tsx:54
 msgid "Last 48 hours"
 msgstr "Laatste 48 uur"
 
 #: src/components/common/OrganizerReportTable/index.tsx:58
-#: src/components/common/ReportTable/index.tsx:58
+#: src/components/common/ReportTable/index.tsx:59
 msgid "Last 6 months"
 msgstr "Laatste 6 maanden"
 
 #: src/components/common/OrganizerReportTable/index.tsx:54
-#: src/components/common/ReportTable/index.tsx:54
+#: src/components/common/ReportTable/index.tsx:55
 msgid "Last 7 days"
 msgstr "Laatste 7 dagen"
 
 #: src/components/common/OrganizerReportTable/index.tsx:57
-#: src/components/common/ReportTable/index.tsx:57
+#: src/components/common/ReportTable/index.tsx:58
 msgid "Last 90 days"
 msgstr "Laatste 90 dagen"
 
@@ -5039,7 +5044,7 @@ msgid "Loading Webhooks"
 msgstr "Webhooks laden"
 
 #: src/components/common/OrganizerReportTable/index.tsx:265
-#: src/components/common/ReportTable/index.tsx:276
+#: src/components/common/ReportTable/index.tsx:282
 #: src/components/routes/event/Settings/Sections/DangerZoneSettings/index.tsx:86
 #: src/components/routes/organizer/Settings/Sections/DangerZoneSettings/index.tsx:92
 msgid "Loading..."
@@ -5516,7 +5521,7 @@ msgstr "Geen incheck lijsten beschikbaar voor dit evenement."
 msgid "No configurations found"
 msgstr "Geen configuraties gevonden"
 
-#: src/components/common/ReportTable/index.tsx:284
+#: src/components/common/ReportTable/index.tsx:290
 msgid "No data available"
 msgstr "Geen gegevens beschikbaar"
 
@@ -5524,7 +5529,7 @@ msgstr "Geen gegevens beschikbaar"
 msgid "No data found for the selected filters. Try adjusting the date range or currency."
 msgstr "Geen gegevens gevonden voor de geselecteerde filters. Probeer het datumbereik of de valuta aan te passen."
 
-#: src/components/common/ReportTable/index.tsx:280
+#: src/components/common/ReportTable/index.tsx:286
 msgid "No data to show. Please select a date range"
 msgstr "Geen gegevens om weer te geven. Selecteer een datumbereik"
 
@@ -5770,7 +5775,7 @@ msgstr "Niet in Aanmerking"
 msgid "Notes"
 msgstr "Opmerkingen"
 
-#: src/components/common/ReportTable/index.tsx:306
+#: src/components/common/ReportTable/index.tsx:312
 msgid "Nothing to show yet"
 msgstr "Nog niets om te laten zien"
 
@@ -5839,7 +5844,7 @@ msgid "Office or venue name"
 msgstr "Naam van kantoor of locatie"
 
 #: src/components/common/OrdersTable/index.tsx:540
-#: src/components/common/ReportTable/index.tsx:353
+#: src/components/common/ReportTable/index.tsx:395
 #: src/components/routes/product-widget/Payment/index.tsx:131
 msgid "Offline"
 msgstr "Offline"
@@ -5893,7 +5898,7 @@ msgstr "Zodra u de upgrade voltooit, wordt uw oude account alleen gebruikt voor 
 msgid "Once you create an event, you'll see it here."
 msgstr "Zodra je een evenement hebt gemaakt, zie je het hier."
 
-#: src/components/common/ReportTable/index.tsx:311
+#: src/components/common/ReportTable/index.tsx:317
 msgid "Once you start collecting data, you'll see it here."
 msgstr "Zodra je gegevens begint te verzamelen, zie je ze hier."
 
@@ -6331,7 +6336,7 @@ msgstr "Organisatoren kunnen alleen evenementen en producten beheren. Ze kunnen 
 
 #: src/components/common/Editor/Controls/InsertLiquidVariableControl.tsx:98
 #: src/components/common/OrdersTable/index.tsx:545
-#: src/components/common/ReportTable/index.tsx:354
+#: src/components/common/ReportTable/index.tsx:402
 #: src/constants/eventCategories.ts:22
 msgid "Other"
 msgstr "Overig"
@@ -7835,7 +7840,7 @@ msgid "Select tickets"
 msgstr "Kies tickets"
 
 #: src/components/common/OrganizerReportTable/index.tsx:317
-#: src/components/common/ReportTable/index.tsx:327
+#: src/components/common/ReportTable/index.tsx:359
 msgid "Select time period"
 msgstr "Selecteer tijdsperiode"
 
@@ -8317,7 +8322,7 @@ msgid "Stop Impersonating"
 msgstr "Stop Imiteren"
 
 #: src/components/common/OrdersTable/index.tsx:535
-#: src/components/common/ReportTable/index.tsx:352
+#: src/components/common/ReportTable/index.tsx:388
 #: src/components/routes/admin/Dashboard/index.tsx:424
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:93
 msgid "Stripe"
@@ -9267,7 +9272,7 @@ msgstr "Top organisatoren (Laatste 14 dagen)"
 #: src/components/common/AdminOrdersTable/index.tsx:81
 #: src/components/common/InlineOrderSummary/index.tsx:203
 #: src/components/common/OrderSummary/index.tsx:92
-#: src/components/common/ReportTable/index.tsx:245
+#: src/components/common/ReportTable/index.tsx:251
 msgid "Total"
 msgstr "Totaal"
 
@@ -10329,7 +10334,7 @@ msgid "X (Twitter)"
 msgstr "X (Twitter)"
 
 #: src/components/common/OrganizerReportTable/index.tsx:59
-#: src/components/common/ReportTable/index.tsx:59
+#: src/components/common/ReportTable/index.tsx:60
 msgid "Year to date"
 msgstr "Jaar tot nu toe"
 

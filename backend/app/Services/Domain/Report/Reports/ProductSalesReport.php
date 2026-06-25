@@ -8,7 +8,7 @@ use Illuminate\Support\Carbon;
 
 class ProductSalesReport extends AbstractReportService
 {
-    protected function getSqlQuery(Carbon $startDate, Carbon $endDate, ?array $paymentProviders = null): string
+    protected function getSqlQuery(Carbon $startDate, Carbon $endDate, ?array $paymentProviders = null, ?array $buyerTypes = null): string
     {
         $startDateString = $startDate->format('Y-m-d H:i:s');
         $endDateString = $endDate->format('Y-m-d H:i:s');

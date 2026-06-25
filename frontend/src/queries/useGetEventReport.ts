@@ -10,6 +10,7 @@ export const useGetEventReport = (
     startDate?: Date | null,
     endDate?: Date | null,
     paymentProviders?: string[],
+    buyerTypes?: string[],
 ) => {
     return useQuery({
         queryKey: [
@@ -19,6 +20,7 @@ export const useGetEventReport = (
             startDate?.toISOString(),
             endDate?.toISOString(),
             paymentProviders ?? [],
+            buyerTypes ?? [],
         ],
         queryFn: async () => {
             return await eventsClient.getEventReport(
@@ -27,6 +29,7 @@ export const useGetEventReport = (
                 startDate?.toISOString(),
                 endDate?.toISOString(),
                 paymentProviders,
+                buyerTypes,
             );
         },
         enabled: !!eventId && !!reportType && (!!startDate && !!endDate) || (!startDate && !endDate)

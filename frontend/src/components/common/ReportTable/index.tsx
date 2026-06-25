@@ -46,6 +46,7 @@ interface ReportProps<T> {
     showTotals?: boolean;
     showExcelExport?: boolean;
     showHideEmptyRows?: boolean;
+    showBuyerTypeFilter?: boolean;
 }
 
 const TIME_PERIODS = [
@@ -75,6 +76,7 @@ const ReportTable = <T extends Record<string, any>>({
                                                         showTotals = false,
                                                         showExcelExport = false,
                                                         showHideEmptyRows = false,
+                                                        showBuyerTypeFilter = false,
                                                         event
                                                     }: ReportProps<T>) => {
     const [dateRange, setDateRange] = useState<[Date | null, Date | null]>([
@@ -86,10 +88,12 @@ const ReportTable = <T extends Record<string, any>>({
     const [sortField, setSortField] = useState<keyof T | null>(null);
     const [sortDirection, setSortDirection] = useState<'asc' | 'desc' | null>(null);
     const [paymentProviders, setPaymentProviders] = useState<string[]>([]);
+    const [buyerTypes, setBuyerTypes] = useState<string[]>(['company', 'individual']);
     const [isExporting, setIsExporting] = useState(false);
     const [hideEmptyRows, setHideEmptyRows] = useState(true);
     const {reportType, eventId} = useParams();
-    const reportQuery = useGetEventReport(eventId, reportType, dateRange[0], dateRange[1], paymentProviders.length ? paymentProviders : undefined);
+    const activeBuyerTypes = showBuyerTypeFilter && buyerTypes.length < 2 ? buyerTypes : undefined;
+    const reportQuery = useGetEventReport(eventId, reportType, dateRange[0], dateRange[1], paymentProviders.length ? paymentProviders : undefined, activeBuyerTypes);
     const data = (reportQuery.data || []) as T[];
 
     const handleExcelExport = async () => {
@@ -105,6 +109,7 @@ const ReportTable = <T extends Record<string, any>>({
                 endDate,
                 paymentProviders.length ? paymentProviders : undefined,
                 showHideEmptyRows && hideEmptyRows,
+                activeBuyerTypes,
             );
             downloadBinary(blob, `${reportType}_${startDate}_${endDate}.xlsx`);
         } catch {
@@ -343,7 +348,7 @@ const ReportTable = <T extends Record<string, any>>({
                         )}
                     </Group>
                 </Group>
-                {(showDateFilter || showPaymentProviderFilter || showHideEmptyRows) && (
+                {(showDateFilter || showPaymentProviderFilter || showHideEmptyRows || showBuyerTypeFilter) && (
                     <>
                         <Divider/>
                         <Group gap="md" align="center">
@@ -402,7 +407,28 @@ const ReportTable = <T extends Record<string, any>>({
                                     />
                                 </>
                             )}
-                            {showPaymentProviderFilter && showHideEmptyRows && (
+                            {showPaymentProviderFilter && (showHideEmptyRows || showBuyerTypeFilter) && (
+                                <Divider orientation="vertical" h={20}/>
+                            )}
+                            {showBuyerTypeFilter && (
+                                <>
+                                    <Checkbox
+                                        label={t`Company (NIP)`}
+                                        checked={buyerTypes.includes('company')}
+                                        onChange={e => setBuyerTypes(prev =>
+                                            e.currentTarget.checked ? [...prev, 'company'] : prev.filter(t => t !== 'company')
+                                        )}
+                                    />
+                                    <Checkbox
+                                        label={t`Individual`}
+                                        checked={buyerTypes.includes('individual')}
+                                        onChange={e => setBuyerTypes(prev =>
+                                            e.currentTarget.checked ? [...prev, 'individual'] : prev.filter(t => t !== 'individual')
+                                        )}
+                                    />
+                                </>
+                            )}
+                            {showBuyerTypeFilter && showHideEmptyRows && (
                                 <Divider orientation="vertical" h={20}/>
                             )}
                             {showHideEmptyRows && (
