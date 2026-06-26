@@ -43,6 +43,8 @@ class ExportOrganizerReportAction extends BaseAction
                 endDate: $request->validated('end_date'),
                 currency: $request->validated('currency'),
                 eventId: $request->validated('event_id'),
+                paymentProviders: $request->validated('payment_providers') ?: null,
+                buyerTypes: $request->validated('buyer_types') ?: null,
                 page: 1,
                 perPage: self::MAX_EXPORT_ROWS,
             ),

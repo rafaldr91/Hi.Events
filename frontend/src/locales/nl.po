@@ -661,7 +661,7 @@ msgstr "Alle deelnemers"
 msgid "All attendees of this event"
 msgstr "Alle deelnemers aan dit evenement"
 
-#: src/components/common/OrganizerReportTable/index.tsx:291
+#: src/components/common/OrganizerReportTable/index.tsx:314
 msgid "All Currencies"
 msgstr "Alle valuta's"
 
@@ -1802,6 +1802,7 @@ msgstr "Communicatievoorkeuren"
 msgid "Company"
 msgstr "Bedrijf"
 
+#: src/components/common/OrganizerReportTable/index.tsx:412
 #: src/components/common/ReportTable/index.tsx:416
 msgid "Company (NIP)"
 msgstr "Bedrijf (NIP)"
@@ -2437,7 +2438,7 @@ msgstr "Je organisatorprofiel wordt aangemaakt, even geduld"
 msgid "CTA label is required"
 msgstr "CTA label is verplicht"
 
-#: src/components/common/OrganizerReportTable/index.tsx:306
+#: src/components/common/OrganizerReportTable/index.tsx:345
 #: src/components/forms/OrganizerForm/index.tsx:50
 #: src/components/routes/account/ManageAccount/sections/AccountSettings/index.tsx:73
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:149
@@ -2490,7 +2491,7 @@ msgstr "Aangepast bericht na checkout"
 msgid "Custom Questions"
 msgstr "Aangepaste vragen"
 
-#: src/components/common/OrganizerReportTable/index.tsx:61
+#: src/components/common/OrganizerReportTable/index.tsx:72
 #: src/components/common/ReportTable/index.tsx:62
 msgid "Custom Range"
 msgstr "Aangepast bereik"
@@ -2626,7 +2627,7 @@ msgstr "Gegevenseigendom"
 #: src/components/forms/QuestionForm/index.tsx:136
 #: src/components/routes/event/Reports/DailySalesReport/index.tsx:20
 #: src/components/routes/organizer/Reports/EventsPerformanceReport/index.tsx:56
-#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:24
+#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:62
 msgid "Date"
 msgstr "Datum"
 
@@ -2847,6 +2848,10 @@ msgstr "Factuur downloaden"
 #: src/components/common/OrdersTable/index.tsx:279
 msgid "Download KSeF XML"
 msgstr "KSeF XML downloaden"
+
+#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:116
+msgid "Download orders for this day"
+msgstr "Bestellingen van deze dag downloaden"
 
 #: src/components/modals/ShareModal/index.tsx:228
 msgid "Download QR Code"
@@ -3637,7 +3642,7 @@ msgstr "Exporteer"
 msgid "Export Answers"
 msgstr "Antwoorden exporteren"
 
-#: src/components/common/OrganizerReportTable/index.tsx:347
+#: src/components/common/OrganizerReportTable/index.tsx:334
 msgid "Export CSV"
 msgstr "CSV exporteren"
 
@@ -3653,7 +3658,8 @@ msgstr "Exporteren mislukt. Probeer het opnieuw."
 msgid "Export started. Preparing file..."
 msgstr "Export gestart. Bestand wordt voorbereid..."
 
-#: src/components/common/OrganizerReportTable/index.tsx:204
+#: src/components/common/OrganizerReportTable/index.tsx:227
+#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:51
 msgid "Export successful"
 msgstr "Export succesvol"
 
@@ -3774,11 +3780,15 @@ msgstr "Geen deelnemers geëxporteerd"
 msgid "Failed to export orders"
 msgstr "Geen orders kunnen exporteren"
 
+#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:53
+msgid "Failed to export orders. Please try again."
+msgstr ""
+
 #: src/components/common/ReportTable/index.tsx:116
 msgid "Failed to export report"
 msgstr "Exporteren van rapport mislukt"
 
-#: src/components/common/OrganizerReportTable/index.tsx:206
+#: src/components/common/OrganizerReportTable/index.tsx:229
 msgid "Failed to export report. Please try again."
 msgstr "Export van rapport mislukt. Probeer het opnieuw."
 
@@ -3957,7 +3967,7 @@ msgstr "Kostenafhandeling"
 #: src/components/common/InlineOrderSummary/index.tsx:140
 #: src/components/common/OrdersTable/index.tsx:510
 #: src/components/forms/ProductForm/index.tsx:409
-#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
+#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:92
 msgid "Fees"
 msgstr "Tarieven"
 
@@ -4265,7 +4275,7 @@ msgstr "Brutoverkoop"
 #: src/components/routes/event/EventDashboard/index.tsx:370
 #: src/components/routes/event/Reports/ProductSalesReport/index.tsx:29
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:119
-#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:30
+#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:68
 msgid "Gross Sales"
 msgstr "Bruto verkoop"
 
@@ -4609,6 +4619,7 @@ msgstr "Omvat 1 product"
 msgid "Indicate whether you're VAT-registered in the EU"
 msgstr "Geef aan of u BTW-geregistreerd bent in de EU"
 
+#: src/components/common/OrganizerReportTable/index.tsx:419
 #: src/components/common/ReportTable/index.tsx:423
 #: src/components/routes/product-widget/CollectInformation/index.tsx:450
 msgid "Individual"
@@ -4884,12 +4895,12 @@ msgstr "Label"
 msgid "Language"
 msgstr "Taal"
 
-#: src/components/common/OrganizerReportTable/index.tsx:60
+#: src/components/common/OrganizerReportTable/index.tsx:71
 #: src/components/common/ReportTable/index.tsx:61
 msgid "Last 12 months"
 msgstr "Laatste 12 maanden"
 
-#: src/components/common/OrganizerReportTable/index.tsx:55
+#: src/components/common/OrganizerReportTable/index.tsx:66
 #: src/components/common/ReportTable/index.tsx:56
 msgid "Last 14 days"
 msgstr "Laatste 14 dagen"
@@ -4898,33 +4909,33 @@ msgstr "Laatste 14 dagen"
 msgid "Last 14 Days"
 msgstr "Laatste 14 dagen"
 
-#: src/components/common/OrganizerReportTable/index.tsx:52
+#: src/components/common/OrganizerReportTable/index.tsx:63
 #: src/components/common/ReportTable/index.tsx:53
 msgid "Last 24 hours"
 msgstr "Laatste 24 uur"
 
-#: src/components/common/OrganizerReportTable/index.tsx:56
+#: src/components/common/OrganizerReportTable/index.tsx:67
 #: src/components/common/ReportTable/index.tsx:57
 #: src/components/routes/event/EventDashboard/index.tsx:266
 msgid "Last 30 days"
 msgstr "Laatste 30 dagen"
 
-#: src/components/common/OrganizerReportTable/index.tsx:53
+#: src/components/common/OrganizerReportTable/index.tsx:64
 #: src/components/common/ReportTable/index.tsx:54
 msgid "Last 48 hours"
 msgstr "Laatste 48 uur"
 
-#: src/components/common/OrganizerReportTable/index.tsx:58
+#: src/components/common/OrganizerReportTable/index.tsx:69
 #: src/components/common/ReportTable/index.tsx:59
 msgid "Last 6 months"
 msgstr "Laatste 6 maanden"
 
-#: src/components/common/OrganizerReportTable/index.tsx:54
+#: src/components/common/OrganizerReportTable/index.tsx:65
 #: src/components/common/ReportTable/index.tsx:55
 msgid "Last 7 days"
 msgstr "Laatste 7 dagen"
 
-#: src/components/common/OrganizerReportTable/index.tsx:57
+#: src/components/common/OrganizerReportTable/index.tsx:68
 #: src/components/common/ReportTable/index.tsx:58
 msgid "Last 90 days"
 msgstr "Laatste 90 dagen"
@@ -5043,7 +5054,7 @@ msgstr ""
 msgid "Loading Webhooks"
 msgstr "Webhooks laden"
 
-#: src/components/common/OrganizerReportTable/index.tsx:265
+#: src/components/common/OrganizerReportTable/index.tsx:288
 #: src/components/common/ReportTable/index.tsx:282
 #: src/components/routes/event/Settings/Sections/DangerZoneSettings/index.tsx:86
 #: src/components/routes/organizer/Settings/Sections/DangerZoneSettings/index.tsx:92
@@ -5402,7 +5413,7 @@ msgid "Navigate to Attendee"
 msgstr "Navigeer naar deelnemer"
 
 #: src/components/routes/organizer/Reports/EventsPerformanceReport/index.tsx:85
-#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:36
+#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:74
 msgid "Net Revenue"
 msgstr "Netto-omzet"
 
@@ -5525,7 +5536,7 @@ msgstr "Geen configuraties gevonden"
 msgid "No data available"
 msgstr "Geen gegevens beschikbaar"
 
-#: src/components/common/OrganizerReportTable/index.tsx:272
+#: src/components/common/OrganizerReportTable/index.tsx:295
 msgid "No data found for the selected filters. Try adjusting the date range or currency."
 msgstr "Geen gegevens gevonden voor de geselecteerde filters. Probeer het datumbereik of de valuta aan te passen."
 
@@ -5804,7 +5815,7 @@ msgstr "Nummer Voorvoegsel"
 msgid "Number Suffix"
 msgstr "Nummerachtervoesel"
 
-#: src/components/common/OrganizerReportTable/index.tsx:356
+#: src/components/common/OrganizerReportTable/index.tsx:435
 msgid "of"
 msgstr "van"
 
@@ -5844,6 +5855,7 @@ msgid "Office or venue name"
 msgstr "Naam van kantoor of locatie"
 
 #: src/components/common/OrdersTable/index.tsx:540
+#: src/components/common/OrganizerReportTable/index.tsx:391
 #: src/components/common/ReportTable/index.tsx:395
 #: src/components/routes/product-widget/Payment/index.tsx:131
 msgid "Offline"
@@ -6206,7 +6218,7 @@ msgstr "Bestelling is geannuleerd"
 #: src/components/routes/admin/Orders/index.tsx:44
 #: src/components/routes/event/orders.tsx:115
 #: src/components/routes/organizer/Reports/EventsPerformanceReport/index.tsx:103
-#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:60
+#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:98
 #: src/components/routes/organizer/Reports/TaxSummaryReport/index.tsx:55
 msgid "Orders"
 msgstr "Bestellingen"
@@ -6336,6 +6348,7 @@ msgstr "Organisatoren kunnen alleen evenementen en producten beheren. Ze kunnen 
 
 #: src/components/common/Editor/Controls/InsertLiquidVariableControl.tsx:98
 #: src/components/common/OrdersTable/index.tsx:545
+#: src/components/common/OrganizerReportTable/index.tsx:398
 #: src/components/common/ReportTable/index.tsx:402
 #: src/constants/eventCategories.ts:22
 msgid "Other"
@@ -6357,7 +6370,7 @@ msgstr "Overzicht"
 msgid "Padding"
 msgstr "Opvulling"
 
-#: src/components/common/OrganizerReportTable/index.tsx:356
+#: src/components/common/OrganizerReportTable/index.tsx:435
 msgid "Page"
 msgstr "Pagina"
 
@@ -6748,7 +6761,7 @@ msgstr "Start het bestelproces opnieuw."
 msgid "Please return to the event page to start over."
 msgstr "Ga terug naar de evenementpagina om opnieuw te beginnen."
 
-#: src/components/common/OrganizerReportTable/index.tsx:269
+#: src/components/common/OrganizerReportTable/index.tsx:292
 msgid "Please select a date range"
 msgstr "Selecteer een datumbereik"
 
@@ -7269,7 +7282,7 @@ msgid "Refunded: {0}"
 msgstr "Terugbetaald: {0}"
 
 #: src/components/routes/organizer/Reports/EventsPerformanceReport/index.tsx:79
-#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:42
+#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:80
 msgid "Refunds"
 msgstr "Terugbetalingen"
 
@@ -7453,7 +7466,7 @@ msgid "Revenue"
 msgstr "Inkomsten"
 
 #: src/components/routes/organizer/Reports/index.tsx:17
-#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:67
+#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:105
 msgid "Revenue Summary"
 msgstr "Omzetoverzicht"
 
@@ -7839,7 +7852,7 @@ msgstr "Selecteer ticket"
 msgid "Select tickets"
 msgstr "Kies tickets"
 
-#: src/components/common/OrganizerReportTable/index.tsx:317
+#: src/components/common/OrganizerReportTable/index.tsx:356
 #: src/components/common/ReportTable/index.tsx:359
 msgid "Select time period"
 msgstr "Selecteer tijdsperiode"
@@ -8117,7 +8130,7 @@ msgstr "Toon meer platforms"
 msgid "Show tax and fees separately"
 msgstr "Belastingen en toeslagen apart weergeven"
 
-#: src/components/common/OrganizerReportTable/index.tsx:355
+#: src/components/common/OrganizerReportTable/index.tsx:434
 msgid "Showing {0} of {totalRows} records"
 msgstr "Toont {0} van {totalRows} records"
 
@@ -8322,6 +8335,7 @@ msgid "Stop Impersonating"
 msgstr "Stop Imiteren"
 
 #: src/components/common/OrdersTable/index.tsx:535
+#: src/components/common/OrganizerReportTable/index.tsx:384
 #: src/components/common/ReportTable/index.tsx:388
 #: src/components/routes/admin/Dashboard/index.tsx:424
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:93
@@ -8627,7 +8641,7 @@ msgstr "Belastingoverzicht"
 
 #: src/components/common/InlineOrderSummary/index.tsx:173
 #: src/components/forms/ProductForm/index.tsx:406
-#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:48
+#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:86
 msgid "Taxes"
 msgstr "Belastingen"
 
@@ -10333,7 +10347,7 @@ msgstr "Schrijf hier je bericht..."
 msgid "X (Twitter)"
 msgstr "X (Twitter)"
 
-#: src/components/common/OrganizerReportTable/index.tsx:59
+#: src/components/common/OrganizerReportTable/index.tsx:70
 #: src/components/common/ReportTable/index.tsx:60
 msgid "Year to date"
 msgstr "Jaar tot nu toe"

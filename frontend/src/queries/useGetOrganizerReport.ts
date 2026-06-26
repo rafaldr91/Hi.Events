@@ -22,7 +22,9 @@ export const useGetOrganizerReport = (
     currency?: string | null,
     eventId?: IdParam | null,
     page: number = 1,
-    perPage: number = 1000
+    perPage: number = 1000,
+    paymentProviders?: string[],
+    buyerTypes?: string[],
 ) => {
     return useQuery({
         queryKey: [
@@ -34,7 +36,9 @@ export const useGetOrganizerReport = (
             currency,
             eventId,
             page,
-            perPage
+            perPage,
+            paymentProviders ?? [],
+            buyerTypes ?? [],
         ],
         queryFn: async () => {
             const startDateString = startDate?.toISOString();
@@ -48,7 +52,9 @@ export const useGetOrganizerReport = (
                 currency,
                 eventId,
                 page,
-                perPage
+                perPage,
+                paymentProviders,
+                buyerTypes,
             );
 
             // Handle both paginated and non-paginated responses

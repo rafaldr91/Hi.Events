@@ -8,7 +8,7 @@ use Illuminate\Support\Carbon;
 
 class EventsPerformanceReport extends AbstractOrganizerReportService
 {
-    protected function getSqlQuery(Carbon $startDate, Carbon $endDate, ?string $currency = null): string
+    protected function getSqlQuery(Carbon $startDate, Carbon $endDate, ?string $currency = null, ?array $paymentProviders = null, ?array $buyerTypes = null): string
     {
         $completedStatus = OrderStatus::COMPLETED->name;
         $orderCurrencyFilter = $this->buildCurrencyFilter('o.currency', $currency);

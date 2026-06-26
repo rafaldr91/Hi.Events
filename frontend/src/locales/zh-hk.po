@@ -660,7 +660,7 @@ msgstr "所有參與者"
 msgid "All attendees of this event"
 msgstr "本次活動的所有與會者"
 
-#: src/components/common/OrganizerReportTable/index.tsx:291
+#: src/components/common/OrganizerReportTable/index.tsx:314
 msgid "All Currencies"
 msgstr "所有貨幣"
 
@@ -1801,6 +1801,7 @@ msgstr "通訊偏好"
 msgid "Company"
 msgstr "企業"
 
+#: src/components/common/OrganizerReportTable/index.tsx:412
 #: src/components/common/ReportTable/index.tsx:416
 msgid "Company (NIP)"
 msgstr "公司 (NIP)"
@@ -2436,7 +2437,7 @@ msgstr "建立緊你嘅主辦方資料，請稍候"
 msgid "CTA label is required"
 msgstr "CTA標籤是必需的"
 
-#: src/components/common/OrganizerReportTable/index.tsx:306
+#: src/components/common/OrganizerReportTable/index.tsx:345
 #: src/components/forms/OrganizerForm/index.tsx:50
 #: src/components/routes/account/ManageAccount/sections/AccountSettings/index.tsx:73
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:149
@@ -2489,7 +2490,7 @@ msgstr "結帳後自訂訊息"
 msgid "Custom Questions"
 msgstr "自訂問題"
 
-#: src/components/common/OrganizerReportTable/index.tsx:61
+#: src/components/common/OrganizerReportTable/index.tsx:72
 #: src/components/common/ReportTable/index.tsx:62
 msgid "Custom Range"
 msgstr "自定義範圍"
@@ -2625,7 +2626,7 @@ msgstr "資料所有權"
 #: src/components/forms/QuestionForm/index.tsx:136
 #: src/components/routes/event/Reports/DailySalesReport/index.tsx:20
 #: src/components/routes/organizer/Reports/EventsPerformanceReport/index.tsx:56
-#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:24
+#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:62
 msgid "Date"
 msgstr "日期"
 
@@ -2846,6 +2847,10 @@ msgstr "下載發票"
 #: src/components/common/OrdersTable/index.tsx:279
 msgid "Download KSeF XML"
 msgstr "下載KSeF XML"
+
+#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:116
+msgid "Download orders for this day"
+msgstr "下載當天訂單"
 
 #: src/components/modals/ShareModal/index.tsx:228
 msgid "Download QR Code"
@@ -3636,7 +3641,7 @@ msgstr "出口"
 msgid "Export Answers"
 msgstr "匯出答案"
 
-#: src/components/common/OrganizerReportTable/index.tsx:347
+#: src/components/common/OrganizerReportTable/index.tsx:334
 msgid "Export CSV"
 msgstr "匯出CSV"
 
@@ -3652,7 +3657,8 @@ msgstr "導出失敗。請重試。"
 msgid "Export started. Preparing file..."
 msgstr "導出已開始。正在準備文件..."
 
-#: src/components/common/OrganizerReportTable/index.tsx:204
+#: src/components/common/OrganizerReportTable/index.tsx:227
+#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:51
 msgid "Export successful"
 msgstr "匯出成功"
 
@@ -3773,11 +3779,15 @@ msgstr "導出與會者失敗"
 msgid "Failed to export orders"
 msgstr "導出訂單失敗"
 
+#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:53
+msgid "Failed to export orders. Please try again."
+msgstr ""
+
 #: src/components/common/ReportTable/index.tsx:116
 msgid "Failed to export report"
 msgstr "匯出報告失敗"
 
-#: src/components/common/OrganizerReportTable/index.tsx:206
+#: src/components/common/OrganizerReportTable/index.tsx:229
 msgid "Failed to export report. Please try again."
 msgstr "匯出報告失敗。請重試。"
 
@@ -3956,7 +3966,7 @@ msgstr "費用處理"
 #: src/components/common/InlineOrderSummary/index.tsx:140
 #: src/components/common/OrdersTable/index.tsx:510
 #: src/components/forms/ProductForm/index.tsx:409
-#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
+#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:92
 msgid "Fees"
 msgstr "費用"
 
@@ -4264,7 +4274,7 @@ msgstr "銷售總額"
 #: src/components/routes/event/EventDashboard/index.tsx:370
 #: src/components/routes/event/Reports/ProductSalesReport/index.tsx:29
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:119
-#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:30
+#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:68
 msgid "Gross Sales"
 msgstr "總銷售額"
 
@@ -4608,6 +4618,7 @@ msgstr "包括1個產品"
 msgid "Indicate whether you're VAT-registered in the EU"
 msgstr "請說明您是否在歐盟註冊了增值稅"
 
+#: src/components/common/OrganizerReportTable/index.tsx:419
 #: src/components/common/ReportTable/index.tsx:423
 #: src/components/routes/product-widget/CollectInformation/index.tsx:450
 msgid "Individual"
@@ -4883,12 +4894,12 @@ msgstr "標籤"
 msgid "Language"
 msgstr "語言"
 
-#: src/components/common/OrganizerReportTable/index.tsx:60
+#: src/components/common/OrganizerReportTable/index.tsx:71
 #: src/components/common/ReportTable/index.tsx:61
 msgid "Last 12 months"
 msgstr "過去 12 個月"
 
-#: src/components/common/OrganizerReportTable/index.tsx:55
+#: src/components/common/OrganizerReportTable/index.tsx:66
 #: src/components/common/ReportTable/index.tsx:56
 msgid "Last 14 days"
 msgstr "過去 14 天"
@@ -4897,33 +4908,33 @@ msgstr "過去 14 天"
 msgid "Last 14 Days"
 msgstr "過去14天"
 
-#: src/components/common/OrganizerReportTable/index.tsx:52
+#: src/components/common/OrganizerReportTable/index.tsx:63
 #: src/components/common/ReportTable/index.tsx:53
 msgid "Last 24 hours"
 msgstr "過去 24 小時"
 
-#: src/components/common/OrganizerReportTable/index.tsx:56
+#: src/components/common/OrganizerReportTable/index.tsx:67
 #: src/components/common/ReportTable/index.tsx:57
 #: src/components/routes/event/EventDashboard/index.tsx:266
 msgid "Last 30 days"
 msgstr "過去 30 天"
 
-#: src/components/common/OrganizerReportTable/index.tsx:53
+#: src/components/common/OrganizerReportTable/index.tsx:64
 #: src/components/common/ReportTable/index.tsx:54
 msgid "Last 48 hours"
 msgstr "過去 48 小時"
 
-#: src/components/common/OrganizerReportTable/index.tsx:58
+#: src/components/common/OrganizerReportTable/index.tsx:69
 #: src/components/common/ReportTable/index.tsx:59
 msgid "Last 6 months"
 msgstr "過去 6 個月"
 
-#: src/components/common/OrganizerReportTable/index.tsx:54
+#: src/components/common/OrganizerReportTable/index.tsx:65
 #: src/components/common/ReportTable/index.tsx:55
 msgid "Last 7 days"
 msgstr "過去 7 天"
 
-#: src/components/common/OrganizerReportTable/index.tsx:57
+#: src/components/common/OrganizerReportTable/index.tsx:68
 #: src/components/common/ReportTable/index.tsx:58
 msgid "Last 90 days"
 msgstr "過去 90 天"
@@ -5042,7 +5053,7 @@ msgstr ""
 msgid "Loading Webhooks"
 msgstr "正在加載 Webhook"
 
-#: src/components/common/OrganizerReportTable/index.tsx:265
+#: src/components/common/OrganizerReportTable/index.tsx:288
 #: src/components/common/ReportTable/index.tsx:282
 #: src/components/routes/event/Settings/Sections/DangerZoneSettings/index.tsx:86
 #: src/components/routes/organizer/Settings/Sections/DangerZoneSettings/index.tsx:92
@@ -5401,7 +5412,7 @@ msgid "Navigate to Attendee"
 msgstr "導航至與會者"
 
 #: src/components/routes/organizer/Reports/EventsPerformanceReport/index.tsx:85
-#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:36
+#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:74
 msgid "Net Revenue"
 msgstr "淨收入"
 
@@ -5524,7 +5535,7 @@ msgstr "找不到配置"
 msgid "No data available"
 msgstr "無可用數據"
 
-#: src/components/common/OrganizerReportTable/index.tsx:272
+#: src/components/common/OrganizerReportTable/index.tsx:295
 msgid "No data found for the selected filters. Try adjusting the date range or currency."
 msgstr "未找到所選篩選條件的數據。請嘗試調整日期範圍或貨幣。"
 
@@ -5803,7 +5814,7 @@ msgstr "號碼前綴"
 msgid "Number Suffix"
 msgstr "編號後綴"
 
-#: src/components/common/OrganizerReportTable/index.tsx:356
+#: src/components/common/OrganizerReportTable/index.tsx:435
 msgid "of"
 msgstr "共"
 
@@ -5843,6 +5854,7 @@ msgid "Office or venue name"
 msgstr "辦公室或場地名稱"
 
 #: src/components/common/OrdersTable/index.tsx:540
+#: src/components/common/OrganizerReportTable/index.tsx:391
 #: src/components/common/ReportTable/index.tsx:395
 #: src/components/routes/product-widget/Payment/index.tsx:131
 msgid "Offline"
@@ -6205,7 +6217,7 @@ msgstr "訂單已被取消"
 #: src/components/routes/admin/Orders/index.tsx:44
 #: src/components/routes/event/orders.tsx:115
 #: src/components/routes/organizer/Reports/EventsPerformanceReport/index.tsx:103
-#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:60
+#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:98
 #: src/components/routes/organizer/Reports/TaxSummaryReport/index.tsx:55
 msgid "Orders"
 msgstr "訂單"
@@ -6335,6 +6347,7 @@ msgstr "組織者只能管理活動和產品。他們無法管理用户、賬户
 
 #: src/components/common/Editor/Controls/InsertLiquidVariableControl.tsx:98
 #: src/components/common/OrdersTable/index.tsx:545
+#: src/components/common/OrganizerReportTable/index.tsx:398
 #: src/components/common/ReportTable/index.tsx:402
 #: src/constants/eventCategories.ts:22
 msgid "Other"
@@ -6356,7 +6369,7 @@ msgstr "總覽"
 msgid "Padding"
 msgstr "內邊距"
 
-#: src/components/common/OrganizerReportTable/index.tsx:356
+#: src/components/common/OrganizerReportTable/index.tsx:435
 msgid "Page"
 msgstr "頁面"
 
@@ -6747,7 +6760,7 @@ msgstr "請重新開始結賬流程。"
 msgid "Please return to the event page to start over."
 msgstr "請返回活動頁面重新開始。"
 
-#: src/components/common/OrganizerReportTable/index.tsx:269
+#: src/components/common/OrganizerReportTable/index.tsx:292
 msgid "Please select a date range"
 msgstr "請選擇日期範圍"
 
@@ -7268,7 +7281,7 @@ msgid "Refunded: {0}"
 msgstr "已退款：{0}"
 
 #: src/components/routes/organizer/Reports/EventsPerformanceReport/index.tsx:79
-#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:42
+#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:80
 msgid "Refunds"
 msgstr "退款"
 
@@ -7452,7 +7465,7 @@ msgid "Revenue"
 msgstr "收入"
 
 #: src/components/routes/organizer/Reports/index.tsx:17
-#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:67
+#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:105
 msgid "Revenue Summary"
 msgstr "收入摘要"
 
@@ -7838,7 +7851,7 @@ msgstr "選擇機票"
 msgid "Select tickets"
 msgstr "選擇票"
 
-#: src/components/common/OrganizerReportTable/index.tsx:317
+#: src/components/common/OrganizerReportTable/index.tsx:356
 #: src/components/common/ReportTable/index.tsx:359
 msgid "Select time period"
 msgstr "選擇時間段"
@@ -8116,7 +8129,7 @@ msgstr "顯示更多平台"
 msgid "Show tax and fees separately"
 msgstr "單獨顯示税費"
 
-#: src/components/common/OrganizerReportTable/index.tsx:355
+#: src/components/common/OrganizerReportTable/index.tsx:434
 msgid "Showing {0} of {totalRows} records"
 msgstr "顯示 {0} / {totalRows} 條記錄"
 
@@ -8321,6 +8334,7 @@ msgid "Stop Impersonating"
 msgstr "停止模擬"
 
 #: src/components/common/OrdersTable/index.tsx:535
+#: src/components/common/OrganizerReportTable/index.tsx:384
 #: src/components/common/ReportTable/index.tsx:388
 #: src/components/routes/admin/Dashboard/index.tsx:424
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:93
@@ -8626,7 +8640,7 @@ msgstr "稅務摘要"
 
 #: src/components/common/InlineOrderSummary/index.tsx:173
 #: src/components/forms/ProductForm/index.tsx:406
-#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:48
+#: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:86
 msgid "Taxes"
 msgstr "税收"
 
@@ -10332,7 +10346,7 @@ msgstr "請在此輸入您的訊息..."
 msgid "X (Twitter)"
 msgstr "X（Twitter）"
 
-#: src/components/common/OrganizerReportTable/index.tsx:59
+#: src/components/common/OrganizerReportTable/index.tsx:70
 #: src/components/common/ReportTable/index.tsx:60
 msgid "Year to date"
 msgstr "年度至今"

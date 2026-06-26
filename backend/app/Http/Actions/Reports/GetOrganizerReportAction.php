@@ -41,6 +41,8 @@ class GetOrganizerReportAction extends BaseAction
                 endDate: $request->validated('end_date'),
                 currency: $request->validated('currency'),
                 eventId: $request->validated('event_id'),
+                paymentProviders: $request->validated('payment_providers') ?: null,
+                buyerTypes: $request->validated('buyer_types') ?: null,
                 page: (int) $request->validated('page', 1),
                 perPage: (int) $request->validated('per_page', 1000),
             ),

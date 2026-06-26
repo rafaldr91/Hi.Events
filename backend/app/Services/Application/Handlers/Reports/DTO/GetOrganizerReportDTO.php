@@ -14,6 +14,8 @@ class GetOrganizerReportDTO extends BaseDataObject
         public readonly ?string               $endDate,
         public readonly ?string               $currency,
         public readonly ?int                  $eventId = null,
+        public readonly ?array                $paymentProviders = null,
+        public readonly ?array                $buyerTypes = null,
         public readonly int                   $page = 1,
         public readonly int                   $perPage = 1000,
     )

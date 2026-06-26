@@ -78,7 +78,9 @@ export const organizerClient = {
         currency?: string | null,
         eventId?: IdParam | null,
         page?: number,
-        perPage?: number
+        perPage?: number,
+        paymentProviders?: string[],
+        buyerTypes?: string[],
     ) => {
         const params = new URLSearchParams();
         if (startDate) params.append('start_date', startDate);
@@ -87,6 +89,8 @@ export const organizerClient = {
         if (eventId) params.append('event_id', String(eventId));
         if (page) params.append('page', String(page));
         if (perPage) params.append('per_page', String(perPage));
+        if (paymentProviders?.length) paymentProviders.forEach(p => params.append('payment_providers[]', p));
+        if (buyerTypes?.length) buyerTypes.forEach(t => params.append('buyer_types[]', t));
 
         const queryString = params.toString() ? `?${params.toString()}` : '';
         const response = await api.get<{
@@ -103,19 +107,44 @@ export const organizerClient = {
         return response.data;
     },
 
+    exportOrganizerDailyOrders: async (
+        organizerId: IdParam,
+        date: string,
+        currency?: string | null,
+        paymentProviders?: string[],
+        buyerTypes?: string[],
+    ): Promise<Blob> => {
+        const params = new URLSearchParams();
+        params.append('date', date);
+        if (currency) params.append('currency', currency);
+        if (paymentProviders?.length) paymentProviders.forEach(p => params.append('payment_providers[]', p));
+        if (buyerTypes?.length) buyerTypes.forEach(t => params.append('buyer_types[]', t));
+
+        const response = await api.get(
+            `organizers/${organizerId}/orders/export-daily?${params.toString()}`,
+            {responseType: 'blob'},
+        );
+
+        return new Blob([response.data]);
+    },
+
     exportOrganizerReport: async (
         organizerId: IdParam,
         reportType: string,
         startDate?: string | null,
         endDate?: string | null,
         currency?: string | null,
-        eventId?: IdParam | null
+        eventId?: IdParam | null,
+        paymentProviders?: string[],
+        buyerTypes?: string[],
     ): Promise<Blob> => {
         const params = new URLSearchParams();
         if (startDate) params.append('start_date', startDate);
         if (endDate) params.append('end_date', endDate);
         if (currency) params.append('currency', currency);
         if (eventId) params.append('event_id', String(eventId));
+        if (paymentProviders?.length) paymentProviders.forEach(p => params.append('payment_providers[]', p));
+        if (buyerTypes?.length) buyerTypes.forEach(t => params.append('buyer_types[]', t));
 
         const queryString = params.toString() ? `?${params.toString()}` : '';
         const response = await api.get(

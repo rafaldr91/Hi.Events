@@ -8,7 +8,7 @@ use Illuminate\Support\Carbon;
 
 class TaxSummaryReport extends AbstractOrganizerReportService
 {
-    protected function getSqlQuery(Carbon $startDate, Carbon $endDate, ?string $currency = null): string
+    protected function getSqlQuery(Carbon $startDate, Carbon $endDate, ?string $currency = null, ?array $paymentProviders = null, ?array $buyerTypes = null): string
     {
         $startDateStr = $startDate->toDateString();
         $endDateStr = $endDate->toDateString();

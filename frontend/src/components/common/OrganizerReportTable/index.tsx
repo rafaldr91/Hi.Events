@@ -1,4 +1,4 @@
-import {Button, ComboboxItem, Group, Select, Skeleton, Table as MantineTable, Text} from '@mantine/core';
+import {Button, Checkbox, ComboboxItem, Divider, Group, Select, Skeleton, Stack, Table as MantineTable, Text} from '@mantine/core';
 import {t} from '@lingui/macro';
 import {DatePickerInput} from "@mantine/dates";
 import {IconArrowDown, IconArrowsSort, IconArrowUp, IconCalendar, IconDownload} from "@tabler/icons-react";
@@ -25,6 +25,13 @@ export interface RenderContext {
     currency: string;
 }
 
+export interface ActiveFilters {
+    currency: string | null;
+    paymentProviders: string[] | undefined;
+    buyerTypes: string[] | undefined;
+    dateRange: [Date | null, Date | null];
+}
+
 interface Column<T> {
     key: keyof T;
     label: string;
@@ -46,6 +53,10 @@ interface OrganizerReportProps<T> {
     showCurrencyFilter?: boolean;
     availableCurrencies?: string[];
     eventId?: number | null;
+    showPaymentProviderFilter?: boolean;
+    showBuyerTypeFilter?: boolean;
+    downloadFileName?: string;
+    rowActions?: (row: T, filters: ActiveFilters) => React.ReactNode;
 }
 
 const TIME_PERIODS = [
@@ -75,6 +86,9 @@ const OrganizerReportTable = <T extends Record<string, any>>({
                                                                  showCurrencyFilter = true,
                                                                  availableCurrencies = [],
                                                                  eventId,
+                                                                 showPaymentProviderFilter = false,
+                                                                 showBuyerTypeFilter = false,
+                                                                 rowActions,
                                                              }: OrganizerReportProps<T>) => {
     const tz = organizer.timezone || 'UTC';
     const [dateRange, setDateRange] = useState<[Date | null, Date | null]>([
@@ -86,8 +100,13 @@ const OrganizerReportTable = <T extends Record<string, any>>({
     const [sortField, setSortField] = useState<keyof T | null>(null);
     const [sortDirection, setSortDirection] = useState<'asc' | 'desc' | null>(null);
     const [selectedCurrency, setSelectedCurrency] = useState<string | null>(null);
+    const [paymentProviders, setPaymentProviders] = useState<string[]>([]);
+    const [buyerTypes, setBuyerTypes] = useState<string[]>(['company', 'individual']);
     const [currentPage, setCurrentPage] = useState(1);
     const {reportType, organizerId} = useParams();
+
+    const activeBuyerTypes = showBuyerTypeFilter && buyerTypes.length < 2 ? buyerTypes : undefined;
+    const activePaymentProviders = showPaymentProviderFilter && paymentProviders.length ? paymentProviders : undefined;
 
     const reportQuery = useGetOrganizerReport(
         organizerId,
@@ -97,7 +116,9 @@ const OrganizerReportTable = <T extends Record<string, any>>({
         selectedCurrency,
         eventId,
         currentPage,
-        ROWS_PER_PAGE
+        ROWS_PER_PAGE,
+        activePaymentProviders,
+        activeBuyerTypes,
     );
 
     const reportData = reportQuery.data;
@@ -197,7 +218,9 @@ const OrganizerReportTable = <T extends Record<string, any>>({
                 dateRange[0]?.toISOString(),
                 dateRange[1]?.toISOString(),
                 selectedCurrency,
-                eventId
+                eventId,
+                activePaymentProviders,
+                activeBuyerTypes,
             );
             const filename = `${reportType}_${dayjs().format('YYYY-MM-DD_HH-mm-ss')}.csv`;
             downloadBinary(blob, filename);
@@ -297,45 +320,9 @@ const OrganizerReportTable = <T extends Record<string, any>>({
 
     return (
         <>
-            <Group justify="space-between" mb="md">
-                <PageTitle>{title}</PageTitle>
-                <Group justify="flex-end" align="center" gap="sm">
-                    {showCurrencyFilter && availableCurrencies.length > 0 && (
-                        <Select
-                            style={{minWidth: '140px'}}
-                            placeholder={t`Currency`}
-                            data={currencyOptions}
-                            value={selectedCurrency ?? ''}
-                            onChange={handleCurrencyChange}
-                            mb="0"
-                            className={classes.currencySelect}
-                        />
-                    )}
-                    {showDateFilter && (
-                        <Select
-                            style={{minWidth: '200px'}}
-                            placeholder={t`Select time period`}
-                            data={TIME_PERIODS}
-                            value={selectedPeriod}
-                            onChange={handlePeriodChange}
-                            leftSection={<IconCalendar stroke={1.5} size={20}/>}
-                            mb="0"
-                            className={classes.periodSelect}
-                        />
-                    )}
-                    {showDateFilter && showDatePickerInput && (
-                        <DatePickerInput
-                            style={{minWidth: '305px', marginBottom: '0'}}
-                            leftSection={<IconCalendar stroke={1.5} size={20}/>}
-                            type="range"
-                            placeholder="Pick dates range"
-                            value={dateRange}
-                            onChange={handleDateRangeChange}
-                            minDate={dayjs().subtract(1, 'year').tz(tz).toDate()}
-                            maxDate={dayjs().tz(tz).toDate()}
-                            className={classes.datePicker}
-                        />
-                    )}
+            <Stack gap="xs" mb="md">
+                <Group justify="space-between" align="center">
+                    <PageTitle>{title}</PageTitle>
                     {enableDownload && (
                         <Button
                             leftSection={<IconDownload size={16}/>}
@@ -348,7 +335,99 @@ const OrganizerReportTable = <T extends Record<string, any>>({
                         </Button>
                     )}
                 </Group>
-            </Group>
+                {(showDateFilter || showCurrencyFilter || showPaymentProviderFilter || showBuyerTypeFilter) && (
+                    <>
+                        <Divider/>
+                        <Group gap="md" align="center">
+                            {showCurrencyFilter && availableCurrencies.length > 0 && (
+                                <Select
+                                    style={{minWidth: '140px'}}
+                                    placeholder={t`Currency`}
+                                    data={currencyOptions}
+                                    value={selectedCurrency ?? ''}
+                                    onChange={handleCurrencyChange}
+                                    mb="0"
+                                    className={classes.currencySelect}
+                                />
+                            )}
+                            {showDateFilter && (
+                                <Select
+                                    style={{minWidth: '200px'}}
+                                    placeholder={t`Select time period`}
+                                    data={TIME_PERIODS}
+                                    value={selectedPeriod}
+                                    onChange={handlePeriodChange}
+                                    leftSection={<IconCalendar stroke={1.5} size={20}/>}
+                                    mb="0"
+                                    className={classes.periodSelect}
+                                />
+                            )}
+                            {showDateFilter && showDatePickerInput && (
+                                <DatePickerInput
+                                    style={{minWidth: '305px', marginBottom: '0'}}
+                                    leftSection={<IconCalendar stroke={1.5} size={20}/>}
+                                    type="range"
+                                    placeholder="Pick dates range"
+                                    value={dateRange}
+                                    onChange={handleDateRangeChange}
+                                    minDate={dayjs().subtract(1, 'year').tz(tz).toDate()}
+                                    maxDate={dayjs().tz(tz).toDate()}
+                                    className={classes.datePicker}
+                                />
+                            )}
+                            {(showDateFilter || showCurrencyFilter) && (showPaymentProviderFilter || showBuyerTypeFilter) && (
+                                <Divider orientation="vertical" h={20}/>
+                            )}
+                            {showPaymentProviderFilter && (
+                                <>
+                                    <Checkbox
+                                        label={t`Stripe`}
+                                        checked={paymentProviders.includes('STRIPE')}
+                                        onChange={e => setPaymentProviders(prev =>
+                                            e.currentTarget.checked ? [...prev, 'STRIPE'] : prev.filter(p => p !== 'STRIPE')
+                                        )}
+                                    />
+                                    <Checkbox
+                                        label={t`Offline`}
+                                        checked={paymentProviders.includes('OFFLINE')}
+                                        onChange={e => setPaymentProviders(prev =>
+                                            e.currentTarget.checked ? [...prev, 'OFFLINE'] : prev.filter(p => p !== 'OFFLINE')
+                                        )}
+                                    />
+                                    <Checkbox
+                                        label={t`Other`}
+                                        checked={paymentProviders.includes('OTHER')}
+                                        onChange={e => setPaymentProviders(prev =>
+                                            e.currentTarget.checked ? [...prev, 'OTHER'] : prev.filter(p => p !== 'OTHER')
+                                        )}
+                                    />
+                                </>
+                            )}
+                            {showPaymentProviderFilter && showBuyerTypeFilter && (
+                                <Divider orientation="vertical" h={20}/>
+                            )}
+                            {showBuyerTypeFilter && (
+                                <>
+                                    <Checkbox
+                                        label={t`Company (NIP)`}
+                                        checked={buyerTypes.includes('company')}
+                                        onChange={e => setBuyerTypes(prev =>
+                                            e.currentTarget.checked ? [...prev, 'company'] : prev.filter(t => t !== 'company')
+                                        )}
+                                    />
+                                    <Checkbox
+                                        label={t`Individual`}
+                                        checked={buyerTypes.includes('individual')}
+                                        onChange={e => setBuyerTypes(prev =>
+                                            e.currentTarget.checked ? [...prev, 'individual'] : prev.filter(t => t !== 'individual')
+                                        )}
+                                    />
+                                </>
+                            )}
+                        </Group>
+                    </>
+                )}
+            </Stack>
 
             {totalRows > 0 && (
                 <Text size="sm" c="dimmed" mb="sm">
@@ -372,6 +451,7 @@ const OrganizerReportTable = <T extends Record<string, any>>({
                                 </Group>
                             </MantineTable.Th>
                         ))}
+                        {rowActions && <MantineTable.Th style={{minWidth: '60px'}}/>}
                     </MantineTable.Tr>
                 </TableHead>
                 <MantineTable.Tbody>
@@ -386,6 +466,16 @@ const OrganizerReportTable = <T extends Record<string, any>>({
                                     }
                                 </MantineTable.Td>
                             ))}
+                            {rowActions && (
+                                <MantineTable.Td>
+                                    {rowActions(row, {
+                                        currency: selectedCurrency,
+                                        paymentProviders: activePaymentProviders,
+                                        buyerTypes: activeBuyerTypes,
+                                        dateRange,
+                                    })}
+                                </MantineTable.Td>
+                            )}
                         </MantineTable.Tr>
                     ))}
                 </MantineTable.Tbody>

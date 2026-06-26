@@ -25,6 +25,8 @@ abstract class AbstractOrganizerReportService
         ?string $currency = null,
         ?Carbon $startDate = null,
         ?Carbon $endDate = null,
+        ?array  $paymentProviders = null,
+        ?array  $buyerTypes = null,
     ): Collection
     {
         $organizer = $this->organizerRepository->findById($organizerId);
@@ -38,10 +40,10 @@ abstract class AbstractOrganizerReportService
             : $endDate->copy()->subDays(30)->startOfDay();
 
         $reportResults = $this->cache->remember(
-            key: $this->getCacheKey($organizerId, $currency, $startDate, $endDate),
+            key: $this->getCacheKey($organizerId, $currency, $startDate, $endDate, $paymentProviders, $buyerTypes),
             ttl: Carbon::now()->addSeconds(self::CACHE_TTL_SECONDS),
             callback: fn() => $this->queryBuilder->select(
-                $this->getSqlQuery($startDate, $endDate, $currency),
+                $this->getSqlQuery($startDate, $endDate, $currency, $paymentProviders, $buyerTypes),
                 [
                     'organizer_id' => $organizerId,
                 ]
@@ -51,7 +53,7 @@ abstract class AbstractOrganizerReportService
         return collect($reportResults);
     }
 
-    abstract protected function getSqlQuery(Carbon $startDate, Carbon $endDate, ?string $currency = null): string;
+    abstract protected function getSqlQuery(Carbon $startDate, Carbon $endDate, ?string $currency = null, ?array $paymentProviders = null, ?array $buyerTypes = null): string;
 
     protected function buildCurrencyFilter(string $column, ?string $currency): string
     {
@@ -62,8 +64,10 @@ abstract class AbstractOrganizerReportService
         return "AND $column = '$escapedCurrency'";
     }
 
-    protected function getCacheKey(int $organizerId, ?string $currency, ?Carbon $startDate, ?Carbon $endDate): string
+    protected function getCacheKey(int $organizerId, ?string $currency, ?Carbon $startDate, ?Carbon $endDate, ?array $paymentProviders = null, ?array $buyerTypes = null): string
     {
-        return static::class . "$organizerId.$currency.{$startDate?->toDateString()}.{$endDate?->toDateString()}";
+        $providerSegment = $paymentProviders ? implode('_', $paymentProviders) : 'all';
+        $buyerSegment = $buyerTypes ? implode('_', $buyerTypes) : 'all';
+        return static::class . "$organizerId.$currency.{$startDate?->toDateString()}.{$endDate?->toDateString()}.$providerSegment.$buyerSegment";
     }
 }
