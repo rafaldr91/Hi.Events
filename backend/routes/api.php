@@ -83,6 +83,8 @@ use HiEvents\Http\Actions\Messages\CancelMessageAction;
 use HiEvents\Http\Actions\Messages\GetMessageRecipientsAction;
 use HiEvents\Http\Actions\Messages\GetMessagesAction;
 use HiEvents\Http\Actions\Messages\SendMessageAction;
+use HiEvents\Http\Actions\Orders\AnonymizeOrderAction;
+use HiEvents\Http\Actions\Orders\ExportConsentsAction;
 use HiEvents\Http\Actions\Orders\CancelOrderAction;
 use HiEvents\Http\Actions\Orders\DownloadOrderInvoiceAction;
 use HiEvents\Http\Actions\Orders\DownloadOrderKsefXmlAction;
@@ -114,6 +116,7 @@ use HiEvents\Http\Actions\Organizers\GetOrganizerAction;
 use HiEvents\Http\Actions\Organizers\GetOrganizerEventsAction;
 use HiEvents\Http\Actions\Organizers\GetOrganizersAction;
 use HiEvents\Http\Actions\Organizers\GetPublicOrganizerAction;
+use HiEvents\Http\Actions\Organizers\Orders\ExportOrganizerConsentsAction;
 use HiEvents\Http\Actions\Organizers\Orders\ExportOrganizerDailyOrdersCsvAction;
 use HiEvents\Http\Actions\Organizers\Orders\GetOrganizerOrdersAction;
 use HiEvents\Http\Actions\Organizers\Public\SendOrganizerContactMessagePublicAction;
@@ -206,6 +209,8 @@ use HiEvents\Http\Actions\Admin\Stats\GetAdminStatsAction;
 use HiEvents\Http\Actions\Admin\Users\GetAllUsersAction;
 use HiEvents\Http\Actions\Admin\Users\StartImpersonationAction;
 use HiEvents\Http\Actions\Admin\Users\StopImpersonationAction;
+use HiEvents\Http\Actions\Gdpr\DownloadGdprDataExportAction;
+use HiEvents\Http\Actions\Gdpr\RequestGdprDataExportAction;
 use HiEvents\Http\Actions\TicketLookup\GetOrdersByLookupTokenAction;
 use HiEvents\Http\Actions\TicketLookup\SendTicketLookupEmailAction;
 use HiEvents\Http\Actions\Waitlist\Organizer\CancelWaitlistEntryAction;
@@ -290,6 +295,7 @@ $router->middleware(['auth:api'])->group(
         $router->get('/organizers/{organizer_id}/stats', GetOrganizerStatsAction::class);
         $router->get('/organizers/{organizer_id}/orders', GetOrganizerOrdersAction::class);
         $router->get('/organizers/{organizer_id}/orders/export-daily', ExportOrganizerDailyOrdersCsvAction::class);
+        $router->get('/organizers/{organizer_id}/orders/consents/export', ExportOrganizerConsentsAction::class);
         $router->get('/organizers/{organizer_id}/settings', GetOrganizerSettingsAction::class);
         $router->patch('/organizers/{organizer_id}/settings', PartialUpdateOrganizerSettingsAction::class);
         $router->get('/organizers/{organizer_id}/reports/{report_type}', GetOrganizerReportAction::class);
@@ -369,8 +375,10 @@ $router->middleware(['auth:api'])->group(
         $router->post('/events/{event_id}/orders/{order_id}/refund', RefundOrderAction::class);
         $router->post('/events/{event_id}/orders/{order_id}/resend_confirmation', ResendOrderConfirmationAction::class);
         $router->post('/events/{event_id}/orders/{order_id}/cancel', CancelOrderAction::class);
+        $router->post('/events/{event_id}/orders/{order_id}/anonymize', AnonymizeOrderAction::class);
         $router->post('/events/{event_id}/orders/{order_id}/mark-as-paid', MarkOrderAsPaidAction::class);
         $router->post('/events/{event_id}/orders/export', ExportOrdersAction::class);
+        $router->get('/events/{event_id}/orders/consents/export', ExportConsentsAction::class);
         $router->get('/events/{event_id}/orders/{order_id}/invoice', DownloadOrderInvoiceAction::class);
         $router->get('/events/{event_id}/orders/{order_id}/invoice/xml', DownloadOrderKsefXmlAction::class);
         $router->post('/events/{event_id}/orders/{order_id}/invoice/send-ksef', SendOrderKsefInvoiceAction::class);
@@ -556,6 +564,10 @@ $router->prefix('/public')->group(
         // Ticket Lookup
         $router->post('/ticket-lookup', SendTicketLookupEmailAction::class);
         $router->get('/ticket-lookup/{token}', GetOrdersByLookupTokenAction::class);
+
+        // GDPR Data Export
+        $router->post('/gdpr/export/request', RequestGdprDataExportAction::class)->middleware('throttle:5,1');
+        $router->get('/gdpr/export/{token}', DownloadGdprDataExportAction::class);
 
         // Self-service order and attendee edits
         $router->prefix('/events/{event_id}/order/{order_short_id}')->group(function (Router $router): void {

@@ -77,6 +77,10 @@ class EventSettingsResourcePublic extends JsonResource
             // Marketing settings
             'show_marketing_opt_in' => $this->getShowMarketingOptIn(),
 
+            // Data processing consent settings
+            'show_data_processing_consent' => $this->getShowDataProcessingConsent(),
+            'privacy_policy_url' => $this->getPrivacyPolicyUrl(),
+
             // Platform fee settings
             'pass_platform_fee_to_buyer' => $this->getPassPlatformFeeToBuyer(),
 

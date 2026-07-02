@@ -14,6 +14,7 @@ import {
     IconSettings,
     IconShare,
     IconUsersGroup,
+    IconShieldLock,
     IconWebhook
 } from "@tabler/icons-react";
 import { t } from "@lingui/macro";
@@ -89,6 +90,9 @@ const OrganizerLayout = () => {
 
         { label: t`Tools` },
         { link: 'organizer-homepage-designer', label: t`Homepage Designer`, icon: IconPaint },
+
+        { label: t`Compliance` },
+        { link: 'gdpr-consents', label: t`GDPR Consents`, icon: IconShieldLock },
 
         { label: t`Integrations` },
         { link: 'webhooks', label: t`Webhooks`, icon: IconWebhook },

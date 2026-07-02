@@ -7,21 +7,23 @@ import {AttendeeList} from "../../common/AttendeeList";
 import {OrderDetails} from "../../common/OrderDetails";
 import {t} from "@lingui/macro";
 import {QuestionAndAnswerList} from "../../common/QuestionAndAnswerList";
-import {Box, Stack, Tabs, Text, Textarea, TextInput} from "@mantine/core";
-import {IconEdit, IconInfoCircle, IconNotebook, IconQuestionMark, IconReceipt, IconUsers} from "@tabler/icons-react";
+import {Alert, Box, Divider, Stack, Tabs, Text, Textarea, TextInput} from "@mantine/core";
+import {IconEdit, IconInfoCircle, IconNotebook, IconQuestionMark, IconReceipt, IconShieldLock, IconUsers} from "@tabler/icons-react";
 import {OrderStatusBadge} from "../../common/OrderStatusBadge";
 import {Accordion, AccordionItem} from "../../common/Accordion";
 import {useForm} from "@mantine/form";
 import {useEffect, useState} from "react";
 import {useEditOrder} from "../../../mutations/useEditOrder";
 import {useFormErrorResponseHandler} from "../../../hooks/useFormErrorResponseHandler";
-import {showSuccess} from "../../../utilites/notifications";
+import {showError, showSuccess} from "../../../utilites/notifications";
 import {Button} from "../../common/Button";
 import {InputGroup} from "../../common/InputGroup";
 import {InputLabelWithHelp} from "../../common/InputLabelWithHelp";
 import classes from './ManageOrderModal.module.scss';
 import {EditOrderPayload} from "../../../api/order.client.ts";
 import {SideDrawer} from "../../common/SideDrawer";
+import {useAnonymizeOrder} from "../../../mutations/useAnonymizeOrder.ts";
+import {confirmationDialog} from "../../../utilites/confirmationDialog.tsx";
 
 interface ManageOrderModalProps {
     orderId: IdParam;
@@ -37,6 +39,23 @@ export const ManageOrderModal = ({onClose, orderId}: GenericModalProps & ManageO
     const [activeTab, setActiveTab] = useState("view");
     const errorHandler = useFormErrorResponseHandler();
     const mutation = useEditOrder();
+    const anonymizeMutation = useAnonymizeOrder();
+
+    const handleAnonymize = () => {
+        confirmationDialog(
+            t`Are you sure you want to anonymize this order? This will permanently delete all personal data (name, email, address, question answers) and cannot be undone.`,
+            () => {
+                anonymizeMutation.mutate(
+                    {eventId, orderId},
+                    {
+                        onSuccess: () => showSuccess(t`Order data has been anonymized`),
+                        onError: () => showError(t`Failed to anonymize order`),
+                    }
+                );
+            },
+            {confirm: t`Anonymize Data`},
+        );
+    };
 
     const form = useForm({
         initialValues: {
@@ -210,6 +229,42 @@ export const ManageOrderModal = ({onClose, orderId}: GenericModalProps & ManageO
                                 items={accordionItems}
                                 defaultValue="details"
                             />
+
+                            <Divider mt="xl" mb="md"/>
+
+                            <Stack gap="xs">
+                                <Text fz="sm" fw={500} c="dimmed">
+                                    <IconShieldLock size={14} style={{verticalAlign: 'middle', marginRight: 4}}/>
+                                    {t`GDPR / Data Privacy`}
+                                </Text>
+                                <Text fz="sm">
+                                    {t`Data processing consent`}{': '}
+                                    {order.data_processing_accepted_at
+                                        ? new Date(order.data_processing_accepted_at).toLocaleString()
+                                        : <Text span c="dimmed" fz="sm">{t`Not given`}</Text>}
+                                </Text>
+                                <Text fz="sm">
+                                    {t`Marketing consent`}{': '}
+                                    {order.opted_into_marketing_at
+                                        ? new Date(order.opted_into_marketing_at).toLocaleString()
+                                        : <Text span c="dimmed" fz="sm">{t`Not given`}</Text>}
+                                </Text>
+                                {order.anonymized_at ? (
+                                    <Alert color="gray" variant="light">
+                                        {t`Personal data for this order was anonymized on ${new Date(order.anonymized_at).toLocaleDateString()}.`}
+                                    </Alert>
+                                ) : (
+                                    <Button
+                                        color="red"
+                                        variant="outline"
+                                        size="sm"
+                                        loading={anonymizeMutation.isPending}
+                                        onClick={handleAnonymize}
+                                    >
+                                        {t`Anonymize Personal Data`}
+                                    </Button>
+                                )}
+                            </Stack>
                         </Tabs.Panel>
                         <Tabs.Panel value="edit">
                             {editContent}

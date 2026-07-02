@@ -128,3 +128,16 @@ cd docker/development
 ### Before Finalizing Changes
 1. Frontend: `cd frontend && npx tsc --noEmit`
 2. Backend: `docker compose -f docker-compose.dev.yml exec backend php artisan test --testsuite=Unit`
+
+### Deploy to Production (all-in-one Docker)
+
+```bash
+git pull
+docker compose -f docker/all-in-one/docker-compose.yml build
+docker compose -f docker/all-in-one/docker-compose.yml up -d
+docker compose -f docker/all-in-one/docker-compose.yml exec all-in-one php /app/backend/artisan migrate --force
+```
+
+- `git pull` is safe — running containers are unaffected (code is baked into the image)
+- `build` does not stop containers
+- `up -d` automatically replaces the old container — no need to run `docker compose stop` first

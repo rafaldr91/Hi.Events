@@ -32,4 +32,11 @@ class Attendee extends BaseModel
     {
         return $this->hasMany(AttendeeCheckIn::class);
     }
+
+    protected function getCastMap(): array
+    {
+        return [
+            'anonymized_at' => 'datetime',
+        ];
+    }
 }

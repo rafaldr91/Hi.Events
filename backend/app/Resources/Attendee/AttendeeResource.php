@@ -51,6 +51,7 @@ class AttendeeResource extends JsonResource
                         ?->filter(fn($qav) => $qav->getBelongsTo() === QuestionBelongsTo::PRODUCT->name)
                 )
             ),
+            'anonymized_at' => $this->getAnonymizedAt(),
             'created_at' => $this->getCreatedAt(),
             'updated_at' => $this->getUpdatedAt(),
         ];

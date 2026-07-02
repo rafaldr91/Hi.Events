@@ -71,6 +71,8 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
     final public const CONFIRMATION_START_NUMBER = 'confirmation_start_number';
     final public const INVOICE_SUFFIX = 'invoice_suffix';
     final public const INVOICE_NUMBER_FORMAT = 'invoice_number_format';
+    final public const SHOW_DATA_PROCESSING_CONSENT = 'show_data_processing_consent';
+    final public const PRIVACY_POLICY_URL = 'privacy_policy_url';
 
     protected int $id;
     protected int $event_id;
@@ -133,6 +135,8 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
     protected int $confirmation_start_number = 1;
     protected ?string $invoice_suffix = null;
     protected ?string $invoice_number_format = null;
+    protected bool $show_data_processing_consent = true;
+    protected ?string $privacy_policy_url = null;
 
     public function toArray(): array
     {
@@ -198,6 +202,8 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
                     'confirmation_start_number' => $this->confirmation_start_number ?? null,
                     'invoice_suffix' => $this->invoice_suffix ?? null,
                     'invoice_number_format' => $this->invoice_number_format ?? null,
+                    'show_data_processing_consent' => $this->show_data_processing_consent ?? null,
+                    'privacy_policy_url' => $this->privacy_policy_url ?? null,
                 ];
     }
 
@@ -871,5 +877,27 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
     public function getInvoiceNumberFormat(): ?string
     {
         return $this->invoice_number_format;
+    }
+
+    public function setShowDataProcessingConsent(bool $show_data_processing_consent): self
+    {
+        $this->show_data_processing_consent = $show_data_processing_consent;
+        return $this;
+    }
+
+    public function getShowDataProcessingConsent(): bool
+    {
+        return $this->show_data_processing_consent;
+    }
+
+    public function setPrivacyPolicyUrl(?string $privacy_policy_url): self
+    {
+        $this->privacy_policy_url = $privacy_policy_url;
+        return $this;
+    }
+
+    public function getPrivacyPolicyUrl(): ?string
+    {
+        return $this->privacy_policy_url;
     }
 }

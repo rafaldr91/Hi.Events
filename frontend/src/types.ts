@@ -250,6 +250,10 @@ export interface EventSettings {
     // Marketing settings
     show_marketing_opt_in?: boolean;
 
+    // Data processing consent settings
+    show_data_processing_consent?: boolean;
+    privacy_policy_url?: string;
+
     // Platform fee settings
     pass_platform_fee_to_buyer?: boolean;
 
@@ -594,6 +598,7 @@ export interface Attendee {
     locale?: SupportedLocales;
     check_in?: AttendeeCheckIn; // Use in contexts where a single check is expected, like dealing with a check-in list
     check_ins?: AttendeeCheckIn[];
+    anonymized_at?: string;
 }
 
 export type PublicCheckIn = Pick<AttendeeCheckIn, 'id' | 'order_id' | 'attendee_id' | 'check_in_list_id' | 'product_id' | 'event_id'>;
@@ -669,6 +674,9 @@ export interface Order {
     latest_invoice?: Invoice;
     correction_invoice?: Invoice;
     session_identifier?: string;
+    opted_into_marketing_at?: string | null;
+    data_processing_accepted_at?: string | null;
+    anonymized_at?: string;
 }
 
 export interface Invoice {

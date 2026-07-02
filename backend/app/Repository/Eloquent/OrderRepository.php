@@ -115,6 +115,19 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
         );
     }
 
+    public function findCompletedByOrganizerId(int $organizerId, int $accountId): Collection
+    {
+        return $this->model
+            ->select('orders.*')
+            ->join('events', 'orders.event_id', '=', 'events.id')
+            ->where('events.organizer_id', $organizerId)
+            ->where('events.account_id', $accountId)
+            ->where('orders.status', OrderStatus::COMPLETED->name)
+            ->orderBy('orders.created_at', 'desc')
+            ->get()
+            ->map(fn($model) => $this->hydrateDomainObjectFromModel($model));
+    }
+
     public function getOrderItems(int $orderId)
     {
         return $this->handleResults(

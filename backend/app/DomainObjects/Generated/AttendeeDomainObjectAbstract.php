@@ -29,6 +29,7 @@ abstract class AttendeeDomainObjectAbstract extends \HiEvents\DomainObjects\Abst
     final public const DELETED_AT = 'deleted_at';
     final public const LOCALE = 'locale';
     final public const NOTES = 'notes';
+    final public const ANONYMIZED_AT = 'anonymized_at';
 
     protected int $id;
     protected int $order_id;
@@ -49,6 +50,7 @@ abstract class AttendeeDomainObjectAbstract extends \HiEvents\DomainObjects\Abst
     protected ?string $deleted_at = null;
     protected string $locale = 'en';
     protected ?string $notes = null;
+    protected ?string $anonymized_at = null;
 
     public function toArray(): array
     {
@@ -72,6 +74,7 @@ abstract class AttendeeDomainObjectAbstract extends \HiEvents\DomainObjects\Abst
                     'deleted_at' => $this->deleted_at ?? null,
                     'locale' => $this->locale ?? null,
                     'notes' => $this->notes ?? null,
+                    'anonymized_at' => $this->anonymized_at ?? null,
                 ];
     }
 
@@ -282,5 +285,16 @@ abstract class AttendeeDomainObjectAbstract extends \HiEvents\DomainObjects\Abst
     public function getNotes(): ?string
     {
         return $this->notes;
+    }
+
+    public function setAnonymizedAt(?string $anonymized_at): self
+    {
+        $this->anonymized_at = $anonymized_at;
+        return $this;
+    }
+
+    public function getAnonymizedAt(): ?string
+    {
+        return $this->anonymized_at;
     }
 }

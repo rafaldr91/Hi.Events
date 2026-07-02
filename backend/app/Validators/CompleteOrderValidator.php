@@ -61,6 +61,12 @@ class CompleteOrderValidator extends BaseValidator
             'event_id' => $this->route->parameter('event_id'),
         ]);
 
+        $dataProcessingRules = $eventSettings->getShowDataProcessingConsent() ? [
+            'order.data_processing_accepted' => ['required', 'accepted'],
+        ] : [
+            'order.data_processing_accepted' => ['nullable', 'boolean'],
+        ];
+
         $addressRules = $eventSettings->getRequireBillingAddress() ? [
             'order.address' => 'array',
             'order.address.address_line_1' => 'required|string|max:255',
@@ -85,7 +91,8 @@ class CompleteOrderValidator extends BaseValidator
                 $products,
                 $eventSettings->getAttendeeDetailsCollectionMethod(),
             ),
-            ...$addressRules
+            ...$addressRules,
+            ...$dataProcessingRules,
         ];
     }
 
@@ -107,6 +114,8 @@ class CompleteOrderValidator extends BaseValidator
             'order.buyer_type.in' => __('Invalid buyer type'),
             'order.company_nip.required_if' => __('NIP is required for company orders'),
             'order.company_name.required_if' => __('Company name is required for company orders'),
+            'order.data_processing_accepted.required' => __('You must accept the data processing terms to continue'),
+            'order.data_processing_accepted.accepted' => __('You must accept the data processing terms to continue'),
         ];
     }
 }

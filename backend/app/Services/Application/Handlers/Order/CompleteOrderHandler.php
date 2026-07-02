@@ -324,6 +324,9 @@ class CompleteOrderHandler
                     OrderDomainObjectAbstract::OPTED_INTO_MARKETING_AT => $orderDTO->opted_into_marketing
                         ? Carbon::now()
                         : null,
+                    OrderDomainObjectAbstract::DATA_PROCESSING_ACCEPTED_AT => $orderDTO->data_processing_accepted
+                        ? Carbon::now()
+                        : null,
                     OrderDomainObjectAbstract::BUYER_TYPE => $orderDTO->buyer_type,
                     OrderDomainObjectAbstract::COMPANY_NIP => $orderDTO->company_nip,
                     OrderDomainObjectAbstract::COMPANY_NAME => $orderDTO->company_name,

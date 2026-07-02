@@ -47,6 +47,8 @@ abstract class OrderDomainObjectAbstract extends \HiEvents\DomainObjects\Abstrac
     final public const BUYER_TYPE = 'buyer_type';
     final public const COMPANY_NIP = 'company_nip';
     final public const COMPANY_NAME = 'company_name';
+    final public const DATA_PROCESSING_ACCEPTED_AT = 'data_processing_accepted_at';
+    final public const ANONYMIZED_AT = 'anonymized_at';
 
     protected int $id;
     protected int $event_id;
@@ -85,6 +87,8 @@ abstract class OrderDomainObjectAbstract extends \HiEvents\DomainObjects\Abstrac
     protected string $buyer_type = 'individual';
     protected ?string $company_nip = null;
     protected ?string $company_name = null;
+    protected ?string $data_processing_accepted_at = null;
+    protected ?string $anonymized_at = null;
 
     public function toArray(): array
     {
@@ -126,6 +130,8 @@ abstract class OrderDomainObjectAbstract extends \HiEvents\DomainObjects\Abstrac
                     'buyer_type' => $this->buyer_type ?? null,
                     'company_nip' => $this->company_nip ?? null,
                     'company_name' => $this->company_name ?? null,
+                    'data_processing_accepted_at' => $this->data_processing_accepted_at ?? null,
+                    'anonymized_at' => $this->anonymized_at ?? null,
                 ];
     }
 
@@ -534,5 +540,27 @@ abstract class OrderDomainObjectAbstract extends \HiEvents\DomainObjects\Abstrac
     public function getCompanyName(): ?string
     {
         return $this->company_name;
+    }
+
+    public function setDataProcessingAcceptedAt(?string $data_processing_accepted_at): self
+    {
+        $this->data_processing_accepted_at = $data_processing_accepted_at;
+        return $this;
+    }
+
+    public function getDataProcessingAcceptedAt(): ?string
+    {
+        return $this->data_processing_accepted_at;
+    }
+
+    public function setAnonymizedAt(?string $anonymized_at): self
+    {
+        $this->anonymized_at = $anonymized_at;
+        return $this;
+    }
+
+    public function getAnonymizedAt(): ?string
+    {
+        return $this->anonymized_at;
     }
 }

@@ -1,5 +1,5 @@
 import {t} from "@lingui/macro";
-import {Button, NumberInput, Switch} from "@mantine/core";
+import {Button, NumberInput, Switch, TextInput} from "@mantine/core";
 import {useForm} from "@mantine/form";
 import {useParams} from "react-router";
 import {useEffect} from "react";
@@ -26,6 +26,8 @@ export const HomepageAndCheckoutSettings = () => {
             order_timeout_in_minutes: 15,
             attendee_details_collection_method: 'PER_TICKET' as 'PER_TICKET' | 'PER_ORDER',
             show_marketing_opt_in: true,
+            show_data_processing_consent: true,
+            privacy_policy_url: '',
         },
         transformValues: (values) => ({
             ...values,
@@ -58,6 +60,8 @@ export const HomepageAndCheckoutSettings = () => {
                 order_timeout_in_minutes: eventSettingsQuery.data.order_timeout_in_minutes,
                 attendee_details_collection_method: eventSettingsQuery.data.attendee_details_collection_method || 'PER_TICKET',
                 show_marketing_opt_in: eventSettingsQuery.data.show_marketing_opt_in ?? true,
+                show_data_processing_consent: eventSettingsQuery.data.show_data_processing_consent ?? true,
+                privacy_policy_url: eventSettingsQuery.data.privacy_policy_url ?? '',
             });
         }
     }, [eventSettingsQuery.isFetched]);
@@ -127,6 +131,23 @@ export const HomepageAndCheckoutSettings = () => {
                         description={t`Display a checkbox allowing customers to opt-in to receive marketing communications from this event organizer.`}
                         {...form.getInputProps('show_marketing_opt_in', {type: 'checkbox'})}
                     />
+
+                    <Switch
+                        mt="md"
+                        label={t`Require data processing consent`}
+                        description={t`Display a required checkbox where customers must consent to their personal data being processed to complete the order.`}
+                        {...form.getInputProps('show_data_processing_consent', {type: 'checkbox'})}
+                    />
+
+                    {form.values.show_data_processing_consent && (
+                        <TextInput
+                            mt="xs"
+                            label={t`Privacy policy URL`}
+                            description={t`Link to your privacy policy shown next to the consent checkbox.`}
+                            placeholder="https://example.com/privacy-policy"
+                            {...form.getInputProps('privacy_policy_url')}
+                        />
+                    )}
 
                     <Button loading={updateMutation.isPending} type={'submit'}>
                         {t`Save`}

@@ -16,6 +16,7 @@ class CompleteOrderOrderDTO extends BaseDTO
         public readonly ?Collection $questions,
         public readonly ?array      $address = [],
         public readonly bool        $opted_into_marketing = false,
+        public readonly bool        $data_processing_accepted = false,
         public readonly string      $buyer_type = 'individual',
         public readonly ?string     $company_nip = null,
         public readonly ?string     $company_name = null,

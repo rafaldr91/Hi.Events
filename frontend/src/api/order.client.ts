@@ -98,6 +98,14 @@ export const orderClient = {
         return new Blob([response.data]);
     },
 
+    exportConsents: async (eventId: IdParam): Promise<Blob> => {
+        const response = await api.get(`events/${eventId}/orders/consents/export`, {
+            responseType: 'blob',
+        });
+
+        return new Blob([response.data]);
+    },
+
     markAsPaid: async (eventId: IdParam, orderId: IdParam) => {
         const response = await api.post<GenericDataResponse<Order>>('events/' + eventId + '/orders/' + orderId + '/mark-as-paid');
         return response.data;
@@ -132,7 +140,12 @@ export const orderClient = {
     editOrder: async (eventId: IdParam, orderId: IdParam, payload: EditOrderPayload) => {
         const response = await api.put<GenericDataResponse<Order>>(`events/${eventId}/orders/${orderId}`, payload);
         return response.data;
-    }
+    },
+
+    anonymizeOrder: async (eventId: IdParam, orderId: IdParam) => {
+        const response = await api.post(`events/${eventId}/orders/${orderId}/anonymize`);
+        return response.data;
+    },
 }
 
 export const orderClientPublic = {

@@ -326,6 +326,13 @@ export const router: RouteObject[] = [
                     const OrganizerReportLayout = await import("./components/routes/organizer/Reports/ReportLayout");
                     return { Component: OrganizerReportLayout.default };
                 }
+            },
+            {
+                path: "gdpr-consents",
+                async lazy() {
+                    const OrganizerGdprConsents = await import("./components/routes/organizer/GdprConsents");
+                    return { Component: OrganizerGdprConsents.default };
+                }
             }
         ],
     },
@@ -622,6 +629,22 @@ export const router: RouteObject[] = [
             return { Component: MyTickets.default };
         },
         errorElement: <ErrorPage />,
-    }
+    },
+    {
+        path: "/gdpr/export",
+        async lazy() {
+            const GdprDataExport = await import("./components/routes/gdpr-data-export");
+            return { Component: GdprDataExport.default };
+        },
+        errorElement: <ErrorPage />,
+    },
+    {
+        path: "/gdpr/export/:token",
+        async lazy() {
+            const GdprDataExportDownload = await import("./components/routes/gdpr-data-export/GdprDataExportDownload");
+            return { Component: GdprDataExportDownload.default };
+        },
+        errorElement: <ErrorPage />,
+    },
 ];
 

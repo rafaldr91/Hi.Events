@@ -46,6 +46,7 @@ use HiEvents\Repository\Eloquent\StripeCustomerRepository;
 use HiEvents\Repository\Eloquent\StripePaymentsRepository;
 use HiEvents\Repository\Eloquent\StripePayoutsRepository;
 use HiEvents\Repository\Eloquent\TaxAndFeeRepository;
+use HiEvents\Repository\Eloquent\GdprExportTokenRepository;
 use HiEvents\Repository\Eloquent\TicketLookupTokenRepository;
 use HiEvents\Repository\Eloquent\UserRepository;
 use HiEvents\Repository\Eloquent\WaitlistEntryRepository;
@@ -93,6 +94,7 @@ use HiEvents\Repository\Interfaces\StripeCustomerRepositoryInterface;
 use HiEvents\Repository\Interfaces\StripePaymentsRepositoryInterface;
 use HiEvents\Repository\Interfaces\StripePayoutsRepositoryInterface;
 use HiEvents\Repository\Interfaces\TaxAndFeeRepositoryInterface;
+use HiEvents\Repository\Interfaces\GdprExportTokenRepositoryInterface;
 use HiEvents\Repository\Interfaces\TicketLookupTokenRepositoryInterface;
 use HiEvents\Repository\Interfaces\UserRepositoryInterface;
 use HiEvents\Repository\Interfaces\WaitlistEntryRepositoryInterface;
@@ -151,6 +153,7 @@ class RepositoryServiceProvider extends ServiceProvider
         AccountStripePlatformRepositoryInterface::class => AccountStripePlatformRepository::class,
         AccountVatSettingRepositoryInterface::class => AccountVatSettingRepository::class,
         TicketLookupTokenRepositoryInterface::class => TicketLookupTokenRepository::class,
+        GdprExportTokenRepositoryInterface::class => GdprExportTokenRepository::class,
         AccountMessagingTierRepositoryInterface::class => AccountMessagingTierRepository::class,
         WaitlistEntryRepositoryInterface::class => WaitlistEntryRepository::class,
     ];

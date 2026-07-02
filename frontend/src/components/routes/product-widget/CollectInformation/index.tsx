@@ -94,6 +94,7 @@ export const CollectInformation = () => {
                 address: {},
                 questions: {},
                 opted_into_marketing: false,
+                data_processing_accepted: false,
                 buyer_type: "individual" as "individual" | "company",
                 company_nip: "",
                 company_name: "",
@@ -306,6 +307,10 @@ export const CollectInformation = () => {
     }
 
     const handleSubmit = (values: any) => {
+        if (event?.settings?.show_data_processing_consent && !values.order.data_processing_accepted) {
+            form.setFieldError('order.data_processing_accepted', t`You must accept the data processing terms to continue`);
+            return;
+        }
         mutation.mutate(values);
     };
 
@@ -609,6 +614,28 @@ export const CollectInformation = () => {
                             mt="md"
                             label={t`Keep me updated on news and events from ${event?.organizer?.name || t`this organizer`}`}
                             {...form.getInputProps('order.opted_into_marketing', {type: 'checkbox'})}
+                        />
+                    )}
+
+                    {event?.settings?.show_data_processing_consent && (
+                        <Checkbox
+                            mt="md"
+                            required
+                            label={
+                                <Trans>
+                                    I agree to the processing of my personal data
+                                    {event?.settings?.privacy_policy_url && (
+                                        <> (<a
+                                            href={event.settings.privacy_policy_url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            {t`Privacy Policy`}
+                                        </a>)</>
+                                    )}
+                                </Trans>
+                            }
+                            {...form.getInputProps('order.data_processing_accepted', {type: 'checkbox'})}
                         />
                     )}
                 </Card>

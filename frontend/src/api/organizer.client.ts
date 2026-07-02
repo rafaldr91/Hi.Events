@@ -128,6 +128,14 @@ export const organizerClient = {
         return new Blob([response.data]);
     },
 
+    exportOrganizerConsents: async (organizerId: IdParam): Promise<Blob> => {
+        const response = await api.get(
+            `organizers/${organizerId}/orders/consents/export`,
+            {responseType: 'blob'},
+        );
+        return new Blob([response.data]);
+    },
+
     exportOrganizerReport: async (
         organizerId: IdParam,
         reportType: string,

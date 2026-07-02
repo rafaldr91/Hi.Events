@@ -58,6 +58,9 @@ class OrderResource extends BaseResource
             'buyer_type' => $this->getBuyerType(),
             'company_name' => $this->getCompanyName(),
             'company_nip' => $this->getCompanyNip(),
+            'opted_into_marketing_at' => $this->getOptedIntoMarketingAt(),
+            'data_processing_accepted_at' => $this->getDataProcessingAcceptedAt(),
+            'anonymized_at' => $this->getAnonymizedAt(),
             'latest_invoice' => $this->when(
                 !is_null($this->getLatestInvoice()),
                 fn() => (new InvoiceResource($this->getLatestInvoice()))->toArray($request),

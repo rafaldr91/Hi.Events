@@ -93,6 +93,10 @@ class UpdateEventSettingsRequest extends BaseRequest
             // Marketing settings
             'show_marketing_opt_in' => ['boolean'],
 
+            // Data processing consent settings
+            'show_data_processing_consent' => ['boolean'],
+            'privacy_policy_url' => ['nullable', 'url', 'max:2048'],
+
             // Platform fee settings
             'pass_platform_fee_to_buyer' => ['boolean'],
 
