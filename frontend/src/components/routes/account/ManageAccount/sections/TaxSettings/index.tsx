@@ -6,9 +6,12 @@ import accountClasses from "../../ManageAccount.module.scss";
 import {Card} from "../../../../../common/Card";
 import {HeadingCard} from "../../../../../common/HeadingCard";
 import {LoadingMask} from "../../../../../common/LoadingMask";
+import {SellerSettings} from "./SellerSettings.tsx";
+import {useGetAccount} from "../../../../../../queries/useGetAccount.ts";
 
 export const TaxSettings = () => {
     const [createModalOpen, {open: openCreateModal, close: closeCreateModal}] = useDisclosure(false);
+    const {data: account} = useGetAccount();
 
     return (
         <>
@@ -23,6 +26,8 @@ export const TaxSettings = () => {
                 <TaxAndFeeList/>
                 {createModalOpen && <CreateTaxOrFeeModal onClose={closeCreateModal}/>}
             </Card>
+
+            {account && <SellerSettings account={account}/>}
         </>
     );
 };

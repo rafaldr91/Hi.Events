@@ -1,10 +1,14 @@
-import {ComboboxItem, Group, Select, Skeleton, Table as MantineTable} from '@mantine/core';
+import {Button, Checkbox, ComboboxItem, Divider, Group, Select, Skeleton, Stack, Table as MantineTable} from '@mantine/core';
+import {IconFileSpreadsheet} from "@tabler/icons-react";
 import {t} from '@lingui/macro';
 import {DatePickerInput} from "@mantine/dates";
 import {IconArrowDown, IconArrowsSort, IconArrowUp, IconCalendar} from "@tabler/icons-react";
 import React, {useMemo, useState} from "react";
 import {PageTitle} from "../PageTitle";
 import {DownloadCsvButton} from "../DownloadCsvButton";
+import {eventsClient} from "../../../api/event.client.ts";
+import {downloadBinary} from "../../../utilites/download.ts";
+import {showError} from "../../../utilites/notifications.tsx";
 import {Table, TableHead} from "../Table";
 import '@mantine/dates/styles.css';
 import {useGetEventReport} from "../../../queries/useGetEventReport.ts";
@@ -38,6 +42,11 @@ interface ReportProps<T> {
     enableDownload?: boolean;
     downloadFileName?: string;
     showCustomDatePicker?: boolean;
+    showPaymentProviderFilter?: boolean;
+    showTotals?: boolean;
+    showExcelExport?: boolean;
+    showHideEmptyRows?: boolean;
+    showBuyerTypeFilter?: boolean;
 }
 
 const TIME_PERIODS = [
@@ -63,6 +72,11 @@ const ReportTable = <T extends Record<string, any>>({
                                                         enableDownload = true,
                                                         downloadFileName = 'report.csv',
                                                         showCustomDatePicker = false,
+                                                        showPaymentProviderFilter = false,
+                                                        showTotals = false,
+                                                        showExcelExport = false,
+                                                        showHideEmptyRows = false,
+                                                        showBuyerTypeFilter = false,
                                                         event
                                                     }: ReportProps<T>) => {
     const [dateRange, setDateRange] = useState<[Date | null, Date | null]>([
@@ -73,9 +87,37 @@ const ReportTable = <T extends Record<string, any>>({
     const [showDatePickerInput, setShowDatePickerInput] = useState(showCustomDatePicker);
     const [sortField, setSortField] = useState<keyof T | null>(null);
     const [sortDirection, setSortDirection] = useState<'asc' | 'desc' | null>(null);
+    const [paymentProviders, setPaymentProviders] = useState<string[]>([]);
+    const [buyerTypes, setBuyerTypes] = useState<string[]>(['company', 'individual']);
+    const [isExporting, setIsExporting] = useState(false);
+    const [hideEmptyRows, setHideEmptyRows] = useState(true);
     const {reportType, eventId} = useParams();
-    const reportQuery = useGetEventReport(eventId, reportType, dateRange[0], dateRange[1]);
+    const activeBuyerTypes = showBuyerTypeFilter && buyerTypes.length < 2 ? buyerTypes : undefined;
+    const reportQuery = useGetEventReport(eventId, reportType, dateRange[0], dateRange[1], paymentProviders.length ? paymentProviders : undefined, activeBuyerTypes);
     const data = (reportQuery.data || []) as T[];
+
+    const handleExcelExport = async () => {
+        if (!eventId || !reportType) return;
+        setIsExporting(true);
+        try {
+            const startDate = dateRange[0] ? dateRange[0].toISOString().split('T')[0] : undefined;
+            const endDate = dateRange[1] ? dateRange[1].toISOString().split('T')[0] : undefined;
+            const blob = await eventsClient.exportEventReport(
+                eventId,
+                reportType,
+                startDate,
+                endDate,
+                paymentProviders.length ? paymentProviders : undefined,
+                showHideEmptyRows && hideEmptyRows,
+                activeBuyerTypes,
+            );
+            downloadBinary(blob, `${reportType}_${startDate}_${endDate}.xlsx`);
+        } catch {
+            showError(t`Failed to export report`);
+        } finally {
+            setIsExporting(false);
+        }
+    };
 
     const calculateDateRange = (period: string): [Date | null, Date | null] => {
         if (period === 'custom') {
@@ -167,7 +209,19 @@ const ReportTable = <T extends Record<string, any>>({
     };
 
     const sortedData = useMemo(() => {
-        return [...data].sort((a, b) => {
+        let rows = [...data];
+
+        if (showHideEmptyRows && hideEmptyRows) {
+            rows = rows.filter(row =>
+                columns.some((col, i) => {
+                    if (i === 0) return false;
+                    const n = Number(row[col.key]);
+                    return !isNaN(n) && n !== 0;
+                })
+            );
+        }
+
+        return rows.sort((a, b) => {
             if (!sortField || !sortDirection) return 0;
             const aValue = a[sortField];
             const bValue = b[sortField];
@@ -187,7 +241,25 @@ const ReportTable = <T extends Record<string, any>>({
 
             return 0;
         });
-    }, [data, sortField, sortDirection]);
+    }, [data, sortField, sortDirection, showHideEmptyRows, hideEmptyRows, columns]);
+
+    const totalsRow = useMemo(() => {
+        if (!showTotals || !data.length) return null;
+        return columns.reduce((acc, col, index) => {
+            const key = String(col.key);
+            if (index === 0) {
+                acc[key] = t`Total`;
+                return acc;
+            }
+            const values = data.map(row => Number(row[key]));
+            if (values.every(v => !isNaN(v))) {
+                acc[key] = values.reduce((sum, v) => sum + v, 0);
+            } else {
+                acc[key] = '';
+            }
+            return acc;
+        }, {} as Record<string, any>);
+    }, [showTotals, data, columns]);
 
     const csvHeaders = columns.map(col => col.label);
     const csvData = sortedData.map(row =>
@@ -252,44 +324,124 @@ const ReportTable = <T extends Record<string, any>>({
 
     return (
         <>
-            <Group justify="space-between" mb="md">
-                <PageTitle>{title}</PageTitle>
-                <Group justify="flex-end" align="center" gap="sm">
-                    {showDateFilter && (
-                        <Select
-                            style={{minWidth: '200px'}}
-                            placeholder={t`Select time period`}
-                            data={TIME_PERIODS}
-                            value={selectedPeriod}
-                            onChange={handlePeriodChange}
-                            leftSection={<IconCalendar stroke={1.5} size={20}/>}
-                            mb="0"
-                            className={classes.periodSelect}
-                        />
-                    )}
-                    {showDateFilter && showDatePickerInput && (
-                        <DatePickerInput
-                            style={{minWidth: '305px', marginBottom: '0'}}
-                            leftSection={<IconCalendar stroke={1.5} size={20}/>}
-                            type="range"
-                            placeholder="Pick dates range"
-                            value={dateRange}
-                            onChange={handleDateRangeChange}
-                            minDate={dayjs().subtract(1, 'year').tz(event.timezone).toDate()}
-                            maxDate={dayjs().tz(event.timezone).toDate()}
-                            className={classes.datePicker}
-                        />
-                    )}
-                    {enableDownload && (
-                        <DownloadCsvButton
-                            headers={csvHeaders}
-                            data={csvData}
-                            filename={downloadFileName}
-                            className={classes.downloadButton}
-                        />
-                    )}
+            <Stack gap="xs" mb="md">
+                <Group justify="space-between" align="center">
+                    <PageTitle>{title}</PageTitle>
+                    <Group gap="sm" align="center">
+                        {enableDownload && (
+                            <DownloadCsvButton
+                                headers={csvHeaders}
+                                data={csvData}
+                                filename={downloadFileName}
+                                className={classes.downloadButton}
+                            />
+                        )}
+                        {showExcelExport && (
+                            <Button
+                                variant="light"
+                                leftSection={<IconFileSpreadsheet size={16}/>}
+                                loading={isExporting}
+                                onClick={handleExcelExport}
+                            >
+                                {t`Export Excel`}
+                            </Button>
+                        )}
+                    </Group>
                 </Group>
-            </Group>
+                {(showDateFilter || showPaymentProviderFilter || showHideEmptyRows || showBuyerTypeFilter) && (
+                    <>
+                        <Divider/>
+                        <Group gap="md" align="center">
+                            {showDateFilter && (
+                                <>
+                                    <Select
+                                        style={{minWidth: '200px'}}
+                                        placeholder={t`Select time period`}
+                                        data={TIME_PERIODS}
+                                        value={selectedPeriod}
+                                        onChange={handlePeriodChange}
+                                        leftSection={<IconCalendar stroke={1.5} size={20}/>}
+                                        mb="0"
+                                        className={classes.periodSelect}
+                                    />
+                                    {showDatePickerInput && (
+                                        <DatePickerInput
+                                            style={{minWidth: '305px', marginBottom: '0'}}
+                                            leftSection={<IconCalendar stroke={1.5} size={20}/>}
+                                            type="range"
+                                            placeholder="Pick dates range"
+                                            value={dateRange}
+                                            onChange={handleDateRangeChange}
+                                            minDate={dayjs().subtract(1, 'year').tz(event.timezone).toDate()}
+                                            maxDate={dayjs().tz(event.timezone).toDate()}
+                                            className={classes.datePicker}
+                                        />
+                                    )}
+                                </>
+                            )}
+                            {showDateFilter && (showPaymentProviderFilter || showHideEmptyRows) && (
+                                <Divider orientation="vertical" h={20}/>
+                            )}
+                            {showPaymentProviderFilter && (
+                                <>
+                                    <Checkbox
+                                        label={t`Stripe`}
+                                        checked={paymentProviders.includes('STRIPE')}
+                                        onChange={e => setPaymentProviders(prev =>
+                                            e.currentTarget.checked ? [...prev, 'STRIPE'] : prev.filter(p => p !== 'STRIPE')
+                                        )}
+                                    />
+                                    <Checkbox
+                                        label={t`Offline`}
+                                        checked={paymentProviders.includes('OFFLINE')}
+                                        onChange={e => setPaymentProviders(prev =>
+                                            e.currentTarget.checked ? [...prev, 'OFFLINE'] : prev.filter(p => p !== 'OFFLINE')
+                                        )}
+                                    />
+                                    <Checkbox
+                                        label={t`Other`}
+                                        checked={paymentProviders.includes('OTHER')}
+                                        onChange={e => setPaymentProviders(prev =>
+                                            e.currentTarget.checked ? [...prev, 'OTHER'] : prev.filter(p => p !== 'OTHER')
+                                        )}
+                                    />
+                                </>
+                            )}
+                            {showPaymentProviderFilter && (showHideEmptyRows || showBuyerTypeFilter) && (
+                                <Divider orientation="vertical" h={20}/>
+                            )}
+                            {showBuyerTypeFilter && (
+                                <>
+                                    <Checkbox
+                                        label={t`Company (NIP)`}
+                                        checked={buyerTypes.includes('company')}
+                                        onChange={e => setBuyerTypes(prev =>
+                                            e.currentTarget.checked ? [...prev, 'company'] : prev.filter(t => t !== 'company')
+                                        )}
+                                    />
+                                    <Checkbox
+                                        label={t`Individual`}
+                                        checked={buyerTypes.includes('individual')}
+                                        onChange={e => setBuyerTypes(prev =>
+                                            e.currentTarget.checked ? [...prev, 'individual'] : prev.filter(t => t !== 'individual')
+                                        )}
+                                    />
+                                </>
+                            )}
+                            {showBuyerTypeFilter && showHideEmptyRows && (
+                                <Divider orientation="vertical" h={20}/>
+                            )}
+                            {showHideEmptyRows && (
+                                <Checkbox
+                                    checked={hideEmptyRows}
+                                    onChange={e => setHideEmptyRows(e.currentTarget.checked)}
+                                    label={t`Hide days with no sales`}
+                                />
+                            )}
+                        </Group>
+                    </>
+                )}
+            </Stack>
             <Table>
                 <TableHead>
                     <MantineTable.Tr>
@@ -300,7 +452,7 @@ const ReportTable = <T extends Record<string, any>>({
                                 style={{cursor: column.sortable ? 'pointer' : 'default', minWidth: '180px'}}
                             >
                                 <Group gap="xs" wrap={'nowrap'}>
-                                    {t`${column.label}`}
+                                    {column.label}
                                     {column.sortable && getSortIcon(column.key)}
                                 </Group>
                             </MantineTable.Th>
@@ -322,6 +474,24 @@ const ReportTable = <T extends Record<string, any>>({
                         </MantineTable.Tr>
                     ))}
                 </MantineTable.Tbody>
+                {totalsRow && (
+                    <MantineTable.Tfoot>
+                        <MantineTable.Tr style={{fontWeight: 'bold'}}>
+                            {columns.map((column) => {
+                                const key = String(column.key);
+                                const value = totalsRow![key];
+                                return (
+                                    <MantineTable.Td key={key}>
+                                        {column.render && typeof value === 'number'
+                                            ? column.render(value, totalsRow as T)
+                                            : value
+                                        }
+                                    </MantineTable.Td>
+                                );
+                            })}
+                        </MantineTable.Tr>
+                    </MantineTable.Tfoot>
+                )}
             </Table>
         </>
     );

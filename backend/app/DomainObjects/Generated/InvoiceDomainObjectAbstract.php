@@ -13,6 +13,7 @@ abstract class InvoiceDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
     final public const ID = 'id';
     final public const ORDER_ID = 'order_id';
     final public const ACCOUNT_ID = 'account_id';
+    final public const CORRECTED_INVOICE_ID = 'corrected_invoice_id';
     final public const INVOICE_NUMBER = 'invoice_number';
     final public const ISSUE_DATE = 'issue_date';
     final public const DUE_DATE = 'due_date';
@@ -24,10 +25,19 @@ abstract class InvoiceDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
     final public const CREATED_AT = 'created_at';
     final public const UPDATED_AT = 'updated_at';
     final public const DELETED_AT = 'deleted_at';
+    final public const DOCUMENT_TYPE = 'document_type';
+    final public const SEQUENCE_NUMBER = 'sequence_number';
+    final public const KSEF_STATUS = 'ksef_status';
+    final public const KSEF_NUMBER = 'ksef_number';
+    final public const KSEF_REFERENCE_NUMBER = 'ksef_reference_number';
+    final public const KSEF_ERROR_MESSAGE = 'ksef_error_message';
+    final public const KSEF_RETRY_COUNT = 'ksef_retry_count';
+    final public const KSEF_SENT_AT = 'ksef_sent_at';
 
     protected int $id;
     protected int $order_id;
     protected int $account_id;
+    protected ?int $corrected_invoice_id = null;
     protected string $invoice_number;
     protected string $issue_date = 'CURRENT_TIMESTAMP';
     protected ?string $due_date = null;
@@ -39,6 +49,14 @@ abstract class InvoiceDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
     protected ?string $created_at = null;
     protected ?string $updated_at = null;
     protected ?string $deleted_at = null;
+    protected string $document_type = 'invoice';
+    protected ?int $sequence_number = null;
+    protected ?string $ksef_status = null;
+    protected ?string $ksef_number = null;
+    protected ?string $ksef_reference_number = null;
+    protected ?string $ksef_error_message = null;
+    protected int $ksef_retry_count = 0;
+    protected ?string $ksef_sent_at = null;
 
     public function toArray(): array
     {
@@ -46,6 +64,7 @@ abstract class InvoiceDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
                     'id' => $this->id ?? null,
                     'order_id' => $this->order_id ?? null,
                     'account_id' => $this->account_id ?? null,
+                    'corrected_invoice_id' => $this->corrected_invoice_id ?? null,
                     'invoice_number' => $this->invoice_number ?? null,
                     'issue_date' => $this->issue_date ?? null,
                     'due_date' => $this->due_date ?? null,
@@ -57,6 +76,14 @@ abstract class InvoiceDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
                     'created_at' => $this->created_at ?? null,
                     'updated_at' => $this->updated_at ?? null,
                     'deleted_at' => $this->deleted_at ?? null,
+                    'document_type' => $this->document_type ?? null,
+                    'sequence_number' => $this->sequence_number ?? null,
+                    'ksef_status' => $this->ksef_status ?? null,
+                    'ksef_number' => $this->ksef_number ?? null,
+                    'ksef_reference_number' => $this->ksef_reference_number ?? null,
+                    'ksef_error_message' => $this->ksef_error_message ?? null,
+                    'ksef_retry_count' => $this->ksef_retry_count ?? null,
+                    'ksef_sent_at' => $this->ksef_sent_at ?? null,
                 ];
     }
 
@@ -91,6 +118,17 @@ abstract class InvoiceDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
     public function getAccountId(): int
     {
         return $this->account_id;
+    }
+
+    public function setCorrectedInvoiceId(?int $corrected_invoice_id): self
+    {
+        $this->corrected_invoice_id = $corrected_invoice_id;
+        return $this;
+    }
+
+    public function getCorrectedInvoiceId(): ?int
+    {
+        return $this->corrected_invoice_id;
     }
 
     public function setInvoiceNumber(string $invoice_number): self
@@ -212,5 +250,93 @@ abstract class InvoiceDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
     public function getDeletedAt(): ?string
     {
         return $this->deleted_at;
+    }
+
+    public function setDocumentType(string $document_type): self
+    {
+        $this->document_type = $document_type;
+        return $this;
+    }
+
+    public function getDocumentType(): string
+    {
+        return $this->document_type;
+    }
+
+    public function setSequenceNumber(?int $sequence_number): self
+    {
+        $this->sequence_number = $sequence_number;
+        return $this;
+    }
+
+    public function getSequenceNumber(): ?int
+    {
+        return $this->sequence_number;
+    }
+
+    public function setKsefStatus(?string $ksef_status): self
+    {
+        $this->ksef_status = $ksef_status;
+        return $this;
+    }
+
+    public function getKsefStatus(): ?string
+    {
+        return $this->ksef_status;
+    }
+
+    public function setKsefNumber(?string $ksef_number): self
+    {
+        $this->ksef_number = $ksef_number;
+        return $this;
+    }
+
+    public function getKsefNumber(): ?string
+    {
+        return $this->ksef_number;
+    }
+
+    public function setKsefReferenceNumber(?string $ksef_reference_number): self
+    {
+        $this->ksef_reference_number = $ksef_reference_number;
+        return $this;
+    }
+
+    public function getKsefReferenceNumber(): ?string
+    {
+        return $this->ksef_reference_number;
+    }
+
+    public function setKsefErrorMessage(?string $ksef_error_message): self
+    {
+        $this->ksef_error_message = $ksef_error_message;
+        return $this;
+    }
+
+    public function getKsefErrorMessage(): ?string
+    {
+        return $this->ksef_error_message;
+    }
+
+    public function setKsefRetryCount(int $ksef_retry_count): self
+    {
+        $this->ksef_retry_count = $ksef_retry_count;
+        return $this;
+    }
+
+    public function getKsefRetryCount(): int
+    {
+        return $this->ksef_retry_count;
+    }
+
+    public function setKsefSentAt(?string $ksef_sent_at): self
+    {
+        $this->ksef_sent_at = $ksef_sent_at;
+        return $this;
+    }
+
+    public function getKsefSentAt(): ?string
+    {
+        return $this->ksef_sent_at;
     }
 }

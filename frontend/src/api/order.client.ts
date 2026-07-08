@@ -14,6 +14,9 @@ export interface OrderDetails {
     first_name: string,
     last_name: string,
     email: string,
+    buyer_type: 'individual' | 'company',
+    company_nip?: string,
+    company_name?: string,
 }
 
 export interface AttendeeDetails extends OrderDetails {
@@ -79,8 +82,11 @@ export const orderClient = {
         return response.data;
     },
 
-    cancel: async (eventId: IdParam, orderId: IdParam) => {
-        const response = await api.post<GenericDataResponse<Order>>('events/' + eventId + '/orders/' + orderId + '/cancel');
+    cancel: async (eventId: IdParam, orderId: IdParam, refund?: boolean, sendKsefCorrection?: boolean) => {
+        const response = await api.post<GenericDataResponse<Order>>('events/' + eventId + '/orders/' + orderId + '/cancel', {
+            refund: refund ?? false,
+            send_ksef_correction: sendKsefCorrection ?? false,
+        });
         return response.data;
     },
 
@@ -103,6 +109,24 @@ export const orderClient = {
         });
 
         return new Blob([response.data]);
+    },
+
+    downloadKsefXml: async (eventId: IdParam, orderId: IdParam): Promise<Blob> => {
+        const response = await api.get(`events/${eventId}/orders/${orderId}/invoice/xml`, {
+            responseType: 'blob',
+        });
+
+        return new Blob([response.data]);
+    },
+
+    sendKsefInvoice: async (eventId: IdParam, orderId: IdParam) => {
+        const response = await api.post(`events/${eventId}/orders/${orderId}/invoice/send-ksef`);
+        return response.data;
+    },
+
+    sendKsefCorrection: async (eventId: IdParam, orderId: IdParam) => {
+        const response = await api.post(`events/${eventId}/orders/${orderId}/invoice/send-ksef-correction`);
+        return response.data;
     },
 
     editOrder: async (eventId: IdParam, orderId: IdParam, payload: EditOrderPayload) => {
@@ -146,6 +170,8 @@ export const orderClientPublic = {
         const response = await publicApi.post<{
             client_secret: string,
             account_id?: string,
+            public_key: string,
+            stripe_platform?: string,
         }>(`events/${eventId}/order/${orderShortId}/stripe/payment_intent`);
         return response.data;
     },
@@ -170,5 +196,10 @@ export const orderClientPublic = {
         });
 
         return new Blob([response.data]);
+    },
+
+    abandonOrder: async (eventId: IdParam, orderShortId: IdParam) => {
+        const response = await publicApi.post<GenericDataResponse<Order>>(`events/${eventId}/order/${orderShortId}/abandon`);
+        return response.data;
     },
 }

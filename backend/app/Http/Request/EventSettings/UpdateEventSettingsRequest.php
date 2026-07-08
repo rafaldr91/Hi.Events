@@ -2,7 +2,9 @@
 
 namespace HiEvents\Http\Request\EventSettings;
 
+use HiEvents\DomainObjects\Enums\AttendeeDetailsCollectionMethod;
 use HiEvents\DomainObjects\Enums\HomepageBackgroundType;
+use HiEvents\DomainObjects\Enums\HomepageFontFamily;
 use HiEvents\DomainObjects\Enums\PaymentProviders;
 use HiEvents\DomainObjects\Enums\PriceDisplayMode;
 use HiEvents\Http\Request\BaseRequest;
@@ -22,6 +24,7 @@ class UpdateEventSettingsRequest extends BaseRequest
             'continue_button_text' => ['string', 'nullable', 'max:100'],
             'support_email' => ['email', 'nullable'],
             'require_attendee_details' => ['boolean'],
+            'attendee_details_collection_method' => [Rule::in(AttendeeDetailsCollectionMethod::valuesArray())],
             'order_timeout_in_minutes' => ['numeric', "min:1", "max:120"],
 
             'homepage_background_color' => ['nullable', ...RulesHelper::HEX_COLOR],
@@ -67,14 +70,46 @@ class UpdateEventSettingsRequest extends BaseRequest
             // Invoice settings
             'enable_invoicing' => ['boolean'],
             'invoice_label' => ['nullable', 'string', 'max:50'],
-            'invoice_prefix' => ['nullable', 'string', 'max:10', 'regex:/^[A-Za-z0-9\-]*$/'],
+            'invoice_prefix' => ['nullable', 'string', 'max:20', 'regex:/^[A-Za-z0-9\-\/]*$/'],
+            'invoice_suffix' => ['nullable', 'string', 'max:20', 'regex:/^[A-Za-z0-9\-\/]*$/'],
+            'invoice_number_format' => ['nullable', 'string', 'max:100'],
             'invoice_start_number' => ['nullable', 'integer', 'min:1'],
+            'confirmation_prefix' => ['nullable', 'string', 'max:20', 'regex:/^[A-Za-z0-9\-\/]*$/'],
             'require_billing_address' => ['boolean'],
             'organization_name' => ['required_if:enable_invoicing,true', 'string', 'max:255', 'nullable'],
             'organization_address' => ['required_if:enable_invoicing,true', 'string', 'max:255', 'nullable'],
             'invoice_tax_details' => ['nullable', 'string'],
             'invoice_notes' => ['nullable', 'string'],
             'invoice_payment_terms_days' => ['nullable', 'integer', 'gte:0', 'lte:1000'],
+
+            // Ticket design settings
+            'ticket_design_settings' => ['nullable', 'array'],
+            'ticket_design_settings.accent_color' => ['nullable', 'string', ...RulesHelper::HEX_COLOR],
+            'ticket_design_settings.logo_image_id' => ['nullable', 'integer'],
+            'ticket_design_settings.footer_text' => ['nullable', 'string', 'max:500'],
+            'ticket_design_settings.layout_type' => ['nullable', 'string', Rule::in(['default', 'modern'])],
+            'ticket_design_settings.enabled' => ['boolean'],
+
+            // Marketing settings
+            'show_marketing_opt_in' => ['boolean'],
+
+            // Platform fee settings
+            'pass_platform_fee_to_buyer' => ['boolean'],
+
+            // Homepage theme settings
+            'homepage_theme_settings' => ['nullable', 'array'],
+            'homepage_theme_settings.accent' => ['nullable', 'string', ...RulesHelper::HEX_COLOR],
+            'homepage_theme_settings.background' => ['nullable', 'string', ...RulesHelper::HEX_COLOR],
+            'homepage_theme_settings.mode' => ['nullable', 'string', Rule::in(['light', 'dark'])],
+            'homepage_theme_settings.background_type' => ['nullable', 'string', Rule::in(HomepageBackgroundType::valuesArray())],
+            'homepage_theme_settings.font_family' => ['nullable', 'string', Rule::in(HomepageFontFamily::valuesArray())],
+
+            // Self-service settings
+            'allow_attendee_self_edit' => ['boolean'],
+
+            // Waitlist settings
+            'waitlist_auto_process' => ['boolean'],
+            'waitlist_offer_timeout_minutes' => ['nullable', 'integer', 'min:1', 'max:10080'],
         ];
     }
 
@@ -102,10 +137,24 @@ class UpdateEventSettingsRequest extends BaseRequest
             'offline_payment_instructions.required' => __('Payment instructions are required when offline payments are enabled.'),
 
             // Invoice messages
-            'invoice_prefix.regex' => __('The invoice prefix may only contain letters, numbers, and hyphens.'),
+            'invoice_prefix.regex' => __('The invoice prefix may only contain letters, numbers, hyphens, and slashes.'),
+            'invoice_suffix.regex' => __('The invoice suffix may only contain letters, numbers, hyphens, and slashes.'),
+            'confirmation_prefix.regex' => __('The confirmation prefix may only contain letters, numbers, hyphens, and slashes.'),
             'organization_name.required_if' => __('The organization name is required when invoicing is enabled.'),
             'organization_address.required_if' => __('The organization address is required when invoicing is enabled.'),
             'invoice_start_number.min' => __('The invoice start number must be at least 1.'),
+
+            // Ticket design messages
+            'ticket_design_settings.accent_color' => $colorMessage,
+            'ticket_design_settings.footer_text.max' => __('The footer text may not be greater than 500 characters.'),
+            'ticket_design_settings.layout_type.in' => __('The layout type must be default or modern.'),
+
+            // Homepage theme settings messages
+            'homepage_theme_settings.accent' => $colorMessage,
+            'homepage_theme_settings.background' => $colorMessage,
+            'homepage_theme_settings.mode.in' => __('The mode must be light or dark.'),
+            'homepage_theme_settings.background_type.in' => __('The background type must be COLOR or MIRROR_COVER_IMAGE.'),
+            'homepage_theme_settings.font_family.in' => __('The selected font is not supported.'),
         ];
     }
 }

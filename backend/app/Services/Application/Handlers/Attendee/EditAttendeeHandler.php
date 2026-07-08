@@ -3,11 +3,13 @@
 namespace HiEvents\Services\Application\Handlers\Attendee;
 
 use HiEvents\DomainObjects\AttendeeDomainObject;
+use HiEvents\DomainObjects\Enums\CapacityChangeDirection;
 use HiEvents\DomainObjects\Enums\ProductPriceType;
 use HiEvents\DomainObjects\Generated\AttendeeDomainObjectAbstract;
 use HiEvents\DomainObjects\Generated\ProductDomainObjectAbstract;
 use HiEvents\DomainObjects\ProductDomainObject;
 use HiEvents\DomainObjects\ProductPriceDomainObject;
+use HiEvents\Events\CapacityChangedEvent;
 use HiEvents\Exceptions\NoTicketsAvailableException;
 use HiEvents\Repository\Interfaces\AttendeeRepositoryInterface;
 use HiEvents\Repository\Interfaces\ProductRepositoryInterface;
@@ -39,9 +41,9 @@ class EditAttendeeHandler
     public function handle(EditAttendeeDTO $editAttendeeDTO): AttendeeDomainObject
     {
         return $this->databaseManager->transaction(function () use ($editAttendeeDTO) {
-            $this->validateProductId($editAttendeeDTO);
-
             $attendee = $this->getAttendee($editAttendeeDTO);
+
+            $this->validateProductId($editAttendeeDTO, $attendee);
 
             $this->adjustProductQuantities($attendee, $editAttendeeDTO);
 
@@ -63,6 +65,13 @@ class EditAttendeeHandler
         if ($attendee->getProductPriceId() !== $editAttendeeDTO->product_price_id) {
             $this->productQuantityService->decreaseQuantitySold($attendee->getProductPriceId());
             $this->productQuantityService->increaseQuantitySold($editAttendeeDTO->product_price_id);
+
+            event(new CapacityChangedEvent(
+                eventId: $editAttendeeDTO->event_id,
+                direction: CapacityChangeDirection::INCREASED,
+                productId: $attendee->getProductId(),
+                productPriceId: $attendee->getProductPriceId(),
+            ));
         }
     }
 
@@ -84,7 +93,10 @@ class EditAttendeeHandler
      * @throws ValidationException
      * @throws NoTicketsAvailableException
      */
-    private function validateProductId(EditAttendeeDTO $editAttendeeDTO): void
+    private function validateProductId(
+        EditAttendeeDTO $editAttendeeDTO,
+        AttendeeDomainObject $attendee,
+    ): void
     {
         /** @var ProductDomainObject $product */
         $product = $this->productRepository
@@ -104,6 +116,11 @@ class EditAttendeeHandler
             throw ValidationException::withMessages([
                 'product_price_id' => __('Product price ID is not valid'),
             ]);
+        }
+
+        // No need to check availability if the product price hasn't changed
+        if ($attendee->getProductPriceId() === $editAttendeeDTO->product_price_id) {
+            return;
         }
 
         $availableQuantity = $this->productRepository->getQuantityRemainingForProductPrice(

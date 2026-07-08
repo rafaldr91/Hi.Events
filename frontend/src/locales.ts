@@ -1,9 +1,23 @@
 import {i18n} from "@lingui/core";
-import {t} from "@lingui/macro";
 
-export type SupportedLocales = "en" | "de" | "fr" | "it" | "nl" | "pt" | "es" | "zh-cn" | "pt-br" | "vi" |"zh-hk";
+export type SupportedLocales =
+    "en"
+    | "de"
+    | "fr"
+    | "it"
+    | "nl"
+    | "pt"
+    | "es"
+    | "zh-cn"
+    | "pt-br"
+    | "vi"
+    | "zh-hk"
+    | "tr"
+    | "hu"
+    | "pl"
+    | "se";
 
-export const availableLocales = ["en", "de", "fr", "it", "nl", "pt", "es", "zh-cn", "zh-hk", "pt-br", "vi",];
+export const availableLocales = ["en", "de", "fr", "it", "nl", "pt", "es", "zh-cn", "zh-hk", "pt-br", "vi", "tr", "hu", "pl", "se"];
 
 export const localeToFlagEmojiMap: Record<SupportedLocales, string> = {
     en: '🇬🇧',
@@ -17,6 +31,10 @@ export const localeToFlagEmojiMap: Record<SupportedLocales, string> = {
     "zh-hk": '🇭🇰',
     "pt-br": '🇧🇷',
     vi: '🇻🇳',
+    tr: '🇹🇷',
+    hu: '🇭🇺',
+    pl: '🇵🇱',
+    se: '🇸🇪',
 };
 
 export const localeToNameMap: Record<SupportedLocales, string> = {
@@ -31,10 +49,14 @@ export const localeToNameMap: Record<SupportedLocales, string> = {
     "zh-hk": `Cantonese`,
     "pt-br": `Portuguese (Brazil)`,
     vi: `Vietnamese`,
+    tr: `Turkish`,
+    hu: `Hungarian`,
+    pl: `Polish`,
+    se: `Swedish`,
 };
 
 export const getLocaleName = (locale: SupportedLocales) => {
-    return t`${localeToNameMap[locale]}`
+    return localeToNameMap[locale];
 }
 
 export const getClientLocale = () => {
@@ -56,10 +78,15 @@ export const getClientLocale = () => {
 };
 
 export async function dynamicActivateLocale(locale: string) {
+    try {
         locale = availableLocales.includes(locale) ? locale : "en";
         const module = (await import(`./locales/${locale}.po`));
         i18n.load(locale, module.messages);
         i18n.activate(locale);
+    } catch (error) {
+        console.error("Error loading locale:", error);
+        // i18n.activate("en");
+    }
 }
 
 export const getSupportedLocale = (userLocale: string) => {

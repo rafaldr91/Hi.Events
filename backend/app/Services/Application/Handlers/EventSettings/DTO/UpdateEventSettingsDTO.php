@@ -4,6 +4,7 @@ namespace HiEvents\Services\Application\Handlers\EventSettings\DTO;
 
 use HiEvents\DataTransferObjects\AddressDTO;
 use HiEvents\DataTransferObjects\BaseDTO;
+use HiEvents\DomainObjects\Enums\AttendeeDetailsCollectionMethod;
 use HiEvents\DomainObjects\Enums\HomepageBackgroundType;
 use HiEvents\DomainObjects\Enums\PaymentProviders;
 use HiEvents\DomainObjects\Enums\PriceDisplayMode;
@@ -31,6 +32,7 @@ class UpdateEventSettingsDTO extends BaseDTO
         public readonly ?HomepageBackgroundType $homepage_background_type,
 
         public readonly bool                    $require_attendee_details,
+        public readonly AttendeeDetailsCollectionMethod $attendee_details_collection_method,
         public readonly int                     $order_timeout_in_minutes,
         public readonly ?string                 $website_url,
         public readonly ?string                 $maps_url,
@@ -59,13 +61,36 @@ class UpdateEventSettingsDTO extends BaseDTO
         public readonly bool                    $enable_invoicing = false,
         public readonly ?string                 $invoice_label = null,
         public readonly ?string                 $invoice_prefix = null,
+        public readonly ?string                 $invoice_suffix = null,
+        public readonly ?string                 $invoice_number_format = null,
         public readonly ?int                    $invoice_start_number = null,
+        public readonly ?string                 $confirmation_prefix = null,
+        public readonly ?int                    $confirmation_start_number = null,
         public readonly bool                    $require_billing_address = true,
         public readonly ?string                 $organization_name = null,
         public readonly ?string                 $organization_address = null,
         public readonly ?string                 $invoice_tax_details = null,
         public readonly ?string                 $invoice_notes = null,
         public readonly ?int                    $invoice_payment_terms_days = null,
+
+        // Ticket design settings
+        public readonly ?array                  $ticket_design_settings = null,
+
+        // Marketing settings
+        public readonly bool                    $show_marketing_opt_in = true,
+
+        // Platform fee settings
+        public readonly bool                    $pass_platform_fee_to_buyer = false,
+
+        // Homepage theme settings
+        public readonly ?array                  $homepage_theme_settings = null,
+
+        // Self-service settings
+        public readonly bool                    $allow_attendee_self_edit = false,
+
+        // Waitlist settings
+        public readonly ?bool                   $waitlist_auto_process = null,
+        public readonly ?int                    $waitlist_offer_timeout_minutes = null,
     )
     {
     }
@@ -92,6 +117,7 @@ class UpdateEventSettingsDTO extends BaseDTO
             homepage_body_background_color: '#7a5eb9',
             homepage_background_type: HomepageBackgroundType::COLOR,
             require_attendee_details: false,
+            attendee_details_collection_method: AttendeeDetailsCollectionMethod::PER_TICKET,
             order_timeout_in_minutes: 0,
             website_url: null,
             maps_url: null,
@@ -114,13 +140,44 @@ class UpdateEventSettingsDTO extends BaseDTO
             enable_invoicing: false,
             invoice_label: __('Invoice'),
             invoice_prefix: null,
+            invoice_suffix: null,
+            invoice_number_format: null,
             invoice_start_number: 1,
+            confirmation_prefix: null,
+            confirmation_start_number: 1,
             require_billing_address: true,
             organization_name: $organizer->getName(),
             organization_address: null,
             invoice_tax_details: null,
             invoice_notes: null,
             invoice_payment_terms_days: null,
+
+            // Ticket design defaults
+            ticket_design_settings: [
+                'accent_color' => '#333333',
+                'logo_image_id' => null,
+                'footer_text' => null,
+                'layout_type' => 'classic',
+                'enabled' => true,
+            ],
+
+            // Marketing defaults
+            show_marketing_opt_in: true,
+
+            // Platform fee defaults
+            pass_platform_fee_to_buyer: false,
+
+            // Homepage theme defaults (simplified 2-color + mode system)
+            homepage_theme_settings: [
+                'accent' => '#8b5cf6',
+                'background' => '#f5f3ff',
+                'mode' => 'light',
+                'background_type' => 'COLOR',
+            ],
+
+            // Self-service defaults
+            allow_attendee_self_edit: false,
         );
     }
 }
+

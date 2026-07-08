@@ -8,7 +8,9 @@ export const useGetEventReport = (
     eventId: IdParam,
     reportType: IdParam,
     startDate?: Date | null,
-    endDate?: Date | null
+    endDate?: Date | null,
+    paymentProviders?: string[],
+    buyerTypes?: string[],
 ) => {
     return useQuery({
         queryKey: [
@@ -16,17 +18,18 @@ export const useGetEventReport = (
             eventId,
             reportType,
             startDate?.toISOString(),
-            endDate?.toISOString()
+            endDate?.toISOString(),
+            paymentProviders ?? [],
+            buyerTypes ?? [],
         ],
         queryFn: async () => {
-            const startDateString = startDate?.toISOString();
-            const endDateString = endDate?.toISOString();
-
             return await eventsClient.getEventReport(
                 eventId,
                 reportType,
-                startDateString,
-                endDateString
+                startDate?.toISOString(),
+                endDate?.toISOString(),
+                paymentProviders,
+                buyerTypes,
             );
         },
         enabled: !!eventId && !!reportType && (!!startDate && !!endDate) || (!startDate && !endDate)

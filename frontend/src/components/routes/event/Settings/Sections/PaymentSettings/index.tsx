@@ -33,6 +33,10 @@ export const PaymentAndInvoicingSettings = () => {
             invoice_tax_details: "",
             invoice_payment_terms_days: null as number | null,
             invoice_notes: "",
+            confirmation_prefix: "",
+            confirmation_start_number: 1,
+            invoice_suffix: "",
+            invoice_number_format: "",
         },
         transformValues: (values) => ({
             ...values,
@@ -61,6 +65,10 @@ export const PaymentAndInvoicingSettings = () => {
                 organization_name: eventSettingsQuery.data.organization_name || "",
                 organization_address: eventSettingsQuery.data.organization_address || "",
                 invoice_tax_details: eventSettingsQuery.data.invoice_tax_details || "",
+                confirmation_prefix: eventSettingsQuery.data.confirmation_prefix || "",
+                confirmation_start_number: eventSettingsQuery.data.confirmation_start_number || 1,
+                invoice_suffix: eventSettingsQuery.data.invoice_suffix || "",
+                invoice_number_format: eventSettingsQuery.data.invoice_number_format || "",
             });
         }
     }, [eventSettingsQuery.isFetched]);
@@ -207,6 +215,37 @@ export const PaymentAndInvoicingSettings = () => {
                                                 description={t`Set the starting number for invoice numbering. This cannot be changed once invoices have been generated.`}
                                                 min={1}
                                                 {...form.getInputProps('invoice_start_number')}
+                                            />
+
+                                            <TextInput
+                                                label={t`Number Suffix`}
+                                                description={t`Optional suffix appended after the invoice number (e.g., /FV)`}
+                                                placeholder="/FV"
+                                                {...form.getInputProps('invoice_suffix')}
+                                            />
+
+                                            <TextInput
+                                                label={t`Number Format`}
+                                                description={t`Format template using placeholders: {number}, {month}, {year}. Leave blank to use {number} only. Example: {number}/{month}/{year}`}
+                                                placeholder="{number}"
+                                                {...form.getInputProps('invoice_number_format')}
+                                            />
+                                        </Stack>
+
+                                        <Stack gap="xs">
+                                            <h4 style={{margin: 0}}>{t`Purchase Confirmation Numbering`}</h4>
+                                            <TextInput
+                                                label={t`Number Prefix`}
+                                                description={t`Optional prefix for purchase confirmation numbers (e.g., PC-)`}
+                                                placeholder="PC-"
+                                                {...form.getInputProps('confirmation_prefix')}
+                                            />
+
+                                            <NumberInput
+                                                label={t`First Confirmation Number`}
+                                                description={t`Starting number for purchase confirmation numbering. This cannot be changed once confirmations have been generated.`}
+                                                min={1}
+                                                {...form.getInputProps('confirmation_start_number')}
                                             />
                                         </Stack>
 

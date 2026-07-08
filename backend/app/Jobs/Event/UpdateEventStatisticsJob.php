@@ -4,15 +4,16 @@ namespace HiEvents\Jobs\Event;
 
 use HiEvents\DomainObjects\OrderDomainObject;
 use HiEvents\Exceptions\EventStatisticsVersionMismatchException;
-use HiEvents\Services\Domain\EventStatistics\EventStatisticsUpdateService;
+use HiEvents\Services\Domain\EventStatistics\EventStatisticsIncrementService;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Throwable;
 
-class UpdateEventStatisticsJob implements ShouldQueue
+class UpdateEventStatisticsJob implements ShouldQueue, ShouldBeUnique
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -22,17 +23,24 @@ class UpdateEventStatisticsJob implements ShouldQueue
 
     public int $backoff = 10; // seconds
 
+    public int $uniqueFor = 60; // seconds
+
     public function __construct(OrderDomainObject $order)
     {
         $this->order = $order;
     }
 
+    public function uniqueId(): string
+    {
+        return (string) $this->order->getId();
+    }
+
     /**
      * @throws EventStatisticsVersionMismatchException|Throwable
      */
-    public function handle(EventStatisticsUpdateService $service): void
+    public function handle(EventStatisticsIncrementService $service): void
     {
-        $service->updateStatistics($this->order);
+        $service->incrementForOrder($this->order);
     }
 
     public function failed(Throwable $exception): void

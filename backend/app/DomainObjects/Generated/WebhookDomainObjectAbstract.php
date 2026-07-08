@@ -14,6 +14,7 @@ abstract class WebhookDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
     final public const USER_ID = 'user_id';
     final public const EVENT_ID = 'event_id';
     final public const ACCOUNT_ID = 'account_id';
+    final public const ORGANIZER_ID = 'organizer_id';
     final public const URL = 'url';
     final public const EVENT_TYPES = 'event_types';
     final public const LAST_RESPONSE_CODE = 'last_response_code';
@@ -27,8 +28,9 @@ abstract class WebhookDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
 
     protected int $id;
     protected int $user_id;
-    protected int $event_id;
+    protected ?int $event_id = null;
     protected int $account_id;
+    protected ?int $organizer_id = null;
     protected string $url;
     protected array|string $event_types;
     protected ?int $last_response_code = null;
@@ -47,6 +49,7 @@ abstract class WebhookDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
                     'user_id' => $this->user_id ?? null,
                     'event_id' => $this->event_id ?? null,
                     'account_id' => $this->account_id ?? null,
+                    'organizer_id' => $this->organizer_id ?? null,
                     'url' => $this->url ?? null,
                     'event_types' => $this->event_types ?? null,
                     'last_response_code' => $this->last_response_code ?? null,
@@ -82,13 +85,13 @@ abstract class WebhookDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
         return $this->user_id;
     }
 
-    public function setEventId(int $event_id): self
+    public function setEventId(?int $event_id): self
     {
         $this->event_id = $event_id;
         return $this;
     }
 
-    public function getEventId(): int
+    public function getEventId(): ?int
     {
         return $this->event_id;
     }
@@ -102,6 +105,17 @@ abstract class WebhookDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
     public function getAccountId(): int
     {
         return $this->account_id;
+    }
+
+    public function setOrganizerId(?int $organizer_id): self
+    {
+        $this->organizer_id = $organizer_id;
+        return $this;
+    }
+
+    public function getOrganizerId(): ?int
+    {
+        return $this->organizer_id;
     }
 
     public function setUrl(string $url): self

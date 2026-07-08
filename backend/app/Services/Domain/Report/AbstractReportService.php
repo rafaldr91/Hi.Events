@@ -18,19 +18,29 @@ abstract class AbstractReportService
     {
     }
 
-    public function generateReport(int $eventId, ?Carbon $startDate = null, ?Carbon $endDate = null): Collection
-    {
+    public function generateReport(
+        int     $eventId,
+        ?Carbon $startDate = null,
+        ?Carbon $endDate = null,
+        ?array  $paymentProviders = null,
+        ?array  $buyerTypes = null,
+    ): Collection {
         $event = $this->eventRepository->findById($eventId);
         $timezone = $event->getTimezone();
 
-        $endDate = Carbon::parse($endDate ?? now(), $timezone);
-        $startDate = Carbon::parse($startDate ?? $endDate->copy()->subDays(30), $timezone);
+        $endDate = $endDate
+            ? $endDate->copy()->setTimezone($timezone)->endOfDay()
+            : now($timezone)->endOfDay();
+
+        $startDate = $startDate
+            ? $startDate->copy()->setTimezone($timezone)->startOfDay()
+            : $endDate->copy()->subDays(30)->startOfDay();
 
         $reportResults = $this->cache->remember(
-            key: $this->getCacheKey($eventId, $startDate, $endDate),
+            key: $this->getCacheKey($eventId, $startDate, $endDate, $paymentProviders, $buyerTypes),
             ttl: Carbon::now()->addSeconds(20),
             callback: fn() => $this->queryBuilder->select(
-                $this->getSqlQuery($startDate, $endDate),
+                $this->getSqlQuery($startDate, $endDate, $paymentProviders, $buyerTypes),
                 [
                     'event_id' => $eventId,
                 ]
@@ -40,10 +50,12 @@ abstract class AbstractReportService
         return collect($reportResults);
     }
 
-    abstract protected function getSqlQuery(Carbon $startDate, Carbon $endDate): string;
+    abstract protected function getSqlQuery(Carbon $startDate, Carbon $endDate, ?array $paymentProviders = null, ?array $buyerTypes = null): string;
 
-    protected function getCacheKey(int $eventId, ?Carbon $startDate, ?Carbon $endDate): string
+    protected function getCacheKey(int $eventId, ?Carbon $startDate, ?Carbon $endDate, ?array $paymentProviders = null, ?array $buyerTypes = null): string
     {
-        return static::class . "$eventId.{$startDate?->toDateString()}.{$endDate?->toDateString()}";
+        $providerSegment = $paymentProviders ? implode('_', $paymentProviders) : 'all';
+        $buyerSegment = $buyerTypes ? implode('_', $buyerTypes) : 'all';
+        return static::class . "$eventId.{$startDate?->toDateString()}.{$endDate?->toDateString()}.$providerSegment.$buyerSegment";
     }
 }

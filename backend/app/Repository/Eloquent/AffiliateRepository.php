@@ -13,6 +13,9 @@ use HiEvents\Repository\Interfaces\AffiliateRepositoryInterface;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 
+/**
+ * @extends BaseRepository<AffiliateDomainObject>
+ */
 class AffiliateRepository extends BaseRepository implements AffiliateRepositoryInterface
 {
     protected function getModel(): string
@@ -41,8 +44,8 @@ class AffiliateRepository extends BaseRepository implements AffiliateRepositoryI
         }
 
         $this->model = $this->model->orderBy(
-            column: $params->sort_by ?? AffiliateDomainObject::getDefaultSort(),
-            direction: $params->sort_direction ?? 'desc',
+            column: $this->validateSortColumn($params->sort_by, AffiliateDomainObject::class),
+            direction: $this->validateSortDirection($params->sort_direction, AffiliateDomainObject::class),
         );
 
         return $this->paginateWhere(

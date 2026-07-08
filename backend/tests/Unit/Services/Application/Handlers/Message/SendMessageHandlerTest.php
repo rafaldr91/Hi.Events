@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use HiEvents\DomainObjects\AccountDomainObject;
 use HiEvents\DomainObjects\AttendeeDomainObject;
 use HiEvents\DomainObjects\Enums\MessageTypeEnum;
+use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\MessageDomainObject;
 use HiEvents\DomainObjects\OrderDomainObject;
 use HiEvents\DomainObjects\ProductDomainObject;
@@ -13,11 +14,13 @@ use HiEvents\Exceptions\AccountNotVerifiedException;
 use HiEvents\Jobs\Event\SendMessagesJob;
 use HiEvents\Repository\Interfaces\AccountRepositoryInterface;
 use HiEvents\Repository\Interfaces\AttendeeRepositoryInterface;
+use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Repository\Interfaces\MessageRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrderRepositoryInterface;
 use HiEvents\Repository\Interfaces\ProductRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Message\DTO\SendMessageDTO;
 use HiEvents\Services\Application\Handlers\Message\SendMessageHandler;
+use HiEvents\Services\Domain\Message\MessagingEligibilityService;
 use HiEvents\Services\Infrastructure\HtmlPurifier\HtmlPurifierService;
 use Illuminate\Config\Repository;
 use Illuminate\Support\Facades\Bus;
@@ -33,6 +36,8 @@ class SendMessageHandlerTest extends TestCase
     private AccountRepositoryInterface $accountRepository;
     private HtmlPurifierService $purifier;
     private Repository $config;
+    private MessagingEligibilityService $eligibilityService;
+    private EventRepositoryInterface $eventRepository;
 
     private SendMessageHandler $handler;
 
@@ -47,15 +52,19 @@ class SendMessageHandlerTest extends TestCase
         $this->accountRepository = m::mock(AccountRepositoryInterface::class);
         $this->purifier = m::mock(HtmlPurifierService::class);
         $this->config = m::mock(Repository::class);
+        $this->eligibilityService = m::mock(MessagingEligibilityService::class);
+        $this->eventRepository = m::mock(EventRepositoryInterface::class);
 
         $this->handler = new SendMessageHandler(
-            $this->orderRepository,
-            $this->attendeeRepository,
-            $this->productRepository,
-            $this->messageRepository,
-            $this->accountRepository,
-            $this->purifier,
-            $this->config
+            orderRepository: $this->orderRepository,
+            attendeeRepository: $this->attendeeRepository,
+            productRepository: $this->productRepository,
+            messageRepository: $this->messageRepository,
+            accountRepository: $this->accountRepository,
+            eventRepository: $this->eventRepository,
+            purifier: $this->purifier,
+            config: $this->config,
+            eligibilityService: $this->eligibilityService
         );
     }
 
@@ -70,8 +79,8 @@ class SendMessageHandlerTest extends TestCase
             is_test: false,
             send_copy_to_current_user: false,
             sent_by_user_id: 1,
-            order_statuses: [],
             order_id: null,
+            order_statuses: [],
             attendee_ids: [],
             product_ids: []
         );
@@ -97,8 +106,8 @@ class SendMessageHandlerTest extends TestCase
             is_test: false,
             send_copy_to_current_user: false,
             sent_by_user_id: 1,
-            order_statuses: [],
             order_id: null,
+            order_statuses: [],
             attendee_ids: [],
             product_ids: []
         );
@@ -127,11 +136,15 @@ class SendMessageHandlerTest extends TestCase
             is_test: false,
             send_copy_to_current_user: false,
             sent_by_user_id: 99,
-            order_statuses: [],
             order_id: 5,
+            order_statuses: [],
             attendee_ids: [10],
             product_ids: [20],
         );
+
+        $event = m::mock(EventDomainObject::class);
+        $event->shouldReceive('getTimezone')->andReturn('UTC');
+        $this->eventRepository->shouldReceive('findById')->with(101)->andReturn($event);
 
         $account = m::mock(AccountDomainObject::class);
         $account->shouldReceive('getAccountVerifiedAt')->andReturn(Carbon::now());
@@ -139,6 +152,10 @@ class SendMessageHandlerTest extends TestCase
 
         $this->accountRepository->shouldReceive('findById')->with(1)->andReturn($account);
         $this->config->shouldReceive('get')->with('app.saas_mode_enabled')->andReturn(false);
+
+        // Mock eligibility checks to pass (return null = no violations)
+        $this->eligibilityService->shouldReceive('checkTierLimits')->andReturn(null);
+        $this->eligibilityService->shouldReceive('checkEligibility')->andReturn(null);
 
         $this->purifier->shouldReceive('purify')->with('<p>Test</p>')->andReturn('<p>Test</p>');
 
@@ -160,6 +177,7 @@ class SendMessageHandlerTest extends TestCase
         $message->shouldReceive('getOrderId')->andReturn(5);
         $message->shouldReceive('getAttendeeIds')->andReturn([10]);
         $message->shouldReceive('getProductIds')->andReturn([20]);
+        $message->shouldReceive('getStatus')->andReturn('PROCESSING');
 
         $this->messageRepository->shouldReceive('create')->andReturn($message);
 

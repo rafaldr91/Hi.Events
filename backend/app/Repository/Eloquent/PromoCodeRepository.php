@@ -10,6 +10,9 @@ use HiEvents\Repository\Interfaces\PromoCodeRepositoryInterface;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * @extends BaseRepository<PromoCodeDomainObject>
+ */
 class PromoCodeRepository extends BaseRepository implements PromoCodeRepositoryInterface
 {
     protected function getModel(): string
@@ -36,8 +39,8 @@ class PromoCodeRepository extends BaseRepository implements PromoCodeRepositoryI
         }
 
         $this->model = $this->model->orderBy(
-            column: $params->sort_by ?? PromoCodeDomainObject::getDefaultSort(),
-            direction: $params->sort_direction ?? 'desc',
+            column: $this->validateSortColumn($params->sort_by, PromoCodeDomainObject::class),
+            direction: $this->validateSortDirection($params->sort_direction, PromoCodeDomainObject::class),
         );
 
         return $this->paginateWhere(

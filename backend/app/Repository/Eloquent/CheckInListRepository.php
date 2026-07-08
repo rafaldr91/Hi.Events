@@ -13,6 +13,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
+/**
+ * @extends BaseRepository<CheckInListDomainObject>
+ */
 class CheckInListRepository extends BaseRepository implements CheckInListRepositoryInterface
 {
     protected function getModel(): string
@@ -57,7 +60,7 @@ class CheckInListRepository extends BaseRepository implements CheckInListReposit
                 COUNT(DISTINCT vci.attendee_id) AS checked_in_attendees
             FROM check_in_lists cil
                      LEFT JOIN valid_attendees va ON va.check_in_list_id = cil.id
-                     LEFT JOIN valid_check_ins vci ON vci.attendee_id = va.id
+                     LEFT JOIN valid_check_ins vci ON vci.attendee_id = va.id AND vci.check_in_list_id = va.check_in_list_id
             WHERE cil.id = :check_in_list_id
               AND cil.deleted_at IS NULL
             GROUP BY cil.id;
@@ -106,7 +109,7 @@ class CheckInListRepository extends BaseRepository implements CheckInListReposit
                 COUNT(DISTINCT vci.attendee_id) AS checked_in_attendees
             FROM check_in_lists cil
                      LEFT JOIN valid_attendees va ON va.check_in_list_id = cil.id
-                     LEFT JOIN valid_check_ins vci ON vci.attendee_id = va.id
+                     LEFT JOIN valid_check_ins vci ON vci.attendee_id = va.id AND vci.check_in_list_id = va.check_in_list_id
             WHERE cil.id IN ($placeholders)
               AND cil.deleted_at IS NULL
             GROUP BY cil.id;
@@ -137,8 +140,8 @@ class CheckInListRepository extends BaseRepository implements CheckInListReposit
         }
 
         $this->model = $this->model->orderBy(
-            $params->sort_by ?? CheckInListDomainObject::getDefaultSort(),
-            $params->sort_direction ?? CheckInListDomainObject::getDefaultSortDirection(),
+            $this->validateSortColumn($params->sort_by, CheckInListDomainObject::class),
+            $this->validateSortDirection($params->sort_direction, CheckInListDomainObject::class),
         );
 
         return $this->paginateWhere(

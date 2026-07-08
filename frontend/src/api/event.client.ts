@@ -37,8 +37,9 @@ export const eventsClient = {
         return response.data;
     },
 
-    getEventStats: async (eventId: IdParam) => {
-        const response = await api.get<GenericDataResponse<EventStats>>('events/' + eventId + '/stats');
+    getEventStats: async (eventId: IdParam, dateRange?: string) => {
+        const params = dateRange ? `?date_range=${dateRange}` : '';
+        const response = await api.get<GenericDataResponse<EventStats>>('events/' + eventId + '/stats' + params);
         return response.data;
     },
 
@@ -70,7 +71,12 @@ export const eventsClient = {
     },
 
     delete: async (eventId: IdParam) => {
-        const response = await api.get('events/' + eventId);
+        const response = await api.delete('events/' + eventId);
+        return response.data;
+    },
+
+    getDeletionStatus: async (eventId: IdParam) => {
+        const response = await api.get<GenericDataResponse<{ can_delete: boolean; reason?: string }>>('events/' + eventId + '/deletion-status');
         return response.data;
     },
 
@@ -86,10 +92,36 @@ export const eventsClient = {
         return response.data;
     },
 
-    getEventReport: async (eventId: IdParam, reportType: IdParam, startDate?: string, endDate?: string) => {
-        const response = await api.get<GenericDataResponse<any>>('events/' + eventId + '/reports/' + reportType + '?start_date=' + startDate + '&end_date=' + endDate);
+    getEventReport: async (eventId: IdParam, reportType: IdParam, startDate?: string, endDate?: string, paymentProviders?: string[], buyerTypes?: string[]) => {
+        const params = new URLSearchParams();
+        if (startDate) params.set('start_date', startDate);
+        if (endDate) params.set('end_date', endDate);
+        if (paymentProviders?.length) {
+            paymentProviders.forEach(p => params.append('payment_providers[]', p));
+        }
+        if (buyerTypes?.length) {
+            buyerTypes.forEach(t => params.append('buyer_types[]', t));
+        }
+        const response = await api.get<GenericDataResponse<any>>(`events/${eventId}/reports/${reportType}?${params.toString()}`);
         return response.data;
-    }
+    },
+
+    exportEventReport: async (eventId: IdParam, reportType: IdParam, startDate?: string, endDate?: string, paymentProviders?: string[], hideEmptyRows?: boolean, buyerTypes?: string[]): Promise<Blob> => {
+        const params = new URLSearchParams();
+        if (startDate) params.set('start_date', startDate);
+        if (endDate) params.set('end_date', endDate);
+        if (paymentProviders?.length) {
+            paymentProviders.forEach(p => params.append('payment_providers[]', p));
+        }
+        if (buyerTypes?.length) {
+            buyerTypes.forEach(t => params.append('buyer_types[]', t));
+        }
+        if (hideEmptyRows) params.set('hide_empty_rows', '1');
+        const response = await api.get(`events/${eventId}/reports/${reportType}/export?${params.toString()}`, {
+            responseType: 'blob',
+        });
+        return new Blob([response.data]);
+    },
 }
 
 export const eventsClientPublic = {

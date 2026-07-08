@@ -61,6 +61,9 @@ class ProductResource extends JsonResource
                 fn() => ProductPriceResource::collection($this->getProductPrices())
             ),
             'product_category_id' => $this->getProductCategoryId(),
+            'is_highlighted' => $this->getIsHighlighted(),
+            'highlight_message' => $this->getHighlightMessage(),
+            'waitlist_enabled' => $this->getWaitlistEnabled(),
         ];
     }
 }

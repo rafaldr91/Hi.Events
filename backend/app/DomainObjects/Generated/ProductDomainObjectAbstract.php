@@ -34,6 +34,9 @@ abstract class ProductDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
     final public const IS_HIDDEN = 'is_hidden';
     final public const PRODUCT_TYPE = 'product_type';
     final public const START_COLLAPSED = 'start_collapsed';
+    final public const IS_HIGHLIGHTED = 'is_highlighted';
+    final public const HIGHLIGHT_MESSAGE = 'highlight_message';
+    final public const WAITLIST_ENABLED = 'waitlist_enabled';
 
     protected int $id;
     protected int $event_id;
@@ -59,6 +62,9 @@ abstract class ProductDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
     protected ?bool $is_hidden = false;
     protected string $product_type = 'TICKET';
     protected bool $start_collapsed = false;
+    protected bool $is_highlighted = false;
+    protected ?string $highlight_message = null;
+    protected ?bool $waitlist_enabled = null;
 
     public function toArray(): array
     {
@@ -87,6 +93,9 @@ abstract class ProductDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
                     'is_hidden' => $this->is_hidden ?? null,
                     'product_type' => $this->product_type ?? null,
                     'start_collapsed' => $this->start_collapsed ?? null,
+                    'is_highlighted' => $this->is_highlighted ?? null,
+                    'highlight_message' => $this->highlight_message ?? null,
+                    'waitlist_enabled' => $this->waitlist_enabled ?? null,
                 ];
     }
 
@@ -352,5 +361,38 @@ abstract class ProductDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
     public function getStartCollapsed(): bool
     {
         return $this->start_collapsed;
+    }
+
+    public function setIsHighlighted(bool $is_highlighted): self
+    {
+        $this->is_highlighted = $is_highlighted;
+        return $this;
+    }
+
+    public function getIsHighlighted(): bool
+    {
+        return $this->is_highlighted;
+    }
+
+    public function setHighlightMessage(?string $highlight_message): self
+    {
+        $this->highlight_message = $highlight_message;
+        return $this;
+    }
+
+    public function getHighlightMessage(): ?string
+    {
+        return $this->highlight_message;
+    }
+
+    public function setWaitlistEnabled(?bool $waitlist_enabled): self
+    {
+        $this->waitlist_enabled = $waitlist_enabled;
+        return $this;
+    }
+
+    public function getWaitlistEnabled(): ?bool
+    {
+        return $this->waitlist_enabled;
     }
 }

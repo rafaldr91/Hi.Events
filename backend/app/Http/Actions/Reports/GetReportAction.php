@@ -38,6 +38,8 @@ class GetReportAction extends BaseAction
                 reportType: ReportTypes::from($reportType),
                 startDate: $request->validated('start_date'),
                 endDate: $request->validated('end_date'),
+                paymentProviders: $request->validated('payment_providers') ?: null,
+                buyerTypes: $request->validated('buyer_types') ?: null,
             ),
         );
 

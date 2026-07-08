@@ -5,6 +5,7 @@ namespace HiEvents\Listeners\Order;
 use HiEvents\DomainObjects\Status\OrderStatus;
 use HiEvents\Events\OrderStatusChangedEvent;
 use HiEvents\Exceptions\ResourceConflictException;
+use HiEvents\Jobs\KSeF\SendInvoiceToKsefJob;
 use HiEvents\Services\Domain\Invoice\InvoiceCreateService;
 
 class CreateInvoiceListener
@@ -28,6 +29,13 @@ class CreateInvoiceListener
             return;
         }
 
-        $this->invoiceCreateService->createInvoiceForOrder($order->getId());
+        $invoice = $this->invoiceCreateService->createInvoiceForOrder($order->getId());
+
+        if (config('ksef.enabled')
+            && $invoice->getDocumentType() === 'invoice'
+            && $order->getStatus() === OrderStatus::COMPLETED->name
+        ) {
+            SendInvoiceToKsefJob::dispatch($invoice->getId());
+        }
     }
 }

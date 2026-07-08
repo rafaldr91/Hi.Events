@@ -10,6 +10,9 @@ use HiEvents\Repository\Interfaces\CapacityAssignmentRepositoryInterface;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 
+/**
+ * @extends BaseRepository<CapacityAssignmentDomainObject>
+ */
 class CapacityAssignmentRepository extends BaseRepository implements CapacityAssignmentRepositoryInterface
 {
     protected function getModel(): string
@@ -36,8 +39,8 @@ class CapacityAssignmentRepository extends BaseRepository implements CapacityAss
         }
 
         $this->model = $this->model->orderBy(
-            $params->sort_by ?? CapacityAssignmentDomainObject::getDefaultSort(),
-            $params->sort_direction ?? CapacityAssignmentDomainObject::getDefaultSortDirection(),
+            $this->validateSortColumn($params->sort_by, CapacityAssignmentDomainObject::class),
+            $this->validateSortDirection($params->sort_direction, CapacityAssignmentDomainObject::class),
         );
 
         return $this->paginateWhere(

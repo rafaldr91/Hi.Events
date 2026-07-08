@@ -8,6 +8,7 @@ use HiEvents\DomainObjects\EventSettingDomainObject;
 use HiEvents\DomainObjects\OrderDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
 use HiEvents\DomainObjects\Status\AttendeeStatus;
+use HiEvents\Events\CapacityChangedEvent;
 use HiEvents\Mail\Order\OrderCancelled;
 use HiEvents\Repository\Interfaces\AttendeeRepositoryInterface;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
@@ -17,9 +18,11 @@ use HiEvents\Services\Domain\Product\ProductQuantityUpdateService;
 use HiEvents\Services\Infrastructure\DomainEvents\DomainEventDispatcherService;
 use HiEvents\Services\Infrastructure\DomainEvents\Enums\DomainEventType;
 use HiEvents\Services\Infrastructure\DomainEvents\Events\OrderEvent;
+use HiEvents\Services\Domain\EventStatistics\EventStatisticsCancellationService;
 use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Event;
 use Mockery as m;
 use Tests\TestCase;
 use Throwable;
@@ -34,6 +37,7 @@ class OrderCancelServiceTest extends TestCase
     private ProductQuantityUpdateService $productQuantityService;
     private OrderCancelService $service;
     private DomainEventDispatcherService $domainEventDispatcherService;
+    private EventStatisticsCancellationService $eventStatisticsCancellationService;
 
     protected function setUp(): void
     {
@@ -46,6 +50,7 @@ class OrderCancelServiceTest extends TestCase
         $this->databaseManager = m::mock(DatabaseManager::class);
         $this->productQuantityService = m::mock(ProductQuantityUpdateService::class);
         $this->domainEventDispatcherService = m::mock(DomainEventDispatcherService::class);
+        $this->eventStatisticsCancellationService = m::mock(EventStatisticsCancellationService::class);
 
         $this->service = new OrderCancelService(
             mailer: $this->mailer,
@@ -55,11 +60,14 @@ class OrderCancelServiceTest extends TestCase
             databaseManager: $this->databaseManager,
             productQuantityService: $this->productQuantityService,
             domainEventDispatcherService: $this->domainEventDispatcherService,
+            eventStatisticsCancellationService: $this->eventStatisticsCancellationService,
         );
     }
 
     public function testCancelOrder(): void
     {
+        Event::fake();
+
         $order = m::mock(OrderDomainObject::class);
         $order->shouldReceive('getEventId')->andReturn(1);
         $order->shouldReceive('getId')->andReturn(1);
@@ -68,14 +76,19 @@ class OrderCancelServiceTest extends TestCase
 
         $order->shouldReceive('getLocale')->andReturn('en');
 
-        $attendees = new Collection([
-            m::mock(AttendeeDomainObject::class)->shouldReceive('getproductPriceId')->andReturn(1)->mock(),
-            m::mock(AttendeeDomainObject::class)->shouldReceive('getproductPriceId')->andReturn(2)->mock(),
-        ]);
+        $attendee1 = m::mock(AttendeeDomainObject::class);
+        $attendee1->shouldReceive('getproductPriceId')->andReturn(1);
+        $attendee1->shouldReceive('getProductId')->andReturn(10);
+
+        $attendee2 = m::mock(AttendeeDomainObject::class);
+        $attendee2->shouldReceive('getproductPriceId')->andReturn(2);
+        $attendee2->shouldReceive('getProductId')->andReturn(20);
+
+        $attendees = new Collection([$attendee1, $attendee2]);
 
         $this->attendeeRepository
             ->shouldReceive('findWhere')
-            ->once()
+            ->twice()
             ->with([
                 'order_id' => $order->getId(),
             ])
@@ -86,6 +99,10 @@ class OrderCancelServiceTest extends TestCase
         $this->productQuantityService->shouldReceive('decreaseQuantitySold')->twice();
 
         $this->orderRepository->shouldReceive('updateWhere')->once();
+
+        $this->eventStatisticsCancellationService->shouldReceive('decrementForCancelledOrder')
+            ->once()
+            ->with($order);
 
         $event = new EventDomainObject();
         $event->setEventSettings(new EventSettingDomainObject());
@@ -130,11 +147,19 @@ class OrderCancelServiceTest extends TestCase
             $this->fail("Failed to cancel order: " . $e->getMessage());
         }
 
-        $this->assertTrue(true, "Order cancellation proceeded without throwing an exception.");
+        Event::assertDispatched(CapacityChangedEvent::class, 2);
+        Event::assertDispatched(CapacityChangedEvent::class, function ($e) {
+            return $e->eventId === 1 && $e->productId === 10;
+        });
+        Event::assertDispatched(CapacityChangedEvent::class, function ($e) {
+            return $e->eventId === 1 && $e->productId === 20;
+        });
     }
 
     public function testCancelOrderAwaitingOfflinePayment(): void
     {
+        Event::fake();
+
         $order = m::mock(OrderDomainObject::class);
         $order->shouldReceive('getEventId')->andReturn(1);
         $order->shouldReceive('getId')->andReturn(1);
@@ -142,14 +167,19 @@ class OrderCancelServiceTest extends TestCase
         $order->shouldReceive('isOrderAwaitingOfflinePayment')->andReturn(true);
         $order->shouldReceive('getLocale')->andReturn('en');
 
-        $attendees = new Collection([
-            m::mock(AttendeeDomainObject::class)->shouldReceive('getproductPriceId')->andReturn(1)->mock(),
-            m::mock(AttendeeDomainObject::class)->shouldReceive('getproductPriceId')->andReturn(2)->mock(),
-        ]);
+        $attendee1 = m::mock(AttendeeDomainObject::class);
+        $attendee1->shouldReceive('getproductPriceId')->andReturn(1);
+        $attendee1->shouldReceive('getProductId')->andReturn(10);
+
+        $attendee2 = m::mock(AttendeeDomainObject::class);
+        $attendee2->shouldReceive('getproductPriceId')->andReturn(2);
+        $attendee2->shouldReceive('getProductId')->andReturn(20);
+
+        $attendees = new Collection([$attendee1, $attendee2]);
 
         $this->attendeeRepository
             ->shouldReceive('findWhere')
-            ->once()
+            ->twice()
             ->with([
                 'order_id' => $order->getId(),
             ])
@@ -160,6 +190,10 @@ class OrderCancelServiceTest extends TestCase
         $this->productQuantityService->shouldReceive('decreaseQuantitySold')->twice();
 
         $this->orderRepository->shouldReceive('updateWhere')->once();
+
+        $this->eventStatisticsCancellationService->shouldReceive('decrementForCancelledOrder')
+            ->once()
+            ->with($order);
 
         $event = new EventDomainObject();
         $event->setEventSettings(new EventSettingDomainObject());

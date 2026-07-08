@@ -1,34 +1,42 @@
 import {t} from "@lingui/macro";
-import {Anchor, Badge, Button, Group, Menu, Table as MantineTable, Tooltip} from '@mantine/core';
+import {Anchor, Badge, Button, Group, Loader, Menu, Popover, Text, Tooltip} from '@mantine/core';
 import {Event, IdParam, Invoice, MessageType, Order} from "../../../types.ts";
 import {
+    IconAlertCircle,
     IconBasketCog,
+    IconCash,
     IconCheck,
+    IconClock,
+    IconClockPause,
+    IconCopy,
+    IconCreditCard,
     IconDotsVertical,
-    IconInfoCircle,
+    IconFileCode,
+    IconFileInvoice,
+    IconFileOff,
+    IconHelp,
+    IconLoader2,
     IconReceipt2,
     IconReceiptDollar,
     IconReceiptRefund,
     IconRepeat,
     IconSend,
-    IconTrash
+    IconTicket,
+    IconTrash,
+    IconX
 } from "@tabler/icons-react";
-import {prettyDate, relativeDate} from "../../../utilites/dates.ts";
+import {relativeDate} from "../../../utilites/dates.ts";
 import {ManageOrderModal} from "../../modals/ManageOrderModal";
-import {useDisclosure} from "@mantine/hooks";
-import {useState} from "react";
+import {useClipboard, useDisclosure} from "@mantine/hooks";
+import {useMemo, useState} from "react";
 import {CancelOrderModal} from "../../modals/CancelOrderModal";
 import {SendMessageModal} from "../../modals/SendMessageModal";
-import {notifications} from "@mantine/notifications";
 import {NoResultsSplash} from "../NoResultsSplash";
-import {OrderAmountPopover} from "../OrderAmountPopover";
 import {RefundOrderModal} from "../../modals/RefundOrderModal";
 import classes from "./OrdersTable.module.scss";
-import {Card} from "../Card";
-import {Table, TableHead} from "../Table";
-import {ShowForDesktop, ShowForMobile} from "../Responsive/ShowHideComponents.tsx";
 import {useResendOrderConfirmation} from "../../../mutations/useResendOrderConfirmation.ts";
-import {OrderStatusBadge} from "../OrderStatusBadge";
+import {useSendKsefInvoice} from "../../../mutations/useSendKsefInvoice.ts";
+import {useSendKsefCorrection} from "../../../mutations/useSendKsefCorrection.ts";
 import {formatNumber} from "../../../utilites/helpers.ts";
 import {useUrlHash} from "../../../hooks/useUrlHash.ts";
 import {useMarkOrderAsPaid} from "../../../mutations/useMarkOrderAsPaid.ts";
@@ -36,6 +44,61 @@ import {orderClient} from "../../../api/order.client.ts";
 import {downloadBinary} from "../../../utilites/download.ts";
 import {withLoadingNotification} from "../../../utilites/withLoadingNotification.tsx";
 import {showError, showSuccess} from "../../../utilites/notifications.tsx";
+import {TanStackTable, TanStackTableColumn} from "../TanStackTable";
+import {ColumnVisibilityToggle} from "../ColumnVisibilityToggle";
+import {CellContext} from "@tanstack/react-table";
+import {formatCurrency} from "../../../utilites/currency.ts";
+import {eventCheckoutUrl} from "../../../utilites/urlHelper.ts";
+
+const KsefCorrectionStatusBadge = ({invoice}: { invoice: Invoice }) => {
+    switch (invoice.ksef_status) {
+        case 'SENT':
+            return (
+                <Tooltip label={invoice.ksef_number ? t`KSeF correction number: ${invoice.ksef_number}` : t`Correction sent to KSeF`}>
+                    <Badge size="xs" color="teal" variant="light">{t`KSeF: Correction sent`}</Badge>
+                </Tooltip>
+            );
+        case 'PENDING':
+            return (
+                <Badge size="xs" color="blue" variant="light" leftSection={<IconLoader2 size={10}/>}>
+                    {t`KSeF: Correction pending`}
+                </Badge>
+            );
+        case 'FAILED':
+            return (
+                <Tooltip label={invoice.ksef_error_message ?? t`Unknown error`} multiline maw={300}>
+                    <Badge size="xs" color="red" variant="light">{t`KSeF: Correction failed`}</Badge>
+                </Tooltip>
+            );
+        default:
+            return null;
+    }
+};
+
+const KsefStatusBadge = ({invoice}: { invoice: Invoice }) => {
+    switch (invoice.ksef_status) {
+        case 'SENT':
+            return (
+                <Tooltip label={invoice.ksef_number ? t`KSeF number: ${invoice.ksef_number}` : t`Sent to KSeF`}>
+                    <Badge size="xs" color="green" variant="light">{t`KSeF: Sent`}</Badge>
+                </Tooltip>
+            );
+        case 'PENDING':
+            return (
+                <Badge size="xs" color="blue" variant="light" leftSection={<IconLoader2 size={10}/>}>
+                    {t`KSeF: Pending`}
+                </Badge>
+            );
+        case 'FAILED':
+            return (
+                <Tooltip label={invoice.ksef_error_message ?? t`Unknown error`} multiline maw={300}>
+                    <Badge size="xs" color="red" variant="light">{t`KSeF: Failed`}</Badge>
+                </Tooltip>
+            );
+        default:
+            return null;
+    }
+};
 
 interface OrdersTableProps {
     event: Event,
@@ -48,26 +111,20 @@ export const OrdersTable = ({orders, event}: OrdersTableProps) => {
     const [isMessageModalOpen, messageModal] = useDisclosure(false);
     const [isRefundModalOpen, refundModal] = useDisclosure(false);
     const [orderId, setOrderId] = useState<IdParam>();
+    const [emailPopoverId, setEmailPopoverId] = useState<IdParam | null>(null);
+    const [sendingKsefOrderId, setSendingKsefOrderId] = useState<IdParam | null>(null);
+    const [sendingKsefCorrectionOrderId, setSendingKsefCorrectionOrderId] = useState<IdParam | null>(null);
     const resendConfirmationMutation = useResendOrderConfirmation();
     const markAsPaidMutation = useMarkOrderAsPaid();
+    const sendKsefInvoiceMutation = useSendKsefInvoice();
+    const sendKsefCorrectionMutation = useSendKsefCorrection();
+    const clipboard = useClipboard({timeout: 2000});
 
     useUrlHash(/^#order-(\d+)$/, (matches => {
         const orderId = matches![1];
         setOrderId(orderId);
         viewModal.open();
     }));
-
-    if (orders.length === 0) {
-        return <NoResultsSplash
-            imageHref={'/blank-slate/orders.svg'}
-            heading={t`No orders to show`}
-            subHeading={(
-                <p>
-                    {t`Your orders will appear here once they start rolling in.`}
-                </p>
-            )}
-        />
-    }
 
     const handleModalClick = (orderId: IdParam, modal: { open: () => void }) => {
         setOrderId(orderId);
@@ -83,20 +140,8 @@ export const OrdersTable = ({orders, event}: OrdersTableProps) => {
 
     const handleResendConfirmation = (eventId: IdParam, orderId: IdParam) => {
         resendConfirmationMutation.mutate({eventId, orderId}, {
-            onSuccess: () => {
-                notifications.show({
-                    message: t`Your message has been sent`,
-                    icon: <IconCheck/>,
-                    position: 'top-center',
-                })
-            },
-            onError: () => {
-                notifications.show({
-                    message: t`There was an error sending your message`,
-                    icon: <IconCheck/>,
-                    position: 'top-center',
-                })
-            }
+            onSuccess: () => showSuccess(t`Your message has been sent`),
+            onError: () => showError(t`There was an error sending your message`)
         });
     }
 
@@ -123,184 +168,470 @@ export const OrdersTable = ({orders, event}: OrdersTableProps) => {
         );
     };
 
+    const handleKsefXmlDownload = async (invoice: Invoice) => {
+        await withLoadingNotification(
+            async () => {
+                const blob = await orderClient.downloadKsefXml(event.id, invoice.order_id);
+                downloadBinary(blob, 'fa3-' + String(invoice.order_id) + '.xml');
+            },
+            {
+                loading: {
+                    title: t`Downloading KSeF XML`,
+                    message: t`Please wait while we prepare the FA(3) XML...`
+                },
+                success: {
+                    title: t`Success`,
+                    message: t`KSeF XML downloaded successfully`
+                },
+                error: {
+                    title: t`Error`,
+                    message: t`Failed to download KSeF XML. Please try again.`
+                }
+            }
+        );
+    };
+
+    const handleSendKsefCorrection = (eventId: IdParam, orderId: IdParam) => {
+        setSendingKsefCorrectionOrderId(orderId);
+        sendKsefCorrectionMutation.mutate({eventId, orderId}, {
+            onSuccess: () => {
+                showSuccess(t`Correction queued for KSeF submission`);
+                setSendingKsefCorrectionOrderId(null);
+            },
+            onError: () => {
+                showError(t`Failed to send KSeF correction. Please try again.`);
+                setSendingKsefCorrectionOrderId(null);
+            },
+        });
+    };
+
+    const handleSendKsefInvoice = (eventId: IdParam, orderId: IdParam) => {
+        setSendingKsefOrderId(orderId);
+        sendKsefInvoiceMutation.mutate({eventId, orderId}, {
+            onSuccess: () => {
+                showSuccess(t`Invoice queued for KSeF submission`);
+                setSendingKsefOrderId(null);
+            },
+            onError: () => {
+                showError(t`Failed to send invoice to KSeF. Please try again.`);
+                setSendingKsefOrderId(null);
+            },
+        });
+    };
+
+    const handleCopyEmail = (email: string) => {
+        clipboard.copy(email);
+        showSuccess(t`Email address copied to clipboard`);
+        setEmailPopoverId(null);
+    };
+
+    const handleMessageFromEmail = (order: Order) => {
+        setEmailPopoverId(null);
+        handleModalClick(order.id, messageModal);
+    };
+
+    const formatTime = (dateString: string): string => {
+        const date = new Date(dateString);
+        return date.toLocaleTimeString('en-US', {
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true,
+        });
+    };
+
     const ActionMenu = ({order}: { order: Order }) => {
         const isRefundable = !order.is_free_order
             && order.status !== 'AWAITING_OFFLINE_PAYMENT'
             && order.payment_provider === 'STRIPE'
             && order.refund_status !== 'REFUNDED';
 
-        return <Group wrap={'nowrap'} gap={0} justify={'flex-end'}>
-            <Menu shadow="md" width={200}>
-                <Menu.Target>
-                    <div className={classes.action}>
-                        <div className={classes.mobileAction}>
-                            <ShowForMobile>
-                                <Button size={"xs"} variant={"light"}>
-                                    {t`Manage`}
-                                </Button>
-                            </ShowForMobile>
+        return (
+            <Group wrap={'nowrap'} gap={0} justify={'flex-end'}>
+                <Menu shadow="md" width={200}>
+                    <Menu.Target>
+                        <div className={classes.action}>
+                            <Button size={"xs"} variant={"transparent"}>
+                                <IconDotsVertical/>
+                            </Button>
                         </div>
-                        <div className={classes.desktopAction}>
-                            <ShowForDesktop>
-                                <Button size={"xs"} variant={"transparent"}>
-                                    <IconDotsVertical/>
-                                </Button>
-                            </ShowForDesktop>
-                        </div>
-                    </div>
-                </Menu.Target>
+                    </Menu.Target>
 
-                <Menu.Dropdown>
-                    <Menu.Label>{t`Manage`}</Menu.Label>
-                    <Menu.Item onClick={() => handleModalClick(order.id, viewModal)}
-                               leftSection={<IconBasketCog size={14}/>}>{t`Manage order`}</Menu.Item>
-                    <Menu.Item onClick={() => handleModalClick(order.id, messageModal)}
-                               leftSection={<IconSend size={14}/>}>{t`Message buyer`}</Menu.Item>
+                    <Menu.Dropdown>
+                        <Menu.Label>{t`Manage`}</Menu.Label>
+                        <Menu.Item onClick={() => handleModalClick(order.id, viewModal)}
+                                   leftSection={<IconBasketCog size={14}/>}>{t`Manage order`}</Menu.Item>
+                        <Menu.Item onClick={() => handleModalClick(order.id, messageModal)}
+                                   leftSection={<IconSend size={14}/>}>{t`Message buyer`}</Menu.Item>
+                        <Menu.Item onClick={() => {
+                                       const url = eventCheckoutUrl(order.event_id, order.short_id, 'summary');
+                                       clipboard.copy(url);
+                                       showSuccess(t`Customer link copied to clipboard`);
+                                   }}
+                                   leftSection={<IconCopy size={14}/>}>{t`Copy customer link`}</Menu.Item>
 
-                    {order.latest_invoice && (
-                        <Menu.Item onClick={() => handleInvoiceDownload(order.latest_invoice as Invoice)}
-                                   leftSection={<IconReceipt2 size={14}/>}>{t`Download invoice`}</Menu.Item>
-                    )}
+                        {order.latest_invoice && order.buyer_type !== 'company' && (
+                            <Menu.Item onClick={() => handleInvoiceDownload(order.latest_invoice as Invoice)}
+                                       leftSection={<IconReceipt2 size={14}/>}>{t`Download invoice`}</Menu.Item>
+                        )}
 
-                    {order.status === 'AWAITING_OFFLINE_PAYMENT' && (
-                        <Menu.Item onClick={() => handleMarkAsPaid(event.id, order.id)}
-                                   leftSection={<IconReceiptDollar size={14}/>}>{t`Mark as paid`}</Menu.Item>
-                    )}
+                        {order.latest_invoice?.document_type === 'invoice' && (
+                            <Menu.Item onClick={() => handleKsefXmlDownload(order.latest_invoice as Invoice)}
+                                       leftSection={<IconFileCode size={14}/>}>{t`Download KSeF XML`}</Menu.Item>
+                        )}
 
-                    {isRefundable && (
-                        <Menu.Item onClick={() => handleModalClick(order.id, refundModal)}
-                                   leftSection={<IconReceiptRefund size={14}/>}>{t`Refund order`}</Menu.Item>
-                    )}
+                        {order.latest_invoice?.document_type === 'invoice' &&
+                            order.latest_invoice?.ksef_status !== 'SENT' && (
+                            <Menu.Item
+                                onClick={() => handleSendKsefInvoice(event.id, order.id)}
+                                leftSection={sendingKsefOrderId === order.id
+                                    ? <Loader size={14}/>
+                                    : <IconSend size={14}/>}
+                                disabled={sendingKsefOrderId === order.id}
+                            >{t`Send to KSeF`}</Menu.Item>
+                        )}
 
-                    {order.status === 'COMPLETED' && (
-                        <Menu.Item
-                            onClick={() => handleResendConfirmation(event.id, order.id)}
-                            leftSection={<IconRepeat size={14}/>}>
-                            {t`Resend order email`}
-                        </Menu.Item>
-                    )}
+                        {order.latest_invoice?.ksef_status === 'SENT' &&
+                            order.correction_invoice?.ksef_status !== 'SENT' && (
+                            <Menu.Item
+                                onClick={() => handleSendKsefCorrection(event.id, order.id)}
+                                leftSection={sendingKsefCorrectionOrderId === order.id
+                                    ? <Loader size={14}/>
+                                    : <IconSend size={14}/>}
+                                disabled={sendingKsefCorrectionOrderId === order.id}
+                            >{t`Send KSeF correction`}</Menu.Item>
+                        )}
 
-                    {order.status !== 'CANCELLED' && (
-                        <>
-                            <Menu.Divider/>
-                            <Menu.Label>{t`Danger zone`}</Menu.Label>
-                            <Menu.Item color="red"
-                                       onClick={() => handleModalClick(order.id, cancelModal)}
-                                       leftSection={<IconTrash size={14}/>}>
-                                {t`Cancel order`}
+                        {order.status === 'AWAITING_OFFLINE_PAYMENT' && (
+                            <Menu.Item onClick={() => handleMarkAsPaid(event.id, order.id)}
+                                       leftSection={<IconReceiptDollar size={14}/>}>{t`Mark as paid`}</Menu.Item>
+                        )}
+
+                        {isRefundable && (
+                            <Menu.Item onClick={() => handleModalClick(order.id, refundModal)}
+                                       leftSection={<IconReceiptRefund size={14}/>}>{t`Refund order`}</Menu.Item>
+                        )}
+
+                        {order.status === 'COMPLETED' && (
+                            <Menu.Item
+                                onClick={() => handleResendConfirmation(event.id, order.id)}
+                                leftSection={<IconRepeat size={14}/>}>
+                                {t`Resend order email`}
                             </Menu.Item>
-                        </>
-                    )}
-                </Menu.Dropdown>
-            </Menu>
-        </Group>;
+                        )}
+
+                        {order.status !== 'CANCELLED' && (
+                            <>
+                                <Menu.Divider/>
+                                <Menu.Label>{t`Danger zone`}</Menu.Label>
+                                <Menu.Item color="red"
+                                           onClick={() => handleModalClick(order.id, cancelModal)}
+                                           leftSection={<IconTrash size={14}/>}>
+                                    {t`Cancel order`}
+                                </Menu.Item>
+                            </>
+                        )}
+                    </Menu.Dropdown>
+                </Menu>
+            </Group>
+        );
     }
 
-    const OrderTableDesktop = () => (
-        <ShowForDesktop>
-            <Table>
-                <TableHead>
-                    <MantineTable.Tr>
-                        <MantineTable.Th miw={120}>{t`Reference`}</MantineTable.Th>
-                        <MantineTable.Th>{t`Customer`}</MantineTable.Th>
-                        <MantineTable.Th>{t`Attendees`}</MantineTable.Th>
-                        <MantineTable.Th miw={140}>{t`Amount`}</MantineTable.Th>
-                        <MantineTable.Th>{t`Created`}</MantineTable.Th>
-                        <MantineTable.Th miw={120}>{t`Status`}</MantineTable.Th>
-                        <MantineTable.Th></MantineTable.Th>
-                    </MantineTable.Tr>
-                </TableHead>
-                <MantineTable.Tbody>
-                    {orders.map((order) => {
-                        return (
-                            <MantineTable.Tr key={order.id}>
-                                <MantineTable.Td>
-                                    <Anchor onClick={() => handleModalClick(order.id, viewModal)}>
-                                        <Badge variant={'outline'}>{order.public_id}</Badge>
-                                    </Anchor>
-                                </MantineTable.Td>
-                                <MantineTable.Td>
-                                    <div>
-                                        <b>{order.first_name + ' ' + order.last_name}</b>
-                                    </div>
-                                    <Anchor target={'_blank'} href={`mailto:${order.email}`}>{order.email}</Anchor>
-                                </MantineTable.Td>
-                                <MantineTable.Td>
-                                    <Anchor onClick={() => handleModalClick(order.id, viewModal)}>
-                                        {formatNumber(order.attendees?.length as number)}
-                                    </Anchor>
-                                </MantineTable.Td>
-                                <MantineTable.Td>
-                                    <OrderAmountPopover event={event} order={order}/>
-                                </MantineTable.Td>
-                                <MantineTable.Td>
-                                    <Tooltip.Floating label={prettyDate(order.created_at, event.timezone)}>
-                                        <span>
-                                            {relativeDate(order.created_at)}
-                                        </span>
-                                    </Tooltip.Floating>
-                                </MantineTable.Td>
-                                <MantineTable.Td>
-                                    <OrderStatusBadge order={order}/>
-                                </MantineTable.Td>
-                                <MantineTable.Td>
-                                    <ActionMenu order={order}/>
-                                </MantineTable.Td>
-                            </MantineTable.Tr>
-                        );
-                    })}
-                </MantineTable.Tbody>
-            </Table>
-        </ShowForDesktop>
-    );
-
-    const OrderTableMobile = () => (
-        <ShowForMobile>
-            {orders.map((order) => {
-                return (
-                    <Card className={classes.orderCard} key={order.id}>
-                        <div className={classes.colDetails}>
-
-                            <div className={classes.amount}>
-                                <OrderAmountPopover event={event} order={order}/>
-                            </div>
-                            <div className={classes.name}>
-                                {order.first_name + ' ' + order.last_name}
-                            </div>
-                            <Anchor className={classes.email} target={'_blank'}
-                                    href={`mailto:${order.email}`}>{order.email}</Anchor>
-
-                            <span className={classes.reference}>
-                                {t`Reference`}: <b>{order.public_id}</b>
-                                <Anchor onClick={() => handleModalClick(order.id, viewModal)}>
-                                    <IconInfoCircle size={13}/>
+    const columns = useMemo<TanStackTableColumn<Order>[]>(
+        () => [
+            {
+                id: 'customer',
+                header: t`Customer`,
+                enableHiding: false,
+                cell: (info: CellContext<Order, unknown>) => {
+                    const order = info.row.original;
+                    return (
+                        <div className={classes.customerDetails}>
+                            <div className={classes.nameRow}>
+                                <Anchor
+                                    onClick={() => handleModalClick(order.id, viewModal)}
+                                    className={classes.customerName}
+                                    style={{cursor: 'pointer'}}
+                                >
+                                    {order.first_name} {order.last_name}
                                 </Anchor>
-                            </span>
-                            <Tooltip.Floating label={prettyDate(order.created_at, event.timezone)}>
-                                <span className={classes.createdDate}>
-                                    {t`Created`}: <b>{relativeDate(order.created_at)}</b>
-                                </span>
-                            </Tooltip.Floating>
+                                {order.company_name && (
+                                    <Text className={classes.companyName}>
+                                        {order.company_name}
+                                    </Text>
+                                )}
+                            </div>
+                            <Popover
+                                opened={emailPopoverId === order.id}
+                                onChange={(opened) => {
+                                    if (!opened) setEmailPopoverId(null);
+                                }}
+                                width={200}
+                                position="bottom"
+                                withArrow
+                                shadow="md"
+                            >
+                                <Popover.Target>
+                                    <Anchor
+                                        onClick={() => setEmailPopoverId(order.id)}
+                                        className={classes.customerEmail}
+                                        style={{cursor: 'pointer'}}
+                                    >
+                                        {order.email}
+                                    </Anchor>
+                                </Popover.Target>
+                                <Popover.Dropdown>
+                                    <Group gap="xs" style={{flexDirection: 'column', width: '100%'}}>
+                                        <Button
+                                            fullWidth
+                                            variant="light"
+                                            leftSection={<IconSend size={16}/>}
+                                            onClick={() => handleMessageFromEmail(order)}
+                                        >
+                                            {t`Message`}
+                                        </Button>
+                                        <Button
+                                            fullWidth
+                                            variant="light"
+                                            color="gray"
+                                            leftSection={<IconCopy size={16}/>}
+                                            onClick={() => handleCopyEmail(order.email)}
+                                        >
+                                            {t`Copy Email`}
+                                        </Button>
+                                    </Group>
+                                </Popover.Dropdown>
+                            </Popover>
+                        </div>
+                    );
+                },
+                meta: {
+                    headerStyle: {minWidth: 280},
+                },
+            },
+            {
+                id: 'orderDetails',
+                header: t`Order Details`,
+                enableHiding: true,
+                cell: (info: CellContext<Order, unknown>) => {
+                    const order = info.row.original;
+                    return (
+                        <div className={classes.orderDetails}>
+                            <Anchor
+                                onClick={() => handleModalClick(order.id, viewModal)}
+                                className={classes.orderId}
+                                style={{cursor: 'pointer'}}
+                            >
+                                {order.public_id}
+                            </Anchor>
+                            <div className={classes.orderMeta}>
+                                <Text className={classes.createdDate}>
+                                    {relativeDate(order.created_at)}
+                                </Text>
+                                {order.latest_invoice ? (
+                                    <>
+                                        {order.buyer_type !== 'company' ? (
+                                            <Anchor
+                                                onClick={() => handleInvoiceDownload(order.latest_invoice as Invoice)}
+                                                className={classes.invoiceLink}
+                                                style={{cursor: 'pointer'}}
+                                            >
+                                                <IconFileInvoice size={14}/>
+                                                {t`Invoice`} #{order.latest_invoice.invoice_number}
+                                            </Anchor>
+                                        ) : (
+                                            <Text className={classes.invoiceLink}>
+                                                <IconFileInvoice size={14}/>
+                                                {t`Invoice`} #{order.latest_invoice.invoice_number}
+                                            </Text>
+                                        )}
+                                        {order.latest_invoice.document_type === 'invoice' && (
+                                            <KsefStatusBadge invoice={order.latest_invoice}/>
+                                        )}
+                                        {order.correction_invoice && (
+                                            <KsefCorrectionStatusBadge invoice={order.correction_invoice}/>
+                                        )}
+                                    </>
+                                ) : (
+                                    <Text className={classes.noInvoice}>
+                                        <IconFileOff size={14}/>
+                                        {t`No invoice`}
+                                    </Text>
+                                )}
+                                {order.status === 'RESERVED' && order.reserved_until && (
+                                    <Text className={classes.reservedUntil}>
+                                        <IconClock size={14}/>
+                                        {t`Reserved until`} {formatTime(order.reserved_until)}
+                                    </Text>
+                                )}
+                            </div>
+                        </div>
+                    );
+                },
+            },
+            {
+                id: 'items',
+                header: t`Items`,
+                enableHiding: true,
+                cell: (info: CellContext<Order, unknown>) => {
+                    const order = info.row.original;
+                    const totalQuantity = order.order_items?.reduce((sum, item) => sum + item.quantity, 0) || 0;
+                    const itemBreakdown = order.order_items?.map(item =>
+                        `${item.quantity}x ${item.item_name}`
+                    ).join('\n') || '';
 
-                        </div>
-                        <div className={classes.colActions}>
-                            <div className={classes.status}>
-                                <OrderStatusBadge order={order}/>
+                    return (
+                        <Tooltip
+                            label={itemBreakdown}
+                            multiline
+                            withArrow
+                            disabled={!itemBreakdown}
+                        >
+                            <div className={classes.itemsBadge}>
+                                <IconTicket size={14}/>
+                                {formatNumber(totalQuantity)} {t`item(s)`}
                             </div>
-                            <div className={classes.actionButton}>
-                                <ActionMenu order={order}/>
-                            </div>
+                        </Tooltip>
+                    );
+                },
+            },
+            {
+                id: 'amount',
+                header: t`Amount`,
+                enableHiding: true,
+                cell: (info: CellContext<Order, unknown>) => {
+                    const order = info.row.original;
+                    return (
+                        <div className={classes.amountDetails}>
+                            <Text className={classes.amountGross}>
+                                {formatCurrency(order.total_gross, order.currency)}
+                            </Text>
+                            <Text className={classes.amountBreakdown}>
+                                {t`Tax`}: {formatCurrency(order.total_tax, order.currency)} •
+                                {' '}{t`Fees`}: {formatCurrency(order.total_fee, order.currency)}
+                            </Text>
+                            {order.refund_status && (
+                                <Text className={classes.refundedAmount} data-refund-status={order.refund_status}>
+                                    {order.refund_status === 'REFUNDED' && t`Refunded: ${formatCurrency(order.total_refunded, order.currency)}`}
+                                    {order.refund_status === 'PARTIALLY_REFUNDED' && t`Partially refunded: ${formatCurrency(order.total_refunded, order.currency)}`}
+                                    {order.refund_status === 'REFUND_PENDING' && t`Refund pending`}
+                                    {order.refund_status === 'REFUND_FAILED' && t`Refund failed`}
+                                </Text>
+                            )}
                         </div>
-                    </Card>
-                );
-            })}
-        </ShowForMobile>
+                    );
+                },
+            },
+            {
+                id: 'payment',
+                header: t`Payment`,
+                enableHiding: true,
+                cell: (info: CellContext<Order, unknown>) => {
+                    const order = info.row.original;
+                    return (
+                        <div className={classes.paymentStatus}>
+                            {order.payment_provider === 'STRIPE' ? (
+                                <>
+                                    <IconCreditCard size={16}/>
+                                    <Text>{t`Stripe`}</Text>
+                                </>
+                            ) : order.payment_provider === 'OFFLINE' ? (
+                                <>
+                                    <IconCash size={16}/>
+                                    <Text>{t`Offline`}</Text>
+                                </>
+                            ) : (
+                                <>
+                                    <IconHelp size={16}/>
+                                    <Text>{t`Other`}</Text>
+                                </>
+                            )}
+                        </div>
+                    );
+                },
+            },
+            {
+                id: 'status',
+                header: t`Status`,
+                enableHiding: true,
+                cell: (info: CellContext<Order, unknown>) => {
+                    const order = info.row.original;
+                    return (
+                        <div className={classes.statusBadge} data-status={order.status}>
+                            {order.status === 'COMPLETED' && (
+                                <>
+                                    <IconCheck size={14}/>
+                                    {t`Completed`}
+                                </>
+                            )}
+                            {order.status === 'RESERVED' && (
+                                <>
+                                    <IconClock size={14}/>
+                                    {t`Reserved`}
+                                </>
+                            )}
+                            {order.status === 'AWAITING_OFFLINE_PAYMENT' && (
+                                <>
+                                    <IconClockPause size={14}/>
+                                    {t`Awaiting Payment`}
+                                </>
+                            )}
+                            {order.status === 'CANCELLED' && (
+                                <>
+                                    <IconX size={14}/>
+                                    {t`Cancelled`}
+                                </>
+                            )}
+                            {order.status === 'ABANDONED' && (
+                                <>
+                                    <IconAlertCircle size={14}/>
+                                    {t`Abandoned`}
+                                </>
+                            )}
+                        </div>
+                    );
+                },
+            },
+            {
+                id: 'actions',
+                header: t`Actions`,
+                enableHiding: false,
+                cell: (info: CellContext<Order, unknown>) => {
+                    const order = info.row.original;
+                    return (
+                        <div className={classes.actionsMenu}>
+                            <ActionMenu order={order}/>
+                        </div>
+                    );
+                },
+                meta: {
+                    sticky: 'right',
+                },
+            },
+        ],
+        [event.id, emailPopoverId]
     );
+
+    if (orders.length === 0) {
+        return <NoResultsSplash
+            imageHref={'/blank-slate/orders.svg'}
+            heading={t`No orders to show`}
+            subHeading={(
+                <p>
+                    {t`Your orders will appear here once they start rolling in.`}
+                </p>
+            )}
+        />
+    }
 
     return (
         <>
-            <OrderTableDesktop/>
-            <OrderTableMobile/>
+            <TanStackTable
+                data={orders}
+                columns={columns}
+                storageKey="orders-table"
+                enableColumnVisibility={true}
+                renderColumnVisibilityToggle={(table) => <ColumnVisibilityToggle table={table}/>}
+            />
             {orderId && (
                 <>
                     {isRefundModalOpen && <RefundOrderModal onClose={refundModal.close} orderId={orderId}/>}

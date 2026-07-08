@@ -26,6 +26,8 @@ abstract class MessageDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
     final public const CREATED_AT = 'created_at';
     final public const UPDATED_AT = 'updated_at';
     final public const DELETED_AT = 'deleted_at';
+    final public const ELIGIBILITY_FAILURES = 'eligibility_failures';
+    final public const SCHEDULED_AT = 'scheduled_at';
 
     protected int $id;
     protected int $event_id;
@@ -43,6 +45,8 @@ abstract class MessageDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
     protected string $created_at;
     protected ?string $updated_at = null;
     protected ?string $deleted_at = null;
+    protected array|string|null $eligibility_failures = null;
+    protected ?string $scheduled_at = null;
 
     public function toArray(): array
     {
@@ -63,6 +67,8 @@ abstract class MessageDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
                     'created_at' => $this->created_at ?? null,
                     'updated_at' => $this->updated_at ?? null,
                     'deleted_at' => $this->deleted_at ?? null,
+                    'eligibility_failures' => $this->eligibility_failures ?? null,
+                    'scheduled_at' => $this->scheduled_at ?? null,
                 ];
     }
 
@@ -240,5 +246,27 @@ abstract class MessageDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
     public function getDeletedAt(): ?string
     {
         return $this->deleted_at;
+    }
+
+    public function setEligibilityFailures(array|string|null $eligibility_failures): self
+    {
+        $this->eligibility_failures = $eligibility_failures;
+        return $this;
+    }
+
+    public function getEligibilityFailures(): array|string|null
+    {
+        return $this->eligibility_failures;
+    }
+
+    public function setScheduledAt(?string $scheduled_at): self
+    {
+        $this->scheduled_at = $scheduled_at;
+        return $this;
+    }
+
+    public function getScheduledAt(): ?string
+    {
+        return $this->scheduled_at;
     }
 }

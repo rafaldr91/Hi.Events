@@ -8,11 +8,15 @@ services:
             - "1234:80"
         volumes:
             - ./../../backend:/var/www/html
-            - ./../../backend/storage:/var/www/html/storage
+            - app-storage:/var/www/html/storage
             - ./../../backend/bootstrap/cache:/var/www/html/bootstrap/cache
+            - ./../../VERSION:/var/www/html/VERSION:ro
         environment:
               APP_ENV: '${APP_ENV:-local}'
               APP_KEY: '${APP_KEY}'
+              KSEF_ENABLED: '${KSEF_ENABLED:-false}'
+              KSEF_AUTH_TOKEN: '${KSEF_AUTH_TOKEN:-}'
+              KSEF_ENVIRONMENT: '${KSEF_ENVIRONMENT:-test}'
         depends_on:
             - redis
             - mailpit
@@ -32,6 +36,7 @@ services:
         volumes:
             - ./../../frontend:/app
             - /app/node_modules
+            - ./../../VERSION:/app/VERSION:ro
 
         command: yarn dev:csr
         environment:
@@ -49,6 +54,7 @@ services:
         volumes:
             - ./../../frontend:/app
             - /app/node_modules
+            - ./../../VERSION:/app/VERSION:ro
 
         command: yarn dev:ssr
         environment:
@@ -64,7 +70,7 @@ services:
         image: nginx:alpine
         container_name: nginx
         ports:
-            - "8080:80"
+            - "8081:80"
             - "8443:443"
         volumes:
             - ./nginx/nginx.conf:/etc/nginx/nginx.conf
@@ -78,7 +84,7 @@ services:
     redis:
         image: 'redis:alpine'
         ports:
-            - '${FORWARD_REDIS_PORT:-6379}:6379'
+            - '${FORWARD_REDIS_PORT:-6380}:6379'
         volumes:
             - 'app-redis:/data'
         networks:
@@ -124,8 +130,8 @@ services:
     minio:
         image: 'minio/minio:latest'
         ports:
-            - '${FORWARD_MINIO_PORT:-9000}:9000'
-            - '${FORWARD_MINIO_CONSOLE_PORT:-8900}:8900'
+            - '${FORWARD_MINIO_PORT:-9010}:9000'
+            - '${FORWARD_MINIO_CONSOLE_PORT:-9011}:8900'
         environment:
             MINIO_ROOT_USER: app
             MINIO_ROOT_PASSWORD: password
@@ -182,4 +188,6 @@ volumes:
     app-pgsql:
         driver: local
     app-minio:
+        driver: local
+    app-storage:
         driver: local

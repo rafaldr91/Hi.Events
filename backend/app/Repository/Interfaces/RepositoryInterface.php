@@ -12,7 +12,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 /**
- * @template T
+ * @template T of DomainObjectInterface
  */
 interface RepositoryInterface
 {
@@ -71,7 +71,7 @@ interface RepositoryInterface
      */
     public function simplePaginateWhere(
         array $where,
-        ?int   $limit = null,
+        ?int  $limit = null,
         array $columns = self::DEFAULT_COLUMNS,
     ): Paginator;
 
@@ -128,9 +128,9 @@ interface RepositoryInterface
      * @return T|null
      */
     public function findFirstByField(
-        string $field,
+        string  $field,
         ?string $value = null,
-        array  $columns = ['*']
+        array   $columns = ['*']
     ): ?DomainObjectInterface;
 
     /**
@@ -197,6 +197,8 @@ interface RepositoryInterface
     public function decrementEach(array $where, array $columns, array $extra = []): int;
 
     public function incrementEach(array $columns, array $additionalUpdates = [], ?array $where = null);
+
+    public function countWhere(array $conditions): int;
 
     public function includeDeleted(): static;
 

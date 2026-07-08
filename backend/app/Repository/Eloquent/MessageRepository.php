@@ -2,14 +2,19 @@
 
 namespace HiEvents\Repository\Eloquent;
 
+use Carbon\Carbon;
 use HiEvents\DomainObjects\Generated\MessageDomainObjectAbstract;
 use HiEvents\DomainObjects\MessageDomainObject;
+use HiEvents\DomainObjects\Status\MessageStatus;
 use HiEvents\Http\DTO\QueryParamsDTO;
 use HiEvents\Models\Message;
 use HiEvents\Repository\Interfaces\MessageRepositoryInterface;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 
+/**
+ * @extends BaseRepository<MessageDomainObject>
+ */
 class MessageRepository extends BaseRepository implements MessageRepositoryInterface
 {
     protected function getModel(): string
@@ -36,9 +41,13 @@ class MessageRepository extends BaseRepository implements MessageRepositoryInter
             };
         }
 
+        if ($params->filter_fields && $params->filter_fields->isNotEmpty()) {
+            $this->applyFilterFields($params, MessageDomainObject::getAllowedFilterFields());
+        }
+
         $this->model = $this->model->orderBy(
-            $params->sort_by ?? MessageDomainObject::getDefaultSort(),
-            $params->sort_direction ?? 'desc',
+            $this->validateSortColumn($params->sort_by, MessageDomainObject::class),
+            $this->validateSortDirection($params->sort_direction, MessageDomainObject::class),
         );
 
         return $this->paginateWhere(
@@ -48,4 +57,21 @@ class MessageRepository extends BaseRepository implements MessageRepositoryInter
         );
     }
 
+    public function countMessagesInLast24Hours(int $accountId): int
+    {
+        $count = $this->model
+            ->join('events', 'messages.event_id', '=', 'events.id')
+            ->where('events.account_id', $accountId)
+            ->where('messages.created_at', '>=', Carbon::now()->subHours(24))
+            ->whereIn('messages.status', [
+                MessageStatus::PROCESSING->name,
+                MessageStatus::SENT->name,
+                MessageStatus::PENDING_REVIEW->name,
+            ])
+            ->count();
+
+        $this->resetModel();
+
+        return $count;
+    }
 }
